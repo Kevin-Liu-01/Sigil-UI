@@ -1,13 +1,7 @@
 ---
 title: Breadcrumb
-description: "A Breadcrumb component from the Sigil design system."
+description: "Show the path to the current page with linked ancestors."
 ---
-
-## Import
-
-```tsx
-import { Breadcrumb } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -15,10 +9,16 @@ import { Breadcrumb } from "@sigil-ui/components";
   <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Docs", href: "/docs" }, { label: "Breadcrumb" }]} />
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Breadcrumb } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Breadcrumb>...</Breadcrumb>
+<Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Docs", href: "/docs" }, { label: "Breadcrumb" }]} />
 ```
 
 ## Props

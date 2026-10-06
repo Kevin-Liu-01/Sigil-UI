@@ -1,7 +1,32 @@
 ---
 title: SpecTable
-description: "A SpecTable component from the Sigil design system."
+description: "Present technical specifications as labeled values."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <SpecTable
+    title="GPU Specifications"
+    groups={[
+      {
+        title: "Performance",
+        rows: [
+          { label: "TFLOPS", value: "312", unit: "FP16", highlight: true },
+          { label: "Memory", value: "80", unit: "GB HBM3" },
+          { label: "Bandwidth", value: "3.35", unit: "TB/s" },
+        ],
+      },
+      {
+        title: "Physical",
+        rows: [
+          { label: "TDP", value: "700", unit: "W" },
+          { label: "Process", value: "4nm" },
+        ],
+      },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +37,26 @@ import { SpecTable } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<SpecTable>...</SpecTable>
+<SpecTable
+    title="GPU Specifications"
+    groups={[
+      {
+        title: "Performance",
+        rows: [
+          { label: "TFLOPS", value: "312", unit: "FP16", highlight: true },
+          { label: "Memory", value: "80", unit: "GB HBM3" },
+          { label: "Bandwidth", value: "3.35", unit: "TB/s" },
+        ],
+      },
+      {
+        title: "Physical",
+        rows: [
+          { label: "TDP", value: "700", unit: "W" },
+          { label: "Process", value: "4nm" },
+        ],
+      },
+    ]}
+  />
 ```
 
 ## Props

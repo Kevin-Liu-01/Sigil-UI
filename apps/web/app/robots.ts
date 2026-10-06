@@ -47,7 +47,7 @@ export default function robots(): MetadataRoute.Robots {
       },
       {
         userAgent: "Twitterbot",
-        allow: ["/api/og", "/api/og-home"],
+        allow: ["/", "/api/og", "/api/og-home"],
       },
     ],
     sitemap: [`${BASE_URL}/sitemap.xml`],

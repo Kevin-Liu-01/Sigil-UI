@@ -1,7 +1,13 @@
 ---
 title: TypeWriter
-description: "A TypeWriter component from the Sigil design system."
+description: "Reveal text character by character."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <TypeWriter words={["Hello, Sigil UI.", "Tokens keep every surface coherent."]} />
+</ComponentPreview>
 
 ## Import
 
@@ -9,16 +15,10 @@ description: "A TypeWriter component from the Sigil design system."
 import { TypeWriter } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <TypeWriter text="Hello, Sigil UI." />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<TypeWriter>...</TypeWriter>
+<TypeWriter words={["Hello, Sigil UI.", "Tokens keep every surface coherent."]} />
 ```
 
 ## Props

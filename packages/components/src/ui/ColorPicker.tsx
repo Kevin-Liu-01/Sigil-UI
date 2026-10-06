@@ -62,9 +62,11 @@ export const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(function
           onChange={(e) => update(e.target.value)}
           disabled={disabled}
           className="sr-only"
+          aria-label="Color"
         />
         <input
           type="text"
+          aria-label="Color value"
           value={color}
           onChange={(e) => update(e.target.value)}
           disabled={disabled}

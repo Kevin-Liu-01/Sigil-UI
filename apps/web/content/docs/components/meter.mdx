@@ -1,13 +1,7 @@
 ---
 title: Meter
-description: "A Meter component from the Sigil design system."
+description: "Show a measured value within a known range."
 ---
-
-## Import
-
-```tsx
-import { Meter } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -17,19 +11,27 @@ import { Meter } from "@sigil-ui/components";
   </div>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Meter } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Meter>Meter content</Meter>
+<div className="flex flex-col gap-2 w-full max-w-sm">
+    <Meter value={72} max={100} label="Storage" />
+  </div>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `value` | `number` | — | — |
-| `max` | `number` | — | — |
-| `label` | `string` | — | — |
+| `value` | `number` | — | The current controlled value. |
+| `max` | `number` | — | Largest allowed value. |
+| `label` | `string` | — | Readable label for the component. |
 
 ## Token integration
 

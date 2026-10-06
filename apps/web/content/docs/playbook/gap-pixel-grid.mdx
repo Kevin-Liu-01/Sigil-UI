@@ -1,7 +1,21 @@
 ---
 title: GapPixelGrid
-description: "A GapPixelGrid component from the Sigil design system."
+description: "Create a pixel grid with adjustable gaps."
 ---
+
+## Preview
+
+<ComponentPreview label="One-pixel grid">
+  <GapPixelGrid columns={{ md: 3 }} className="w-full">
+    {[
+      ["01", "Tokens"],
+      ["02", "Presets"],
+      ["03", "Components"],
+    ].map(([index, label]) => (
+      <GapPixelCell key={index} className="p-[var(--s-space-6)]"><span className="font-mono text-xs text-[var(--s-text-muted)]">{index}</span><p className="mt-3 font-medium text-[var(--s-text)]">{label}</p></GapPixelCell>
+    ))}
+  </GapPixelGrid>
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +26,15 @@ import { GapPixelGrid, GapPixelCell } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<GapPixelGrid>...</GapPixelGrid>
+<GapPixelGrid columns={{ md: 3 }} className="w-full">
+    {[
+      ["01", "Tokens"],
+      ["02", "Presets"],
+      ["03", "Components"],
+    ].map(([index, label]) => (
+      <GapPixelCell key={index} className="p-[var(--s-space-6)]"><span className="font-mono text-xs text-[var(--s-text-muted)]">{index}</span><p className="mt-3 font-medium text-[var(--s-text)]">{label}</p></GapPixelCell>
+    ))}
+  </GapPixelGrid>
 ```
 
 ## Sub-components

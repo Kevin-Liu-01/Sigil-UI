@@ -1,7 +1,13 @@
 ---
 title: IsometricCylinder
-description: "A IsometricCylinder component from the Sigil design system."
+description: "Render a cylinder in an isometric scene."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <IsometricCylinder radius={64} height={100} />
+</ComponentPreview>
 
 ## Import
 
@@ -9,28 +15,22 @@ description: "A IsometricCylinder component from the Sigil design system."
 import { IsometricCylinder } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <IsometricCylinder />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<IsometricCylinder>...</IsometricCylinder>
+<IsometricCylinder radius={64} height={100} />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `radius` | `number` | — | — |
-| `height` | `number` | — | — |
-| `topColor` | `string` | — | — |
-| `bodyColor` | `string` | — | — |
-| `strokeColor` | `string` | — | — |
-| `strokeWidth` | `number` | — | — |
+| `radius` | `number` | — | Radius configuration. |
+| `height` | `number` | — | Height of the rendered content. |
+| `topColor` | `string` | — | Top Color configuration. |
+| `bodyColor` | `string` | — | Body Color configuration. |
+| `strokeColor` | `string` | — | Stroke Color configuration. |
+| `strokeWidth` | `number` | — | Stroke Width configuration. |
 
 ## Token integration
 

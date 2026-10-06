@@ -1,7 +1,13 @@
 ---
 title: Triangle
-description: "A Triangle component from the Sigil design system."
+description: "Render a triangular shape using the active design tokens."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <Triangle size="xl" />
+</ComponentPreview>
 
 ## Import
 
@@ -9,24 +15,18 @@ description: "A Triangle component from the Sigil design system."
 import { Triangle } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <Triangle size={48} />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<Triangle>Triangle content</Triangle>
+<Triangle size="xl" />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `direction` | `"up" | "down" | "left" | "right"` | `up` | Direction the triangle points. |
-| `size` | `"sm" | "md" | "lg" | "xl"` | `md` | Triangle size. |
+| `direction` | `"up" \| "down" \| "left" \| "right"` | `up` | Direction the triangle points. |
+| `size` | `"sm" \| "md" \| "lg" \| "xl"` | `md` | Triangle size. |
 
 ## Token integration
 

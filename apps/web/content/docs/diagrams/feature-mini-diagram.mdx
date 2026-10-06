@@ -1,7 +1,19 @@
 ---
 title: FeatureMiniDiagram
-description: "A FeatureMiniDiagram component from the Sigil design system."
+description: "Illustrate a feature in a compact diagram."
 ---
+
+## Preview
+
+<ComponentPreview label="Mini diagram set">
+  <div className="grid w-full grid-cols-2 gap-[var(--s-space-4)] sm:grid-cols-4">
+    {["timeline-bars", "wave-state", "layer-stack", "hub-spoke"].map((variant) => (
+      <div key={variant} className="flex min-h-32 items-center justify-center border border-[var(--s-border)] bg-[var(--s-surface)]">
+        <FeatureMiniDiagram variant={variant === "timeline-bars" ? "timeline-bars" : variant === "wave-state" ? "wave-state" : variant === "layer-stack" ? "layer-stack" : "hub-spoke"} size={72} />
+      </div>
+    ))}
+  </div>
+</ComponentPreview>
 
 ## Import
 
@@ -12,16 +24,22 @@ import { FeatureMiniDiagram } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<FeatureMiniDiagram>...</FeatureMiniDiagram>
+<div className="grid w-full grid-cols-2 gap-[var(--s-space-4)] sm:grid-cols-4">
+    {["timeline-bars", "wave-state", "layer-stack", "hub-spoke"].map((variant) => (
+      <div key={variant} className="flex min-h-32 items-center justify-center border border-[var(--s-border)] bg-[var(--s-surface)]">
+        <FeatureMiniDiagram variant={variant === "timeline-bars" ? "timeline-bars" : variant === "wave-state" ? "wave-state" : variant === "layer-stack" ? "layer-stack" : "hub-spoke"} size={72} />
+      </div>
+    ))}
+  </div>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `variant` | `FeatureMiniVariant` | — | — |
-| `size` | `number` | — | — |
-| `accentColor` | `string` | — | — |
+| `variant` (required) | `FeatureMiniVariant` | — | Selects a supported visual treatment. |
+| `size` | `number` | — | Sets the component's size. |
+| `accentColor` | `string` | — | Accent Color configuration. |
 
 ## Token integration
 

@@ -20,6 +20,7 @@ export interface ComboboxOption {
 export interface ComboboxProps {
   options: ComboboxOption[];
   value?: string;
+  defaultValue?: string;
   onValueChange?: (value: string) => void;
   placeholder?: string;
   searchPlaceholder?: string;
@@ -28,18 +29,14 @@ export interface ComboboxProps {
 }
 
 export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>(function Combobox(
-  {
-    options,
-    value,
-    onValueChange,
-    placeholder = "Select…",
-    searchPlaceholder = "Search…",
-    emptyText = "No results.",
-    className,
-  },
+  props,
   ref,
 ) {
+  const { options, value: controlledValue, defaultValue = "", onValueChange, placeholder = "Select…", searchPlaceholder = "Search…", emptyText = "No results.", className } = props;
+  const isControlled = "value" in props;
   const { play } = useSigilSound();
+  const [internalValue, setInternalValue] = useState(defaultValue);
+  const value = isControlled ? controlledValue : internalValue;
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -73,12 +70,13 @@ export const Combobox = forwardRef<HTMLDivElement, ComboboxProps>(function Combo
 
   const select = useCallback(
     (val: string) => {
+      if (!isControlled) setInternalValue(val);
       onValueChange?.(val);
       setOpenWithSound(false);
       setQuery("");
       setActiveIndex(-1);
     },
-    [onValueChange, setOpenWithSound],
+    [isControlled, onValueChange, setOpenWithSound],
   );
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {

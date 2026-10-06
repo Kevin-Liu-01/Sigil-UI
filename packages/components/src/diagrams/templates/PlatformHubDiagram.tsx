@@ -37,14 +37,14 @@ export const PlatformHubDiagram = forwardRef<HTMLDivElement, PlatformHubDiagramP
       <div
         ref={ref}
         data-slot="platform-hub-diagram"
-        className={cn("w-full p-6 rounded-[var(--s-radius-card,0px)] border border-[color:var(--s-border)] bg-[var(--s-surface)]", className)}
+        className={cn("@container w-full min-w-0 p-[var(--s-space-16)] rounded-[var(--s-radius-card,0px)] border border-[color:var(--s-border)] bg-[var(--s-surface)]", className)}
         style={{ backgroundImage: "radial-gradient(circle, var(--s-border-muted) 1px, transparent 1px)", backgroundSize: "20px 20px" }}
         {...props}
       >
-        <div className="flex items-stretch gap-4">
+        <div className="flex flex-col @sm:flex-row items-stretch gap-[var(--s-space-16)]">
           <Column groups={left} side="left" />
 
-          <div className="flex items-center shrink-0">
+          <div className="flex justify-center items-center shrink-0 rotate-90 @sm:rotate-0">
             <svg width="24" height="2" aria-hidden><line x1="0" y1="1" x2="24" y2="1" stroke="var(--s-border-strong)" strokeWidth="1.5" strokeDasharray="4 3" /></svg>
           </div>
 
@@ -60,7 +60,7 @@ export const PlatformHubDiagram = forwardRef<HTMLDivElement, PlatformHubDiagramP
             )}
           </div>
 
-          <div className="flex items-center shrink-0">
+          <div className="flex justify-center items-center shrink-0 rotate-90 @sm:rotate-0">
             <svg width="24" height="2" aria-hidden><line x1="0" y1="1" x2="24" y2="1" stroke="var(--s-border-strong)" strokeWidth="1.5" strokeDasharray="4 3" /></svg>
           </div>
 

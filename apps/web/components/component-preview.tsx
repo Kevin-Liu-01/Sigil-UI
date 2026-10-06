@@ -31,8 +31,11 @@ export function ComponentPreview({
   }, []);
 
   return (
-    <div className="sigil-preview-wrapper">
-      {label && <div className="sigil-preview-label">{label}</div>}
+    <div className="sigil-preview-wrapper not-prose">
+      <div className="sigil-preview-toolbar">
+        <span>{label ?? "Live preview"}</span>
+        <strong><i aria-hidden /> Interactive</strong>
+      </div>
       <div
         suppressHydrationWarning
         className={`sigil-preview ${vertical ? "sigil-preview-vertical" : ""} ${className}`}

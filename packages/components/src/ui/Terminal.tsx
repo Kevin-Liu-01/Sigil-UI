@@ -1,7 +1,8 @@
 "use client";
 
-import { forwardRef, useCallback, useState, type HTMLAttributes, type ReactNode } from "react";
+import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
 import { cn } from "../utils";
+import { useCopyToClipboard } from "../use-copy-to-clipboard";
 
 export interface TerminalProps extends HTMLAttributes<HTMLDivElement> {
   /** Terminal title (shown in the title bar). */
@@ -19,15 +20,8 @@ export const Terminal = forwardRef<HTMLDivElement, TerminalProps>(function Termi
   { title = "Terminal", lines, showLineNumbers = true, className, children, ...rest },
   ref,
 ) {
-  const [copied, setCopied] = useState(false);
 
-  const handleCopy = useCallback(() => {
-    const text = lines?.join("\n") ?? "";
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
-  }, [lines]);
+  const { copy: handleCopy, copied, error } = useCopyToClipboard(lines?.join("\n") ?? "");
 
   return (
     <div
@@ -54,9 +48,10 @@ export const Terminal = forwardRef<HTMLDivElement, TerminalProps>(function Termi
             type="button"
             onClick={handleCopy}
             className="cursor-pointer text-xs text-[var(--s-text-muted)] hover:text-[var(--s-text)] transition-colors duration-[var(--s-duration-fast,150ms)] px-2 py-1 rounded-[var(--s-radius-sm,4px)] focus-visible:outline-none focus-visible:ring-[length:var(--s-focus-ring-width)] focus-visible:ring-[var(--s-focus-ring-color)]"
-            aria-label="Copy to clipboard"
+            aria-label={error ? "Copy failed. Retry" : copied ? "Copied to clipboard" : "Copy to clipboard"}
+            aria-live="polite"
           >
-            {copied ? "Copied!" : "Copy"}
+            {error ? "Copy failed — retry" : copied ? "Copied" : "Copy"}
           </button>
         )}
       </div>

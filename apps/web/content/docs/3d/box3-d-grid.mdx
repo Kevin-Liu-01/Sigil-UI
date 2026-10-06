@@ -1,7 +1,23 @@
 ---
 title: Box3DGrid
-description: "A Box3DGrid component from the Sigil design system."
+description: "Arrange dimensional boxes into a coordinated grid."
 ---
+
+## Preview
+
+<ComponentPreview vertical label="Hover to inspect each token layer">
+  <Box3DGrid
+    columns={3}
+    items={[
+      { key: "colors", depth: 14, hoverLift: true, children: <button type="button" aria-label="Inspect color tokens" className="flex size-full flex-col items-center justify-center gap-1 p-3 text-[var(--s-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--s-focus-ring-color)] active:scale-[0.96]"><span className="font-mono text-xs text-[var(--s-text-muted)]">01</span><strong className="text-sm">Colors</strong></button> },
+      { key: "type", depth: 14, hoverLift: true, variant: "card", children: <button type="button" aria-label="Inspect typography tokens" className="flex size-full flex-col items-center justify-center gap-1 p-3 text-[var(--s-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--s-focus-ring-color)] active:scale-[0.96]"><span className="font-mono text-xs text-[var(--s-text-muted)]">02</span><strong className="text-sm">Type</strong></button> },
+      { key: "space", depth: 14, hoverLift: true, variant: "panel", children: <button type="button" aria-label="Inspect spacing tokens" className="flex size-full flex-col items-center justify-center gap-1 p-3 text-[var(--s-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--s-focus-ring-color)] active:scale-[0.96]"><span className="font-mono text-xs text-[var(--s-text-muted)]">03</span><strong className="text-sm">Space</strong></button> },
+      { key: "radius", depth: 14, hoverLift: true, variant: "panel", children: <button type="button" aria-label="Inspect radius tokens" className="flex size-full flex-col items-center justify-center gap-1 p-3 text-[var(--s-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--s-focus-ring-color)] active:scale-[0.96]"><span className="font-mono text-xs text-[var(--s-text-muted)]">04</span><strong className="text-sm">Radius</strong></button> },
+      { key: "motion", depth: 14, hoverLift: true, variant: "card", children: <button type="button" aria-label="Inspect motion tokens" className="flex size-full flex-col items-center justify-center gap-1 p-3 text-[var(--s-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--s-focus-ring-color)] active:scale-[0.96]"><span className="font-mono text-xs text-[var(--s-text-muted)]">05</span><strong className="text-sm">Motion</strong></button> },
+      { key: "depth", depth: 14, hoverLift: true, children: <button type="button" aria-label="Inspect depth tokens" className="flex size-full flex-col items-center justify-center gap-1 p-3 text-[var(--s-text)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--s-focus-ring-color)] active:scale-[0.96]"><span className="font-mono text-xs text-[var(--s-text-muted)]">06</span><strong className="text-sm">Depth</strong></button> },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -9,16 +25,17 @@ description: "A Box3DGrid component from the Sigil design system."
 import { Box3DGrid } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <Box3DGrid columns={3} />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<Box3DGrid>...</Box3DGrid>
+<Box3DGrid
+  columns={3}
+  items={[
+    { key: "tokens", children: "Tokens", hoverLift: true },
+    { key: "components", children: "Components", hoverLift: true },
+    { key: "presets", children: "Presets", hoverLift: true },
+  ]}
+/>
 ```
 
 ## Props
@@ -27,4 +44,4 @@ import { Box3DGrid } from "@sigil-ui/components";
 |---|---|---|---|
 | `items` | `Box3DGridItem[]` | — | Items to display in the grid. |
 | `columns` | `number` | `3` | Number of columns. |
-| `gap` | `string | number` | `1.5rem` | Gap between boxes. |
+| `gap` | `string \| number` | `1.5rem` | Gap between boxes. |

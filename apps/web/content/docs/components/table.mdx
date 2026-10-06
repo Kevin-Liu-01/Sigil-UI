@@ -1,13 +1,7 @@
 ---
 title: Table
-description: "A Table component from the Sigil design system."
+description: "Compose semantic tables with styled headers, rows, and cells."
 ---
-
-## Import
-
-```tsx
-import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell, TableCaption } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -32,10 +26,33 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell, TableCap
 </Table>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell, TableCaption } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Table>...</Table>
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Status</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>Alpha</TableCell>
+      <TableCell>Active</TableCell>
+    </TableRow>
+    <TableRow>
+      <TableCell>Beta</TableCell>
+      <TableCell>Draft</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
 ```
 
 ## Sub-components

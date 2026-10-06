@@ -1,7 +1,13 @@
 ---
 title: Gutter
-description: "A Gutter component from the Sigil design system."
+description: "Reserve a consistent gap between structural regions."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <div className="w-full"><p>First section</p><Gutter className="bg-[var(--s-surface)]" /><p>Next section</p></div>
+</ComponentPreview>
 
 ## Import
 
@@ -9,20 +15,14 @@ description: "A Gutter component from the Sigil design system."
 import { Gutter } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <Gutter />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<Gutter>Gutter content</Gutter>
+<div className="w-full"><p>First section</p><Gutter className="bg-[var(--s-surface)]" /><p>Next section</p></div>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `size` | `"xs" | "sm" | "md" | "lg" | "xl"` | `md` | Gutter height. |
+| `size` | `"xs" \| "sm" \| "md" \| "lg" \| "xl"` | `md` | Gutter height. |

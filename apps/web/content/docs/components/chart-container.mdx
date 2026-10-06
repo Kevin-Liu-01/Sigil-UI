@@ -1,7 +1,21 @@
 ---
 title: ChartContainer
-description: "A ChartContainer component from the Sigil design system."
+description: "Build responsive Recharts visualizations with token-styled axes, tooltips, and legends."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <ChartContainerPreview />
+</ComponentPreview>
+
+This chart uses the actual `ChartContainer`, `ChartTooltip`, and `ChartLegend` components.
+
+Install Recharts alongside Sigil if it is not already in your project:
+
+```bash
+pnpm add recharts
+```
 
 ## Import
 
@@ -9,21 +23,41 @@ description: "A ChartContainer component from the Sigil design system."
 import { ChartContainer, ChartTooltip, ChartLegend } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview vertical>
-  <SparkLine
-    data={[3, 5, 4, 7, 9, 8, 12, 11, 14, 17, 15, 19]}
-    width={520}
-    height={120}
-    color="var(--s-primary)"
-  />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<ChartContainer>...</ChartContainer>
+"use client";
+
+import { ChartContainer, ChartLegend, ChartTooltip } from "@sigil-ui/components";
+import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
+
+const TRAFFIC = [
+  { month: "Apr", desktop: 186, mobile: 80 },
+  { month: "May", desktop: 224, mobile: 112 },
+  { month: "Jun", desktop: 208, mobile: 132 },
+  { month: "Jul", desktop: 278, mobile: 166 },
+  { month: "Aug", desktop: 305, mobile: 184 },
+  { month: "Sep", desktop: 342, mobile: 218 },
+];
+
+function ChartContainerPreview() {
+  return (
+    <div className="grid gap-[var(--s-space-16)] w-full">
+      <div><strong>Monthly visitors</strong><p className="text-[var(--s-text-muted)] text-[length:var(--s-size-sm)]">Compare desktop and mobile traffic. Hover or use the arrow keys to inspect a month.</p></div>
+      <ChartContainer height={280} aria-label="Desktop and mobile visitors from April to September">
+        <AreaChart data={TRAFFIC} accessibilityLayer>
+          <CartesianGrid vertical={false} />
+          <XAxis dataKey="month" tickLine={false} axisLine={false} />
+          <YAxis width={36} tickLine={false} axisLine={false} />
+          <ChartTooltip />
+          <ChartLegend />
+          <Area name="Desktop" type="monotone" dataKey="desktop" stroke="var(--s-chart-series-1)" fill="var(--s-chart-series-1)" fillOpacity={0.12} isAnimationActive={false} />
+          <Area name="Mobile" type="monotone" dataKey="mobile" stroke="var(--s-chart-series-2)" fill="var(--s-chart-series-2)" fillOpacity={0.12} isAnimationActive={false} />
+        </AreaChart>
+      </ChartContainer>
+    </div>
+  );
+}
 ```
 
 ## Sub-components
@@ -37,7 +71,8 @@ This component includes the following parts:
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `height` | `number | string` | — | — |
+| `height` | `number \| string` | — | Height of the rendered content. |
+| `children` (required) | `ReactNode` | — | Content rendered inside the component. |
 
 ## Token integration
 

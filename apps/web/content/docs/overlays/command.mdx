@@ -1,13 +1,7 @@
 ---
 title: Command
-description: "A Command component from the Sigil design system."
+description: "Build a searchable command list with keyboard navigation."
 ---
-
-## Import
-
-```tsx
-import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator, CommandDialog } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -25,10 +19,26 @@ import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, Command
 </Command>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator, CommandDialog } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Command>...</Command>
+<Command className="border border-[var(--s-border)]">
+  <CommandInput placeholder="Type a command..." />
+  <CommandList>
+    <CommandEmpty>No results.</CommandEmpty>
+    <CommandGroup heading="Suggestions">
+      <CommandItem>Calendar</CommandItem>
+      <CommandItem>Search</CommandItem>
+      <CommandItem>Settings</CommandItem>
+    </CommandGroup>
+  </CommandList>
+</Command>
 ```
 
 ## Sub-components

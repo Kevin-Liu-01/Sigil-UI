@@ -1,7 +1,21 @@
 ---
 title: BorderStack
-description: "A BorderStack component from the Sigil design system."
+description: "Layer borders to give a panel a structural outline."
 ---
+
+## Preview
+
+<ComponentPreview label="Shared border rhythm">
+  <BorderStack className="w-full">
+    {[
+      ["Tokens", "519 configurable fields"],
+      ["Presets", "46 complete identities"],
+      ["Components", "350+ constrained surfaces"],
+    ].map(([label, value]) => (
+      <div key={label} className="flex items-center justify-between bg-[var(--s-surface)] p-[var(--s-space-4)] text-sm"><span className="text-[var(--s-text)]">{label}</span><span className="font-mono text-[var(--s-text-muted)]">{value}</span></div>
+    ))}
+  </BorderStack>
+</ComponentPreview>
 
 ## Import
 
@@ -12,15 +26,23 @@ import { BorderStack } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<BorderStack>...</BorderStack>
+<BorderStack className="w-full">
+    {[
+      ["Tokens", "519 configurable fields"],
+      ["Presets", "46 complete identities"],
+      ["Components", "350+ constrained surfaces"],
+    ].map(([label, value]) => (
+      <div key={label} className="flex items-center justify-between bg-[var(--s-surface)] p-[var(--s-space-4)] text-sm"><span className="text-[var(--s-text)]">{label}</span><span className="font-mono text-[var(--s-text-muted)]">{value}</span></div>
+    ))}
+  </BorderStack>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `borders` | `"between" | "all" | "none"` | `between` | Which borders to show. |
-| `as` | `"div" | "main" | "article" | "section"` | `div` | Element type. |
+| `borders` | `"between" \| "all" \| "none"` | `between` | Which borders to show. |
+| `as` | `"div" \| "main" \| "article" \| "section"` | `div` | Element type. |
 
 ## Token integration
 

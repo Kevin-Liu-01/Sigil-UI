@@ -84,7 +84,7 @@ export const SankeyDiagram = forwardRef<SVGSVGElement, SankeyDiagramProps>(
         {safeSources.map((n, i) => (
           <g key={`s${i}`}>
             <rect x={0} y={srcPositions[i].y} width={nodeW} height={srcPositions[i].h} rx={2} fill={n.color ?? "var(--s-primary)"} opacity={0.8} />
-            <text x={nodeW + 6} y={srcPositions[i].y + srcPositions[i].h / 2 + 3} fontSize={9} fill="var(--s-text-muted)" fontFamily="var(--s-font-mono, monospace)">
+            <text x={nodeW + 6} y={srcPositions[i].y + srcPositions[i].h / 2 + 3} fontSize="var(--s-size-xs)" fill="var(--s-text)" stroke="var(--s-background)" strokeWidth="var(--s-border-thick)" paintOrder="stroke" fontFamily="var(--s-font-mono, monospace)">
               {n.label}
             </text>
           </g>
@@ -93,7 +93,7 @@ export const SankeyDiagram = forwardRef<SVGSVGElement, SankeyDiagramProps>(
         {safeTargets.map((n, i) => (
           <g key={`t${i}`}>
             <rect x={w - nodeW} y={tgtPositions[i].y} width={nodeW} height={tgtPositions[i].h} rx={2} fill={n.color ?? "var(--s-primary)"} opacity={0.8} />
-            <text x={w - nodeW - 6} y={tgtPositions[i].y + tgtPositions[i].h / 2 + 3} fontSize={9} fill="var(--s-text-muted)" fontFamily="var(--s-font-mono, monospace)" textAnchor="end">
+            <text x={w - nodeW - 6} y={tgtPositions[i].y + tgtPositions[i].h / 2 + 3} fontSize="var(--s-size-xs)" fill="var(--s-text)" stroke="var(--s-background)" strokeWidth="var(--s-border-thick)" paintOrder="stroke" fontFamily="var(--s-font-mono, monospace)" textAnchor="end">
               {n.label}
             </text>
           </g>

@@ -1,13 +1,7 @@
 ---
 title: Modal
-description: "A Modal component from the Sigil design system."
+description: "Open a titled dialog from a supplied trigger."
 ---
-
-## Import
-
-```tsx
-import { Modal, ConfirmDialog, PromptDialog, ResponsiveDialog, Lightbox, ImagePreview, Spotlight, CommandMenu, ActionMenu, OverflowMenu, MegaMenu, ContextPanel, PopoverForm, FloatingPanel, TooltipGroup, Tour, TourStep, Coachmark, HotkeyProvider, ShortcutRecorder } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -17,10 +11,18 @@ import { Modal, ConfirmDialog, PromptDialog, ResponsiveDialog, Lightbox, ImagePr
 </Modal>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Modal, ConfirmDialog, PromptDialog, ResponsiveDialog, Lightbox, ImagePreview, Spotlight, CommandMenu, ActionMenu, OverflowMenu, MegaMenu, ContextPanel, PopoverForm, FloatingPanel, TooltipGroup, Tour, TourStep, Coachmark, HotkeyProvider, ShortcutRecorder } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Modal>...</Modal>
+<Modal trigger={<Button>Open modal</Button>} title="Modal Title" description="This is a modal dialog.">
+  <p>Modal content goes here.</p>
+</Modal>
 ```
 
 ## Sub-components
@@ -51,11 +53,12 @@ This component includes the following parts:
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `trigger` | `ReactNode` | — | — |
-| `title` | `ReactNode` | — | — |
-| `description` | `ReactNode` | — | — |
-| `footer` | `ReactNode` | — | — |
-| `contentClassName` | `string` | — | — |
+| `trigger` | `ReactNode` | — | Trigger configuration. |
+| `title` | `ReactNode` | — | Heading displayed in the component. |
+| `description` | `ReactNode` | — | Supporting text below the heading. |
+| `footer` | `ReactNode` | — | Footer configuration. |
+| `children` | `ReactNode` | — | Content rendered inside the component. |
+| `contentClassName` | `string` | — | Content Class Name configuration. |
 
 ## Token integration
 

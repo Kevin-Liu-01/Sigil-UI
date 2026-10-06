@@ -1,29 +1,29 @@
 ---
 title: Spacer
-description: "A Spacer component from the Sigil design system."
+description: "Insert token-based space between layout elements."
 ---
-
-## Import
-
-```tsx
-import { Spacer } from "@sigil-ui/components";
-```
 
 ## Preview
 
 <ComponentPreview>
-  <Spacer />
+  <Flex className="w-full"><Badge>Start</Badge><Spacer /><Badge>End</Badge></Flex>
 </ComponentPreview>
+
+## Import
+
+```tsx
+import { Flex, Badge, Spacer } from "@sigil-ui/components";
+```
 
 ## Usage
 
 ```tsx
-<Spacer>Spacer content</Spacer>
+<Flex className="w-full"><Badge>Start</Badge><Spacer /><Badge>End</Badge></Flex>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `height` | `number | string` | — | Fixed height (block spacer). If omitted, grows to fill flex space. |
-| `width` | `number | string` | — | Fixed width (inline spacer). |
+| `height` | `number \| string` | — | Fixed height (block spacer). If omitted, grows to fill flex space. |
+| `width` | `number \| string` | — | Fixed width (inline spacer). |

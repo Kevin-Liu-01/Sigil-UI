@@ -11,7 +11,15 @@
  * All 33 token categories. All ~519 fields. No gaps.
  */
 
-import { deepMerge, type SigilPreset } from "@sigil-ui/tokens";
+import {
+  SigilTokenValidationError,
+  defaultTokens,
+  deepMerge,
+  resolveSigilPreset,
+  type DeepPartial,
+  type SigilPreset,
+  type SigilTokens,
+} from "@sigil-ui/tokens";
 
 export const _templatePreset: SigilPreset = {
   name: "_template",
@@ -68,14 +76,18 @@ export const _templatePreset: SigilPreset = {
       "gradient-start": "oklch(0.65 0.18 275)",
       "gradient-end": "oklch(0.7 0.15 200)",
       glow: "oklch(0.65 0.18 275 / 0.4)",
+      highlight: {
+        light: "oklch(0.94 0.12 95)",
+        dark: "oklch(0.30 0.08 95)",
+      },
     },
 
     // -----------------------------------------------------------------------
     // 2. TYPOGRAPHY (31 fields)
     // -----------------------------------------------------------------------
     typography: {
-      "font-display": "'PP Neue Montreal', system-ui, sans-serif",
-      "font-body": "'PP Neue Montreal', system-ui, sans-serif",
+      "font-display": '"InterVariable", "Inter", system-ui, sans-serif',
+      "font-body": '"InterVariable", "Inter", system-ui, sans-serif',
       "font-mono": "'PP Fraktion Mono', ui-monospace, monospace",
 
       "size-xs": "0.75rem",
@@ -109,7 +121,7 @@ export const _templatePreset: SigilPreset = {
       "heading-weight": "600",
       "heading-tracking": "-0.015em",
       "heading-transform": "none",
-      "heading-family": "'PP Neue Montreal', system-ui, sans-serif",
+      "heading-family": '"InterVariable", "Inter", system-ui, sans-serif',
     },
 
     // -----------------------------------------------------------------------
@@ -369,6 +381,17 @@ export const _templatePreset: SigilPreset = {
       "navbar-backdrop-blur": "12px",
       "navbar-border": "1px solid",
       "navbar-bg-opacity": "0.85",
+      "navbar-padding-x": "20px",
+      "navbar-position": "sticky",
+      "navbar-logo-height": "24px",
+      "navbar-logo-gap": "8px",
+      "navbar-item-gap": "20px",
+      "navbar-item-padding-x": "12px",
+      "navbar-item-padding-y": "6px",
+      "navbar-item-size": "0.8125rem",
+      "navbar-shadow": "none",
+      "navbar-height-scrolled": "48px",
+      "navbar-mobile-breakpoint": "768px",
       "nav-link-weight": "500",
       "nav-link-size": "0.8125rem",
       "nav-link-hover": "color",
@@ -495,12 +518,30 @@ export const _templatePreset: SigilPreset = {
     // 20. SECTIONS (10 fields)
     // -----------------------------------------------------------------------
     sections: {
+      "rail-margin": "var(--s-page-margin, 24px)",
       "padding-y": "6rem",
+      "padding-y-sm": "3rem",
       "padding-y-hero": "9rem",
+      "padding-y-lg": "7.5rem",
+      "padding-y-xl": "10rem",
       "padding-x": "24px",
       "max-width": "1200px",
       gap: "32px",
       "title-align": "left",
+      "heading-size": "var(--s-h2-size, 1.875rem)",
+      "heading-align": "left",
+      "heading-max-width": "32rem",
+      "heading-margin-bottom": "16px",
+      "header-block-margin-bottom": "var(--s-grid-cell)",
+      "label-row-margin-bottom": "calc(var(--s-grid-cell) / 3)",
+      "subsection-gap": "calc(2 * var(--s-grid-cell))",
+      "description-max-width": "32rem",
+      "description-gap": "12px",
+      "content-gap": "24px",
+      "grid-columns": "3",
+      "grid-gap": "24px",
+      "alternate-bg": "var(--s-surface)",
+      "alternate-bg-mode": "none",
       "divider-above": true,
       "divider-below": true,
       "background-alt": false,
@@ -515,9 +556,16 @@ export const _templatePreset: SigilPreset = {
       width: "1px",
       color: "var(--s-border-muted)",
       spacing: "0px",
+      opacity: "1",
+      "max-width": "100%",
+      "margin-y": "0px",
+      thickness: "1px",
+      "gradient-start": "transparent",
+      "gradient-end": "transparent",
       "show-cross": true,
       "show-label": false,
       "full-bleed": false,
+      "background-alt": false,
       ornament: "cross",
     },
 
@@ -525,6 +573,8 @@ export const _templatePreset: SigilPreset = {
     // 22. GRID VISUALS (10 fields)
     // -----------------------------------------------------------------------
     gridVisuals: {
+      "rail-visible": false,
+      "rail-columns": "12",
       "show-lines": true,
       "line-color": "var(--s-border-muted)",
       "line-width": "1px",
@@ -567,9 +617,9 @@ export const _templatePreset: SigilPreset = {
     // -----------------------------------------------------------------------
     dataViz: {
       "series-1": "var(--s-primary)",
-      "series-2": "var(--s-secondary)",
-      "series-3": "var(--s-accent)",
-      "series-4": "var(--s-info)",
+      "series-2": "var(--s-info)",
+      "series-3": "var(--s-error)",
+      "series-4": "var(--s-warning)",
       "series-5": "var(--s-success)",
       positive: "var(--s-success)",
       negative: "var(--s-error)",
@@ -637,7 +687,7 @@ export const _templatePreset: SigilPreset = {
       "padding-y-sm": "72px",
       "padding-x": "var(--s-page-margin, 25px)",
       "content-max": "34rem",
-      "content-basis": "min(38%, var(--s-hero-content-max, 34rem))",
+      "content-basis": "var(--s-hero-content-max, 34rem)",
       "content-align": "left" as const,
       "layout": "stacked" as const,
       "media-position": "right" as const,
@@ -755,12 +805,21 @@ export const _templatePreset: SigilPreset = {
  * the lazy registry, DESIGN.md generation, and audits alike. New custom
  * presets must still start from this template and populate the full surface.
  */
-export function completePreset(preset: SigilPreset): SigilPreset {
-  return {
+export function completePreset(
+  preset: Omit<SigilPreset, "tokens"> & { readonly tokens: DeepPartial<SigilTokens> },
+): SigilPreset {
+  const complete = {
     ...preset,
+    metadata: { ..._templatePreset.metadata, ...preset.metadata },
     tokens: deepMerge(
-      _templatePreset.tokens as unknown as Record<string, unknown>,
+      deepMerge(
+        defaultTokens as unknown as Record<string, unknown>,
+        _templatePreset.tokens as unknown as Record<string, unknown>,
+      ),
       preset.tokens as unknown as Record<string, unknown>,
     ) as unknown as SigilPreset["tokens"],
   };
+  const resolution = resolveSigilPreset(complete, preset.name);
+  if (!resolution.valid) throw new SigilTokenValidationError(resolution.issues);
+  return resolution.preset;
 }

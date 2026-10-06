@@ -1,7 +1,7 @@
 "use client";
 
 import type { CSSProperties, ReactNode } from "react";
-import { Palette, Type, RectangleHorizontal, Space, Layers, Clock, Grid3X3, SquareSlash } from "lucide-react";
+import { Palette, Type, RectangleHorizontal, Space, Layers, Clock, Grid3X3, SquareSlash } from "@/components/icons";
 
 export type TokenPreviewKind =
   | "primary"

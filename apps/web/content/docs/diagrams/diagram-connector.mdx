@@ -1,7 +1,13 @@
 ---
 title: DiagramConnector
-description: "A DiagramConnector component from the Sigil design system."
+description: "Link diagram elements with a styled connector."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <div className="flex flex-wrap items-center justify-center gap-4"><DiagramNode label="Client" /><DiagramConnector direction="horizontal" label="HTTPS" length={100} /><DiagramNode label="API" /></div>
+</ComponentPreview>
 
 ## Import
 
@@ -12,19 +18,19 @@ import { DiagramConnector } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<DiagramConnector>...</DiagramConnector>
+<div className="flex flex-wrap items-center justify-center gap-4"><DiagramNode label="Client" /><DiagramConnector direction="horizontal" label="HTTPS" length={100} /><DiagramNode label="API" /></div>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `variant` | `ConnectorVariant` | — | — |
-| `direction` | `ConnectorDirection` | — | — |
-| `label` | `string` | — | — |
-| `length` | `number` | — | — |
-| `strokeColor` | `string` | — | — |
-| `arrowSize` | `number` | — | — |
+| `variant` | `ConnectorVariant` | — | Selects a supported visual treatment. |
+| `direction` | `ConnectorDirection` | — | Direction configuration. |
+| `label` | `string` | — | Readable label for the component. |
+| `length` | `number` | — | Length configuration. |
+| `strokeColor` | `string` | — | Stroke Color configuration. |
+| `arrowSize` | `number` | — | Arrow Size configuration. |
 
 ## Token integration
 

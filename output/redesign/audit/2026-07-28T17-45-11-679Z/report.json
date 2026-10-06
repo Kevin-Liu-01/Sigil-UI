@@ -1,0 +1,197 @@
+{
+  "createdAt": "2026-07-28T17:45:37.532Z",
+  "base": "http://localhost:4010",
+  "concepts": 20,
+  "captures": 5,
+  "errors": 31,
+  "warnings": 0,
+  "findings": [
+    {
+      "slug": "spec-to-system",
+      "severity": "error",
+      "code": "navigation",
+      "message": "locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-concept] main button:not([disabled])').first()\u001b[22m\n\u001b[2m    - locator resolved to <button role=\"tab\" type=\"button\" id=\"spec-source-tab\" aria-selected=\"true\" aria-controls=\"spec-source-panel\" class=\"min-h-12 bg-[var(--s-primary)] px-[var(--s-space-16)] text-[var(--s-primary-contrast)]\">Source / DESIGN.md</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    10 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+      "url": "http://localhost:4010/concepts/spec-to-system"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "broken-image",
+      "message": "http://localhost:4010/concepts/previews/liquid-sigil-desktop-dark.png, http://localhost:4010/concepts/previews/token-foundry-desktop-dark.png, http://localhost:4010/concepts/previews/spec-to-system-desktop-dark.png, http://localhost:4010/concepts/previews/token-lathe-desktop-dark.png, http://localhost:4010/concepts/previews/source-result-tear-desktop-dark.png, http://localhost:4010/concepts/previews/monochrome-press-desktop-dark.png, http://localhost:4010/concepts/previews/oxide-instrument-desktop-dark.png, http://localhost:4010/concepts/previews/chrome-selection-museum-desktop-dark.png, http://localhost:4010/concepts/previews/reticle-machine-room-desktop-dark.png, http://localhost:4010/concepts/previews/blueprint-becomes-product-desktop-dark.png, http://localhost:4010/concepts/previews/constraint-compiler-desktop-dark.png, http://localhost:4010/concepts/previews/preset-runway-desktop-dark.png, http://localhost:4010/concepts/previews/carbon-and-bone-desktop-dark.png, http://localhost:4010/concepts/previews/brushed-steel-manual-desktop-dark.png"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "broken-image",
+      "message": "http://localhost:4010/concepts/previews/liquid-sigil-desktop-dark.png, http://localhost:4010/concepts/previews/token-foundry-desktop-dark.png, http://localhost:4010/concepts/previews/spec-to-system-desktop-dark.png, http://localhost:4010/concepts/previews/token-lathe-desktop-dark.png, http://localhost:4010/concepts/previews/source-result-tear-desktop-dark.png, http://localhost:4010/concepts/previews/monochrome-press-desktop-dark.png, http://localhost:4010/concepts/previews/oxide-instrument-desktop-dark.png, http://localhost:4010/concepts/previews/chrome-selection-museum-desktop-dark.png, http://localhost:4010/concepts/previews/reticle-machine-room-desktop-dark.png, http://localhost:4010/concepts/previews/blueprint-becomes-product-desktop-dark.png, http://localhost:4010/concepts/previews/constraint-compiler-desktop-dark.png, http://localhost:4010/concepts/previews/preset-runway-desktop-dark.png, http://localhost:4010/concepts/previews/carbon-and-bone-desktop-dark.png, http://localhost:4010/concepts/previews/brushed-steel-manual-desktop-dark.png"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    }
+  ]
+}

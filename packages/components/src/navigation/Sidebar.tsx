@@ -28,39 +28,42 @@ function useSidebar() {
 export interface SidebarProps extends HTMLAttributes<HTMLElement> {
   /** Start in collapsed (icon-only) mode. */
   defaultCollapsed?: boolean;
+  /** Show the collapse control. Disable for a persistent navigation sidebar. */
+  collapsible?: boolean;
   children?: ReactNode;
 }
 
 export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
-  { defaultCollapsed = false, className, children, ...rest },
+  { defaultCollapsed = false, collapsible = true, className, children, ...rest },
   ref,
 ) {
   const [collapsed, setCollapsed] = useState(defaultCollapsed);
+  const isCollapsed = collapsible && collapsed;
 
   return (
-    <SidebarContext.Provider value={{ collapsed, setCollapsed }}>
+    <SidebarContext.Provider value={{ collapsed: isCollapsed, setCollapsed }}>
       <aside
         ref={ref}
         data-slot="sidebar"
-        data-collapsed={collapsed || undefined}
+        data-collapsed={isCollapsed || undefined}
         className={cn(
-          "sticky top-0 flex h-dvh flex-col border-r border-[color:var(--s-border)] border-[style:var(--s-border-style,solid)]",
+          "sticky top-0 flex h-dvh flex-col border-r [border-color:var(--s-border)] [border-style:var(--s-border-style,solid)]",
           "bg-[var(--s-surface)] text-[var(--s-text)]",
           "transition-[width] duration-[var(--s-duration-normal,200ms)] ease-[var(--s-ease-out)]",
-          collapsed ? "w-[var(--s-sidebar-collapsed,48px)]" : "w-[var(--s-sidebar-width,256px)]",
+          isCollapsed ? "w-[var(--s-sidebar-collapsed,48px)]" : "w-[var(--s-sidebar-width,256px)]",
           className,
         )}
         {...rest}
       >
         {children}
 
-        <button
+        {collapsible && <button
           type="button"
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           onClick={() => setCollapsed(!collapsed)}
           className={cn(
             "absolute -right-[var(--s-space-3,12px)] top-[var(--s-space-6,24px)] z-10 inline-flex size-[var(--s-space-6,24px)] items-center justify-center rounded-[var(--s-radius-full)]",
-            "border border-[color:var(--s-border)] border-[style:var(--s-border-style,solid)] bg-[var(--s-surface)] text-[var(--s-text-muted)]",
+            "border [border-color:var(--s-border)] [border-style:var(--s-border-style,solid)] bg-[var(--s-surface)] text-[var(--s-text-muted)]",
             "shadow-[var(--s-shadow-sm)] transition-colors duration-[var(--s-duration-fast,150ms)]",
             "hover:bg-[var(--s-primary)]/10 hover:text-[var(--s-text)]",
           )}
@@ -71,7 +74,7 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
               stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
             />
           </svg>
-        </button>
+        </button>}
       </aside>
     </SidebarContext.Provider>
   );
@@ -82,7 +85,7 @@ export const Sidebar = forwardRef<HTMLElement, SidebarProps>(function Sidebar(
 export const SidebarHeader = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   function SidebarHeader({ className, ...rest }, ref) {
     return (
-      <div ref={ref} data-slot="sidebar-header" className={cn("flex items-center gap-[var(--s-space-2,8px)] px-[var(--s-space-4,16px)] py-[var(--s-space-4,16px)] border-b border-[color:var(--s-border)] border-[style:var(--s-border-style,solid)]", className)} {...rest} />
+      <div ref={ref} data-slot="sidebar-header" className={cn("flex items-center gap-[var(--s-space-2,8px)] px-[var(--s-space-4,16px)] py-[var(--s-space-4,16px)] border-b [border-color:var(--s-border)] [border-style:var(--s-border-style,solid)]", className)} {...rest} />
     );
   },
 );
@@ -102,7 +105,7 @@ export const SidebarContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivE
 export const SidebarFooter = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   function SidebarFooter({ className, ...rest }, ref) {
     return (
-      <div ref={ref} data-slot="sidebar-footer" className={cn("border-t border-[color:var(--s-border)] border-[style:var(--s-border-style,solid)] px-[var(--s-space-4,16px)] py-[var(--s-space-3,12px)]", className)} {...rest} />
+      <div ref={ref} data-slot="sidebar-footer" className={cn("border-t [border-color:var(--s-border)] [border-style:var(--s-border-style,solid)] px-[var(--s-space-4,16px)] py-[var(--s-space-3,12px)]", className)} {...rest} />
     );
   },
 );

@@ -1,7 +1,41 @@
 ---
 title: LineChart
-description: "A LineChart component from the Sigil design system."
+description: "Plot one or more data series over a shared axis."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <LineChart
+    series={[
+      {
+        label: "Users",
+        points: [
+          { label: "Mon", value: 120 },
+          { label: "Tue", value: 180 },
+          { label: "Wed", value: 150 },
+          { label: "Thu", value: 220 },
+          { label: "Fri", value: 310 },
+          { label: "Sat", value: 280 },
+          { label: "Sun", value: 190 },
+        ],
+      },
+      {
+        label: "Sessions",
+        points: [
+          { label: "Mon", value: 200 },
+          { label: "Tue", value: 240 },
+          { label: "Wed", value: 180 },
+          { label: "Thu", value: 290 },
+          { label: "Fri", value: 350 },
+          { label: "Sat", value: 300 },
+          { label: "Sun", value: 250 },
+        ],
+        color: "var(--s-success, #22c55e)",
+      },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +46,35 @@ import { LineChart } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<LineChart>...</LineChart>
+<LineChart
+    series={[
+      {
+        label: "Users",
+        points: [
+          { label: "Mon", value: 120 },
+          { label: "Tue", value: 180 },
+          { label: "Wed", value: 150 },
+          { label: "Thu", value: 220 },
+          { label: "Fri", value: 310 },
+          { label: "Sat", value: 280 },
+          { label: "Sun", value: 190 },
+        ],
+      },
+      {
+        label: "Sessions",
+        points: [
+          { label: "Mon", value: 200 },
+          { label: "Tue", value: 240 },
+          { label: "Wed", value: 180 },
+          { label: "Thu", value: 290 },
+          { label: "Fri", value: 350 },
+          { label: "Sat", value: 300 },
+          { label: "Sun", value: 250 },
+        ],
+        color: "var(--s-success, #22c55e)",
+      },
+    ]}
+  />
 ```
 
 ## Props

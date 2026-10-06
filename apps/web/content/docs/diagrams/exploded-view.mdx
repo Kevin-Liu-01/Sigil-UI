@@ -1,7 +1,20 @@
 ---
 title: ExplodedView
-description: "A ExplodedView component from the Sigil design system."
+description: "Reveal the layers that make up an object or interface."
 ---
+
+## Preview
+
+<ComponentPreview label="Exploded system layers">
+  <ExplodedView
+    gap="var(--s-space-3)"
+    layers={[
+      { label: "Experience", children: <div className="text-sm text-[var(--s-text)]">Components and blocks</div> },
+      { label: "Constraints", children: <div className="text-sm text-[var(--s-text)]">519 design tokens</div> },
+      { label: "Foundation", children: <div className="text-sm text-[var(--s-text)]">CSS custom properties</div>, hatched: true },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +25,14 @@ import { ExplodedView } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<ExplodedView>...</ExplodedView>
+<ExplodedView
+    gap="var(--s-space-3)"
+    layers={[
+      { label: "Experience", children: <div className="text-sm text-[var(--s-text)]">Components and blocks</div> },
+      { label: "Constraints", children: <div className="text-sm text-[var(--s-text)]">519 design tokens</div> },
+      { label: "Foundation", children: <div className="text-sm text-[var(--s-text)]">CSS custom properties</div>, hatched: true },
+    ]}
+  />
 ```
 
 ## Props

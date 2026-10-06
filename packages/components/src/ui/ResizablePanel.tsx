@@ -12,15 +12,16 @@ import { cn } from "../utils";
 export interface ResizablePanelGroupProps extends ComponentPropsWithoutRef<typeof PanelGroup> {}
 
 export const ResizablePanelGroup = forwardRef<HTMLDivElement, ResizablePanelGroupProps>(
-  function ResizablePanelGroup({ className, ...rest }, _ref) {
+  function ResizablePanelGroup({ className, ...rest }, ref) {
     return (
       <PanelGroup
         data-slot="resizable-panel-group"
         className={cn(
-          "flex h-full w-full data-[panel-group-direction=vertical]:flex-col",
+          "flex h-full w-full aria-[orientation=horizontal]:flex-col",
           className,
         )}
         {...rest}
+        elementRef={ref ?? rest.elementRef}
       />
     );
   },
@@ -29,8 +30,8 @@ export const ResizablePanelGroup = forwardRef<HTMLDivElement, ResizablePanelGrou
 export interface ResizablePanelProps extends ComponentPropsWithoutRef<typeof Panel> {}
 
 export const ResizablePanel = forwardRef<PanelImperativeHandle, ResizablePanelProps>(
-  function ResizablePanel(props, _ref) {
-    return <Panel data-slot="resizable-panel" {...props} />;
+  function ResizablePanel(props, ref) {
+    return <Panel data-slot="resizable-panel" {...props} panelRef={ref ?? props.panelRef} />;
   },
 );
 
@@ -39,9 +40,10 @@ export interface ResizableHandleProps extends ComponentPropsWithoutRef<typeof Pa
 }
 
 export const ResizableHandle = forwardRef<HTMLDivElement, ResizableHandleProps>(
-  function ResizableHandle({ withHandle, className, ...rest }, _ref) {
+  function ResizableHandle({ withHandle, className, ...rest }, ref) {
     return (
       <PanelResizeHandle
+        aria-label="Resize panels"
         data-slot="resizable-handle"
         className={cn(
           "relative flex w-px items-center justify-center",
@@ -49,11 +51,12 @@ export const ResizableHandle = forwardRef<HTMLDivElement, ResizableHandleProps>(
           "after:absolute after:inset-y-0 after:-left-1 after:-right-1",
           "hover:bg-[var(--s-primary)]/40",
           "focus-visible:outline-none focus-visible:ring-[length:var(--s-focus-ring-width)] focus-visible:ring-[var(--s-focus-ring-color)] focus-visible:ring-offset-[var(--s-focus-ring-offset)]",
-          "data-[panel-group-direction=vertical]:h-px data-[panel-group-direction=vertical]:w-full",
-          "data-[panel-group-direction=vertical]:after:inset-x-0 data-[panel-group-direction=vertical]:after:-top-1 data-[panel-group-direction=vertical]:after:-bottom-1 data-[panel-group-direction=vertical]:after:left-auto data-[panel-group-direction=vertical]:after:right-auto",
+          "aria-[orientation=horizontal]:h-px aria-[orientation=horizontal]:w-full",
+          "aria-[orientation=horizontal]:after:inset-x-0 aria-[orientation=horizontal]:after:-top-1 aria-[orientation=horizontal]:after:-bottom-1 aria-[orientation=horizontal]:after:left-auto aria-[orientation=horizontal]:after:right-auto",
           className,
         )}
         {...rest}
+        elementRef={ref ?? rest.elementRef}
       >
         {withHandle && (
           <div className="z-10 flex h-4 w-3 items-center justify-center rounded-[var(--s-radius-sm)] border border-[color:var(--s-border)] bg-[var(--s-surface)]">

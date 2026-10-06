@@ -1,0 +1,190 @@
+{
+  "createdAt": "2026-07-28T17:53:56.365Z",
+  "base": "http://localhost:4010",
+  "concepts": 20,
+  "captures": 6,
+  "errors": 30,
+  "warnings": 0,
+  "findings": [
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "broken-image",
+      "message": "http://localhost:4010/concepts/previews/liquid-sigil-desktop-dark.png, http://localhost:4010/concepts/previews/token-foundry-desktop-dark.png, http://localhost:4010/concepts/previews/spec-to-system-desktop-dark.png, http://localhost:4010/concepts/previews/token-lathe-desktop-dark.png, http://localhost:4010/concepts/previews/source-result-tear-desktop-dark.png, http://localhost:4010/concepts/previews/monochrome-press-desktop-dark.png, http://localhost:4010/concepts/previews/oxide-instrument-desktop-dark.png, http://localhost:4010/concepts/previews/chrome-selection-museum-desktop-dark.png, http://localhost:4010/concepts/previews/reticle-machine-room-desktop-dark.png, http://localhost:4010/concepts/previews/blueprint-becomes-product-desktop-dark.png, http://localhost:4010/concepts/previews/constraint-compiler-desktop-dark.png, http://localhost:4010/concepts/previews/preset-runway-desktop-dark.png, http://localhost:4010/concepts/previews/carbon-and-bone-desktop-dark.png, http://localhost:4010/concepts/previews/brushed-steel-manual-desktop-dark.png"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "broken-image",
+      "message": "http://localhost:4010/concepts/previews/liquid-sigil-desktop-dark.png, http://localhost:4010/concepts/previews/token-foundry-desktop-dark.png, http://localhost:4010/concepts/previews/spec-to-system-desktop-dark.png, http://localhost:4010/concepts/previews/token-lathe-desktop-dark.png, http://localhost:4010/concepts/previews/source-result-tear-desktop-dark.png, http://localhost:4010/concepts/previews/monochrome-press-desktop-dark.png, http://localhost:4010/concepts/previews/oxide-instrument-desktop-dark.png, http://localhost:4010/concepts/previews/chrome-selection-museum-desktop-dark.png, http://localhost:4010/concepts/previews/reticle-machine-room-desktop-dark.png, http://localhost:4010/concepts/previews/blueprint-becomes-product-desktop-dark.png, http://localhost:4010/concepts/previews/constraint-compiler-desktop-dark.png, http://localhost:4010/concepts/previews/preset-runway-desktop-dark.png, http://localhost:4010/concepts/previews/carbon-and-bone-desktop-dark.png, http://localhost:4010/concepts/previews/brushed-steel-manual-desktop-dark.png"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    },
+    {
+      "slug": "-concepts",
+      "severity": "error",
+      "code": "runtime",
+      "message": "console: Failed to load resource: the server responded with a status of 404 (Not Found)"
+    }
+  ]
+}

@@ -13,7 +13,8 @@ import {
   type ReactNode,
   type Ref,
 } from "react";
-import { SearchIcon, UploadIcon } from "lucide-react";
+import { MagnifyingGlassIcon as SearchIcon } from "@phosphor-icons/react/dist/ssr/MagnifyingGlass";
+import { UploadSimpleIcon as UploadIcon } from "@phosphor-icons/react/dist/ssr/UploadSimple";
 import { cn } from "../utils";
 import { Button } from "./Button";
 import { Checkbox } from "./Checkbox";
@@ -33,7 +34,7 @@ export const SearchInput = forwardRef<HTMLInputElement, InputHTMLAttributes<HTML
 ) {
   return (
     <div className="relative w-full">
-      <SearchIcon className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-[var(--s-text-muted)]" />
+      <SearchIcon weight="fill" className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-[var(--s-text-muted)]" />
       <Input ref={ref} type="search" className={cn("pl-9", className)} {...props} />
     </div>
   );
@@ -384,7 +385,7 @@ export const RangeSlider = forwardRef<ComponentRef<typeof Slider>, RangeSliderPr
           <span className="text-[var(--s-text-muted)] tabular-nums">{valueLabel}</span>
         </div>
       )}
-      <Slider ref={ref} {...props} />
+      <Slider ref={ref} aria-label={typeof label === "string" ? label : undefined} {...props} />
     </div>
   );
 });
@@ -414,7 +415,7 @@ export const FileDropzone = forwardRef<HTMLInputElement, FileDropzoneProps>(func
         className,
       )}
     >
-      <UploadIcon className="size-5 text-[var(--s-text-muted)]" />
+      <UploadIcon weight="fill" className="size-5 text-[var(--s-text-muted)]" />
       <span className="text-sm font-medium text-[var(--s-text)]">{label}</span>
       {description && <span className="text-xs text-[var(--s-text-muted)]">{description}</span>}
       <input ref={ref} id={id} type="file" className="sr-only" {...props} />
@@ -505,7 +506,7 @@ export const CheckboxCard = forwardRef<HTMLLabelElement, CheckboxCardProps>(func
         {description && <span className="text-sm text-[var(--s-text-muted)]">{description}</span>}
         {children}
       </span>
-      <input type="checkbox" checked={isChecked} onChange={toggle} className="sr-only" />
+      <input type="checkbox" checked={isChecked} onChange={toggle} className="sr-only" tabIndex={-1} aria-label={typeof title === "string" ? title : "Select option"} />
     </label>
   );
 });
@@ -554,51 +555,9 @@ export const SwitchField = forwardRef<ComponentRef<typeof Switch>, SwitchFieldPr
 
 export const SliderField = RangeSlider;
 
-export interface StepperFieldProps extends Omit<InputHTMLAttributes<HTMLInputElement>, "type"> {
-  onIncrement?: () => void;
-  onDecrement?: () => void;
-}
-
-export const StepperField = forwardRef<HTMLInputElement, StepperFieldProps>(function StepperField(
-  { onIncrement, onDecrement, className, ...props },
-  ref,
-) {
-  return (
-    <div className="flex w-full items-center">
-      <Button type="button" variant="outline" size="icon" onClick={onDecrement} aria-label="Decrease">-</Button>
-      <Input ref={ref} type="number" className={cn("mx-2 text-center tabular-nums", className)} {...props} />
-      <Button type="button" variant="outline" size="icon" onClick={onIncrement} aria-label="Increase">+</Button>
-    </div>
-  );
-});
+export { StepperField, CopyInput, type StepperFieldProps, type CopyInputProps } from "./InputActions";
 
 export const TagsField = forwardRef<HTMLDivElement, TagsInputProps>(function TagsField(props, ref) {
   return <TagsInput ref={ref} {...props} />;
-});
-
-export interface CopyInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  onCopyValue?: (value: string) => void;
-}
-
-export const CopyInput = forwardRef<HTMLInputElement, CopyInputProps>(function CopyInput(
-  { value, defaultValue, onCopyValue, className, ...props },
-  ref,
-) {
-  const stringValue = String(value ?? defaultValue ?? "");
-  return (
-    <div className="flex gap-2">
-      <Input ref={ref} value={value} defaultValue={defaultValue} className={className} {...props} />
-      <Button
-        type="button"
-        variant="outline"
-        onClick={() => {
-          void navigator.clipboard?.writeText(stringValue);
-          onCopyValue?.(stringValue);
-        }}
-      >
-        Copy
-      </Button>
-    </div>
-  );
 });
 

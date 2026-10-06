@@ -1,7 +1,21 @@
 ---
 title: TimelineSection
-description: "A TimelineSection component from the Sigil design system."
+description: "Present milestones in a complete page section."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <TimelineSection
+    label="Roadmap"
+    title="What's shipping next"
+    events={[
+      { date: "Q2 2026", title: "Token diff",       description: "Visualize preset deltas." },
+      { date: "Q3 2026", title: "Design extract",   description: "URL → DESIGN.md." },
+      { date: "Q4 2026", title: "Headless cores",   description: "All overlays portable." },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,17 +26,25 @@ import { TimelineSection } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<TimelineSection>...</TimelineSection>
+<TimelineSection
+    label="Roadmap"
+    title="What's shipping next"
+    events={[
+      { date: "Q2 2026", title: "Token diff",       description: "Visualize preset deltas." },
+      { date: "Q3 2026", title: "Design extract",   description: "URL → DESIGN.md." },
+      { date: "Q4 2026", title: "Headless cores",   description: "All overlays portable." },
+    ]}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `label` | `string` | — | — |
-| `title` | `string` | — | — |
-| `description` | `string` | — | — |
-| `events` | `TimelineEvent[]` | — | — |
+| `label` | `string` | — | Readable label for the component. |
+| `title` | `string` | — | Heading displayed in the component. |
+| `description` | `string` | — | Supporting text below the heading. |
+| `events` (required) | `TimelineEvent[]` | — | Events configuration. |
 
 ## Token integration
 

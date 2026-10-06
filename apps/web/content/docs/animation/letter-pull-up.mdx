@@ -1,13 +1,7 @@
 ---
 title: LetterPullUp
-description: "A LetterPullUp component from the Sigil design system."
+description: "Reveal text with a staggered upward letter animation."
 ---
-
-## Import
-
-```tsx
-import { LetterPullUp } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -15,10 +9,16 @@ import { LetterPullUp } from "@sigil-ui/components";
   <LetterPullUp text="Hello World" />
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { LetterPullUp } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<LetterPullUp>LetterPullUp content</LetterPullUp>
+<LetterPullUp text="Hello World" />
 ```
 
 ## Props
@@ -29,7 +29,7 @@ import { LetterPullUp } from "@sigil-ui/components";
 | `interval` | `number` | `30` | Stagger between letters in ms. |
 | `delay` | `number` | `0` | Base delay in ms. |
 | `pullDistance` | `number` | `24` | Pull distance in pixels. |
-| `trigger` | `"scroll" | "mount"` | — | — |
+| `trigger` | `"scroll" \| "mount"` | — | — |
 | `viewOptions` | `UseInViewOptions` | — | — |
 
 ## Token integration

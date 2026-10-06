@@ -1,7 +1,19 @@
 ---
 title: Timeline
-description: "A Timeline component from the Sigil design system."
+description: "Arrange events along a chronological line."
 ---
+
+## Preview
+
+<ComponentPreview label="Release timeline">
+  <Timeline
+    entries={[
+      { date: "JAN 08", title: "Token schema", description: "The design contract was defined." },
+      { date: "FEB 14", title: "Preset compiler", description: "All themes began sharing one pipeline." },
+      { date: "MAR 22", title: "Stable release", description: "Docs and packages shipped together." },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +24,13 @@ import { Timeline } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<Timeline>...</Timeline>
+<Timeline
+    entries={[
+      { date: "JAN 08", title: "Token schema", description: "The design contract was defined." },
+      { date: "FEB 14", title: "Preset compiler", description: "All themes began sharing one pipeline." },
+      { date: "MAR 22", title: "Stable release", description: "Docs and packages shipped together." },
+    ]}
+  />
 ```
 
 ## Props
@@ -20,7 +38,7 @@ import { Timeline } from "@sigil-ui/components";
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `entries` | `TimelineEntry[]` | — | Timeline entries. |
-| `variant` | `"vertical" | "horizontal"` | `vertical` | Layout variant. |
+| `variant` | `"vertical" \| "horizontal"` | `vertical` | Layout variant. |
 
 ## Token integration
 

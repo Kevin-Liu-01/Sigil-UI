@@ -1,0 +1,116 @@
+---
+title: Animated Charts
+description: "Explore line, area, bar, and pie charts with tooltips, legends, and an adjustable data range."
+---
+
+## Import
+
+```tsx
+import { EvilLineChart, EvilAreaChart, EvilBarChart, EvilPieChart } from "@sigil-ui/components";
+```
+
+The animated chart family uses `chartConfig` to pair each data key with its label and token colors. Hover a mark or focus a chart and use the arrow keys to inspect a value.
+
+## Line chart and range brush
+
+<ComponentPreview vertical>
+<EvilLineChart
+  data={[{ month: "Apr", requests: 186, cached: 80 }, { month: "May", requests: 224, cached: 112 }, { month: "Jun", requests: 208, cached: 132 }, { month: "Jul", requests: 278, cached: 166 }, { month: "Aug", requests: 305, cached: 184 }, { month: "Sep", requests: 342, cached: 218 }]}
+  chartConfig={{ requests: { label: "Requests", colors: { light: ["var(--s-chart-series-1)"], dark: ["var(--s-chart-series-1)"] } }, cached: { label: "Cached", colors: { light: ["var(--s-chart-series-2)"], dark: ["var(--s-chart-series-2)"] } } }}
+  xDataKey="month"
+  className="w-full min-h-64"
+  showBrush
+/>
+</ComponentPreview>
+
+```tsx
+<EvilLineChart
+  data={[{ month: "Apr", requests: 186, cached: 80 }, { month: "May", requests: 224, cached: 112 }, { month: "Jun", requests: 208, cached: 132 }, { month: "Jul", requests: 278, cached: 166 }, { month: "Aug", requests: 305, cached: 184 }, { month: "Sep", requests: 342, cached: 218 }]}
+  chartConfig={{ requests: { label: "Requests", colors: { light: ["var(--s-chart-series-1)"], dark: ["var(--s-chart-series-1)"] } }, cached: { label: "Cached", colors: { light: ["var(--s-chart-series-2)"], dark: ["var(--s-chart-series-2)"] } } }}
+  xDataKey="month"
+  className="w-full min-h-64"
+  showBrush
+/>
+```
+
+## Area chart
+
+<ComponentPreview vertical>
+<EvilAreaChart
+  data={[{ month: "Apr", requests: 186, cached: 80 }, { month: "May", requests: 224, cached: 112 }, { month: "Jun", requests: 208, cached: 132 }, { month: "Jul", requests: 278, cached: 166 }, { month: "Aug", requests: 305, cached: 184 }, { month: "Sep", requests: 342, cached: 218 }]}
+  chartConfig={{ requests: { label: "Requests", colors: { light: ["var(--s-chart-series-1)"], dark: ["var(--s-chart-series-1)"] } }, cached: { label: "Cached", colors: { light: ["var(--s-chart-series-2)"], dark: ["var(--s-chart-series-2)"] } } }}
+  xDataKey="month"
+  className="w-full min-h-64"
+/>
+</ComponentPreview>
+
+```tsx
+<EvilAreaChart
+  data={[{ month: "Apr", requests: 186, cached: 80 }, { month: "May", requests: 224, cached: 112 }, { month: "Jun", requests: 208, cached: 132 }, { month: "Jul", requests: 278, cached: 166 }, { month: "Aug", requests: 305, cached: 184 }, { month: "Sep", requests: 342, cached: 218 }]}
+  chartConfig={{ requests: { label: "Requests", colors: { light: ["var(--s-chart-series-1)"], dark: ["var(--s-chart-series-1)"] } }, cached: { label: "Cached", colors: { light: ["var(--s-chart-series-2)"], dark: ["var(--s-chart-series-2)"] } } }}
+  xDataKey="month"
+  className="w-full min-h-64"
+/>
+```
+
+## Bar chart
+
+<ComponentPreview vertical>
+<EvilBarChart
+  data={[{ month: "Apr", requests: 186, cached: 80 }, { month: "May", requests: 224, cached: 112 }, { month: "Jun", requests: 208, cached: 132 }, { month: "Jul", requests: 278, cached: 166 }, { month: "Aug", requests: 305, cached: 184 }, { month: "Sep", requests: 342, cached: 218 }]}
+  chartConfig={{ requests: { label: "Requests", colors: { light: ["var(--s-chart-series-1)"], dark: ["var(--s-chart-series-1)"] } }, cached: { label: "Cached", colors: { light: ["var(--s-chart-series-2)"], dark: ["var(--s-chart-series-2)"] } } }}
+  xDataKey="month"
+  className="w-full min-h-64"
+/>
+</ComponentPreview>
+
+```tsx
+<EvilBarChart
+  data={[{ month: "Apr", requests: 186, cached: 80 }, { month: "May", requests: 224, cached: 112 }, { month: "Jun", requests: 208, cached: 132 }, { month: "Jul", requests: 278, cached: 166 }, { month: "Aug", requests: 305, cached: 184 }, { month: "Sep", requests: 342, cached: 218 }]}
+  chartConfig={{ requests: { label: "Requests", colors: { light: ["var(--s-chart-series-1)"], dark: ["var(--s-chart-series-1)"] } }, cached: { label: "Cached", colors: { light: ["var(--s-chart-series-2)"], dark: ["var(--s-chart-series-2)"] } } }}
+  xDataKey="month"
+  className="w-full min-h-64"
+/>
+```
+
+## Pie chart
+
+<ComponentPreview vertical>
+<EvilPieChart
+  data={[{ source: "Search", visitors: 186, fill: "var(--s-chart-series-1)" }, { source: "Direct", visitors: 112, fill: "var(--s-chart-series-2)" }, { source: "Referral", visitors: 84, fill: "var(--s-chart-series-5)" }]}
+  dataKey="visitors"
+  nameKey="source"
+  chartConfig={{ Search: { label: "Search" }, Direct: { label: "Direct" }, Referral: { label: "Referral" } }}
+  className="w-full min-h-64"
+/>
+</ComponentPreview>
+
+```tsx
+<EvilPieChart
+  data={[{ source: "Search", visitors: 186, fill: "var(--s-chart-series-1)" }, { source: "Direct", visitors: 112, fill: "var(--s-chart-series-2)" }, { source: "Referral", visitors: 84, fill: "var(--s-chart-series-5)" }]}
+  dataKey="visitors"
+  nameKey="source"
+  chartConfig={{ Search: { label: "Search" }, Direct: { label: "Direct" }, Referral: { label: "Referral" } }}
+  className="w-full min-h-64"
+/>
+```
+
+## Select a data range
+
+Enable `showBrush` on a line, area, or bar chart to render `EvilBrush`. Drag either handle, or focus a handle and use Left, Right, Home, and End. Pointer input works with a mouse, pen, or touch screen.
+
+Use `onBrushChange` to observe the selected start and end indexes. For a separate range control, import `EvilBrush` and `useEvilBrush`; pass the hook's `brushProps` to the brush and its `visibleData` to the chart.
+
+## Shared options
+
+| Prop | Purpose |
+|---|---|
+| `data` | The records to plot. |
+| `chartConfig` | Labels and token colors keyed by the fields in each record. |
+| `xDataKey` | Field used for the horizontal axis on line, area, and bar charts. |
+| `hideLegend` | Hide the series legend when it would repeat nearby context. |
+| `hideTooltip` | Hide the interactive value tooltip. |
+| `isLoading` | Display the chart's loading state. |
+| `className` | Adjust the outer layout using token-based classes. |
+
+For pie charts, supply `dataKey` for the numeric value and `nameKey` for each segment's label. Line, area, and bar charts also support `showBrush` and `onBrushChange`.

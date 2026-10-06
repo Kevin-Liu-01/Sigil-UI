@@ -3,6 +3,20 @@ title: BlueprintGridSection
 description: "Blueprint-style 2-column feature grid inspired by Dedalus' BlueprintFeatures. Each card scroll-reveals with staggered delay; contains a diagram viewport, spec table, and callout chips."
 ---
 
+## Preview
+
+<ComponentPreview label="Blueprint section" vertical>
+  <BlueprintGridSection
+    className="!px-0 !py-[var(--s-section-padding-compact)]"
+    label="System map"
+    heading="From specification to interface"
+    cards={[
+      { title: "Token contract", subtitle: "One schema for every visual decision.", diagram: <FeatureMiniDiagram variant="layer-stack" size={72} />, specRows: [{ label: "FIELDS", value: "519" }], callouts: ["typed", "validated"] },
+      { title: "Preset compiler", subtitle: "Complete identities with no missing values.", diagram: <FeatureMiniDiagram variant="hub-spoke" size={72} />, specRows: [{ label: "PRESETS", value: "46" }], callouts: ["portable", "live"] },
+    ]}
+  />
+</ComponentPreview>
+
 ## Import
 
 ```tsx
@@ -12,7 +26,15 @@ import { BlueprintGridSection } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<BlueprintGridSection>...</BlueprintGridSection>
+<BlueprintGridSection
+    className="!px-0 !py-[var(--s-section-padding-compact)]"
+    label="System map"
+    heading="From specification to interface"
+    cards={[
+      { title: "Token contract", subtitle: "One schema for every visual decision.", diagram: <FeatureMiniDiagram variant="layer-stack" size={72} />, specRows: [{ label: "FIELDS", value: "519" }], callouts: ["typed", "validated"] },
+      { title: "Preset compiler", subtitle: "Complete identities with no missing values.", diagram: <FeatureMiniDiagram variant="hub-spoke" size={72} />, specRows: [{ label: "PRESETS", value: "46" }], callouts: ["portable", "live"] },
+    ]}
+  />
 ```
 
 ## Props

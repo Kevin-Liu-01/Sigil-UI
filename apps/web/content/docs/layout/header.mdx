@@ -1,34 +1,35 @@
 ---
 title: Header
-description: "A Header component from the Sigil design system."
+description: "Group the introductory content of a page or section."
 ---
-
-## Import
-
-```tsx
-import { Header } from "@sigil-ui/components";
-```
 
 ## Preview
 
 <ComponentPreview>
-  <Header />
+  <Header sticky={false} className="flex items-center justify-between px-[var(--s-space-16)]"><strong>Workspace</strong><Button size="sm">New project</Button></Header>
 </ComponentPreview>
+
+## Import
+
+```tsx
+import { Header, Button } from "@sigil-ui/components";
+```
 
 ## Usage
 
 ```tsx
-<Header>Header content</Header>
+<Header sticky={false} className="flex items-center justify-between px-[var(--s-space-16)]"><strong>Workspace</strong><Button size="sm">New project</Button></Header>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `sticky` | `boolean` | — | — |
-| `blur` | `boolean` | — | — |
-| `bordered` | `boolean` | — | — |
-| `height` | `number | string` | — | — |
+| `sticky` | `boolean` | `true` | Keep the header at the top while scrolling. |
+| `blur` | `boolean` | `true` | Blur content behind the header. |
+| `bordered` | `boolean` | `true` | Show the bottom border. |
+| `height` | `number \| string` | Navbar height token | Override the header height. |
+| `children` | `ReactNode` | — | Header content. |
 
 ## Token integration
 

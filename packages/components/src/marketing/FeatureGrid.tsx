@@ -21,7 +21,7 @@ export const FeatureGrid = forwardRef<HTMLDivElement, FeatureGridProps>(
   function FeatureGrid({ rows, gap = "0", rowMinHeight = 240, className, ...rest }, ref) {
     const safeRows = rows ?? [];
     return (
-      <div ref={ref} className={cn("flex flex-col", className)} style={{ gap }} {...rest}>
+      <div ref={ref} className={cn("min-w-0 w-full flex flex-col", className)} style={{ gap }} {...rest}>
         {safeRows.map((row, i) => {
           const reversed = i % 2 === 1;
           return (
@@ -35,7 +35,7 @@ export const FeatureGrid = forwardRef<HTMLDivElement, FeatureGridProps>(
               }}
             >
               <div
-                className={cn("flex flex-col justify-center", reversed && "md:order-2")}
+                className={cn("min-w-0 flex flex-col justify-center", reversed && "md:order-2")}
                 style={{ padding: "var(--s-card-padding, 32px)" }}
               >
                 <h3
@@ -78,7 +78,7 @@ export const FeatureGrid = forwardRef<HTMLDivElement, FeatureGridProps>(
               </div>
               <div
                 className={cn(
-                  "flex items-center justify-center",
+                  "min-w-0 flex items-center justify-center [&>svg]:max-w-full",
                   reversed && "md:order-1",
                 )}
                 style={{

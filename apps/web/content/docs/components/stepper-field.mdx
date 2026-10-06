@@ -1,7 +1,13 @@
 ---
 title: StepperField
-description: StepperField is a token-driven Sigil component in the forms and inputs group.
+description: "Edit a bounded number with increment and decrement buttons."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <StepperFieldPreview />
+</ComponentPreview>
 
 ## Import
 
@@ -9,17 +15,13 @@ description: StepperField is a token-driven Sigil component in the forms and inp
 import { StepperField } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <StepperField defaultValue={3} />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<StepperField defaultValue={3} />
+<StepperField aria-label="Quantity" defaultValue={3} min={1} max={10} />
 ```
+
+The buttons update the input using its `min`, `max`, and `step` constraints and fire `onChange`. Set `disabled` or `readOnly` to disable both buttons. For controlled usage, pass `value` and update it in `onChange`. Optional `onIncrement` and `onDecrement` handlers replace the default stepping behavior.
 
 ## CLI
 

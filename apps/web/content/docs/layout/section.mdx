@@ -1,13 +1,7 @@
 ---
 title: Section
-description: "A Section component from the Sigil design system."
+description: "Group related content with token-based spacing."
 ---
-
-## Import
-
-```tsx
-import { Section } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -17,17 +11,25 @@ import { Section } from "@sigil-ui/components";
   </Section>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Section } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Section>Section content</Section>
+<Section>
+    Section content
+  </Section>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `gutter` | `"none" | "sm" | "md" | "lg"` | `md` | Horizontal padding / gutter. |
+| `gutter` | `"none" \| "sm" \| "md" \| "lg"` | `md` | Horizontal padding / gutter. |
 | `maxWidth` | `string` | — | Max width constraint. |
 | `as` | `ElementType` | `section` | Render as a different element. |
 

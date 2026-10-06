@@ -1,7 +1,17 @@
 ---
 title: PlatformHubDiagram
-description: "A PlatformHubDiagram component from the Sigil design system."
+description: "Connect platform capabilities around a central hub."
 ---
+
+## Preview
+
+<ComponentPreview label="Connected platform">
+  <PlatformHubDiagram
+    left={[{ label: "Inputs", items: [{ label: "DESIGN.md" }, { label: "Preset" }] }]}
+    center={{ label: "Sigil", items: [{ label: "compile" }, { label: "validate" }] }}
+    right={[{ label: "Outputs", items: [{ label: "CSS" }, { label: "Components" }] }]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,15 +22,20 @@ import { PlatformHubDiagram } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<PlatformHubDiagram>...</PlatformHubDiagram>
+<PlatformHubDiagram
+    left={[{ label: "Inputs", items: [{ label: "DESIGN.md" }, { label: "Preset" }] }]}
+    center={{ label: "Sigil", items: [{ label: "compile" }, { label: "validate" }] }}
+    right={[{ label: "Outputs", items: [{ label: "CSS" }, { label: "Components" }] }]}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `left` | `PlatformGroup[]` | — | — |
-| `center` | `{ label: string; icon?: ReactNode; items?: { label: strin...` | — | — |
+| `left` (required) | `PlatformGroup[]` | — | Left configuration. |
+| `center` (required) | `{ label: string; icon?: ReactNode; items?: { label: string; icon?: ReactNode }[] }` | — | Center configuration. |
+| `right` (required) | `PlatformGroup[]` | — | Right configuration. |
 
 ## Token integration
 

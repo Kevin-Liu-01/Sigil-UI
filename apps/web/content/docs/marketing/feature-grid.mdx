@@ -1,7 +1,13 @@
 ---
 title: FeatureGrid
-description: "A FeatureGrid component from the Sigil design system."
+description: "Arrange product features in a responsive grid."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <FeatureGrid rowMinHeight={180} rows={[{ heading: "One source of truth", bullets: ["Shared colors and spacing", "Consistent component states"], visual: <CommitGrid weeks={12} responsive data={Array.from({ length: 84 }, (_, i) => ({ date: new Date(Date.UTC(2026, 0, i + 1)).toISOString().slice(0, 10), count: (i * 7) % 13 }))} /> }, { heading: "Reusable building blocks", bullets: ["Compose with familiar React components", "Adjust the preset in one place"], visual: <SparkLine data={[4, 7, 5, 10, 9, 14]} /> }]} />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +18,7 @@ import { FeatureGrid } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<FeatureGrid>...</FeatureGrid>
+<FeatureGrid rowMinHeight={180} rows={[{ heading: "One source of truth", bullets: ["Shared colors and spacing", "Consistent component states"], visual: <CommitGrid weeks={12} responsive data={Array.from({ length: 84 }, (_, i) => ({ date: new Date(Date.UTC(2026, 0, i + 1)).toISOString().slice(0, 10), count: (i * 7) % 13 }))} /> }, { heading: "Reusable building blocks", bullets: ["Compose with familiar React components", "Adjust the preset in one place"], visual: <SparkLine data={[4, 7, 5, 10, 9, 14]} /> }]} />
 ```
 
 ## Props

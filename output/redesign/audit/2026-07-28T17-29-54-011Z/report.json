@@ -1,0 +1,233 @@
+{
+  "createdAt": "2026-07-28T17:31:10.193Z",
+  "base": "http://localhost:4010",
+  "concepts": 20,
+  "captures": 19,
+  "errors": 31,
+  "warnings": 6,
+  "findings": [
+    {
+      "slug": "liquid-sigil",
+      "severity": "error",
+      "code": "main-count",
+      "message": "Expected one main, found 0."
+    },
+    {
+      "slug": "liquid-sigil",
+      "severity": "error",
+      "code": "h1-count",
+      "message": "Expected one visible h1, found 0."
+    },
+    {
+      "slug": "liquid-sigil",
+      "severity": "warning",
+      "code": "theme",
+      "message": "Expected dark, found undefined."
+    },
+    {
+      "slug": "liquid-sigil",
+      "severity": "error",
+      "code": "runtime",
+      "message": "pageerror: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\nhttps://react.dev/link/hydration-mismatch\n\n  ...\n    <Suspense fallback={<LoadingConcept>}>\n      <Concept concept={{index:1,slug:\"...\", ...}} mode=\"detail\">\n        <ConceptRoot concept={{index:1,slug:\"...\", ...}} preset={{name:\"obsid\", ...}} compare={false}>\n          <SigilTokensProvider initialPreset={{name:\"obsid\", ...}} styleTagAttr=\"data-sigil...\">\n            <ConceptMotionRoot enabled={true}>\n              <div ref={{current:null}} data-concept-motion=\"lenis-gsap\">\n                <div data-concept=\"liquid-sigil\" className=\"relative m...\">\n                  <ConceptChrome concept={{index:1,slug:\"...\", ...}}>\n                    <nav aria-label=\"Concept re...\" className=\"fixed inse...\">\n                      <div>\n                      <span>\n                      <div className=\"flex items...\">\n                        <button\n                          type=\"button\"\n+                         aria-label=\"Use light mode\"\n-                         aria-label=\"Use dark mode\"\n                          onClick={function onClick}\n                          className=\"grid size-10 place-items-center border-l border-[var(--s-border)] bg-transparent ...\"\n                        >\n                          <Sun aria-hidden={true} className=\"size-3.5\">\n                            <svg\n                              ref={null}\n                              xmlns=\"http://www.w3.org/2000/svg\"\n                              width={24}\n                              height={24}\n                              viewBox=\"0 0 24 24\"\n                              fill=\"none\"\n                              stroke=\"currentColor\"\n                              strokeWidth={2}\n                              strokeLinecap=\"round\"\n                              strokeLinejoin=\"round\"\n+                             className=\"lucide lucide-sun size-3.5\"\n-                             className=\"lucide lucide-moon size-3.5\"\n                              aria-hidden={true}\n                            >\n+                             <circle cx=\"12\" cy=\"12\" r=\"4\">\n-                             <path\n-                               d=\"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268...\"\n-                             >\n                              ...\n                        ...\n                  ...\n"
+    },
+    {
+      "slug": "liquid-sigil",
+      "severity": "error",
+      "code": "runtime",
+      "message": "pageerror: Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "slug": "token-foundry",
+      "severity": "error",
+      "code": "main-count",
+      "message": "Expected one main, found 0."
+    },
+    {
+      "slug": "token-foundry",
+      "severity": "error",
+      "code": "h1-count",
+      "message": "Expected one visible h1, found 0."
+    },
+    {
+      "slug": "token-foundry",
+      "severity": "warning",
+      "code": "theme",
+      "message": "Expected dark, found undefined."
+    },
+    {
+      "slug": "token-foundry",
+      "severity": "error",
+      "code": "runtime",
+      "message": "pageerror: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\nhttps://react.dev/link/hydration-mismatch\n\n  ...\n    <Suspense fallback={<LoadingConcept>}>\n      <Concept concept={{index:2,slug:\"...\", ...}} mode=\"detail\">\n        <ConceptRoot concept={{index:2,slug:\"...\", ...}} preset={{name:\"alloy\", ...}} compare={false}>\n          <SigilTokensProvider initialPreset={{name:\"alloy\", ...}} styleTagAttr=\"data-sigil...\">\n            <ConceptMotionRoot enabled={true}>\n              <div ref={{current:null}} data-concept-motion=\"lenis-gsap\">\n                <div data-concept=\"token-foundry\" className=\"relative m...\">\n                  <ConceptChrome concept={{index:2,slug:\"...\", ...}}>\n                    <nav aria-label=\"Concept re...\" className=\"fixed inse...\">\n                      <div>\n                      <span>\n                      <div className=\"flex items...\">\n                        <button\n                          type=\"button\"\n+                         aria-label=\"Use light mode\"\n-                         aria-label=\"Use dark mode\"\n                          onClick={function onClick}\n                          className=\"grid size-10 place-items-center border-l border-[var(--s-border)] bg-transparent ...\"\n                        >\n                          <Sun aria-hidden={true} className=\"size-3.5\">\n                            <svg\n                              ref={null}\n                              xmlns=\"http://www.w3.org/2000/svg\"\n                              width={24}\n                              height={24}\n                              viewBox=\"0 0 24 24\"\n                              fill=\"none\"\n                              stroke=\"currentColor\"\n                              strokeWidth={2}\n                              strokeLinecap=\"round\"\n                              strokeLinejoin=\"round\"\n+                             className=\"lucide lucide-sun size-3.5\"\n-                             className=\"lucide lucide-moon size-3.5\"\n                              aria-hidden={true}\n                            >\n+                             <circle cx=\"12\" cy=\"12\" r=\"4\">\n-                             <path\n-                               d=\"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268...\"\n-                             >\n                              ...\n                        ...\n                  ...\n"
+    },
+    {
+      "slug": "token-foundry",
+      "severity": "error",
+      "code": "runtime",
+      "message": "pageerror: Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "slug": "token-foundry",
+      "severity": "error",
+      "code": "runtime",
+      "message": "pageerror: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\nhttps://react.dev/link/hydration-mismatch\n\n  ...\n    <Suspense fallback={<LoadingConcept>}>\n      <Concept concept={{index:2,slug:\"...\", ...}} mode=\"detail\">\n        <ConceptRoot concept={{index:2,slug:\"...\", ...}} preset={{name:\"alloy\", ...}} compare={false}>\n          <SigilTokensProvider initialPreset={{name:\"alloy\", ...}} styleTagAttr=\"data-sigil...\">\n            <ConceptMotionRoot enabled={true}>\n              <div ref={{current:null}} data-concept-motion=\"lenis-gsap\">\n                <div data-concept=\"token-foundry\" className=\"relative m...\">\n                  <ConceptChrome concept={{index:2,slug:\"...\", ...}}>\n                    <nav aria-label=\"Concept re...\" className=\"fixed inse...\">\n                      <div>\n                      <span>\n                      <div className=\"flex items...\">\n                        <button\n                          type=\"button\"\n+                         aria-label=\"Use light mode\"\n-                         aria-label=\"Use dark mode\"\n                          onClick={function onClick}\n                          className=\"grid size-10 place-items-center border-l border-[var(--s-border)] bg-transparent ...\"\n                        >\n                          <Sun aria-hidden={true} className=\"size-3.5\">\n                            <svg\n                              ref={null}\n                              xmlns=\"http://www.w3.org/2000/svg\"\n                              width={24}\n                              height={24}\n                              viewBox=\"0 0 24 24\"\n                              fill=\"none\"\n                              stroke=\"currentColor\"\n                              strokeWidth={2}\n                              strokeLinecap=\"round\"\n                              strokeLinejoin=\"round\"\n+                             className=\"lucide lucide-sun size-3.5\"\n-                             className=\"lucide lucide-moon size-3.5\"\n                              aria-hidden={true}\n                            >\n+                             <circle cx=\"12\" cy=\"12\" r=\"4\">\n-                             <path\n-                               d=\"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268...\"\n-                             >\n                              ...\n                        ...\n                  ...\n"
+    },
+    {
+      "slug": "token-foundry",
+      "severity": "error",
+      "code": "runtime",
+      "message": "pageerror: Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "slug": "spec-to-system",
+      "severity": "error",
+      "code": "main-count",
+      "message": "Expected one main, found 0."
+    },
+    {
+      "slug": "spec-to-system",
+      "severity": "error",
+      "code": "h1-count",
+      "message": "Expected one visible h1, found 0."
+    },
+    {
+      "slug": "spec-to-system",
+      "severity": "warning",
+      "code": "theme",
+      "message": "Expected dark, found undefined."
+    },
+    {
+      "slug": "spec-to-system",
+      "severity": "error",
+      "code": "runtime",
+      "message": "pageerror: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\nhttps://react.dev/link/hydration-mismatch\n\n  ...\n    <Suspense fallback={<LoadingConcept>}>\n      <Concept concept={{index:3,slug:\"...\", ...}} mode=\"detail\">\n        <ConceptRoot concept={{index:3,slug:\"...\", ...}} preset={{name:\"crux\", ...}} compare={false}>\n          <SigilTokensProvider initialPreset={{name:\"crux\", ...}} styleTagAttr=\"data-sigil...\">\n            <ConceptMotionRoot enabled={true}>\n              <div ref={{current:null}} data-concept-motion=\"lenis-gsap\">\n                <div data-concept=\"spec-to-sy...\" className=\"relative m...\">\n                  <ConceptChrome concept={{index:3,slug:\"...\", ...}}>\n                    <nav aria-label=\"Concept re...\" className=\"fixed inse...\">\n                      <div>\n                      <span>\n                      <div className=\"flex items...\">\n                        <button\n                          type=\"button\"\n+                         aria-label=\"Use light mode\"\n-                         aria-label=\"Use dark mode\"\n                          onClick={function onClick}\n                          className=\"grid size-10 place-items-center border-l border-[var(--s-border)] bg-transparent ...\"\n                        >\n                          <Sun aria-hidden={true} className=\"size-3.5\">\n                            <svg\n                              ref={null}\n                              xmlns=\"http://www.w3.org/2000/svg\"\n                              width={24}\n                              height={24}\n                              viewBox=\"0 0 24 24\"\n                              fill=\"none\"\n                              stroke=\"currentColor\"\n                              strokeWidth={2}\n                              strokeLinecap=\"round\"\n                              strokeLinejoin=\"round\"\n+                             className=\"lucide lucide-sun size-3.5\"\n-                             className=\"lucide lucide-moon size-3.5\"\n                              aria-hidden={true}\n                            >\n+                             <circle cx=\"12\" cy=\"12\" r=\"4\">\n-                             <path\n-                               d=\"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268...\"\n-                             >\n                              ...\n                        ...\n                  ...\n"
+    },
+    {
+      "slug": "spec-to-system",
+      "severity": "error",
+      "code": "runtime",
+      "message": "pageerror: Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "slug": "token-lathe",
+      "severity": "error",
+      "code": "main-count",
+      "message": "Expected one main, found 0."
+    },
+    {
+      "slug": "token-lathe",
+      "severity": "error",
+      "code": "h1-count",
+      "message": "Expected one visible h1, found 0."
+    },
+    {
+      "slug": "token-lathe",
+      "severity": "warning",
+      "code": "theme",
+      "message": "Expected dark, found undefined."
+    },
+    {
+      "slug": "token-lathe",
+      "severity": "error",
+      "code": "runtime",
+      "message": "pageerror: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\nhttps://react.dev/link/hydration-mismatch\n\n  ...\n    <Suspense fallback={<LoadingConcept>}>\n      <Concept concept={{index:4,slug:\"...\", ...}} mode=\"detail\">\n        <ConceptRoot concept={{index:4,slug:\"...\", ...}} preset={{name:\"anvil\", ...}} compare={false}>\n          <SigilTokensProvider initialPreset={{name:\"anvil\", ...}} styleTagAttr=\"data-sigil...\">\n            <ConceptMotionRoot enabled={true}>\n              <div ref={{current:null}} data-concept-motion=\"lenis-gsap\">\n                <div data-concept=\"token-lathe\" className=\"relative m...\">\n                  <ConceptChrome concept={{index:4,slug:\"...\", ...}}>\n                    <nav aria-label=\"Concept re...\" className=\"fixed inse...\">\n                      <div>\n                      <span>\n                      <div className=\"flex items...\">\n                        <button\n                          type=\"button\"\n+                         aria-label=\"Use light mode\"\n-                         aria-label=\"Use dark mode\"\n                          onClick={function onClick}\n                          className=\"grid size-10 place-items-center border-l border-[var(--s-border)] bg-transparent ...\"\n                        >\n                          <Sun aria-hidden={true} className=\"size-3.5\">\n                            <svg\n                              ref={null}\n                              xmlns=\"http://www.w3.org/2000/svg\"\n                              width={24}\n                              height={24}\n                              viewBox=\"0 0 24 24\"\n                              fill=\"none\"\n                              stroke=\"currentColor\"\n                              strokeWidth={2}\n                              strokeLinecap=\"round\"\n                              strokeLinejoin=\"round\"\n+                             className=\"lucide lucide-sun size-3.5\"\n-                             className=\"lucide lucide-moon size-3.5\"\n                              aria-hidden={true}\n                            >\n+                             <circle cx=\"12\" cy=\"12\" r=\"4\">\n-                             <path\n-                               d=\"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268...\"\n-                             >\n                              ...\n                        ...\n                  ...\n"
+    },
+    {
+      "slug": "token-lathe",
+      "severity": "error",
+      "code": "runtime",
+      "message": "pageerror: Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "slug": "source-result-tear",
+      "severity": "error",
+      "code": "main-count",
+      "message": "Expected one main, found 0."
+    },
+    {
+      "slug": "source-result-tear",
+      "severity": "error",
+      "code": "h1-count",
+      "message": "Expected one visible h1, found 0."
+    },
+    {
+      "slug": "source-result-tear",
+      "severity": "warning",
+      "code": "theme",
+      "message": "Expected dark, found undefined."
+    },
+    {
+      "slug": "source-result-tear",
+      "severity": "error",
+      "code": "runtime",
+      "message": "pageerror: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\nhttps://react.dev/link/hydration-mismatch\n\n  ...\n    <Suspense fallback={<LoadingConcept>}>\n      <Concept concept={{index:5,slug:\"...\", ...}} mode=\"detail\">\n        <ConceptRoot concept={{index:5,slug:\"...\", ...}} preset={{name:\"sigil\", ...}} compare={false}>\n          <SigilTokensProvider initialPreset={{name:\"sigil\", ...}} styleTagAttr=\"data-sigil...\">\n            <ConceptMotionRoot enabled={true}>\n              <div ref={{current:null}} data-concept-motion=\"lenis-gsap\">\n                <div data-concept=\"source-res...\" className=\"relative m...\">\n                  <ConceptChrome concept={{index:5,slug:\"...\", ...}}>\n                    <nav aria-label=\"Concept re...\" className=\"fixed inse...\">\n                      <div>\n                      <span>\n                      <div className=\"flex items...\">\n                        <button\n                          type=\"button\"\n+                         aria-label=\"Use light mode\"\n-                         aria-label=\"Use dark mode\"\n                          onClick={function onClick}\n                          className=\"grid size-10 place-items-center border-l border-[var(--s-border)] bg-transparent ...\"\n                        >\n                          <Sun aria-hidden={true} className=\"size-3.5\">\n                            <svg\n                              ref={null}\n                              xmlns=\"http://www.w3.org/2000/svg\"\n                              width={24}\n                              height={24}\n                              viewBox=\"0 0 24 24\"\n                              fill=\"none\"\n                              stroke=\"currentColor\"\n                              strokeWidth={2}\n                              strokeLinecap=\"round\"\n                              strokeLinejoin=\"round\"\n+                             className=\"lucide lucide-sun size-3.5\"\n-                             className=\"lucide lucide-moon size-3.5\"\n                              aria-hidden={true}\n                            >\n+                             <circle cx=\"12\" cy=\"12\" r=\"4\">\n-                             <path\n-                               d=\"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268...\"\n-                             >\n                              ...\n                        ...\n                  ...\n"
+    },
+    {
+      "slug": "source-result-tear",
+      "severity": "error",
+      "code": "runtime",
+      "message": "pageerror: Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "slug": "monochrome-press",
+      "severity": "error",
+      "code": "main-count",
+      "message": "Expected one main, found 0."
+    },
+    {
+      "slug": "monochrome-press",
+      "severity": "error",
+      "code": "h1-count",
+      "message": "Expected one visible h1, found 0."
+    },
+    {
+      "slug": "monochrome-press",
+      "severity": "warning",
+      "code": "theme",
+      "message": "Expected dark, found undefined."
+    },
+    {
+      "slug": "monochrome-press",
+      "severity": "error",
+      "code": "runtime",
+      "message": "pageerror: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\nhttps://react.dev/link/hydration-mismatch\n\n  ...\n    <Suspense fallback={<LoadingConcept>}>\n      <Concept concept={{index:6,slug:\"...\", ...}} mode=\"detail\">\n        <ConceptRoot concept={{index:6,slug:\"...\", ...}} preset={{name:\"mono\", ...}} compare={false}>\n          <SigilTokensProvider initialPreset={{name:\"mono\", ...}} styleTagAttr=\"data-sigil...\">\n            <ConceptMotionRoot enabled={true}>\n              <div ref={{current:null}} data-concept-motion=\"lenis-gsap\">\n                <div data-concept=\"monochrome...\" className=\"relative m...\">\n                  <ConceptChrome concept={{index:6,slug:\"...\", ...}}>\n                    <nav aria-label=\"Concept re...\" className=\"fixed inse...\">\n                      <div>\n                      <span>\n                      <div className=\"flex items...\">\n                        <button\n                          type=\"button\"\n+                         aria-label=\"Use light mode\"\n-                         aria-label=\"Use dark mode\"\n                          onClick={function onClick}\n                          className=\"grid size-10 place-items-center border-l border-[var(--s-border)] bg-transparent ...\"\n                        >\n                          <Sun aria-hidden={true} className=\"size-3.5\">\n                            <svg\n                              ref={null}\n                              xmlns=\"http://www.w3.org/2000/svg\"\n                              width={24}\n                              height={24}\n                              viewBox=\"0 0 24 24\"\n                              fill=\"none\"\n                              stroke=\"currentColor\"\n                              strokeWidth={2}\n                              strokeLinecap=\"round\"\n                              strokeLinejoin=\"round\"\n+                             className=\"lucide lucide-sun size-3.5\"\n-                             className=\"lucide lucide-moon size-3.5\"\n                              aria-hidden={true}\n                            >\n+                             <circle cx=\"12\" cy=\"12\" r=\"4\">\n-                             <path\n-                               d=\"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268...\"\n-                             >\n                              ...\n                        ...\n                  ...\n"
+    },
+    {
+      "slug": "monochrome-press",
+      "severity": "error",
+      "code": "runtime",
+      "message": "pageerror: Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "slug": "monochrome-press",
+      "severity": "error",
+      "code": "runtime",
+      "message": "pageerror: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\nhttps://react.dev/link/hydration-mismatch\n\n  ...\n    <Suspense fallback={<LoadingConcept>}>\n      <Concept concept={{index:6,slug:\"...\", ...}} mode=\"detail\">\n        <ConceptRoot concept={{index:6,slug:\"...\", ...}} preset={{name:\"mono\", ...}} compare={false}>\n          <SigilTokensProvider initialPreset={{name:\"mono\", ...}} styleTagAttr=\"data-sigil...\">\n            <ConceptMotionRoot enabled={true}>\n              <div ref={{current:null}} data-concept-motion=\"lenis-gsap\">\n                <div data-concept=\"monochrome...\" className=\"relative m...\">\n                  <ConceptChrome concept={{index:6,slug:\"...\", ...}}>\n                    <nav aria-label=\"Concept re...\" className=\"fixed inse...\">\n                      <div>\n                      <span>\n                      <div className=\"flex items...\">\n                        <button\n                          type=\"button\"\n+                         aria-label=\"Use light mode\"\n-                         aria-label=\"Use dark mode\"\n                          onClick={function onClick}\n                          className=\"grid size-10 place-items-center border-l border-[var(--s-border)] bg-transparent ...\"\n                        >\n                          <Sun aria-hidden={true} className=\"size-3.5\">\n                            <svg\n                              ref={null}\n                              xmlns=\"http://www.w3.org/2000/svg\"\n                              width={24}\n                              height={24}\n                              viewBox=\"0 0 24 24\"\n                              fill=\"none\"\n                              stroke=\"currentColor\"\n                              strokeWidth={2}\n                              strokeLinecap=\"round\"\n                              strokeLinejoin=\"round\"\n+                             className=\"lucide lucide-sun size-3.5\"\n-                             className=\"lucide lucide-moon size-3.5\"\n                              aria-hidden={true}\n                            >\n+                             <circle cx=\"12\" cy=\"12\" r=\"4\">\n-                             <path\n-                               d=\"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268...\"\n-                             >\n                              ...\n                        ...\n                  ...\n"
+    },
+    {
+      "slug": "monochrome-press",
+      "severity": "error",
+      "code": "runtime",
+      "message": "pageerror: Cannot read properties of undefined (reading 'length')"
+    },
+    {
+      "slug": "oxide-instrument",
+      "severity": "error",
+      "code": "navigation",
+      "message": "locator.waitFor: Timeout 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-concept]') to be visible\u001b[22m\n",
+      "url": "http://localhost:4010/concepts/oxide-instrument"
+    },
+    {
+      "slug": "chrome-selection-museum",
+      "severity": "error",
+      "code": "runtime",
+      "message": "pageerror: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:\n\n- A server/client branch `if (typeof window !== 'undefined')`.\n- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.\n- Date formatting in a user's locale which doesn't match the server.\n- External changing data without sending a snapshot of it along with the HTML.\n- Invalid HTML tag nesting.\n\nIt can also happen if the client has a browser extension installed which messes with the HTML before React loaded.\n\nhttps://react.dev/link/hydration-mismatch\n\n  ...\n    <Suspense fallback={<LoadingConcept>}>\n      <Concept concept={{index:8,slug:\"...\", ...}} mode=\"detail\">\n        <ConceptRoot concept={{index:8,slug:\"...\", ...}} preset={{name:\"brass\", ...}} compare={false} className=\"pt-12\">\n          <SigilTokensProvider initialPreset={{name:\"brass\", ...}} styleTagAttr=\"data-sigil...\">\n            <ConceptMotionRoot enabled={true}>\n              <div ref={{current:null}} data-concept-motion=\"lenis-gsap\">\n                <div data-concept=\"chrome-sel...\" className=\"relative m...\">\n                  <ConceptChrome concept={{index:8,slug:\"...\", ...}}>\n                    <nav aria-label=\"Concept re...\" className=\"fixed inse...\">\n                      <div>\n                      <span>\n                      <div className=\"flex items...\">\n                        <button\n                          type=\"button\"\n+                         aria-label=\"Use light mode\"\n-                         aria-label=\"Use dark mode\"\n                          onClick={function onClick}\n                          className=\"grid size-10 place-items-center border-l border-[var(--s-border)] bg-transparent ...\"\n                        >\n                          <Sun aria-hidden={true} className=\"size-3.5\">\n                            <svg\n                              ref={null}\n                              xmlns=\"http://www.w3.org/2000/svg\"\n                              width={24}\n                              height={24}\n                              viewBox=\"0 0 24 24\"\n                              fill=\"none\"\n                              stroke=\"currentColor\"\n                              strokeWidth={2}\n                              strokeLinecap=\"round\"\n                              strokeLinejoin=\"round\"\n+                             className=\"lucide lucide-sun size-3.5\"\n-                             className=\"lucide lucide-moon size-3.5\"\n                              aria-hidden={true}\n                            >\n+                             <circle cx=\"12\" cy=\"12\" r=\"4\">\n-                             <path\n-                               d=\"M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268...\"\n-                             >\n                              ...\n                        ...\n                  ...\n"
+    },
+    {
+      "slug": "chrome-selection-museum",
+      "severity": "error",
+      "code": "runtime",
+      "message": "pageerror: Cannot read properties of undefined (reading 'length')"
+    }
+  ]
+}

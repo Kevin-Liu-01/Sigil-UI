@@ -1,7 +1,23 @@
 ---
 title: BillingChart
-description: "A BillingChart component from the Sigil design system."
+description: "Visualize billing totals and their changes over time."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <BillingChart
+    currency="$"
+    periods={[
+      { label: "Jan", segments: [{ label: "Compute", value: 120 }, { label: "Storage", value: 45 }, { label: "Network", value: 20 }] },
+      { label: "Feb", segments: [{ label: "Compute", value: 140 }, { label: "Storage", value: 52 }, { label: "Network", value: 25 }] },
+      { label: "Mar", segments: [{ label: "Compute", value: 160 }, { label: "Storage", value: 58 }, { label: "Network", value: 30 }] },
+      { label: "Apr", segments: [{ label: "Compute", value: 135 }, { label: "Storage", value: 48 }, { label: "Network", value: 22 }] },
+      { label: "May", segments: [{ label: "Compute", value: 180 }, { label: "Storage", value: 65 }, { label: "Network", value: 35 }] },
+      { label: "Jun", segments: [{ label: "Compute", value: 200 }, { label: "Storage", value: 70 }, { label: "Network", value: 40 }] },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +28,17 @@ import { BillingChart } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<BillingChart>...</BillingChart>
+<BillingChart
+    currency="$"
+    periods={[
+      { label: "Jan", segments: [{ label: "Compute", value: 120 }, { label: "Storage", value: 45 }, { label: "Network", value: 20 }] },
+      { label: "Feb", segments: [{ label: "Compute", value: 140 }, { label: "Storage", value: 52 }, { label: "Network", value: 25 }] },
+      { label: "Mar", segments: [{ label: "Compute", value: 160 }, { label: "Storage", value: 58 }, { label: "Network", value: 30 }] },
+      { label: "Apr", segments: [{ label: "Compute", value: 135 }, { label: "Storage", value: 48 }, { label: "Network", value: 22 }] },
+      { label: "May", segments: [{ label: "Compute", value: 180 }, { label: "Storage", value: 65 }, { label: "Network", value: 35 }] },
+      { label: "Jun", segments: [{ label: "Compute", value: 200 }, { label: "Storage", value: 70 }, { label: "Network", value: 40 }] },
+    ]}
+  />
 ```
 
 ## Props

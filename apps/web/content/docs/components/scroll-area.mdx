@@ -1,13 +1,7 @@
 ---
 title: ScrollArea
-description: "A ScrollArea component from the Sigil design system."
+description: "Contain overflowing content with a styled scrollbar."
 ---
-
-## Import
-
-```tsx
-import { ScrollArea } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -17,10 +11,18 @@ import { ScrollArea } from "@sigil-ui/components";
   </ScrollArea>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { ScrollArea } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<ScrollArea>ScrollArea content</ScrollArea>
+<ScrollArea className="h-32 w-48 rounded-[var(--s-radius-md,6px)] border border-[color:var(--s-border)]">
+    <div className="p-4">Scrollable content goes here. Add more text to see scrolling behavior.</div>
+  </ScrollArea>
 ```
 
 ## Props
@@ -28,7 +30,7 @@ import { ScrollArea } from "@sigil-ui/components";
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `orientation` | `ScrollbarOrientation` | `vertical` | Orientation of the scrollbar. |
-| `scrollbarSize` | `number | string` | — | Override token-driven scrollbar thickness for this instance. |
+| `scrollbarSize` | `number \| string` | — | Override token-driven scrollbar thickness for this instance. |
 | `scrollbarClassName` | `string` | — | Additional classes for the scrollbar track. |
 | `thumbClassName` | `string` | — | Additional classes for the scrollbar thumb. |
 

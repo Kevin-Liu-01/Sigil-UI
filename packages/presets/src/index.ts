@@ -47,21 +47,20 @@ export { oceanPreset } from "./ocean";
 export { rosePreset } from "./rose";
 
 import type { SigilPreset } from "@sigil-ui/tokens";
-import { defaultTokens, deepMerge } from "@sigil-ui/tokens";
+import {
+  SigilTokenValidationError,
+  resolveSigilPreset,
+} from "@sigil-ui/tokens";
 
 /**
- * Resolve a partial preset by deep-merging it onto the default token
- * skeleton. Lazy-imported preset modules can ship sparse `tokens` and
- * still satisfy the full `SigilTokens` shape at the point of use.
+ * Re-validate lazy imports at their trust boundary. Curated modules already
+ * resolve through `completePreset`; this catches corrupted bundles or future
+ * loaders that bypass that helper before they reach the runtime.
  */
 function resolvePreset(preset: SigilPreset): SigilPreset {
-  return {
-    ...preset,
-    tokens: deepMerge(
-      defaultTokens as unknown as Record<string, unknown>,
-      preset.tokens as unknown as Record<string, unknown>,
-    ) as unknown as SigilPreset["tokens"],
-  };
+  const resolution = resolveSigilPreset(preset, preset.name);
+  if (!resolution.valid) throw new SigilTokenValidationError(resolution.issues);
+  return resolution.preset;
 }
 
 export const presets = {

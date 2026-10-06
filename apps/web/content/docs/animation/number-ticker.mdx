@@ -1,13 +1,7 @@
 ---
 title: NumberTicker
-description: "A NumberTicker component from the Sigil design system."
+description: "Animate a number as it changes to a target value."
 ---
-
-## Import
-
-```tsx
-import { NumberTicker } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -15,10 +9,16 @@ import { NumberTicker } from "@sigil-ui/components";
   <NumberTicker value={1234} />
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { NumberTicker } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<NumberTicker>NumberTicker content</NumberTicker>
+<NumberTicker value={1234} />
 ```
 
 ## Props
@@ -33,5 +33,5 @@ import { NumberTicker } from "@sigil-ui/components";
 | `prefix` | `string` | — | Prefix string (e.g. "$"). |
 | `suffix` | `string` | — | Suffix string (e.g. "%"). |
 | `formatNumber` | `boolean` | `true` | Use locale number formatting with separators. |
-| `trigger` | `"scroll" | "mount"` | — | — |
+| `trigger` | `"scroll" \| "mount"` | — | — |
 | `viewOptions` | `UseInViewOptions` | — | — |

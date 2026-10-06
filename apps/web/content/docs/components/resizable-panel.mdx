@@ -3,45 +3,41 @@ title: ResizablePanel
 description: Resizable panel layouts with drag handles. Create split panes for editors, file browsers, and dashboards.
 ---
 
-## Import
-
-```tsx
-import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@sigil-ui/components";
-```
-
 ## Preview
 
 <ComponentPreview>
-  <ResizablePanelGroup direction="horizontal" className="min-h-[120px] border border-[var(--s-border)]">
+  <ResizablePanelGroup orientation="horizontal" className="min-h-[120px] border border-[var(--s-border)]">
   <ResizablePanel>Left</ResizablePanel>
   <ResizableHandle />
   <ResizablePanel>Right</ResizablePanel>
 </ResizablePanelGroup>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<ResizablePanelGroup direction="horizontal">
-  <ResizablePanel defaultSize={30}>
-    <div className="p-4">Sidebar</div>
-  </ResizablePanel>
+<ResizablePanelGroup orientation="horizontal" className="min-h-[120px] border border-[var(--s-border)]">
+  <ResizablePanel>Left</ResizablePanel>
   <ResizableHandle />
-  <ResizablePanel defaultSize={70}>
-    <div className="p-4">Main content</div>
-  </ResizablePanel>
+  <ResizablePanel>Right</ResizablePanel>
 </ResizablePanelGroup>
 ```
 
 ## Vertical split
 
 ```tsx
-<ResizablePanelGroup direction="vertical" className="h-[400px]">
-  <ResizablePanel defaultSize={60}>
+<ResizablePanelGroup orientation="vertical" className="h-[400px]">
+  <ResizablePanel defaultSize="60%">
     <div className="p-4">Editor</div>
   </ResizablePanel>
   <ResizableHandle />
-  <ResizablePanel defaultSize={40}>
+  <ResizablePanel defaultSize="40%">
     <div className="p-4">Terminal</div>
   </ResizablePanel>
 </ResizablePanelGroup>
@@ -50,12 +46,12 @@ import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@sigil-ui/
 ## Three-panel layout
 
 ```tsx
-<ResizablePanelGroup direction="horizontal">
-  <ResizablePanel defaultSize={20} minSize={15}>Sidebar</ResizablePanel>
+<ResizablePanelGroup orientation="horizontal">
+  <ResizablePanel defaultSize="20%" minSize="15%">Sidebar</ResizablePanel>
   <ResizableHandle />
-  <ResizablePanel defaultSize={50}>Editor</ResizablePanel>
+  <ResizablePanel defaultSize="50%">Editor</ResizablePanel>
   <ResizableHandle />
-  <ResizablePanel defaultSize={30} minSize={20}>Preview</ResizablePanel>
+  <ResizablePanel defaultSize="30%" minSize="20%">Preview</ResizablePanel>
 </ResizablePanelGroup>
 ```
 
@@ -74,7 +70,7 @@ import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@sigil-ui/
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `direction` | `"horizontal" \| "vertical"` | `"horizontal"` | Split direction |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Split direction |
 | `className` | `string` | — | Additional CSS classes |
 | `children` | `ReactNode` | — | Panels and handles |
 

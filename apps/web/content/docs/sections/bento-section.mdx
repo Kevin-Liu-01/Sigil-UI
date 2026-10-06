@@ -1,7 +1,22 @@
 ---
 title: BentoSection
-description: "A BentoSection component from the Sigil design system."
+description: "Arrange related content in a responsive grid of varied cells."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <BentoSection
+    label="Platform"
+    title="Everything in one place"
+    cells={[
+      { title: "Analytics", description: "Real-time insights",   span: "2x1" },
+      { title: "Security",  description: "Enterprise-grade",     span: "1x1" },
+      { title: "API",       description: "REST and GraphQL",     span: "1x1" },
+      { title: "Dashboard", description: "Custom views",         span: "2x1" },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,17 +27,26 @@ import { BentoSection } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<BentoSection>...</BentoSection>
+<BentoSection
+    label="Platform"
+    title="Everything in one place"
+    cells={[
+      { title: "Analytics", description: "Real-time insights",   span: "2x1" },
+      { title: "Security",  description: "Enterprise-grade",     span: "1x1" },
+      { title: "API",       description: "REST and GraphQL",     span: "1x1" },
+      { title: "Dashboard", description: "Custom views",         span: "2x1" },
+    ]}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `label` | `string` | — | — |
-| `title` | `ReactNode` | — | — |
-| `description` | `string` | — | — |
-| `cells` | `BentoCell[]` | — | — |
+| `label` | `string` | — | Readable label for the component. |
+| `title` | `ReactNode` | — | Heading displayed in the component. |
+| `description` | `string` | — | Supporting text below the heading. |
+| `cells` (required) | `BentoCell[]` | — | Cells configuration. |
 
 ## Token integration
 

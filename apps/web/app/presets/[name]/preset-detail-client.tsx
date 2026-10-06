@@ -63,7 +63,7 @@ import {
   ChevronRight,
   Copy,
   Check,
-} from "lucide-react";
+} from "@/components/icons";
 import type { SigilPreset, SigilTokens } from "@sigil-ui/tokens";
 import { presetCatalog } from "@sigil-ui/presets";
 

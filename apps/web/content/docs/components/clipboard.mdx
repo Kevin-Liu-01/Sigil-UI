@@ -1,13 +1,7 @@
 ---
 title: Clipboard
-description: "A Clipboard component from the Sigil design system."
+description: "Copy a value and provide feedback when copying succeeds or fails."
 ---
-
-## Import
-
-```tsx
-import { Clipboard } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -15,11 +9,19 @@ import { Clipboard } from "@sigil-ui/components";
   <Clipboard value="npx @sigil-ui/cli init" />
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Clipboard } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Clipboard>Clipboard content</Clipboard>
+<Clipboard value="npx @sigil-ui/cli init" />
 ```
+
+Copy errors are shown inline and can be retried. A custom render function receives `copied`, `error`, and `copy`.
 
 ## Props
 

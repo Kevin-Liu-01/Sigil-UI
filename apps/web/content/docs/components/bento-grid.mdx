@@ -1,0 +1,43 @@
+---
+title: BentoGrid
+description: "Arrange bordered cells in a responsive grid with independent column counts at each breakpoint."
+---
+
+## Preview
+
+<ComponentPreview vertical>
+<BentoGrid columns={{ base: 1, sm: 2, lg: 3 }} className="w-full">
+  <BentoGridCell className="flex-col items-start gap-[var(--s-space-12)]"><strong>Shared tokens</strong><p>Keep color, type, and spacing in one place.</p></BentoGridCell>
+  <BentoGridCell className="flex-col items-start gap-[var(--s-space-12)]"><strong>Reusable components</strong><p>Compose accessible interface elements.</p></BentoGridCell>
+  <BentoGridCell className="flex-col items-start gap-[var(--s-space-12)]"><strong>Live themes</strong><p>Apply a preset across the entire page.</p></BentoGridCell>
+</BentoGrid>
+</ComponentPreview>
+
+## Import
+
+```tsx
+import { BentoGrid, BentoGridCell } from "@sigil-ui/components";
+```
+
+## Usage
+
+```tsx
+<BentoGrid columns={{ base: 1, sm: 2, lg: 3 }} className="w-full">
+  <BentoGridCell className="flex-col items-start gap-[var(--s-space-12)]"><strong>Shared tokens</strong><p>Keep color, type, and spacing in one place.</p></BentoGridCell>
+  <BentoGridCell className="flex-col items-start gap-[var(--s-space-12)]"><strong>Reusable components</strong><p>Compose accessible interface elements.</p></BentoGridCell>
+  <BentoGridCell className="flex-col items-start gap-[var(--s-space-12)]"><strong>Live themes</strong><p>Apply a preset across the entire page.</p></BentoGridCell>
+</BentoGrid>
+```
+
+The grid begins with `base` columns and inherits that count until the next configured breakpoint. Set `gap` to a token value to adjust the space between cells. Each cell can accept `colSpan` and `rowSpan` to create a varied layout.
+
+## Props
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `columns` | `{ base?, sm?, md?, lg?, xl? }` | `{ base: 1, md: 3 }` | Column counts at the standard responsive breakpoints. |
+| `gap` | `string \| number` | `var(--s-bento-gap)` | Gap between cells. |
+| `dotGrid` | `boolean` | `false` | Show a dot grid behind the cells. |
+| `children` | `ReactNode` | — | Grid cells. |
+
+`BentoGridCell` accepts `colSpan` and `rowSpan` values from 1 to 3. Choose spans that fit the configured desktop column count.

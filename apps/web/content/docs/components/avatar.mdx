@@ -1,13 +1,7 @@
 ---
 title: Avatar
-description: "A Avatar component from the Sigil design system."
+description: "Represent a person with an image or readable initials."
 ---
-
-## Import
-
-```tsx
-import { Avatar, AvatarGroup } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -15,10 +9,16 @@ import { Avatar, AvatarGroup } from "@sigil-ui/components";
   <Avatar name="Kevin Liu" />
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Avatar, AvatarGroup } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Avatar>...</Avatar>
+<Avatar name="Kevin Liu" />
 ```
 
 ## Sub-components
@@ -31,11 +31,11 @@ This component includes the following parts:
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `src` | `string` | — | — |
-| `alt` | `string` | — | — |
-| `name` | `string` | — | — |
-| `fallback` | `string` | — | — |
-| `size` | `keyof typeof sizeMap` | `md` | — |
+| `src` | `string` | — | Src configuration. |
+| `alt` | `string` | — | Alt configuration. |
+| `name` | `string` | — | Name configuration. |
+| `fallback` | `string` | — | Fallback configuration. |
+| `size` | `keyof typeof sizeMap` | `"md"` | Sets the component's size. |
 
 ## Token integration
 

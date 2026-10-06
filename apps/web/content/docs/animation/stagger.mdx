@@ -1,13 +1,7 @@
 ---
 title: Stagger
-description: "A Stagger component from the Sigil design system."
+description: "Sequence the entrance of a group of elements."
 ---
-
-## Import
-
-```tsx
-import { Stagger } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -19,10 +13,20 @@ import { Stagger } from "@sigil-ui/components";
 </Stagger>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Stagger } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Stagger>...</Stagger>
+<Stagger>
+  <Badge>First</Badge>
+  <Badge>Second</Badge>
+  <Badge>Third</Badge>
+</Stagger>
 ```
 
 ## Props
@@ -32,7 +36,7 @@ import { Stagger } from "@sigil-ui/components";
 | `interval` | `number` | `80` | Delay between each child in ms. |
 | `delay` | `number` | `0` | Base delay before the first child animates in ms. |
 | `yOffset` | `number` | `20` | Vertical offset for each child. |
-| `trigger` | `"scroll" | "mount"` | — | — |
+| `trigger` | `"scroll" \| "mount"` | — | — |
 | `viewOptions` | `UseInViewOptions` | — | — |
 
 ## Token integration

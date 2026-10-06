@@ -1,13 +1,7 @@
 ---
 title: Alert
-description: "A Alert component from the Sigil design system."
+description: "Display a status message with a title and supporting detail."
 ---
-
-## Import
-
-```tsx
-import { Alert, AlertTitle, AlertDescription } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -18,10 +12,19 @@ import { Alert, AlertTitle, AlertDescription } from "@sigil-ui/components";
   </Alert>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Alert, AlertTitle, AlertDescription } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Alert>...</Alert>
+<Alert>
+    <AlertTitle>Heads up</AlertTitle>
+    <AlertDescription>This is an alert message.</AlertDescription>
+  </Alert>
 ```
 
 ## Sub-components

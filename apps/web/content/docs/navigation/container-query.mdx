@@ -1,24 +1,24 @@
 ---
 title: ContainerQuery
-description: "A ContainerQuery component from the Sigil design system."
+description: "Adapt child layouts to the width of their container."
 ---
-
-## Import
-
-```tsx
-import { ContainerQuery, SplitPane, Dock, TopBar, BottomBar, MobileNav, SidebarNav, AppHeader, PageHeader, SectionHeader, ContentTabs, AnchorNav, TableOfContents, ScrollSpy, MasonryGrid, MediaCard, ResourceCard, FeatureCard, PricingCard, TestimonialCarousel } from "@sigil-ui/components";
-```
 
 ## Preview
 
 <ComponentPreview>
-  <ContainerQuery />
+  <ContainerQuery><div className="grid gap-[var(--s-space-12)] @sm:grid-cols-2"><Card><CardHeader><CardTitle>Flexible layout</CardTitle><CardDescription>These cards respond to their container width.</CardDescription></CardHeader></Card><Card><CardHeader><CardTitle>Shared tokens</CardTitle><CardDescription>Resize the page to stack them.</CardDescription></CardHeader></Card></div></ContainerQuery>
 </ComponentPreview>
+
+## Import
+
+```tsx
+import { ContainerQuery, Card, CardHeader, CardTitle, CardDescription } from "@sigil-ui/components";
+```
 
 ## Usage
 
 ```tsx
-<ContainerQuery>...</ContainerQuery>
+<ContainerQuery><div className="grid gap-[var(--s-space-12)] @sm:grid-cols-2"><Card><CardHeader><CardTitle>Flexible layout</CardTitle><CardDescription>These cards respond to their container width.</CardDescription></CardHeader></Card><Card><CardHeader><CardTitle>Shared tokens</CardTitle><CardDescription>Resize the page to stack them.</CardDescription></CardHeader></Card></div></ContainerQuery>
 ```
 
 ## Sub-components

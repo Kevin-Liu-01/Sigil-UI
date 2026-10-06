@@ -1,13 +1,7 @@
 ---
 title: ButtonGroup
-description: "A ButtonGroup component from the Sigil design system."
+description: "Group related actions with consistent alignment and spacing."
 ---
-
-## Import
-
-```tsx
-import { ButtonGroup } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -19,17 +13,27 @@ import { ButtonGroup } from "@sigil-ui/components";
   </ButtonGroup>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { ButtonGroup } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<ButtonGroup>ButtonGroup content</ButtonGroup>
+<ButtonGroup>
+    <Button variant="outline">Left</Button>
+    <Button variant="outline">Center</Button>
+    <Button variant="outline">Right</Button>
+  </ButtonGroup>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `orientation` | `"horizontal" | "vertical"` | — | — |
+| `orientation` | `"horizontal" \| "vertical"` | — | Orientation configuration. |
 
 ## Token integration
 

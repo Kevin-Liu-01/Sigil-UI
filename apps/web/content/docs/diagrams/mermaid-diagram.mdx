@@ -1,7 +1,18 @@
 ---
 title: MermaidDiagram
-description: "A MermaidDiagram component from the Sigil design system."
+description: "Render a diagram from Mermaid text syntax."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <MermaidDiagram
+    chart={`graph LR
+      A[Tokens] --> B[CSS]
+      B --> C[Components]
+      C --> D[App]`}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,15 +23,20 @@ import { MermaidDiagram } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<MermaidDiagram>...</MermaidDiagram>
+<MermaidDiagram
+    chart={`graph LR
+      A[Tokens] --> B[CSS]
+      B --> C[Components]
+      C --> D[App]`}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `chart` | `string` | — | — |
-| `theme` | `"dark" | "default"` | — | — |
+| `chart` (required) | `string` | — | Chart configuration. |
+| `theme` | `"dark" \| "default"` | — | Theme configuration. |
 
 ## Token integration
 

@@ -55,11 +55,11 @@ const KNOWN_SMALL = new Set([
 ]);
 
 const stamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
-const outDir = path.join(OUT_BASE, stamp, "showcase-visual");
+const outDir = path.join(OUT_BASE, stamp, `showcase-visual-${args.width ?? 1440}`);
 fs.mkdirSync(outDir, { recursive: true });
 
 const browser = await chromium.launch({ headless: true });
-const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 });
+const ctx = await browser.newContext({ viewport: { width: Number(args.width ?? 1440), height: 900 }, deviceScaleFactor: 1 });
 const page = await ctx.newPage();
 
 console.log(`Showcase visual audit on ${BASE}/components`);
@@ -68,31 +68,43 @@ await page.waitForTimeout(800);
 
 const allFlagged = [];
 
-for (const cat of CATEGORIES) {
+for (const cat of (args.categories ? String(args.categories).split(",") : CATEGORIES)) {
   if (cat !== "All") {
     try {
-      await page.getByRole("button", { name: cat, exact: true }).first().click();
+      const labels = { UI: "Core interface", Sections: "Page sections", "3D": "3D elements", Pretext: "Typography", Playbook: "Composition" };
+      const label = new RegExp(`^${labels[cat] ?? cat}\\s`);
+      if (Number(args.width ?? 1440) < 1024) {
+        await page.getByRole("combobox", { name: "Category" }).click();
+        await page.getByRole("option", { name: label }).click();
+      } else {
+        await page.locator(".sigil-catalog-sidebar").getByRole("button", { name: label }).click();
+      }
       await page.waitForTimeout(300);
-    } catch {
+    } catch (error) {
+      console.log(`Failed category ${cat} at ${page.url()}`);
+      await page.screenshot({ path: path.join(outDir, `failure-${cat}.png`) });
+      allFlagged.push({ category: cat, name: cat, slot: "category-control", width: 0, height: 0, reason: `selection failed: ${error.message}` });
       continue;
     }
   }
 
+  const more = page.locator(".sigil-catalog-more button");
+  while (await more.count()) await more.click();
+
   const issues = await page.evaluate((knownSmallArr) => {
     const knownSmall = new Set(knownSmallArr);
     const out = [];
-    for (const cell of document.querySelectorAll('[class*="group"][class*="flex"][class*="min-w-0"][class*="flex-col"]')) {
-      // Pull the component name from the docs link (most reliable)
-      const link = cell.querySelector("a[aria-label]");
-      const name = link?.getAttribute("aria-label")?.replace(/\s+docs$/, "")
-        ?? cell.querySelector('span.font-\\[family-name\\:var\\(--s-font-mono\\)\\]:last-of-type')?.textContent?.trim()
-        ?? "(unknown)";
+    for (const cell of document.querySelectorAll('.sigil-catalog-card')) {
+      const name = cell.getAttribute("data-component-name") ?? "(unknown)";
+      if (cell.scrollWidth > cell.clientWidth + 2) {
+        out.push({ name, slot: "catalog-card", width: cell.clientWidth, height: cell.clientHeight, reason: `overflow:${cell.scrollWidth}px` });
+      }
       // Also check kebab-cased and space-separated forms
       const nameVariants = [name, name.replace(/\s+/g, ""), name.replace(/([a-z])([A-Z])/g, "$1 $2")];
       if (nameVariants.some((n) => knownSmall.has(n))) continue;
 
       // Find the dominant rendered child of the cell preview area
-      const preview = cell.querySelector('[class*="flex-1"][class*="items-center"]');
+      const preview = cell.querySelector('.sigil-catalog-card-preview');
       if (!preview) continue;
       const direct = preview.querySelector('[data-slot="card"], [data-slot$="-section"], [data-slot]');
       if (!direct) continue;
@@ -122,6 +134,7 @@ await browser.close();
 
 const summary = {
   base: BASE,
+  width: Number(args.width ?? 1440),
   timestamp: new Date().toISOString(),
   flagged: allFlagged.length,
 };
@@ -145,3 +158,5 @@ fs.writeFileSync(path.join(outDir, "report.md"), md.join("\n"));
 
 console.log(`\nFlagged: ${summary.flagged}`);
 console.log(`Report:  ${path.relative(ROOT, outDir)}/report.md`);
+
+if (allFlagged.length) process.exitCode = 1;

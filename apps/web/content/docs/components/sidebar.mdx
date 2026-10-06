@@ -1,86 +1,103 @@
 ---
 title: Sidebar
-description: A collapsible application sidebar with navigation groups, icons, badges, and responsive behavior.
+description: A token-driven application sidebar with navigation groups, icons, and an optional collapse control.
 ---
+
+## Preview
+
+<ComponentPreview>
+  <Sidebar collapsible={false} aria-label="Example navigation" className="relative h-[calc(5*var(--s-grid-cell))] w-full max-w-[var(--s-sidebar-width)]">
+    <SidebarHeader>Fieldwork</SidebarHeader>
+    <SidebarContent>
+      <SidebarGroup>
+        <SidebarGroupLabel>Workspace</SidebarGroupLabel>
+        <SidebarItem active>Overview</SidebarItem>
+        <SidebarItem>Projects</SidebarItem>
+        <SidebarItem>Settings</SidebarItem>
+      </SidebarGroup>
+    </SidebarContent>
+  </Sidebar>
+</ComponentPreview>
 
 ## Import
 
 ```tsx
 import {
   Sidebar, SidebarHeader, SidebarContent, SidebarFooter,
-  SidebarGroup, SidebarGroupLabel, SidebarItem, SidebarTrigger,
+  SidebarGroup, SidebarGroupLabel, SidebarItem,
 } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <Sidebar>
-  <SidebarHeader>Navigation</SidebarHeader>
-  <SidebarContent>
-    <SidebarGroup>
-      <SidebarGroupLabel>Menu</SidebarGroupLabel>
-      <SidebarItem>Dashboard</SidebarItem>
-      <SidebarItem>Settings</SidebarItem>
-    </SidebarGroup>
-  </SidebarContent>
-</Sidebar>
-</ComponentPreview>
-
 ## Usage
 
+`SidebarItem` renders a button. Use its `onClick` handler to select a view or navigate with your application's router.
+
 ```tsx
-<Sidebar>
-  <SidebarHeader>
-    <span className="font-semibold">My App</span>
-  </SidebarHeader>
+<Sidebar aria-label="Workspace navigation">
+  <SidebarHeader>Fieldwork</SidebarHeader>
   <SidebarContent>
     <SidebarGroup>
-      <SidebarGroupLabel>Navigation</SidebarGroupLabel>
-      <SidebarItem href="/dashboard" icon={<HomeIcon />}>Dashboard</SidebarItem>
-      <SidebarItem href="/settings" icon={<GearIcon />}>Settings</SidebarItem>
+      <SidebarGroupLabel>Workspace</SidebarGroupLabel>
+      <SidebarItem
+        icon={<HomeIcon />}
+        active={view === "overview"}
+        onClick={() => setView("overview")}
+      >
+        Overview
+      </SidebarItem>
+      <SidebarItem
+        icon={<FolderIcon />}
+        active={view === "projects"}
+        onClick={() => setView("projects")}
+      >
+        Projects
+      </SidebarItem>
     </SidebarGroup>
   </SidebarContent>
   <SidebarFooter>
-    <SidebarItem icon={<UserIcon />}>Profile</SidebarItem>
+    <SidebarItem icon={<SettingsIcon />} onClick={() => setView("settings")}>
+      Settings
+    </SidebarItem>
   </SidebarFooter>
 </Sidebar>
 ```
 
-## Collapsible
+## Collapse behavior
+
+The built-in edge button toggles between the full sidebar and an icon-only view. Provide an icon and an accessible label for items that need to remain usable while collapsed.
 
 ```tsx
-<Sidebar collapsible>
-  <SidebarHeader>
-    <SidebarTrigger />
-    <span>My App</span>
-  </SidebarHeader>
+<Sidebar defaultCollapsed aria-label="Workspace navigation">
   <SidebarContent>
-    <SidebarItem href="/" icon={<HomeIcon />}>Home</SidebarItem>
+    <SidebarItem icon={<HomeIcon />} aria-label="Overview" onClick={() => setView("overview")}>
+      Overview
+    </SidebarItem>
   </SidebarContent>
 </Sidebar>
 ```
 
-When collapsed, only icons are visible with tooltips on hover.
-
-## With badges
+For a persistent category list, set `collapsible={false}`. This keeps the sidebar expanded and removes the edge button, including when `defaultCollapsed` is set.
 
 ```tsx
-<SidebarItem href="/inbox" icon={<InboxIcon />} badge={3}>Inbox</SidebarItem>
+<Sidebar collapsible={false} aria-label="Component categories">
+  <SidebarContent>{/* Category buttons */}</SidebarContent>
+</Sidebar>
 ```
 
 ## Token integration
 
 | CSS Variable | Used for |
 |---|---|
+| `--s-sidebar-width` | Expanded width |
+| `--s-sidebar-collapsed` | Collapsed width |
 | `--s-surface` | Sidebar background |
-| `--s-surface-elevated` | Active item background |
 | `--s-text` | Item text |
-| `--s-text-muted` | Group label and inactive icon |
-| `--s-primary` | Active item accent |
-| `--s-border` | Right edge border |
+| `--s-text-muted` | Group labels and inactive icons |
+| `--s-primary` | Active text and tinted item background |
+| `--s-border` | Sidebar, header, and footer borders |
+| `--s-border-style` | Border style |
 | `--s-duration-normal` | Collapse animation |
-| `--s-ease-default` | Animation easing |
+| `--s-ease-out` | Animation easing |
 
 ## Props
 
@@ -88,9 +105,8 @@ When collapsed, only icons are visible with tooltips on hover.
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `collapsible` | `boolean` | `false` | Enable collapse behavior |
-| `defaultCollapsed` | `boolean` | `false` | Start collapsed |
-| `width` | `number \| string` | `240` | Expanded width |
+| `collapsible` | `boolean` | `true` | Show the built-in collapse control; false keeps the sidebar expanded |
+| `defaultCollapsed` | `boolean` | `false` | Start collapsed when collapsing is enabled |
 | `className` | `string` | — | Additional CSS classes |
 | `children` | `ReactNode` | — | Sidebar content |
 
@@ -98,15 +114,15 @@ When collapsed, only icons are visible with tooltips on hover.
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `href` | `string` | — | Navigation destination |
-| `icon` | `ReactNode` | — | Leading icon |
-| `badge` | `number \| string` | — | Trailing badge |
-| `active` | `boolean` | `false` | Active state |
+| `icon` | `ReactNode` | — | Leading icon, also shown while collapsed |
+| `active` | `boolean` | `false` | Highlight the current item |
+| `onClick` | `MouseEventHandler<HTMLButtonElement>` | — | Handle selection or navigation |
 | `className` | `string` | — | Additional CSS classes |
-| `children` | `ReactNode` | — | Item label |
+| `children` | `ReactNode` | — | Item label, hidden while collapsed |
 
 ## Accessibility
 
-- Uses `<nav>` with `aria-label` for the navigation region
-- Collapse toggle has `aria-expanded` and `aria-controls`
-- Active item marked with `aria-current="page"`
+- The sidebar renders an `aside`; provide `aria-label` to name the region.
+- The collapse control changes its accessible name between “Collapse sidebar” and “Expand sidebar.”
+- Active items use `aria-current="page"`.
+- Give icon-only items an `aria-label` so their names remain available when collapsed.

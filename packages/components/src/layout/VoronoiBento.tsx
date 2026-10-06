@@ -132,6 +132,12 @@ export function VoronoiBento({
     >
       {cells.map((cell, i) => {
         const hasChild = i < childArray.length;
+        const xs = cell.polygon.map(([x]) => x);
+        const ys = cell.polygon.map(([, y]) => y);
+        const left = Math.min(...xs);
+        const top = Math.min(...ys);
+        const cellWidth = Math.max(...xs) - left;
+        const cellHeight = Math.max(...ys) - top;
         return (
           <div
             key={i}
@@ -146,7 +152,7 @@ export function VoronoiBento({
                   : "ring-1 ring-inset ring-[var(--s-border)]",
               )}
             >
-              {hasChild ? childArray[i] : null}
+              {hasChild && <div className="absolute" style={{ left: `${left / w * 100}%`, top: `${top / height * 100}%`, width: `${cellWidth / w * 100}%`, height: `${cellHeight / height * 100}%` }}>{childArray[i]}</div>}
             </div>
           </div>
         );
@@ -163,7 +169,7 @@ export function VoronoiCell({
   className?: string;
 }) {
   return (
-    <div className={cn("w-full h-full overflow-hidden", className)}>
+    <div className={cn("flex w-full h-full items-center justify-center overflow-hidden p-[var(--s-space-12)] text-center", className)}>
       {children}
     </div>
   );

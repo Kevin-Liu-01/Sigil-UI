@@ -8,7 +8,7 @@ import {
   TabsTrigger, TabsContent, Alert, AlertTitle,
   KPI,
 } from "@sigil-ui/components";
-import { Copy, Check, Search } from "lucide-react";
+import { Copy, Check, Search } from "@/components/icons";
 
 /* ================================================================== */
 /*  1. TokenFlowDiagram                                                */

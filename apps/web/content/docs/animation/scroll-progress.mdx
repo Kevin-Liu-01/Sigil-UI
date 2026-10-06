@@ -1,7 +1,13 @@
 ---
 title: ScrollProgress
-description: "A ScrollProgress component from the Sigil design system."
+description: "Indicate how far the user has scrolled through content."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <div className="w-full"><p>Reading progress · 64%</p><ScrollProgress fixed={false} value={64} height={8} aria-label="Reading progress" className="w-full bg-[var(--s-surface)]" /></div>
+</ComponentPreview>
 
 ## Import
 
@@ -9,23 +15,17 @@ description: "A ScrollProgress component from the Sigil design system."
 import { ScrollProgress } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <ScrollProgress />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<ScrollProgress>...</ScrollProgress>
+<div className="w-full"><p>Reading progress · 64%</p><ScrollProgress fixed={false} value={64} height={8} aria-label="Reading progress" className="w-full bg-[var(--s-surface)]" /></div>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `position` | `"top" | "bottom"` | `top` | Position on screen. |
+| `position` | `"top" \| "bottom"` | `top` | Position on screen. |
 | `height` | `number` | `3` | Bar height in pixels. |
 | `fixed` | `boolean` | `true` | Whether to use fixed positioning. |
 | `value` | `number` | — | Controlled progress value from 0 to 100. Defaults to document scroll progress. |

@@ -1,7 +1,20 @@
 ---
 title: Tessellation
-description: "A Tessellation component from the Sigil design system."
+description: "Fill a surface with repeating geometric tiles."
 ---
+
+## Preview
+
+<ComponentPreview label="Tessellation variants">
+  <div className="grid w-full grid-cols-1 gap-[var(--s-space-3)] sm:grid-cols-3">
+    {["zigzag", "crosshatching", "diamondGrid"].map((variant) => (
+      <div key={variant} className="relative h-40 overflow-hidden border border-[var(--s-border)] bg-[var(--s-surface)]">
+        <Tessellation variant={variant === "zigzag" ? "zigzag" : variant === "crosshatching" ? "crosshatching" : "diamondGrid"} opacity={0.28} />
+        <span className="absolute bottom-3 left-3 bg-[var(--s-background)] px-2 py-1 font-mono text-xs text-[var(--s-text)]">{variant}</span>
+      </div>
+    ))}
+  </div>
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +25,14 @@ import { Tessellation } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<Tessellation>...</Tessellation>
+<div className="grid w-full grid-cols-1 gap-[var(--s-space-3)] sm:grid-cols-3">
+    {["zigzag", "crosshatching", "diamondGrid"].map((variant) => (
+      <div key={variant} className="relative h-40 overflow-hidden border border-[var(--s-border)] bg-[var(--s-surface)]">
+        <Tessellation variant={variant === "zigzag" ? "zigzag" : variant === "crosshatching" ? "crosshatching" : "diamondGrid"} opacity={0.28} />
+        <span className="absolute bottom-3 left-3 bg-[var(--s-background)] px-2 py-1 font-mono text-xs text-[var(--s-text)]">{variant}</span>
+      </div>
+    ))}
+  </div>
 ```
 
 ## Props

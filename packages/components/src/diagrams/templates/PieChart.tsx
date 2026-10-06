@@ -56,7 +56,7 @@ export const PieChart = forwardRef<SVGSVGElement, PieChartProps>(
           width={w}
           height={h}
           viewBox={`0 0 ${w} ${h}`}
-          className="shrink-0"
+          className="max-w-full h-auto"
           {...props}
         >
           {sliceData.map((sl, i) => {
@@ -75,18 +75,20 @@ export const PieChart = forwardRef<SVGSVGElement, PieChartProps>(
               <g key={i}>
                 <path d={d} fill={sl.color} opacity={0.85} />
                 {showLabels && a > 15 && (
+                  <g>
+                  <rect x={labelPos.x - 18} y={labelPos.y - 10} width={36} height={20} rx={4} fill="var(--s-chart-tooltip-bg, var(--s-surface))" />
                   <text
                     x={labelPos.x}
                     y={labelPos.y}
                     textAnchor="middle"
                     dominantBaseline="central"
-                    fontSize={11}
-                    fontWeight={700}
-                    fill="var(--s-primary-contrast)"
-                    style={{ textShadow: "var(--s-shadow-sm)" }}
+                    fontSize="var(--s-size-xs)"
+                    fontWeight="var(--s-weight-semibold)"
+                    fill="var(--s-chart-tooltip-text, var(--s-text))"
                   >
                     {pct}%
                   </text>
+                  </g>
                 )}
               </g>
             );

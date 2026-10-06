@@ -121,7 +121,7 @@ export const SIGIL_RHYTHM_STYLES = {
 } as const;
 
 export function SigilStack({
-  gap = "md",
+  gap,
   className,
   style,
   ...props
@@ -129,7 +129,7 @@ export function SigilStack({
   return (
     <div
       className={cn("flex flex-col", className)}
-      style={{ gap: GAP[gap] ?? gap, ...style }}
+      style={{ gap: gap ? GAP[gap] ?? gap : "var(--s-stack-gap, calc(var(--s-grid-cell) / 2))", ...style }}
       {...props}
     />
   );
@@ -238,7 +238,7 @@ export function SigilGhostLink({
   return (
     <a
       className={cn(
-        "inline-flex items-center border border-[var(--s-border)] bg-transparent font-[family-name:var(--s-font-mono)] font-medium text-[var(--s-text)] no-underline transition-[background-color,border-color,color,box-shadow,transform] duration-[var(--s-duration-fast,200ms)] hover:bg-[var(--s-surface)]",
+        "inline-flex items-center gap-[var(--s-button-icon-gap)] border border-[var(--s-border)] bg-transparent font-[family-name:var(--s-font-mono)] font-medium text-[var(--s-text)] no-underline transition-[background-color,border-color,color,box-shadow,transform] duration-[var(--s-duration-fast,200ms)] hover:bg-[var(--s-surface)]",
         size === "lg" ? "text-[14px]" : "text-[13px]",
         className,
       )}
@@ -253,10 +253,13 @@ export function SigilGhostLink({
 
 export interface SigilHeroProps extends Omit<SigilSectionProps, "space"> {}
 
-export function SigilHero({ className, ...props }: SigilHeroProps) {
+export function SigilHero({ className, padding, ...props }: SigilHeroProps) {
   return (
     <SigilSection
-      space="hero"
+      padding={
+        padding ??
+        "var(--s-hero-padding-y, var(--s-section-padding-y, calc(2 * var(--s-grid-cell)))) var(--s-hero-padding-x, var(--s-section-padding-x, var(--s-page-margin)))"
+      }
       className={cn("relative overflow-hidden", className)}
       {...props}
     />
@@ -272,11 +275,12 @@ export function SigilHeroLayout({
 }: SigilHeroLayoutProps) {
   return (
     <div
-      className={cn("relative z-[1] flex flex-col lg:flex-row lg:items-center", className)}
+      className={cn("relative z-[1] grid grid-cols-1 xl:grid-cols-[var(--sigil-hero-grid-columns)] xl:items-center", className)}
       style={{
         gap: "var(--s-hero-split-gap, var(--s-section-subsection-gap, var(--s-grid-cell)))",
+        "--sigil-hero-grid-columns": "var(--s-hero-grid-columns, minmax(0, 1fr) minmax(0, 1fr))",
         ...style,
-      }}
+      } as CSSProperties}
       {...props}
     />
   );
@@ -292,13 +296,15 @@ export function SigilHeroContent({
   return (
     <div
       className={cn(
-        "w-full min-w-0 flex-1 basis-auto shrink-0 lg:basis-[var(--sigil-hero-content-basis)]",
+        "w-full min-w-0 flex-1 basis-auto shrink-0 xl:basis-[var(--sigil-hero-content-basis)]",
         className,
       )}
       style={{
         maxWidth: "var(--s-hero-content-max, 36rem)",
+        justifySelf: "var(--s-hero-content-justify-self, stretch)",
+        textAlign: "var(--s-hero-content-align, left)",
         "--sigil-hero-content-basis":
-          "var(--s-hero-content-basis, min(42%, var(--s-hero-content-max, 36rem)))",
+          "var(--s-hero-content-basis, var(--s-hero-content-max, 36rem))",
         ...style,
       } as CSSProperties}
       {...props}
@@ -312,7 +318,7 @@ export function SigilHeroMedia({ className, style, ...props }: SigilHeroMediaPro
   return (
     <div
       className={cn(
-        "flex w-full min-w-0 flex-1 basis-auto items-center justify-center lg:basis-[var(--sigil-hero-media-basis)]",
+        "flex w-full min-w-0 flex-1 basis-auto items-center justify-center xl:basis-[var(--sigil-hero-media-basis)]",
         className,
       )}
       style={{

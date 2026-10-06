@@ -3,22 +3,22 @@ title: CTA
 description: Call-to-action section with centered or split layout and token-styled action buttons.
 ---
 
+## Preview
+
+<ComponentPreview>
+  <CTA title="Start building with Sigil" description="Choose a preset and compose your first page." actions={[{ label: "Read the setup guide", href: "/docs/installation" }]} />
+</ComponentPreview>
+
 ## Import
 
 ```tsx
 import { CTA } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <CTA title="Ready to start?" description="Get started with Sigil UI today." buttonText="Get Started" />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<CTA title="Ready to get started?" />
+<CTA title="Start building with Sigil" description="Choose a preset and compose your first page." actions={[{ label: "Read the setup guide", href: "/docs/installation" }]} />
 ```
 
 ## Centered (default)

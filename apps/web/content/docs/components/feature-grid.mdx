@@ -3,42 +3,22 @@ title: FeatureGrid
 description: Alternating two-column feature rows with text and visual panes.
 ---
 
+## Preview
+
+<ComponentPreview vertical>
+  <FeatureGrid rowMinHeight={180} rows={[{ heading: "One source of truth", bullets: ["Shared colors and spacing", "Consistent component states"], visual: <CommitGrid weeks={12} responsive data={Array.from({ length: 84 }, (_, i) => ({ date: new Date(Date.UTC(2026, 0, i + 1)).toISOString().slice(0, 10), count: (i * 7) % 13 }))} /> }, { heading: "Reusable building blocks", bullets: ["Compose with familiar React components", "Adjust the preset in one place"], visual: <SparkLine data={[4, 7, 5, 10, 9, 14]} /> }]} />
+</ComponentPreview>
+
 ## Import
 
 ```tsx
 import { FeatureGrid } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview vertical>
-  <FeatureGrid
-    rows={[
-      { eyebrow: "Tokens",     title: "Single source of truth",      description: "Every value lives in one DESIGN.md you can read and edit." },
-      { eyebrow: "Components", title: "350+ token-driven primitives", description: "Buttons, cards, charts, layouts. All read from var(--s-*)." },
-      { eyebrow: "Presets",    title: "46 curated identities",        description: "One command swaps the entire visual system." },
-    ]}
-  />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<FeatureGrid
-  rows={[
-    {
-      heading: "Blazing fast builds",
-      bullets: ["Incremental compilation", "Hot module replacement"],
-      visual: <div className="w-full h-48 bg-[var(--s-surface-elevated)]" />,
-    },
-    {
-      heading: "Token-driven theming",
-      bullets: ["519 configurable tokens", "One-command preset switching"],
-      quote: "Changed our entire brand in 30 seconds.",
-      visual: <div className="w-full h-48 bg-[var(--s-surface-elevated)]" />,
-    },
-  ]}
-/>
+<FeatureGrid rowMinHeight={180} rows={[{ heading: "One source of truth", bullets: ["Shared colors and spacing", "Consistent component states"], visual: <CommitGrid weeks={12} responsive data={Array.from({ length: 84 }, (_, i) => ({ date: new Date(Date.UTC(2026, 0, i + 1)).toISOString().slice(0, 10), count: (i * 7) % 13 }))} /> }, { heading: "Reusable building blocks", bullets: ["Compose with familiar React components", "Adjust the preset in one place"], visual: <SparkLine data={[4, 7, 5, 10, 9, 14]} /> }]} />
 ```
 
 ## Custom gap and row height

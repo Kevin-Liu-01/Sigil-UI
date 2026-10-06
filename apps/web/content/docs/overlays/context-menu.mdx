@@ -1,13 +1,7 @@
 ---
 title: ContextMenu
-description: "A ContextMenu component from the Sigil design system."
+description: "Open contextual actions with a right-click or keyboard shortcut."
 ---
-
-## Import
-
-```tsx
-import { ContextMenu, ContextMenuTrigger, ContextMenuSub, ContextMenuContent, ContextMenuItem, ContextMenuCheckboxItem, ContextMenuRadioItem, ContextMenuLabel, ContextMenuSeparator, ContextMenuSubTrigger, ContextMenuSubContent } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -22,10 +16,23 @@ import { ContextMenu, ContextMenuTrigger, ContextMenuSub, ContextMenuContent, Co
 </ContextMenu>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { ContextMenu, ContextMenuTrigger, ContextMenuSub, ContextMenuContent, ContextMenuItem, ContextMenuCheckboxItem, ContextMenuRadioItem, ContextMenuLabel, ContextMenuSeparator, ContextMenuSubTrigger, ContextMenuSubContent } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<ContextMenu>...</ContextMenu>
+<ContextMenu>
+  <ContextMenuTrigger className="flex h-24 w-full items-center justify-center border border-dashed border-[var(--s-border)] text-[var(--s-text-muted)]">Right-click here</ContextMenuTrigger>
+  <ContextMenuContent>
+    <ContextMenuItem>Cut</ContextMenuItem>
+    <ContextMenuItem>Copy</ContextMenuItem>
+    <ContextMenuItem>Paste</ContextMenuItem>
+  </ContextMenuContent>
+</ContextMenu>
 ```
 
 ## Sub-components

@@ -1,13 +1,7 @@
 ---
 title: Separator
-description: "A Separator component from the Sigil design system."
+description: "Create a horizontal or vertical separator between items."
 ---
-
-## Import
-
-```tsx
-import { Separator } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -21,10 +15,22 @@ import { Separator } from "@sigil-ui/components";
   </div>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Separator } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Separator>Separator content</Separator>
+<div className="flex flex-col gap-3 w-full max-w-sm text-sm text-[var(--s-text)]">
+    <span>Section A</span>
+    <Separator />
+    <span>Section B</span>
+    <Separator />
+    <span>Section C</span>
+  </div>
 ```
 
 ## Token integration

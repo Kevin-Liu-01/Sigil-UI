@@ -1,7 +1,13 @@
 ---
 title: CommandMenu
-description: CommandMenu is a token-driven Sigil component in the overlay and interaction group.
+description: "Search commands, navigate with the keyboard, and run an action."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <CommandMenuPreview />
+</ComponentPreview>
 
 ## Import
 
@@ -9,16 +15,42 @@ description: CommandMenu is a token-driven Sigil component in the overlay and in
 import { CommandMenu } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <Modal trigger={<Button variant="outline">Open command-menu demo</Button>} title="CommandMenu" description="Use CommandMenu when the page owns an open state." />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<Modal trigger={<Button variant="outline">Open command-menu demo</Button>} title="CommandMenu" description="Use CommandMenu when the page owns an open state." />
+"use client";
+
+import { useState } from "react";
+import { Button, CommandMenu, Spotlight } from "@sigil-ui/components";
+
+const TRAFFIC = [
+  { month: "Apr", desktop: 186, mobile: 80 },
+  { month: "May", desktop: 224, mobile: 112 },
+  { month: "Jun", desktop: 208, mobile: 132 },
+  { month: "Jul", desktop: 278, mobile: 166 },
+  { month: "Aug", desktop: 305, mobile: 184 },
+  { month: "Sep", desktop: 342, mobile: 218 },
+];
+
+function CommandMenuPreview({ spotlight = false }: { spotlight?: boolean }) {
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState("No command selected.");
+  const Menu = spotlight ? Spotlight : CommandMenu;
+  const commands = [
+    { value: "create", label: "Create project", description: "Start a new workspace" },
+    { value: "invite", label: "Invite a teammate", description: "Share your workspace" },
+    { value: "settings", label: "Project settings", description: "Manage your preferences" },
+  ];
+  return (
+    <div className="grid gap-[var(--s-space-16)] w-full">
+      <div><Button variant="outline" onClick={() => setOpen(true)}>Open {spotlight ? "spotlight" : "command menu"}</Button></div>
+      <Menu open={open} onOpenChange={setOpen} items={commands.map((command) => ({
+        ...command, onSelect: () => { setSelected(`${command.label} selected.`); setOpen(false); },
+      }))} />
+      <p role="status" className="text-[var(--s-text-muted)] text-[length:var(--s-size-sm)]">{selected}</p>
+    </div>
+  );
+}
 ```
 
 ## CLI

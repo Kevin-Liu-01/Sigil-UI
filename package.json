@@ -13,11 +13,22 @@
     "audit:sigil": "node scripts/audit-sigil.mjs",
     "audit:components": "node scripts/audit-components.mjs",
     "audit:presets": "tsx scripts/audit-presets.ts",
+    "audit:resilience": "tsx scripts/audit-token-resilience.ts",
     "audit:layout": "node scripts/audit-layout-system.mjs",
     "audit:layout:quick": "node scripts/audit-layout-system.mjs --quick --skip-screenshots",
+    "audit:docs": "node scripts/audit-docs-routes.mjs",
+    "audit:docs:previews": "node scripts/audit-docs-previews.mjs",
     "audit:grid": "node scripts/audit-grid-alignment.mjs",
     "audit:authoring": "node scripts/audit-sigil-authoring.mjs",
-    "smoke:create-app": "node scripts/smoke-create-sigil-app.mjs"
+    "audit:redesign": "node scripts/audit-redesign-concepts.mjs",
+    "smoke:create-app": "node scripts/smoke-create-sigil-app.mjs",
+    "test:cli": "tsx scripts/test-cli-components.ts",
+    "test:product": "node scripts/test-product-flows.mjs",
+    "audit:docs:examples": "node scripts/audit-docs-examples.mjs",
+    "test:docs": "node scripts/test-docs-interactions.mjs",
+    "audit:docs:links": "node scripts/audit-docs-links.mjs",
+    "test:studio": "tsx scripts/test-studio-motion.ts && node scripts/test-studio-controls.mjs && node scripts/test-studio-rapid.mjs",
+    "test:studio:performance": "node scripts/test-studio-performance.mjs"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",

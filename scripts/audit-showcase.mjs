@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Audit the /components landing page (the showcase grid that renders all 361
- * component cells on a single page). Checks every per-category slice for
+ * component cells in a searchable, paginated catalog). Checks every per-category slice for
  * console errors, captures screenshots of each section, and verifies that
  * filtering, search, and the "All" view all hydrate without runtime errors.
  *
@@ -99,16 +99,21 @@ async function main() {
     if (cat !== "All") {
       // Click the matching category button
       try {
-        await page.getByRole("button", { name: cat, exact: true }).first().click();
+        const labels = { UI: "Core interface", Sections: "Page sections", "3D": "3D elements", Pretext: "Typography", Playbook: "Composition" };
+        await page.locator(".sigil-catalog-sidebar").getByRole("button", { name: new RegExp(`^${labels[cat] ?? cat}\\s`) }).click();
         await page.waitForTimeout(300);
       } catch (e) {
-        results.push({ category: cat, ok: false, error: `tab click failed: ${e}` });
+        results.push({ category: cat, ok: false, error: `category selection failed: ${e}` });
         continue;
       }
     }
 
+    const more = page.locator(".sigil-catalog-more button");
+    while (await more.count()) await more.click();
+    await page.locator(".sigil-catalog-tools").scrollIntoViewIfNeeded();
+
     // Count rendered cells
-    const cellCount = await page.locator('[class*="group"][class*="flex"][class*="min-w-0"][class*="flex-col"]').count();
+    const cellCount = await page.locator('.sigil-catalog-card').count();
 
     // Capture screenshot of viewport
     const shot = path.join(outDir, "screenshots", `${cat.replace(/[^a-z0-9]/gi, "-").toLowerCase()}.png`);
@@ -127,7 +132,7 @@ async function main() {
 
     results.push({
       category: cat,
-      ok: pageErrors.length === 0 && consoleErrors.filter((e) => e.type === "error").length === 0,
+      ok: cellCount === expected && pageErrors.length === 0 && consoleErrors.filter((e) => e.type === "error").length === 0,
       cellCount,
       expected,
       visibleNames: visibleNames.length,

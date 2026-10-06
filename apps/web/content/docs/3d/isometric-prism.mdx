@@ -1,7 +1,13 @@
 ---
 title: IsometricPrism
-description: "A IsometricPrism component from the Sigil design system."
+description: "Render a prism with token-styled faces."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <IsometricPrism width={160} height={100} depth={80} />
+</ComponentPreview>
 
 ## Import
 
@@ -9,31 +15,26 @@ description: "A IsometricPrism component from the Sigil design system."
 import { IsometricPrism } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <IsometricPrism />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<IsometricPrism>...</IsometricPrism>
+<IsometricPrism width={160} height={100} depth={80} />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `width` | `number` | — | — |
-| `height` | `number` | — | — |
-| `depth` | `number` | — | — |
-| `borderRadius` | `number` | — | — |
-| `topColor` | `string` | — | — |
-| `leftColor` | `string` | — | — |
-| `rightColor` | `string` | — | — |
-| `strokeColor` | `string` | — | — |
-| `strokeWidth` | `number` | — | — |
+| `width` | `number` | — | Width of the rendered content. |
+| `height` | `number` | — | Height of the rendered content. |
+| `depth` | `number` | — | Depth configuration. |
+| `borderRadius` | `number` | — | Border Radius configuration. |
+| `topColor` | `string` | — | Top Color configuration. |
+| `leftColor` | `string` | — | Left Color configuration. |
+| `rightColor` | `string` | — | Right Color configuration. |
+| `strokeColor` | `string` | — | Stroke Color configuration. |
+| `strokeWidth` | `number` | — | Stroke Width configuration. |
+| `children` | `ReactNode` | — | Content rendered inside the component. |
 
 ## Token integration
 

@@ -1,8 +1,8 @@
 "use client";
 
-import { forwardRef, useState, useCallback, type HTMLAttributes } from "react";
+import { forwardRef, type HTMLAttributes } from "react";
 import { cn } from "../utils";
-import { SectionHeading } from "./SectionHeading";
+import { useCopyToClipboard } from "../use-copy-to-clipboard";
 
 export interface InstallCommand {
   label: string;
@@ -20,18 +20,6 @@ export interface InstallSectionProps extends HTMLAttributes<HTMLElement> {
 export const InstallSection = forwardRef<HTMLElement, InstallSectionProps>(
   function InstallSection({ label, title = "Get started", description, note, commands, className, ...props }, ref) {
     const safeCommands = commands ?? [];
-    const [activeTab, setActiveTab] = useState(0);
-    const [copied, setCopied] = useState(false);
-
-    const handleCopy = useCallback(async () => {
-      const cmd = safeCommands[activeTab]?.command;
-      if (!cmd) return;
-      try {
-        await navigator.clipboard.writeText(cmd);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
-      } catch { /* noop */ }
-    }, [safeCommands, activeTab]);
 
     return (
       <section
@@ -72,18 +60,7 @@ export const InstallSection = forwardRef<HTMLElement, InstallSectionProps>(
                     <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--s-text-muted)] font-[family-name:var(--s-font-mono)]">
                       {cmd.label}
                     </span>
-                    <button
-                      type="button"
-                      onClick={() => { setActiveTab(i); handleCopy(); }}
-                      className="inline-flex items-center gap-1 text-[10px] font-medium text-[var(--s-text-muted)] hover:text-[var(--s-text)] transition-colors"
-                    >
-                      {copied && activeTab === i ? (
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden><path d="M2.5 6l2.5 2.5 4.5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                      ) : (
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden><rect x="4" y="4" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.2" /><path d="M8 4V3a1 1 0 00-1-1H3a1 1 0 00-1 1v4a1 1 0 001 1h1" stroke="currentColor" strokeWidth="1.2" /></svg>
-                      )}
-                      Copy
-                    </button>
+                    <CommandCopy command={cmd} />
                   </div>
                   <div className="px-4 py-3 bg-[var(--s-background)]">
                     <code className="text-sm font-[family-name:var(--s-font-mono)] text-[var(--s-text)]">
@@ -99,3 +76,13 @@ export const InstallSection = forwardRef<HTMLElement, InstallSectionProps>(
     );
   },
 );
+
+function CommandCopy({ command }: { command: InstallCommand }) {
+  const { copy, copied, error } = useCopyToClipboard(command.command);
+  return (
+    <button type="button" onClick={copy} aria-label={`Copy ${command.label} command`} aria-live="polite"
+      className="sigil-install-copy inline-flex items-center justify-center min-h-[var(--s-control-hit-area)] px-[var(--s-space-12)] text-[length:var(--s-size-xs)] text-[var(--s-text-muted)] hover:text-[var(--s-text)] focus-visible:outline-[var(--s-focus-ring-color)]">
+      {error ? "Copy failed — retry" : copied ? "Copied" : "Copy"}
+    </button>
+  );
+}

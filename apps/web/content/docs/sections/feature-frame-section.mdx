@@ -1,7 +1,21 @@
 ---
 title: FeatureFrameSection
-description: "A FeatureFrameSection component from the Sigil design system."
+description: "Present a feature in a structured, illustrated page section."
 ---
+
+## Preview
+
+<ComponentPreview label="Feature frame section" vertical>
+  <FeatureFrameSection
+    className="!px-0 !py-[var(--s-section-padding-compact)]"
+    label="Architecture"
+    heading="One system, end to end"
+    features={[
+      { label: "CONSTRAINTS", headline: "Tokens control every visual property.", points: ["Complete schema", "Validated output"], diagram: <FeatureMiniDiagram variant="layer-stack" size={120} /> },
+      { label: "COMPOSITION", headline: "Components inherit the active identity.", points: ["No local color drift", "Predictable interaction"], diagram: <FeatureMiniDiagram variant="hub-spoke" size={120} />, reversed: true },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +26,15 @@ import { FeatureFrameSection } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<FeatureFrameSection>...</FeatureFrameSection>
+<FeatureFrameSection
+    className="!px-0 !py-[var(--s-section-padding-compact)]"
+    label="Architecture"
+    heading="One system, end to end"
+    features={[
+      { label: "CONSTRAINTS", headline: "Tokens control every visual property.", points: ["Complete schema", "Validated output"], diagram: <FeatureMiniDiagram variant="layer-stack" size={120} /> },
+      { label: "COMPOSITION", headline: "Components inherit the active identity.", points: ["No local color drift", "Predictable interaction"], diagram: <FeatureMiniDiagram variant="hub-spoke" size={120} />, reversed: true },
+    ]}
+  />
 ```
 
 ## Props

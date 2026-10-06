@@ -9,9 +9,11 @@ export type ComponentEntry = {
   dependencies: string[];
   devDependencies: string[];
   registryDependencies: string[];
+  exportAlias?: [string, string];
 };
 
 const COMPONENT_REGISTRY: Record<string, ComponentEntry> = {
+  chart: { name: "chart", files: ["chart.tsx"], dependencies: [], devDependencies: [], registryDependencies: [] },
   button: {
     name: "button",
     files: ["button.tsx"],
@@ -89,30 +91,11 @@ const COMPONENT_REGISTRY: Record<string, ComponentEntry> = {
     devDependencies: [],
     registryDependencies: [],
   },
-  "sigil-cross": {
-    name: "sigil-cross",
-    files: ["sigil-cross.tsx"],
-    dependencies: [],
-    devDependencies: [],
-    registryDependencies: [],
-  },
-  "sigil-rail": {
-    name: "sigil-rail",
-    files: ["sigil-rail.tsx"],
-    dependencies: [],
-    devDependencies: [],
-    registryDependencies: [],
-  },
-  "sigil-card": {
-    name: "sigil-card",
-    files: ["sigil-card.tsx"],
-    dependencies: ["gsap"],
-    devDependencies: [],
-    registryDependencies: ["card"],
-  },
 };
 
 const COMPONENT_SOURCE_FILES: Record<string, string> = {
+  chart: "ui/Chart.tsx",
+  "sigil-grid": "layout/Grid.tsx",
   button: "ui/Button.tsx",
   card: "ui/Card.tsx",
   input: "ui/Input.tsx",
@@ -160,7 +143,7 @@ const COMPOSED_COMPONENT_GROUPS: Array<{
       "@radix-ui/react-radio-group",
       "@radix-ui/react-slider",
       "@radix-ui/react-switch",
-      "lucide-react",
+      "@phosphor-icons/react",
     ],
     registryDependencies: ["button", "input"],
     names: [
@@ -272,52 +255,6 @@ function resolveWorkspaceComponentSources(sourceFile: string): string[] {
   ];
 }
 
-export function ensureComponentSupportFiles(componentsDir: string, sourceContent: string): void {
-  const supportDir = path.dirname(componentsDir);
-
-  if (sourceContent.includes("../utils")) {
-    const utilsPath = path.join(supportDir, "utils.ts");
-    if (!fs.existsSync(utilsPath)) {
-      fs.ensureDirSync(path.dirname(utilsPath));
-      fs.writeFileSync(utilsPath, `import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
-`, "utf-8");
-    }
-  }
-
-  if (sourceContent.includes("../sound-context")) {
-    const soundPath = path.join(supportDir, "sound-context.tsx");
-    if (!fs.existsSync(soundPath)) {
-      fs.ensureDirSync(path.dirname(soundPath));
-      fs.writeFileSync(soundPath, `"use client";
-
-import { createContext, useContext, type ReactNode } from "react";
-
-type SigilSoundName = "click" | "open" | "close" | "toggle" | string;
-type SigilSoundContextValue = { play: (name?: SigilSoundName) => void };
-
-const SigilSoundContext = createContext<SigilSoundContextValue>({ play: () => {} });
-
-export function SigilSoundProvider({ children }: { children: ReactNode }) {
-  return (
-    <SigilSoundContext.Provider value={{ play: () => {} }}>
-      {children}
-    </SigilSoundContext.Provider>
-  );
-}
-
-export function useSigilSound() {
-  return useContext(SigilSoundContext);
-}
-`, "utf-8");
-    }
-  }
-}
-
 export async function discoverLocalComponents(
   componentsDir: string,
 ): Promise<string[]> {
@@ -345,3 +282,33 @@ function resolveComponentsPackageRoot(cwd: string): string | null {
 
   return null;
 }
+
+/** Keep CLI names aligned with the package's public named exports. */
+function registerPublicComponents(): void {
+  const packageRoot = resolveComponentsPackageRoot(process.cwd());
+  if (!packageRoot) return;
+  const indexPath = path.join(packageRoot, "src/index.ts");
+  if (!fs.existsSync(indexPath)) return;
+  const index = fs.readFileSync(indexPath, "utf8");
+  for (const block of index.matchAll(/export\s*\{([^}]+)\}\s*from\s*["']([^"']+)["']/g)) {
+    for (const raw of block[1].split(",")) {
+      const specifier = raw.trim();
+      if (!specifier || specifier.startsWith("type ")) continue;
+      const [original, renamed] = specifier.split(/\s+as\s+/);
+      const exported = renamed ?? original;
+      if (!/^[A-Z][A-Za-z0-9]*$/.test(exported)) continue;
+      const name = exported.replace(/([A-Z]+)([A-Z][a-z])/g, "$1-$2").replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
+      if (COMPONENT_REGISTRY[name]) continue;
+      const source = block[2].replace(/^\.\//, "").replace(/\.js$/, "");
+      const file = [`${source}.tsx`, `${source}.ts`].find((candidate) => fs.existsSync(path.join(packageRoot, "src", candidate)));
+      if (!file) continue;
+      COMPONENT_SOURCE_FILES[name] = file;
+      COMPONENT_REGISTRY[name] = {
+        name, files: [`${name}.tsx`], dependencies: [], devDependencies: [], registryDependencies: [],
+        ...(renamed ? { exportAlias: [original, renamed] as [string, string] } : {}),
+      };
+    }
+  }
+}
+
+registerPublicComponents();

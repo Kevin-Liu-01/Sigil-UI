@@ -58,13 +58,13 @@ export type ColorTokens = {
   readonly "border-strong": ThemedColor;
   readonly "border-interactive": ThemedColor;
 
-  readonly success: ColorValue;
+  readonly success: ColorValue | ThemedColor;
   readonly "success-muted"?: ColorValue | ThemedColor;
-  readonly warning: ColorValue;
+  readonly warning: ColorValue | ThemedColor;
   readonly "warning-muted"?: ColorValue | ThemedColor;
-  readonly error: ColorValue;
+  readonly error: ColorValue | ThemedColor;
   readonly "error-muted"?: ColorValue | ThemedColor;
-  readonly info: ColorValue;
+  readonly info: ColorValue | ThemedColor;
   readonly "info-muted"?: ColorValue | ThemedColor;
 
   readonly "gradient-start"?: ColorValue | ThemedColor;
@@ -644,6 +644,7 @@ export type DividerStyleTokens = {
   readonly "show-cross"?: boolean;
   readonly "show-label"?: boolean;
   readonly "full-bleed"?: boolean;
+  readonly "background-alt"?: boolean;
   readonly "ornament"?: "none" | "cross" | "dot" | "diamond" | "dash";
   readonly [key: string]: string | boolean | undefined;
 };
@@ -653,6 +654,8 @@ export type DividerStyleTokens = {
 // ---------------------------------------------------------------------------
 
 export type GridVisualTokens = {
+  readonly "rail-visible"?: boolean;
+  readonly "rail-columns"?: string;
   readonly "show-lines"?: boolean;
   readonly "line-color"?: string;
   readonly "line-width"?: string;
@@ -894,36 +897,36 @@ export type SigilTokens = {
   readonly colors: ColorTokens;
   readonly typography: TypographyTokens;
   readonly spacing: SpacingTokens;
-  readonly layout?: LayoutTokens;
+  readonly layout: LayoutTokens;
   readonly sigil: SigilGridTokens;
   readonly radius: RadiusTokens;
   readonly shadows: ShadowTokens;
   readonly motion: MotionTokens;
   readonly borders: BorderTokens;
-  readonly buttons?: ButtonTokens;
-  readonly cards?: CardTokens;
-  readonly headings?: HeadingTokens;
-  readonly navigation?: NavigationTokens;
-  readonly backgrounds?: BackgroundTokens;
-  readonly code?: CodeTokens;
-  readonly inputs?: InputTokens;
-  readonly cursor?: CursorTokens;
-  readonly scrollbar?: ScrollbarTokens;
-  readonly alignment?: AlignmentTokens;
-  readonly sections?: SectionStyleTokens;
-  readonly dividers?: DividerStyleTokens;
-  readonly gridVisuals?: GridVisualTokens;
-  readonly focus?: FocusTokens;
-  readonly overlays?: OverlayTokens;
-  readonly dataViz?: DataVizTokens;
-  readonly media?: MediaTokens;
-  readonly controls?: ControlTokens;
-  readonly componentSurfaces?: ComponentSurfaceTokens;
-  readonly hero?: HeroTokens;
-  readonly cta?: CTATokens;
-  readonly footer?: FooterTokens;
-  readonly banner?: BannerTokens;
-  readonly pageRhythm?: PageRhythmTokens;
+  readonly buttons: ButtonTokens;
+  readonly cards: CardTokens;
+  readonly headings: HeadingTokens;
+  readonly navigation: NavigationTokens;
+  readonly backgrounds: BackgroundTokens;
+  readonly code: CodeTokens;
+  readonly inputs: InputTokens;
+  readonly cursor: CursorTokens;
+  readonly scrollbar: ScrollbarTokens;
+  readonly alignment: AlignmentTokens;
+  readonly sections: SectionStyleTokens;
+  readonly dividers: DividerStyleTokens;
+  readonly gridVisuals: GridVisualTokens;
+  readonly focus: FocusTokens;
+  readonly overlays: OverlayTokens;
+  readonly dataViz: DataVizTokens;
+  readonly media: MediaTokens;
+  readonly controls: ControlTokens;
+  readonly componentSurfaces: ComponentSurfaceTokens;
+  readonly hero: HeroTokens;
+  readonly cta: CTATokens;
+  readonly footer: FooterTokens;
+  readonly banner: BannerTokens;
+  readonly pageRhythm: PageRhythmTokens;
 };
 
 export type MarkdownTokenOverrides = Pick<
@@ -994,10 +997,34 @@ export type SigilPreset = {
 // Compiler options
 // ---------------------------------------------------------------------------
 
+export type TokenValidationMode = "repair" | "strict";
+
+export type TokenValidationIssueCode =
+  | "invalid-root"
+  | "missing-key"
+  | "unknown-key"
+  | "unsafe-key"
+  | "type-mismatch"
+  | "invalid-string"
+  | "invalid-number"
+  | "invalid-scale"
+  | "invalid-color"
+  | "invalid-patch";
+
+export type TokenValidationIssue = {
+  readonly code: TokenValidationIssueCode;
+  readonly path: string;
+  readonly message: string;
+};
+
 export type CssCompileOptions = {
   readonly prefix?: string;
   readonly includeLight?: boolean;
   readonly includeDark?: boolean;
   readonly selector?: string;
   readonly darkSelector?: string;
+  /** Repair malformed values with canonical defaults, or throw in strict mode. */
+  readonly validation?: TokenValidationMode;
+  /** Receives every repaired or rejected input finding. */
+  readonly onDiagnostic?: (issues: readonly TokenValidationIssue[]) => void;
 };

@@ -3,18 +3,18 @@
 import {
   forwardRef,
   useCallback,
-  useState,
   type ButtonHTMLAttributes,
   type ReactNode,
 } from "react";
 import { cn } from "../utils";
+import { useCopyToClipboard } from "../use-copy-to-clipboard";
 import { useSigilSound } from "../sound-context";
 
 export interface ClipboardProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children"> {
   value: string;
   /** Time in ms before resetting to idle state. @default 2000 */
   timeout?: number;
-  children?: (state: { copied: boolean; copy: () => void }) => ReactNode;
+  children?: (state: { copied: boolean; error: boolean; copy: () => void }) => ReactNode;
 }
 
 export const Clipboard = forwardRef<HTMLButtonElement, ClipboardProps>(function Clipboard(
@@ -22,30 +22,25 @@ export const Clipboard = forwardRef<HTMLButtonElement, ClipboardProps>(function 
   ref,
 ) {
   const { play } = useSigilSound();
-  const [copied, setCopied] = useState(false);
-
+  const { copy: copyValue, copied, error } = useCopyToClipboard(value, timeout);
   const copy = useCallback(async () => {
-    try {
-      await navigator.clipboard.writeText(value);
-      play("success");
-      setCopied(true);
-      setTimeout(() => setCopied(false), timeout);
-    } catch { /* noop */ }
-  }, [value, timeout, play]);
+    if (await copyValue()) play("success");
+  }, [copyValue, play]);
 
   if (children) {
-    return <>{children({ copied, copy })}</>;
+    return <>{children({ copied, error, copy })}</>;
   }
 
   return (
     <button
       ref={ref}
       type="button"
+      aria-live="polite"
       data-slot="clipboard"
       data-copied={copied || undefined}
       onClick={(e) => {
-        copy();
         onClick?.(e);
+        if (!e.defaultPrevented) void copy();
       }}
       className={cn(
         "inline-flex items-center justify-center gap-1.5",
@@ -60,7 +55,7 @@ export const Clipboard = forwardRef<HTMLButtonElement, ClipboardProps>(function 
       )}
       {...props}
     >
-      {copied ? (
+      {error ? "Copy failed — retry" : copied ? (
         <>
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
             <path d="M3 7l3 3 5-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

@@ -1,7 +1,17 @@
 ---
 title: StreamFlowDiagram
-description: "A StreamFlowDiagram component from the Sigil design system."
+description: "Visualize data moving through a connected stream."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <StreamFlowDiagram
+    source={{ label: "DESIGN.md" }}
+    tokens={["primary", "radius-md", "duration-fast"]}
+    output="CSS variables"
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,14 +22,20 @@ import { StreamFlowDiagram } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<StreamFlowDiagram>...</StreamFlowDiagram>
+<StreamFlowDiagram
+    source={{ label: "DESIGN.md" }}
+    tokens={["primary", "radius-md", "duration-fast"]}
+    output="CSS variables"
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `source` | `{ label: string; icon?: ReactNode` | — | — |
+| `source` (required) | `{ label: string; icon?: ReactNode }` | — | Source configuration. |
+| `tokens` | `string[]` | — | Tokens configuration. |
+| `output` | `string` | — | Output configuration. |
 
 ## Token integration
 

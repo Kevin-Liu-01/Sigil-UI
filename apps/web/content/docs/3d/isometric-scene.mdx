@@ -1,7 +1,13 @@
 ---
 title: IsometricScene
-description: "A IsometricScene component from the Sigil design system."
+description: "Compose objects within a shared isometric perspective."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <IsometricScene width="100%" height={260} showGrid><IsometricPrism width={120} height={80} depth={60} /></IsometricScene>
+</ComponentPreview>
 
 ## Import
 
@@ -9,26 +15,21 @@ description: "A IsometricScene component from the Sigil design system."
 import { IsometricScene } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <IsometricScene />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<IsometricScene>...</IsometricScene>
+<IsometricScene width="100%" height={260} showGrid><IsometricPrism width={120} height={80} depth={60} /></IsometricScene>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `showGrid` | `boolean` | — | — |
-| `gridSize` | `number` | — | — |
-| `width` | `number | string` | — | — |
-| `height` | `number | string` | — | — |
+| `showGrid` | `boolean` | — | Show Grid configuration. |
+| `gridSize` | `number` | — | Grid Size configuration. |
+| `width` | `number \| string` | — | Width of the rendered content. |
+| `height` | `number \| string` | — | Height of the rendered content. |
+| `children` | `ReactNode` | — | Content rendered inside the component. |
 
 ## Token integration
 

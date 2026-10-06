@@ -165,6 +165,7 @@ export const ImagePreview = forwardRef<HTMLButtonElement, ImagePreviewProps>(fun
       <button
         ref={ref}
         type="button"
+        aria-label={alt}
         className={cn("overflow-hidden rounded-[var(--s-radius-md,8px)] border border-[color:var(--s-border)]", className)}
         onClick={() => setOpen(true)}
         {...props}
@@ -470,4 +471,3 @@ export const ShortcutRecorder = forwardRef<HTMLButtonElement, ShortcutRecorderPr
     </Button>
   );
 });
-

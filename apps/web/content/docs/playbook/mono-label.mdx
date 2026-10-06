@@ -1,13 +1,7 @@
 ---
 title: MonoLabel
-description: "A MonoLabel component from the Sigil design system."
+description: "Render a compact label in the preset's monospace font."
 ---
-
-## Import
-
-```tsx
-import { MonoLabel } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -15,10 +9,16 @@ import { MonoLabel } from "@sigil-ui/components";
   <MonoLabel>MonoLabel example</MonoLabel>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { MonoLabel } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<MonoLabel>MonoLabel content</MonoLabel>
+<MonoLabel>MonoLabel example</MonoLabel>
 ```
 
 ## Props
@@ -27,7 +27,7 @@ import { MonoLabel } from "@sigil-ui/components";
 |---|---|---|---|
 | `variant` | `MonoLabelVariant` | `muted` | Visual variant. |
 | `size` | `MonoLabelSize` | `xs` | Size preset. |
-| `as` | `"span" | "p" | "label" | "div" | "dt" | "dd"` | `span` | Render as a different element (e.g. "p", "label", "div"). |
+| `as` | `"span" \| "p" \| "label" \| "div" \| "dt" \| "dd"` | `span` | Render as a different element (e.g. "p", "label", "div"). |
 
 ## Token integration
 

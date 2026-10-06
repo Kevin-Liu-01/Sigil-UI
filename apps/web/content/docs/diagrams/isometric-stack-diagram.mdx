@@ -1,7 +1,13 @@
 ---
 title: IsometricStackDiagram
-description: "A IsometricStackDiagram component from the Sigil design system."
+description: "Explain layered architecture with an isometric stack."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <IsometricStackDiagram layers={[{ label: "Application" }, { label: "Services", hatched: true }, { label: "Infrastructure" }]} />
+</ComponentPreview>
 
 ## Import
 
@@ -12,17 +18,17 @@ import { IsometricStackDiagram } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<IsometricStackDiagram>...</IsometricStackDiagram>
+<IsometricStackDiagram layers={[{ label: "Application" }, { label: "Services", hatched: true }, { label: "Infrastructure" }]} />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `layers` | `IsoStackLayer[]` | — | — |
-| `width` | `number` | — | — |
-| `layerHeight` | `number` | — | — |
-| `gap` | `number` | — | — |
+| `layers` (required) | `IsoStackLayer[]` | — | Layers configuration. |
+| `width` | `number` | — | Width of the rendered content. |
+| `layerHeight` | `number` | — | Layer Height configuration. |
+| `gap` | `number` | — | Gap configuration. |
 
 ## Token integration
 

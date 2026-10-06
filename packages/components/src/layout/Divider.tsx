@@ -166,6 +166,16 @@ function mergeStructuralBgYOffset(
   return `${t} ${v}`;
 }
 
+/**
+ * Axis-aligned structural patterns share the page grid's vertical origin.
+ * Directional textures are self-repeating local fills; applying a document
+ * Y offset to them shifts the diagonal phase sideways and makes hatch bands
+ * look clipped as their position on the page changes.
+ */
+function shouldPhaseLockYAxis(pattern: DividerPattern): boolean {
+  return pattern !== "diagonal" && pattern !== "crosshatch";
+}
+
 /** Decorative patterned divider band — horizontal between sections or vertical between panes. */
 export const Divider = forwardRef<HTMLDivElement, DividerProps>(function Divider(
   {
@@ -219,10 +229,9 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>(function Divider
     : `0 calc(var(--s-grid-cell) * ${phase})`;
   const patternPositionRaw = patternCss?.backgroundPosition
     ?? (resolvedPattern === "vertical" ? legacyPatternOffset : undefined);
-  const patternPosition = mergeStructuralBgYOffset(
-    patternPositionRaw,
-    patternYPx,
-  );
+  const patternPosition = shouldPhaseLockYAxis(resolvedPattern)
+    ? mergeStructuralBgYOffset(patternPositionRaw, patternYPx)
+    : patternPositionRaw;
   const bandStroke = gridConfig?.bandStroke ?? "visual";
   const structuralStrokeShadow = showBorders && bandStroke === "visual"
     ? isHorizontal

@@ -1,7 +1,26 @@
 ---
 title: TreeDiagram
-description: "A TreeDiagram component from the Sigil design system."
+description: "Show hierarchical relationships as a branching diagram."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <TreeDiagram
+    root={{
+      id: "root",
+      label: "App",
+      variant: "accent",
+      children: [
+        { id: "api", label: "API", children: [
+          { id: "auth", label: "Auth" },
+          { id: "db", label: "Database" },
+        ]},
+        { id: "ui", label: "Frontend" },
+      ],
+    }}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,16 +31,29 @@ import { TreeDiagram } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<TreeDiagram>...</TreeDiagram>
+<TreeDiagram
+    root={{
+      id: "root",
+      label: "App",
+      variant: "accent",
+      children: [
+        { id: "api", label: "API", children: [
+          { id: "auth", label: "Auth" },
+          { id: "db", label: "Database" },
+        ]},
+        { id: "ui", label: "Frontend" },
+      ],
+    }}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `root` | `TreeDiagramNode` | — | — |
-| `connector` | `"solid" | "dashed"` | — | — |
-| `compact` | `boolean` | — | — |
+| `root` (required) | `TreeDiagramNode` | — | Root configuration. |
+| `connector` | `"solid" \| "dashed"` | — | Connector configuration. |
+| `compact` | `boolean` | — | Compact configuration. |
 
 ## Token integration
 

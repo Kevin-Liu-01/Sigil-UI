@@ -1,7 +1,23 @@
 ---
 title: EcosystemDiagram
-description: "A EcosystemDiagram component from the Sigil design system."
+description: "Map relationships between a product and its integrations."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <EcosystemDiagram
+    center={{ label: "Sigil core" }}
+    ring={[
+      { label: "Tokens" },
+      { label: "Components" },
+      { label: "Presets" },
+      { label: "CLI" },
+      { label: "Docs" },
+      { label: "Demos" },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,14 +28,26 @@ import { EcosystemDiagram } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<EcosystemDiagram>...</EcosystemDiagram>
+<EcosystemDiagram
+    center={{ label: "Sigil core" }}
+    ring={[
+      { label: "Tokens" },
+      { label: "Components" },
+      { label: "Presets" },
+      { label: "CLI" },
+      { label: "Docs" },
+      { label: "Demos" },
+    ]}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `center` | `{ label: string; icon?: ReactNode; sublabel?: string` | — | — |
+| `center` (required) | `{ label: string; icon?: ReactNode; sublabel?: string }` | — | Center configuration. |
+| `ring` (required) | `EcosystemNode[]` | — | Ring configuration. |
+| `size` | `number` | — | Sets the component's size. |
 
 ## Token integration
 

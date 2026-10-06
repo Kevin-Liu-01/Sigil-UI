@@ -3,12 +3,6 @@ title: CommitGrid
 description: "A GitHub-style contribution heatmap showing activity intensity over time."
 ---
 
-## Import
-
-```tsx
-import { CommitGrid } from "@sigil-ui/components";
-```
-
 ## Preview
 
 <ComponentPreview>
@@ -31,6 +25,12 @@ import { CommitGrid } from "@sigil-ui/components";
   />
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { CommitGrid } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
@@ -50,6 +50,7 @@ import { CommitGrid } from "@sigil-ui/components";
 | `data` | `CommitDay[]` | — | Array of date/count entry objects |
 | `weeks` | `number` | `52` | Number of weeks to display |
 | `cellSize` | `number` | `12` | Cell size in px |
+| `responsive` | `boolean` | `false` | Fill the available width with equal square cells. Overrides `cellSize`. |
 | `gap` | `number` | `2` | Gap between cells in px |
 | `color` | `string` | `var(--s-success)` | Cell fill color |
 | `showDayLabels` | `boolean` | `true` | Show Mon/Wed/Fri labels |

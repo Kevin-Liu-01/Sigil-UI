@@ -3,54 +3,22 @@ title: SankeyDiagram
 description: An SVG Sankey flow diagram showing weighted connections between source and target nodes.
 ---
 
+## Preview
+
+<ComponentPreview vertical>
+  <SankeyDiagram sources={[{ label: "Search", value: 64 }, { label: "Direct", value: 36 }]} targets={[{ label: "Docs", value: 58 }, { label: "Components", value: 42 }]} links={[{ source: 0, target: 0, value: 42 }, { source: 0, target: 1, value: 22 }, { source: 1, target: 0, value: 16 }, { source: 1, target: 1, value: 20 }]} />
+</ComponentPreview>
+
 ## Import
 
 ```tsx
 import { SankeyDiagram } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview vertical>
-  <SankeyDiagram
-    sources={[
-      { id: "tokens",  label: "Tokens",  value: 60 },
-      { id: "presets", label: "Presets", value: 40 },
-    ]}
-    targets={[
-      { id: "ui",     label: "UI",     value: 70 },
-      { id: "themes", label: "Themes", value: 30 },
-    ]}
-    links={[
-      { source: "tokens",  target: "ui",     value: 60 },
-      { source: "presets", target: "ui",     value: 10 },
-      { source: "presets", target: "themes", value: 30 },
-    ]}
-  />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<SankeyDiagram
-  sources={[
-    { label: "Organic", value: 60 },
-    { label: "Paid", value: 30 },
-    { label: "Referral", value: 10 },
-  ]}
-  targets={[
-    { label: "Signup", value: 50 },
-    { label: "Bounce", value: 40 },
-    { label: "Blog", value: 10 },
-  ]}
-  links={[
-    { source: 0, target: 0, value: 40 },
-    { source: 0, target: 2, value: 20 },
-    { source: 1, target: 0, value: 10 },
-    { source: 1, target: 1, value: 20 },
-    { source: 2, target: 1, value: 10 },
-  ]}
-/>
+<SankeyDiagram sources={[{ label: "Search", value: 64 }, { label: "Direct", value: 36 }]} targets={[{ label: "Docs", value: 58 }, { label: "Components", value: 42 }]} links={[{ source: 0, target: 0, value: 42 }, { source: 0, target: 1, value: 22 }, { source: 1, target: 0, value: 16 }, { source: 1, target: 1, value: 20 }]} />
 ```
 
 ## Custom size

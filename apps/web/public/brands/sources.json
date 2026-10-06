@@ -1,0 +1,78 @@
+{
+  "provider": "https://thesvg.org",
+  "retrieved": "2026-10-05",
+  "logos": [
+    {
+      "name": "GitHub",
+      "slug": "github",
+      "source": "https://thesvg.org/icons/github/mono.svg",
+      "upstream": "https://github.com/",
+      "license": "CC0-1.0",
+      "variant": "mono"
+    },
+    {
+      "name": "React",
+      "slug": "react",
+      "source": "https://thesvg.org/icons/react/mono.svg",
+      "upstream": "https://react.dev/",
+      "license": "CC0-1.0",
+      "variant": "mono"
+    },
+    {
+      "name": "Next.js",
+      "slug": "nextdotjs",
+      "source": "https://thesvg.org/icons/nextdotjs/mono.svg",
+      "upstream": "https://nextjs.org/",
+      "license": "CC0-1.0",
+      "variant": "mono"
+    },
+    {
+      "name": "TypeScript",
+      "slug": "typescript",
+      "source": "https://thesvg.org/icons/typescript/mono.svg",
+      "upstream": "https://www.typescriptlang.org",
+      "license": "CC0-1.0",
+      "variant": "mono"
+    },
+    {
+      "name": "Tailwind CSS",
+      "slug": "tailwindcss",
+      "source": "https://thesvg.org/icons/tailwindcss/default.svg",
+      "upstream": "https://tailwindcss.com",
+      "license": "brand-use",
+      "variant": "default"
+    },
+    {
+      "name": "npm",
+      "slug": "npm",
+      "source": "https://thesvg.org/icons/npm/mono.svg",
+      "upstream": "https://www.npmjs.com/",
+      "license": "CC0-1.0",
+      "variant": "mono"
+    },
+    {
+      "name": "Vercel",
+      "slug": "vercel",
+      "source": "https://thesvg.org/icons/vercel/mono.svg",
+      "upstream": "https://vercel.com/",
+      "license": "CC0-1.0",
+      "variant": "mono"
+    },
+    {
+      "name": "X",
+      "slug": "x",
+      "source": "https://thesvg.org/icons/x/mono.svg",
+      "upstream": "https://x.com",
+      "license": "CC0-1.0",
+      "variant": "mono"
+    },
+    {
+      "name": "LinkedIn",
+      "slug": "linkedin",
+      "source": "https://thesvg.org/icons/linkedin/default.svg",
+      "upstream": "https://www.linkedin.com/",
+      "license": "MIT",
+      "variant": "default"
+    }
+  ]
+}

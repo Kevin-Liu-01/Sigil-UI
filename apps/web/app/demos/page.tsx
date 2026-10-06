@@ -159,9 +159,6 @@ export default function DemosPage() {
       <SigilSection borderTop space="hero" className="relative overflow-hidden">
         <TextureBg opacity={0.3} />
         <div className="relative z-[1] mb-6">
-          <MonoLabel variant="accent" className="block mb-4">
-            / Demos
-          </MonoLabel>
 
           <h1 className="font-[family-name:var(--s-font-display)] font-bold text-[clamp(32px,5vw,56px)] leading-[1.08] tracking-[-0.03em] text-[var(--s-text)] mb-4 max-w-3xl">
             17 Production Templates.

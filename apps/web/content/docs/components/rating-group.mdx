@@ -1,13 +1,7 @@
 ---
 title: RatingGroup
-description: "A RatingGroup component from the Sigil design system."
+description: "Choose a rating from a set of visual values."
 ---
-
-## Import
-
-```tsx
-import { RatingGroup } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -15,22 +9,28 @@ import { RatingGroup } from "@sigil-ui/components";
   <RatingGroup defaultValue={3} />
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { RatingGroup } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<RatingGroup>RatingGroup content</RatingGroup>
+<RatingGroup defaultValue={3} />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `value` | `number` | — | — |
-| `defaultValue` | `number` | — | — |
-| `onChange` | `(value: number) => void` | — | — |
-| `max` | `number` | — | — |
-| `disabled` | `boolean` | — | — |
-| `size` | `"sm" | "md" | "lg"` | — | — |
+| `value` | `number` | — | The current controlled value. |
+| `defaultValue` | `number` | — | Initial value when the component manages its own state. |
+| `onChange` | `(value: number) => void` | — | Called when the value changes. |
+| `max` | `number` | — | Largest allowed value. |
+| `disabled` | `boolean` | — | Prevents user interaction when enabled. |
+| `size` | `"sm" \| "md" \| "lg"` | — | Sets the component's size. |
 
 ## Token integration
 

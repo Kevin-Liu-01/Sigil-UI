@@ -1,7 +1,18 @@
 ---
 title: CrossHatch
-description: "A CrossHatch component from the Sigil design system."
+description: "Fill a region with a repeating crosshatch pattern."
 ---
+
+## Preview
+
+<ComponentPreview label="Structural hatching">
+  <div className="relative h-48 w-full overflow-hidden border border-[var(--s-border)] bg-[var(--s-surface)]">
+    <CrossHatch angle={45} spacing={12} opacity={0.22} />
+    <div className="absolute inset-[var(--s-space-6)] flex items-center justify-center border border-[var(--s-border-strong)] bg-[var(--s-background)] text-sm text-[var(--s-text)]">
+      Infrastructure layer
+    </div>
+  </div>
+</ComponentPreview>
 
 ## Import
 
@@ -12,17 +23,22 @@ import { CrossHatch } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<CrossHatch>...</CrossHatch>
+<div className="relative h-48 w-full overflow-hidden border border-[var(--s-border)] bg-[var(--s-surface)]">
+    <CrossHatch angle={45} spacing={12} opacity={0.22} />
+    <div className="absolute inset-[var(--s-space-6)] flex items-center justify-center border border-[var(--s-border-strong)] bg-[var(--s-background)] text-sm text-[var(--s-text)]">
+      Infrastructure layer
+    </div>
+  </div>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `angle` | `number` | — | — |
-| `spacing` | `number` | — | — |
-| `color` | `string` | — | — |
-| `opacity` | `number` | — | — |
+| `angle` | `number` | — | Angle configuration. |
+| `spacing` | `number` | — | Spacing configuration. |
+| `color` | `string` | — | Color configuration. |
+| `opacity` | `number` | — | Opacity configuration. |
 
 ## Token integration
 

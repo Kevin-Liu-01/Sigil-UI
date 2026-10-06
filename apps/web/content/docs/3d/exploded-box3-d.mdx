@@ -1,13 +1,7 @@
 ---
 title: ExplodedBox3D
-description: "A ExplodedBox3D component from the Sigil design system."
+description: "Separate a dimensional box into visible layers."
 ---
-
-## Import
-
-```tsx
-import { ExplodedBox3D } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -15,10 +9,16 @@ import { ExplodedBox3D } from "@sigil-ui/components";
   <ExplodedBox3D size={120} />
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { ExplodedBox3D } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<ExplodedBox3D>...</ExplodedBox3D>
+<ExplodedBox3D size={120} />
 ```
 
 ## Props
@@ -28,7 +28,7 @@ import { ExplodedBox3D } from "@sigil-ui/components";
 | `size` | `number` | `80` | Size of the front/back square in px. |
 | `depth` | `number` | `22` | Depth of the side faces in px. |
 | `gap` | `number` | `10` | Gap between the separated faces in px. |
-| `variant` | `"container" | "card" | "panel"` | `container` | Preset variant. |
+| `variant` | `"container" \| "card" \| "panel"` | `container` | Preset variant. |
 | `showLabels` | `boolean` | `false` | Show small face labels for diagram use. |
 
 ## Token integration

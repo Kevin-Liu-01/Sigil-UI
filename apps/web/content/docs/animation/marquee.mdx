@@ -1,13 +1,7 @@
 ---
 title: Marquee
-description: "A Marquee component from the Sigil design system."
+description: "Move a repeating content strip across its container."
 ---
-
-## Import
-
-```tsx
-import { Marquee } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -20,17 +14,28 @@ import { Marquee } from "@sigil-ui/components";
 </Marquee>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Marquee } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Marquee>...</Marquee>
+<Marquee>
+  <Badge>Sigil UI</Badge>
+  <Badge>Token-driven</Badge>
+  <Badge>350+ components</Badge>
+  <Badge>46 presets</Badge>
+</Marquee>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `direction` | `"left" | "right" | "up" | "down"` | `left` | Scroll direction. |
+| `direction` | `"left" \| "right" \| "up" \| "down"` | `left` | Scroll direction. |
 | `duration` | `number` | `30` | Animation duration in seconds. |
 | `pauseOnHover` | `boolean` | `true` | Pause on hover. |
 | `repeat` | `number` | `2` | Number of content copies for seamless loop. |

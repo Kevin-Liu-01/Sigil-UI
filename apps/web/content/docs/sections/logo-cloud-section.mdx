@@ -1,7 +1,13 @@
 ---
 title: LogoCloudSection
-description: "A LogoCloudSection component from the Sigil design system."
+description: "Present supporting brands in a responsive logo section."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <LogoCloudSection heading="Works with your stack" logos={[{ name: "React", logo: <BrandLogo name="react" className="size-8" /> }, { name: "Next.js", logo: <BrandLogo name="nextdotjs" className="size-8" /> }, { name: "TypeScript", logo: <BrandLogo name="typescript" className="size-8" /> }, { name: "Tailwind CSS", logo: <BrandLogo name="tailwindcss" className="size-8" /> }]} />
+</ComponentPreview>
 
 ## Import
 
@@ -12,15 +18,15 @@ import { LogoCloudSection } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<LogoCloudSection>...</LogoCloudSection>
+<LogoCloudSection heading="Works with your stack" logos={[{ name: "React", logo: <BrandLogo name="react" className="size-8" /> }, { name: "Next.js", logo: <BrandLogo name="nextdotjs" className="size-8" /> }, { name: "TypeScript", logo: <BrandLogo name="typescript" className="size-8" /> }, { name: "Tailwind CSS", logo: <BrandLogo name="tailwindcss" className="size-8" /> }]} />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `heading` | `string` | — | — |
-| `logos` | `LogoCloudItem[]` | — | — |
+| `heading` | `string` | — | Heading configuration. |
+| `logos` (required) | `LogoCloudItem[]` | — | Logos configuration. |
 
 ## Token integration
 

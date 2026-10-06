@@ -178,9 +178,6 @@ export default function PresetsPage() {
         <SigilSection borderTop space="hero" className="relative overflow-hidden">
           <TextureBg opacity={0.3} />
           <div className="relative z-[1] mb-12 max-w-3xl">
-            <MonoLabel variant="accent" className="mb-4 block">
-              / Presets
-            </MonoLabel>
 
             <h1 className="mb-4 font-[family-name:var(--s-font-display)] text-[clamp(var(--s-size-3xl),5vw,var(--s-size-5xl))] font-[var(--s-heading-display-weight)] leading-[var(--s-heading-display-leading)] tracking-[var(--s-heading-display-tracking)] text-[var(--s-text)]">
               {presetCatalog.length} Curated Presets.<br />

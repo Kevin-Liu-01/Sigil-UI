@@ -1,7 +1,13 @@
 ---
 title: Hexagon
-description: "A Hexagon component from the Sigil design system."
+description: "Render a hexagonal shape using the active design tokens."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <Hexagon size="xl" />
+</ComponentPreview>
 
 ## Import
 
@@ -9,23 +15,17 @@ description: "A Hexagon component from the Sigil design system."
 import { Hexagon } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <Hexagon size={48} />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<Hexagon>Hexagon content</Hexagon>
+<Hexagon size="xl" />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `size` | `"sm" | "md" | "lg" | "xl"` | `md` | Hexagon size. |
+| `size` | `"sm" \| "md" \| "lg" \| "xl"` | `md` | Hexagon size. |
 
 ## Token integration
 

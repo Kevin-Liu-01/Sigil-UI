@@ -41,7 +41,6 @@ const variantStyles: Record<ButtonVariant, string> = {
     "bg-[var(--s-primary)] text-[var(--s-primary-contrast)]",
     "hover:bg-[var(--s-primary-hover)]",
     "active:brightness-90 active:scale-[var(--s-button-active-scale,0.97)]",
-    "shadow-[var(--s-shadow-sm)]",
   ].join(" "),
   secondary: [
     "bg-[var(--s-surface)] text-[var(--s-text)]",
@@ -81,18 +80,18 @@ const variantStyles: Record<ButtonVariant, string> = {
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
-  xs: "h-7 px-2 text-xs rounded-[var(--s-radius-sm,0px)]",
-  sm: "h-8 px-3 text-xs rounded-[var(--s-radius-sm,0px)]",
-  md: "h-9 px-4 text-sm rounded-[var(--s-radius-md,0px)]",
-  lg: "h-11 px-6 text-base rounded-[var(--s-radius-md,0px)]",
-  "icon-xs": "h-7 w-7 rounded-[var(--s-radius-md,0px)] p-0 inline-flex items-center justify-center",
-  "icon-sm": "h-8 w-8 rounded-[var(--s-radius-md,0px)] p-0 inline-flex items-center justify-center",
-  icon: "h-9 w-9 rounded-[var(--s-radius-md,0px)] p-0 inline-flex items-center justify-center",
-  "icon-lg": "h-11 w-11 rounded-[var(--s-radius-md,0px)] p-0 inline-flex items-center justify-center",
+  xs: "h-7 px-2 text-xs rounded-[var(--s-radius-button,var(--s-radius-sm,0px))]",
+  sm: "h-8 px-3 text-xs rounded-[var(--s-radius-button,var(--s-radius-sm,0px))]",
+  md: "h-9 px-4 text-sm rounded-[var(--s-radius-button,var(--s-radius-md,0px))]",
+  lg: "h-11 px-6 text-base rounded-[var(--s-radius-button,var(--s-radius-md,0px))]",
+  "icon-xs": "h-7 w-7 rounded-[var(--s-radius-button,var(--s-radius-md,0px))] p-0 inline-flex items-center justify-center",
+  "icon-sm": "h-8 w-8 rounded-[var(--s-radius-button,var(--s-radius-md,0px))] p-0 inline-flex items-center justify-center",
+  icon: "h-9 w-9 rounded-[var(--s-radius-button,var(--s-radius-md,0px))] p-0 inline-flex items-center justify-center",
+  "icon-lg": "h-11 w-11 rounded-[var(--s-radius-button,var(--s-radius-md,0px))] p-0 inline-flex items-center justify-center",
 };
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
-  { variant = "primary", size = "md", asChild = false, className, children, onClick, ...rest },
+  { variant = "primary", size = "md", asChild = false, className, children, onClick, style, ...rest },
   ref,
 ) {
   const { play } = useSigilSound();
@@ -105,9 +104,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       data-variant={variant}
       data-size={size}
       className={cn(
-        "inline-flex items-center justify-center gap-2 font-medium whitespace-nowrap",
+        "inline-flex min-w-[var(--s-button-min-width,0px)] items-center justify-center gap-[var(--s-button-icon-gap,8px)] whitespace-nowrap",
+        "font-[family-name:var(--s-button-font-family,var(--s-font-body))] font-[var(--s-button-font-weight,500)] tracking-[var(--s-button-letter-spacing,0em)] [text-transform:var(--s-button-text-transform,none)]",
         "cursor-pointer select-none",
-        "transition-all duration-[var(--s-duration-fast,150ms)] ease-out",
+        "shadow-[var(--s-shadow-button,none)] transition-all duration-[var(--s-duration-fast,150ms)] ease-out",
+        "hover:[filter:var(--s-button-hover-filter,none)] hover:[transform:var(--s-button-hover-transform,none)] hover:shadow-[var(--s-button-hover-shadow,var(--s-shadow-button,none))]",
         "focus-visible:outline-none focus-visible:ring-[length:var(--s-focus-ring-width)] focus-visible:ring-[var(--s-focus-ring-color)] focus-visible:ring-offset-[var(--s-focus-ring-offset)]",
         "disabled:opacity-50 disabled:pointer-events-none",
         "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([data-icon])]:size-4",
@@ -115,6 +116,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
         sizeStyles[size],
         className,
       )}
+      style={{ borderWidth: "var(--s-button-border-width, 1px)", ...style }}
       onClick={(e) => { play("tap"); onClick?.(e); }}
       {...rest}
     >

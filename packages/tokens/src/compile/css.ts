@@ -4,9 +4,10 @@ import type {
   CssCompileOptions,
   SigilTokens,
   ThemedColor,
+  TokenValidationIssue,
 } from "../types";
-import { defaultTokens } from "../tokens";
-import { deepMerge, isThemedColor } from "./merge";
+import { SigilTokenValidationError, resolveSigilTokens } from "../validation";
+import { isThemedColor } from "./merge";
 import {
   convertVarsToRem,
   cssVar,
@@ -23,17 +24,53 @@ export function compileToCss(
   tokens: SigilTokens | Partial<SigilTokens>,
   options: CssCompileOptions = {},
 ): string {
-  const resolvedTokens = deepMerge(
-    defaultTokens,
-    tokens as Record<string, unknown>,
-  ) as SigilTokens;
+  const resolution = resolveSigilTokens(tokens, { partial: true });
+  const diagnostics: TokenValidationIssue[] = [...resolution.issues];
   const {
-    prefix = "s",
+    prefix: requestedPrefix = "s",
     includeLight = true,
     includeDark = true,
-    selector = ":root",
-    darkSelector = "[data-theme='dark']",
+    selector: requestedSelector = ":root",
+    darkSelector: requestedDarkSelector = "[data-theme='dark']",
+    validation = "repair",
+    onDiagnostic,
   } = options;
+  const prefix = /^[a-z][a-z0-9-]*$/i.test(requestedPrefix)
+    ? requestedPrefix
+    : "s";
+  const safeSelector = (value: string) => value.trim().length > 0 && !/[{};\n\r]/.test(value);
+  const selector = safeSelector(requestedSelector) ? requestedSelector : ":root";
+  const darkSelector = safeSelector(requestedDarkSelector)
+    ? requestedDarkSelector
+    : "[data-theme='dark']";
+
+  if (prefix !== requestedPrefix) {
+    diagnostics.push({
+      code: "invalid-string",
+      path: "options.prefix",
+      message: "CSS variable prefix was unsafe and reset to 's'.",
+    });
+  }
+  if (selector !== requestedSelector) {
+    diagnostics.push({
+      code: "invalid-string",
+      path: "options.selector",
+      message: "Light-mode selector was unsafe and reset to ':root'.",
+    });
+  }
+  if (darkSelector !== requestedDarkSelector) {
+    diagnostics.push({
+      code: "invalid-string",
+      path: "options.darkSelector",
+      message: "Dark-mode selector was unsafe and reset to the default.",
+    });
+  }
+  if (diagnostics.length > 0) {
+    onDiagnostic?.(diagnostics);
+    if (validation === "strict") throw new SigilTokenValidationError(diagnostics);
+  }
+
+  const resolvedTokens = resolution.tokens;
 
   const lightVars: string[] = [];
   const darkVars: string[] = [];
@@ -115,6 +152,22 @@ export function compileToCss(
     for (const [key, value] of Object.entries(resolvedTokens.buttons)) {
       lightVars.push(`${cssVar(prefix, "button", key)}: ${value};`);
     }
+
+    const hoverEffect = resolvedTokens.buttons["hover-effect"];
+    const hoverTransform = hoverEffect === "lift"
+      ? `translateY(calc(-1 * var(${cssVar(prefix, "hover-lift")}, 2px)))`
+      : "none";
+    const hoverFilter = hoverEffect === "darken" || hoverEffect === "fill"
+      ? "brightness(0.92)"
+      : "none";
+    const hoverShadow = hoverEffect === "glow"
+      ? `var(${cssVar(prefix, "shadow", "glow")}, var(${cssVar(prefix, "shadow", "button-hover")}, none))`
+      : hoverEffect === "outline"
+        ? `0 0 0 var(${cssVar(prefix, "border", "thin")}, 1px) var(${cssVar(prefix, "primary")})`
+        : `var(${cssVar(prefix, "shadow", "button-hover")}, var(${cssVar(prefix, "shadow", "button")}, none))`;
+    lightVars.push(`${cssVar(prefix, "button", "hover-transform")}: ${hoverTransform};`);
+    lightVars.push(`${cssVar(prefix, "button", "hover-filter")}: ${hoverFilter};`);
+    lightVars.push(`${cssVar(prefix, "button", "hover-shadow")}: ${hoverShadow};`);
   }
 
   // Cards
@@ -122,10 +175,42 @@ export function compileToCss(
     for (const [key, value] of Object.entries(resolvedTokens.cards)) {
       if (typeof value === "boolean") {
         lightVars.push(`${cssVar(prefix, "card", key)}: ${value ? "1" : "0"};`);
+      } else if (key === "background") {
+        const backgroundValue = value === "transparent"
+          ? "transparent"
+          : value === "elevated"
+            ? `var(${cssVar(prefix, "surface-elevated")})`
+            : value === "sunken"
+              ? `var(${cssVar(prefix, "surface-sunken")})`
+              : `var(${cssVar(prefix, "surface")})`;
+        lightVars.push(`${cssVar(prefix, "card", key)}: ${backgroundValue};`);
+      } else if (key === "shadow") {
+        const shadowValue = value === "none"
+          ? "none"
+          : `var(${cssVar(prefix, "shadow", String(value))})`;
+        lightVars.push(`${cssVar(prefix, "card", key)}: ${shadowValue};`);
       } else {
         lightVars.push(`${cssVar(prefix, "card", key)}: ${value};`);
       }
     }
+
+    const hoverEffect = resolvedTokens.cards["hover-effect"];
+    const hoverTransform = hoverEffect === "lift"
+      ? `translateY(calc(-1 * var(${cssVar(prefix, "hover-lift")}, 2px)))`
+      : hoverEffect === "scale"
+        ? `scale(var(${cssVar(prefix, "hover-scale")}, 1.02))`
+        : "none";
+    const hoverShadow = hoverEffect === "glow"
+      ? `var(${cssVar(prefix, "shadow", "glow")}, var(${cssVar(prefix, "card", "shadow")}, none))`
+      : hoverEffect === "lift"
+        ? `var(${cssVar(prefix, "shadow", "md")}, var(${cssVar(prefix, "card", "shadow")}, none))`
+        : `var(${cssVar(prefix, "card", "shadow")}, none)`;
+    const hoverBorder = hoverEffect === "border"
+      ? resolvedTokens.cards["hover-border-color"]
+      : `var(${cssVar(prefix, "border")})`;
+    lightVars.push(`${cssVar(prefix, "card", "hover-transform")}: ${hoverTransform};`);
+    lightVars.push(`${cssVar(prefix, "card", "hover-shadow")}: ${hoverShadow};`);
+    lightVars.push(`${cssVar(prefix, "card", "hover-border-color")}: ${hoverBorder};`);
   }
 
   // Headings
@@ -258,6 +343,13 @@ export function compileToCss(
         }
       }
     }
+    const cellBackground = resolvedTokens.gridVisuals["cell-background"];
+    const cellBackgroundValue = cellBackground === "surface"
+      ? `var(${cssVar(prefix, "surface")})`
+      : cellBackground === "alternate"
+        ? `var(${cssVar(prefix, "surface-elevated")})`
+        : "transparent";
+    lightVars.push(`${cssVar(prefix, "grid", "cell-background-color")}: ${cellBackgroundValue};`);
   }
 
   emitTokenGroup(lightVars, prefix, "focus", resolvedTokens.focus);
@@ -268,7 +360,25 @@ export function compileToCss(
   emitTokenGroup(lightVars, prefix, "component-surface", resolvedTokens.componentSurfaces);
 
   emitTokenGroup(lightVars, prefix, "hero", resolvedTokens.hero);
+  if (resolvedTokens.hero) {
+    const layout = resolvedTokens.hero.layout;
+    const heroColumns = layout === "split"
+      ? `minmax(0, var(${cssVar(prefix, "hero", "content-basis")}, 1fr)) minmax(0, var(${cssVar(prefix, "hero", "media-width")}, 1fr))`
+      : layout === "asymmetric"
+        ? "minmax(0, 0.8fr) minmax(0, 1.2fr)"
+        : "minmax(0, 1fr)";
+    lightVars.push(`${cssVar(prefix, "hero", "grid-columns")}: ${heroColumns};`);
+    lightVars.push(`${cssVar(prefix, "hero", "content-justify-self")}: ${layout === "centered" ? "center" : "stretch"};`);
+  }
+
   emitTokenGroup(lightVars, prefix, "cta", resolvedTokens.cta);
+  if (resolvedTokens.cta) {
+    const split = resolvedTokens.cta.layout === "split";
+    lightVars.push(`${cssVar(prefix, "cta", "grid-columns")}: ${split ? "minmax(0, 1fr) minmax(0, 1fr)" : "minmax(0, 1fr)"};`);
+    lightVars.push(`${cssVar(prefix, "cta", "text-align")}: ${split ? "left" : "center"};`);
+    lightVars.push(`${cssVar(prefix, "cta", "actions-justify")}: ${split ? "flex-start" : "center"};`);
+    lightVars.push(`${cssVar(prefix, "cta", "description-margin-inline")}: ${split ? "0" : "auto"};`);
+  }
   emitTokenGroup(lightVars, prefix, "footer", resolvedTokens.footer);
   emitTokenGroup(lightVars, prefix, "banner", resolvedTokens.banner);
   emitTokenGroup(lightVars, prefix, "rhythm", resolvedTokens.pageRhythm);

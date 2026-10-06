@@ -1,33 +1,33 @@
 ---
 title: Stack
-description: "A Stack component from the Sigil design system."
+description: "Arrange children vertically or horizontally with consistent gaps."
 ---
-
-## Import
-
-```tsx
-import { Stack } from "@sigil-ui/components";
-```
 
 ## Preview
 
 <ComponentPreview>
-  <Stack />
+  <Stack gap="var(--s-space-12)" className="w-full"><Card><CardContent>Design tokens</CardContent></Card><Card><CardContent>Shared components</CardContent></Card><Card><CardContent>Product pages</CardContent></Card></Stack>
 </ComponentPreview>
+
+## Import
+
+```tsx
+import { Stack, Card, CardContent } from "@sigil-ui/components";
+```
 
 ## Usage
 
 ```tsx
-<Stack>Stack content</Stack>
+<Stack gap="var(--s-space-12)" className="w-full"><Card><CardContent>Design tokens</CardContent></Card><Card><CardContent>Shared components</CardContent></Card><Card><CardContent>Product pages</CardContent></Card></Stack>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `gap` | `string | number` | — | Spacing between children — maps to a CSS gap value. |
+| `gap` | `string \| number` | — | Spacing between children — maps to a CSS gap value. |
 | `flush` | `boolean` | — | Remove all gaps for flush stacking. |
-| `direction` | `"row" | "column"` | `column` | Stack direction. |
-| `align` | `"start" | "center" | "end" | "stretch" | "baseline"` | — | Cross-axis alignment. |
-| `justify` | `"start" | "center" | "end" | "between" | "around" | "evenly"` | — | Main-axis justification. |
+| `direction` | `"row" \| "column"` | `column` | Stack direction. |
+| `align` | `"start" \| "center" \| "end" \| "stretch" \| "baseline"` | — | Cross-axis alignment. |
+| `justify` | `"start" \| "center" \| "end" \| "between" \| "around" \| "evenly"` | — | Main-axis justification. |
 | `as` | `ElementType` | `div` | Render as a different HTML element. |

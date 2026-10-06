@@ -1,13 +1,7 @@
 ---
 title: Progress
-description: "A Progress component from the Sigil design system."
+description: "Show completion as a horizontal progress indicator."
 ---
-
-## Import
-
-```tsx
-import { Progress } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -18,10 +12,19 @@ import { Progress } from "@sigil-ui/components";
   </div>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Progress } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Progress>Progress content</Progress>
+<div className="flex flex-col gap-3 w-full max-w-sm">
+    <div className="flex items-center justify-between text-sm text-[var(--s-text-muted)]"><span>Uploading</span><span className="tabular-nums">68%</span></div>
+    <Progress value={68} />
+  </div>
 ```
 
 ## Props
@@ -30,7 +33,7 @@ import { Progress } from "@sigil-ui/components";
 |---|---|---|---|
 | `value` | `number` | — | Progress value (0–100). Omit for indeterminate. |
 | `label` | `boolean` | — | Show percentage label. |
-| `size` | `"sm" | "md" | "lg"` | `md` | — |
+| `size` | `"sm" \| "md" \| "lg"` | `md` | — |
 
 ## Token integration
 

@@ -3,19 +3,6 @@ title: Carousel
 description: "An accessible Embla-powered slider with keyboard support, optional 3D tilt, and dot pagination."
 ---
 
-## Import
-
-```tsx
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
-  CarouselDots,
-} from "@sigil-ui/components";
-```
-
 ## Preview
 
 <ComponentPreview vertical>
@@ -52,18 +39,53 @@ import {
   </Carousel>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+  CarouselDots,
+} from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Carousel className="w-full max-w-md">
-  <CarouselContent>
-    <CarouselItem>...</CarouselItem>
-    <CarouselItem>...</CarouselItem>
-  </CarouselContent>
-  <CarouselPrevious />
-  <CarouselNext />
-  <CarouselDots />
-</Carousel>
+<Carousel className="w-full max-w-md mx-auto">
+    <CarouselContent>
+      <CarouselItem>
+        <div className="flex aspect-[16/9] items-center justify-center rounded-[var(--s-radius-md,8px)] bg-[var(--s-surface)] border border-[style:var(--s-border-style,solid)] border-[color:var(--s-border)] text-[var(--s-text)]">
+          <div className="text-center">
+            <div className="font-[family-name:var(--s-font-mono)] text-[10px] uppercase tracking-[0.12em] text-[var(--s-text-muted)] mb-2">Slide 01</div>
+            <div className="font-[family-name:var(--s-font-display)] text-3xl font-bold tracking-tight">Sigil tokens</div>
+          </div>
+        </div>
+      </CarouselItem>
+      <CarouselItem>
+        <div className="flex aspect-[16/9] items-center justify-center rounded-[var(--s-radius-md,8px)] bg-[var(--s-surface-elevated,var(--s-surface))] border border-[style:var(--s-border-style,solid)] border-[color:var(--s-border)] text-[var(--s-text)]">
+          <div className="text-center">
+            <div className="font-[family-name:var(--s-font-mono)] text-[10px] uppercase tracking-[0.12em] text-[var(--s-text-muted)] mb-2">Slide 02</div>
+            <div className="font-[family-name:var(--s-font-display)] text-3xl font-bold tracking-tight">46 presets</div>
+          </div>
+        </div>
+      </CarouselItem>
+      <CarouselItem>
+        <div className="flex aspect-[16/9] items-center justify-center rounded-[var(--s-radius-md,8px)] bg-[var(--s-primary)]/10 border border-[style:var(--s-border-style,solid)] border-[color:var(--s-primary)] text-[var(--s-primary)]">
+          <div className="text-center">
+            <div className="font-[family-name:var(--s-font-mono)] text-[10px] uppercase tracking-[0.12em] mb-2">Slide 03</div>
+            <div className="font-[family-name:var(--s-font-display)] text-3xl font-bold tracking-tight">350+ components</div>
+          </div>
+        </div>
+      </CarouselItem>
+    </CarouselContent>
+    <CarouselPrevious />
+    <CarouselNext />
+    <CarouselDots />
+  </Carousel>
 ```
 
 ## Sub-components

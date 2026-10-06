@@ -117,18 +117,18 @@ export const Toaster = forwardRef<HTMLOListElement, ToasterProps>(function Toast
             "data-[state=closed]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full",
             "data-[swipe=cancel]:translate-x-0 data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)]",
             "data-[swipe=end]:animate-out data-[swipe=end]:slide-out-to-right-full",
-            "transition-all",
+            "transition-[transform,opacity] duration-[var(--s-duration-fast)]",
           )}
           style={toastStyle(t.variant, t.fill)}
         >
           <div className="flex-1">
-            <p className="text-sm font-medium text-[var(--s-text)]">{t.title}</p>
+            <ToastPrimitive.Title className="text-sm font-medium text-inherit">{t.title}</ToastPrimitive.Title>
             {t.description && (
-              <p className="mt-1 text-xs text-[var(--s-text-muted)]">{t.description}</p>
+              <ToastPrimitive.Description className="mt-1 text-sm text-inherit">{t.description}</ToastPrimitive.Description>
             )}
           </div>
           <ToastPrimitive.Close
-            className="shrink-0 text-[var(--s-text-muted)] hover:text-[var(--s-text)] transition-colors"
+            className="inline-flex shrink-0 items-center justify-center min-h-[var(--s-control-hit-area)] min-w-[var(--s-control-hit-area)] text-inherit transition-colors"
             aria-label="Dismiss"
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>

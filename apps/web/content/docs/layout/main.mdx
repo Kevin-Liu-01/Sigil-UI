@@ -1,7 +1,13 @@
 ---
 title: Main
-description: "A Main component from the Sigil design system."
+description: "Mark and arrange the primary content of a page."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <Main className="w-full"><h3>Project overview</h3><p>Your main content stays aligned with the page.</p></Main>
+</ComponentPreview>
 
 ## Import
 
@@ -9,24 +15,18 @@ description: "A Main component from the Sigil design system."
 import { Main } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <Main />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<Main>Main content</Main>
+<Main className="w-full"><h3>Project overview</h3><p>Your main content stays aligned with the page.</p></Main>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `maxWidth` | `string` | — | — |
-| `center` | `boolean` | — | — |
+| `maxWidth` | `string` | — | Max Width configuration. |
+| `center` | `boolean` | — | Center configuration. |
 
 ## Token integration
 

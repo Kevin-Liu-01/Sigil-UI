@@ -1,7 +1,20 @@
 ---
 title: ComparisonTable
-description: "A ComparisonTable component from the Sigil design system."
+description: "Compare features across products or plans in a table."
 ---
+
+## Preview
+
+<ComponentPreview label="Feature comparison">
+  <ComparisonTable
+    columns={["Sigil", "Typical UI kit"]}
+    features={[
+      { name: "Token coverage", values: { Sigil: true, "Typical UI kit": false } },
+      { name: "Live presets", values: { Sigil: true, "Typical UI kit": false } },
+      { name: "Agent constraints", values: { Sigil: true, "Typical UI kit": false } },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +25,14 @@ import { ComparisonTable } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<ComparisonTable>...</ComparisonTable>
+<ComparisonTable
+    columns={["Sigil", "Typical UI kit"]}
+    features={[
+      { name: "Token coverage", values: { Sigil: true, "Typical UI kit": false } },
+      { name: "Live presets", values: { Sigil: true, "Typical UI kit": false } },
+      { name: "Agent constraints", values: { Sigil: true, "Typical UI kit": false } },
+    ]}
+  />
 ```
 
 ## Props

@@ -1,7 +1,13 @@
 ---
 title: PipelineDiagram
-description: "A PipelineDiagram component from the Sigil design system."
+description: "Show the stages in a processing pipeline."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <PipelineDiagram steps={[{ label: "Receive", description: "Validate the request" }, { label: "Process", description: "Run the workflow" }, { label: "Store", description: "Persist the result" }, { label: "Notify", description: "Send confirmation" }]} />
+</ComponentPreview>
 
 ## Import
 
@@ -12,17 +18,17 @@ import { PipelineDiagram } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<PipelineDiagram>...</PipelineDiagram>
+<PipelineDiagram steps={[{ label: "Receive", description: "Validate the request" }, { label: "Process", description: "Run the workflow" }, { label: "Store", description: "Persist the result" }, { label: "Notify", description: "Send confirmation" }]} />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `steps` | `PipelineStep[]` | — | — |
-| `direction` | `"horizontal" | "vertical"` | — | — |
-| `connector` | `"solid" | "dashed" | "dashed-animated"` | — | — |
-| `showNumbers` | `boolean` | — | — |
+| `steps` (required) | `PipelineStep[]` | — | Steps configuration. |
+| `direction` | `"horizontal" \| "vertical"` | — | Direction configuration. |
+| `connector` | `"solid" \| "dashed" \| "dashed-animated"` | — | Connector configuration. |
+| `showNumbers` | `boolean` | — | Show Numbers configuration. |
 
 ## Token integration
 

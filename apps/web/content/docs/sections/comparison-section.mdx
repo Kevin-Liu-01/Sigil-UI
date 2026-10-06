@@ -1,7 +1,13 @@
 ---
 title: ComparisonSection
-description: "A ComparisonSection component from the Sigil design system."
+description: "Compare options in a structured page section."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <ComparisonSection title="One system, fewer overrides" usLabel="Sigil" themLabel="Manual styling" features={[{ name: "Shared design tokens", us: true, them: false }, { name: "Theme switching", us: "One preset", them: "Per component" }, { name: "Accessible primitives", us: true, them: "Add separately" }]} />
+</ComponentPreview>
 
 ## Import
 
@@ -12,19 +18,19 @@ import { ComparisonSection } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<ComparisonSection>...</ComparisonSection>
+<ComparisonSection title="One system, fewer overrides" usLabel="Sigil" themLabel="Manual styling" features={[{ name: "Shared design tokens", us: true, them: false }, { name: "Theme switching", us: "One preset", them: "Per component" }, { name: "Accessible primitives", us: true, them: "Add separately" }]} />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `label` | `string` | — | — |
-| `title` | `string` | — | — |
-| `description` | `string` | — | — |
-| `usLabel` | `string` | — | — |
-| `themLabel` | `string` | — | — |
-| `features` | `ComparisonFeature[]` | — | — |
+| `label` | `string` | — | Readable label for the component. |
+| `title` | `string` | — | Heading displayed in the component. |
+| `description` | `string` | — | Supporting text below the heading. |
+| `usLabel` | `string` | — | Us Label configuration. |
+| `themLabel` | `string` | — | Them Label configuration. |
+| `features` (required) | `ComparisonFeature[]` | — | Features configuration. |
 
 ## Token integration
 

@@ -1,13 +1,7 @@
 ---
 title: DatePicker
-description: "A DatePicker component from the Sigil design system."
+description: "Choose a date from a calendar popover."
 ---
-
-## Import
-
-```tsx
-import { DatePicker, DateRangePicker } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -15,10 +9,16 @@ import { DatePicker, DateRangePicker } from "@sigil-ui/components";
   <DatePicker placeholder="Pick a date" />
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { DatePicker, DateRangePicker } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<DatePicker>...</DatePicker>
+<DatePicker placeholder="Pick a date" />
 ```
 
 ## Sub-components
@@ -31,9 +31,10 @@ This component includes the following parts:
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `value` | `Date` | — | — |
-| `onValueChange` | `(date: Date | undefined) => void` | — | — |
-| `placeholder` | `string` | — | — |
+| `value` | `Date` | — | The current controlled value. |
+| `defaultValue` | `Date` | — | Initial value when the component manages its own state. |
+| `onValueChange` | `(date: Date \| undefined) => void` | — | Called when the user changes the value. |
+| `placeholder` | `string` | — | Hint shown before a value is entered. |
 
 ## Token integration
 

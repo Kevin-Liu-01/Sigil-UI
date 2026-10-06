@@ -26,7 +26,7 @@ import {
   TabsTrigger,
   Select, SelectTrigger, SelectContent, SelectItem, SelectValue,
 } from "@sigil-ui/components";
-import { Copy, Check } from "lucide-react";
+import { Copy, Check } from "@/components/icons";
 
 /* ------------------------------------------------------------------ */
 /*  Component map — maps a name to a rendered preview                  */

@@ -1,7 +1,13 @@
 ---
 title: Margin
-description: "A Margin component from the Sigil design system."
+description: "Apply consistent outer space to a content region."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <Margin visible className="w-full"><div className="p-[var(--s-space-16)] bg-[var(--s-surface)]">Content between the margin rails</div></Margin>
+</ComponentPreview>
 
 ## Import
 
@@ -9,23 +15,17 @@ description: "A Margin component from the Sigil design system."
 import { Margin } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <Margin />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<Margin>Margin content</Margin>
+<Margin visible className="w-full"><div className="p-[var(--s-space-16)] bg-[var(--s-surface)]">Content between the margin rails</div></Margin>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `size` | `"sm" | "md" | "lg"` | `md` | Rail size. |
+| `size` | `"sm" \| "md" \| "lg"` | `md` | Rail size. |
 | `visible` | `boolean` | — | Show visible border rail indicators. |
 
 ## Token integration

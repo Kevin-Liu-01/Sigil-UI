@@ -1,7 +1,13 @@
 ---
 title: GlobeDiagram
-description: "A GlobeDiagram component from the Sigil design system."
+description: "Illustrate geographic connections on a globe."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <GlobeDiagram size={320} cities={[{ label: "San Francisco", lat: 37.77, lon: -122.42 }, { label: "London", lat: 51.5, lon: -0.12 }, { label: "Singapore", lat: 1.35, lon: 103.82 }, { label: "Tokyo", lat: 35.68, lon: 139.69 }]} />
+</ComponentPreview>
 
 ## Import
 
@@ -12,18 +18,18 @@ import { GlobeDiagram } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<GlobeDiagram>...</GlobeDiagram>
+<GlobeDiagram size={320} cities={[{ label: "San Francisco", lat: 37.77, lon: -122.42 }, { label: "London", lat: 51.5, lon: -0.12 }, { label: "Singapore", lat: 1.35, lon: 103.82 }, { label: "Tokyo", lat: 35.68, lon: 139.69 }]} />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `size` | `number` | — | — |
-| `cities` | `GlobeCity[]` | — | — |
-| `dotColor` | `string` | — | — |
-| `arcColor` | `string` | — | — |
-| `rotation` | `number` | — | — |
+| `size` | `number` | — | Sets the component's size. |
+| `cities` | `GlobeCity[]` | — | Cities configuration. |
+| `dotColor` | `string` | — | Dot Color configuration. |
+| `arcColor` | `string` | — | Arc Color configuration. |
+| `rotation` | `number` | — | Rotation configuration. |
 
 ## Token integration
 

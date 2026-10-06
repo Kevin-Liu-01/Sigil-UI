@@ -1,7 +1,20 @@
 ---
 title: FlowDiagram
-description: "A FlowDiagram component from the Sigil design system."
+description: "Explain a process with connected steps."
 ---
+
+## Preview
+
+<ComponentPreview label="Token compilation flow">
+  <FlowDiagram
+    nodes={[
+      { id: "spec", label: "DESIGN.md" },
+      { id: "tokens", label: "Tokens", variant: "highlighted" },
+      { id: "ui", label: "Interface", variant: "accent" },
+    ]}
+    connections={[{ from: "spec", to: "tokens", label: "parse" }, { from: "tokens", to: "ui", label: "compile" }]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,17 +25,24 @@ import { FlowDiagram } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<FlowDiagram>...</FlowDiagram>
+<FlowDiagram
+    nodes={[
+      { id: "spec", label: "DESIGN.md" },
+      { id: "tokens", label: "Tokens", variant: "highlighted" },
+      { id: "ui", label: "Interface", variant: "accent" },
+    ]}
+    connections={[{ from: "spec", to: "tokens", label: "parse" }, { from: "tokens", to: "ui", label: "compile" }]}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `nodes` | `FlowNode[]` | — | — |
-| `connections` | `FlowConnection[]` | — | — |
-| `direction` | `"horizontal" | "vertical"` | — | — |
-| `connector` | `"solid" | "dashed" | "dashed-animated"` | — | — |
+| `nodes` (required) | `FlowNode[]` | — | Nodes configuration. |
+| `connections` (required) | `FlowConnection[]` | — | Connections configuration. |
+| `direction` | `"horizontal" \| "vertical"` | — | Direction configuration. |
+| `connector` | `"solid" \| "dashed" \| "dashed-animated"` | — | Connector configuration. |
 
 ## Token integration
 

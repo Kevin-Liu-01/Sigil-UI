@@ -30,7 +30,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         data-slot="input"
         aria-invalid={hasError || undefined}
         className={cn(
-          "flex h-9 w-full rounded-[var(--s-radius-input,0px)] border border-[style:var(--s-border-style,solid)] px-3 py-1 text-sm",
+          "flex h-[var(--s-input-height,36px)] w-full rounded-[var(--s-radius-input,0px)] border border-[style:var(--s-border-style,solid)] px-3 py-1 text-sm",
           "bg-[var(--s-background)] text-[var(--s-text)]",
           "placeholder:text-[var(--s-text-muted)]",
           "transition-all duration-[var(--s-duration-fast,150ms)]",

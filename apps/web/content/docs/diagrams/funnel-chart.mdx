@@ -1,7 +1,20 @@
 ---
 title: FunnelChart
-description: "A FunnelChart component from the Sigil design system."
+description: "Show how values narrow through successive stages."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <FunnelChart
+    steps={[
+      { label: "Visitors", value: 10000 },
+      { label: "Signups", value: 3200 },
+      { label: "Active", value: 1800 },
+      { label: "Paid", value: 450 },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +25,14 @@ import { FunnelChart } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<FunnelChart>...</FunnelChart>
+<FunnelChart
+    steps={[
+      { label: "Visitors", value: 10000 },
+      { label: "Signups", value: 3200 },
+      { label: "Active", value: 1800 },
+      { label: "Paid", value: 450 },
+    ]}
+  />
 ```
 
 ## Props

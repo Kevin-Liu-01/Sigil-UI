@@ -74,7 +74,7 @@ export const IsometricStackDiagram = forwardRef<SVGSVGElement, IsometricStackDia
                 x={(t[0][0] + t[2][0]) / 2 + ox}
                 y={(t[0][1] + t[2][1]) / 2 + oy + 4}
                 textAnchor="middle"
-                fill="var(--s-text)"
+                fill={i === 0 && !layer.color ? "var(--s-primary-contrast)" : "var(--s-text)"}
                 fontSize={9}
                 fontFamily="var(--s-font-mono, monospace)"
                 fontWeight={600}

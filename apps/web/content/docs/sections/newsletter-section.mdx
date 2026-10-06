@@ -1,7 +1,13 @@
 ---
 title: NewsletterSection
-description: "A NewsletterSection component from the Sigil design system."
+description: "Invite readers to subscribe with an email form."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <NewsletterSection title="Follow new releases" description="Component additions and design-system updates." placeholder="you@example.com" buttonLabel="Subscribe" />
+</ComponentPreview>
 
 ## Import
 
@@ -12,18 +18,18 @@ import { NewsletterSection } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<NewsletterSection>...</NewsletterSection>
+<NewsletterSection title="Follow new releases" description="Component additions and design-system updates." placeholder="you@example.com" buttonLabel="Subscribe" />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `title` | `string` | — | — |
-| `description` | `string` | — | — |
-| `placeholder` | `string` | — | — |
-| `buttonLabel` | `string` | — | — |
-| `onSubmit` | `(email: string) => void` | — | — |
+| `title` | `string` | — | Heading displayed in the component. |
+| `description` | `string` | — | Supporting text below the heading. |
+| `placeholder` | `string` | — | Hint shown before a value is entered. |
+| `buttonLabel` | `string` | — | Button Label configuration. |
+| `onSubmit` | `(email: string) => void` | — | Called when the form is submitted. |
 
 ## Token integration
 

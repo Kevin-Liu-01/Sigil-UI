@@ -1,7 +1,17 @@
 ---
 title: VoronoiBento
-description: "A VoronoiBento component from the Sigil design system."
+description: "Arrange content in a geometric, irregular grid."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <VoronoiBento seeds={3} height={260} className="w-full">
+  <VoronoiCell>Design</VoronoiCell>
+  <VoronoiCell>Build</VoronoiCell>
+  <VoronoiCell>Ship</VoronoiCell>
+</VoronoiBento>
+</ComponentPreview>
 
 ## Import
 
@@ -9,20 +19,14 @@ description: "A VoronoiBento component from the Sigil design system."
 import { VoronoiBento, VoronoiCell } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <VoronoiBento className="h-64">
-  <VoronoiCell>Cell A</VoronoiCell>
-  <VoronoiCell>Cell B</VoronoiCell>
-  <VoronoiCell>Cell C</VoronoiCell>
-</VoronoiBento>
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<VoronoiBento>...</VoronoiBento>
+<VoronoiBento seeds={3} height={260} className="w-full">
+  <VoronoiCell>Design</VoronoiCell>
+  <VoronoiCell>Build</VoronoiCell>
+  <VoronoiCell>Ship</VoronoiCell>
+</VoronoiBento>
 ```
 
 ## Sub-components

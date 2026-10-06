@@ -3,12 +3,6 @@ title: SigilGrid
 description: "Grid with visible cross marks at cell intersections. Uses a pseudo-element background to render the sigil pattern."
 ---
 
-## Import
-
-```tsx
-import { SigilGrid, SigilGridCell } from "@sigil-ui/components";
-```
-
 ## Preview
 
 <ComponentPreview>
@@ -20,10 +14,21 @@ import { SigilGrid, SigilGridCell } from "@sigil-ui/components";
 </SigilGrid>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { SigilGrid, SigilGridCell } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<SigilGrid>...</SigilGrid>
+<SigilGrid columns={4}>
+  <SigilGridCell className="p-4 border border-[var(--s-border)]">A</SigilGridCell>
+  <SigilGridCell className="p-4 border border-[var(--s-border)]">B</SigilGridCell>
+  <SigilGridCell className="p-4 border border-[var(--s-border)]">C</SigilGridCell>
+  <SigilGridCell className="p-4 border border-[var(--s-border)]">D</SigilGridCell>
+</SigilGrid>
 ```
 
 `SigilGrid` is for local component grids and decorative cell layouts. It is not
@@ -48,8 +53,8 @@ This component includes the following parts:
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `columns` | `2 | 3 | 4 | 5 | 6` | `3` | Number of columns. |
-| `gap` | `string | number` | — | Gap between cells. |
+| `columns` | `2 \| 3 \| 4 \| 5 \| 6` | `3` | Number of columns. |
+| `gap` | `string \| number` | — | Gap between cells. |
 
 ## Token integration
 

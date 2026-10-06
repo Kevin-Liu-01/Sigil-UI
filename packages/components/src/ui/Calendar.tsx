@@ -2,7 +2,9 @@
 
 import { forwardRef, useEffect, useRef, useState, type ComponentProps } from "react";
 import { DayPicker, getDefaultClassNames, type DayButton, type DropdownProps } from "react-day-picker";
-import { ChevronDownIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { CaretDownIcon as ChevronDownIcon } from "@phosphor-icons/react/dist/ssr/CaretDown";
+import { CaretLeftIcon as ChevronLeftIcon } from "@phosphor-icons/react/dist/ssr/CaretLeft";
+import { CaretRightIcon as ChevronRightIcon } from "@phosphor-icons/react/dist/ssr/CaretRight";
 import { cn } from "../utils";
 
 export type CalendarProps = ComponentProps<typeof DayPicker> & {
@@ -128,7 +130,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(function Calen
         Chevron: ({ className: chevronCn, orientation, ...chevronProps }) => {
           const Icon =
             orientation === "left" ? ChevronLeftIcon : orientation === "right" ? ChevronRightIcon : ChevronDownIcon;
-          return <Icon className={cn("h-4 w-4", chevronCn)} {...chevronProps} />;
+          return <Icon weight="fill" className={cn("h-4 w-4", chevronCn)} {...chevronProps} />;
         },
         Dropdown: CalendarDropdown,
         DayButton: CalendarDayButton,
@@ -213,7 +215,7 @@ function CalendarDropdown({
         )}
       >
         {selectedOption?.label}
-        <ChevronDownIcon
+        <ChevronDownIcon weight="fill"
           className={cn(
             "h-3.5 w-3.5 text-[var(--s-text-muted)] transition-transform duration-[var(--s-duration-fast,150ms)]",
             open && "rotate-180",

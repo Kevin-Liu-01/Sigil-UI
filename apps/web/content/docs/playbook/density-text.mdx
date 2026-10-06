@@ -1,7 +1,20 @@
 ---
 title: DensityText
-description: "A DensityText component from the Sigil design system."
+description: "Render compact text with a controlled visual density."
 ---
+
+## Preview
+
+<ComponentPreview label="Density roles" vertical>
+  <div className="flex w-full flex-col gap-[var(--s-space-3)]">
+    <DensityText role="chrome">System status</DensityText>
+    <DensityText role="counter">519 tokens compiled</DensityText>
+    <DensityText role="detail">Detailed interface metadata</DensityText>
+    <DensityText role="nav">Documentation navigation</DensityText>
+    <DensityText role="body">Readable supporting copy for a product surface.</DensityText>
+    <DensityText role="headline" as="h3">Agent-first design.</DensityText>
+  </div>
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +25,14 @@ import { DensityText } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<DensityText>...</DensityText>
+<div className="flex w-full flex-col gap-[var(--s-space-3)]">
+    <DensityText role="chrome">System status</DensityText>
+    <DensityText role="counter">519 tokens compiled</DensityText>
+    <DensityText role="detail">Detailed interface metadata</DensityText>
+    <DensityText role="nav">Documentation navigation</DensityText>
+    <DensityText role="body">Readable supporting copy for a product surface.</DensityText>
+    <DensityText role="headline" as="h3">Agent-first design.</DensityText>
+  </div>
 ```
 
 ## Props
@@ -20,7 +40,7 @@ import { DensityText } from "@sigil-ui/components";
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `role` | `DensityRole` | — | The density role determines the font size and family. |
-| `as` | `"span" | "p" | "div" | "h1" | "h2" | "h3" | "h4" | "label...` | `span` | Render as a different element. |
+| `as` | `"span" \| "p" \| "div" \| "h1" \| "h2" \| "h3" \| "h4" \| "label...` | `span` | Render as a different element. |
 | `mono` | `boolean` | — | Mono font (for chrome/counter/detail roles). Auto-applied for chrome/counter. |
 | `uppercase` | `boolean` | — | Uppercase (for chrome/counter roles). Auto-applied for chrome. |
 | `muted` | `boolean` | `false for body/base/headline, true for chrome` | Muted color. |

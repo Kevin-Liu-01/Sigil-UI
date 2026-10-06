@@ -43,7 +43,7 @@ export const Slider = forwardRef<
       ref={ref}
       data-slot="slider"
       className={cn(
-        "relative flex w-full touch-none select-none items-center",
+        "relative flex min-h-[var(--s-control-hit-area,2.75rem)] w-full touch-none select-none items-center",
         className,
       )}
       {...props}
@@ -66,6 +66,13 @@ export const Slider = forwardRef<
           key={i}
           data-slot="slider-thumb"
           className={thumbClasses}
+          aria-label={
+            typeof props["aria-label"] === "string"
+              ? thumbCount > 1
+                ? `${props["aria-label"]} ${i + 1}`
+                : props["aria-label"]
+              : undefined
+          }
         />
       ))}
     </SliderPrimitive.Root>

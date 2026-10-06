@@ -23,57 +23,57 @@ pnpm add @sigil-ui/presets
 ### Structural / Precision
 | Preset | Mood | Display Font | Hue |
 |--------|------|-------------|-----|
-| `sigil` | precise, engineered | Nacelle | Indigo |
-| `kova` | forged, disciplined | Inter | Teal |
-| `cobalt` | metallic, chemical | Inter | Cobalt |
-| `helix` | biological, organic-tech | Inter | Teal |
-| `hex` | geometric, hexagonal | Space Grotesk | Amber |
+| `sigil` | precise, engineered | PP Neue Montreal | Indigo |
+| `kova` | forged, disciplined | PP Acma | Blue |
+| `cobalt` | metallic, chemical | PP Telegraf | Cobalt |
+| `helix` | biological, organic-tech | PP Gatwick | Teal |
+| `hex` | geometric, hexagonal | PP Fuji | Magenta |
 
 ### Minimal / Clean
 | Preset | Mood | Display Font | Hue |
 |--------|------|-------------|-----|
-| `crux` | minimal, decisive | Nacelle | Neutral |
-| `axiom` | mathematical, pure | Inter | Blue |
-| `arc` | flowing, curved | Satoshi | Sky |
-| `mono` | monochrome, terminal | Space Mono | Neutral |
+| `crux` | minimal, decisive | TT Commons Classic | Red |
+| `axiom` | mathematical, pure | PP Eiko | Blue |
+| `arc` | flowing, curved | PP Pangram Sans | Violet |
+| `mono` | monochrome, terminal | PP Supply Mono | Neutral |
 
 ### Dark / Cinematic
 | Preset | Mood | Display Font | Hue |
 |--------|------|-------------|-----|
-| `basalt` | volcanic, grounded | Inter | Slate |
-| `onyx` | obsidian, premium | GT America | Purple |
-| `fang` | fierce, aggressive | Space Grotesk | Red |
-| `obsid` | volcanic, reflective | GT America | Slate |
-| `cipher` | encrypted, mysterious | Space Grotesk | Green |
-| `noir` | cinematic, dramatic | GT America | Amber |
+| `basalt` | volcanic, grounded | PP Monument Extended | Slate |
+| `onyx` | obsidian, premium | PP Neue Machina | Purple |
+| `fang` | fierce, aggressive | PP Mondwest | Lime |
+| `obsid` | volcanic, reflective | PP Stellar | Rose |
+| `cipher` | encrypted, mysterious | PP Neue Bit | Green |
+| `noir` | cinematic, dramatic | PP Hatton | Amber |
 
 ### Colorful / Expressive
 | Preset | Mood | Display Font | Hue |
 |--------|------|-------------|-----|
-| `flux` | dynamic, energetic | Satoshi | Blue-Purple |
-| `shard` | crystalline, sharp | Satoshi | Cyan |
-| `prism` | spectral, joyful | Satoshi | Rainbow |
-| `vex` | complex, intricate | Satoshi | Fuchsia |
-| `dsgn` | creative, tool-like | Inter | Purple |
-| `dusk` | twilight, warm-cool | Satoshi | Rose-Violet |
+| `flux` | dynamic, energetic | PP Gosha Sans | Cyan |
+| `shard` | crystalline, sharp | PP Fragment Sans | Violet |
+| `prism` | spectral, joyful | PP Radio Grotesk | Rainbow |
+| `vex` | complex, intricate | PP Formula Condensed | Fuchsia |
+| `dsgn` | creative, tool-like | PP Casa | Blue |
+| `dusk` | twilight, warm-cool | Vulf Sans | Rose-violet |
 
 ### Editorial / Typographic
 | Preset | Mood | Display Font | Hue |
 |--------|------|-------------|-----|
-| `etch` | etched, engraved | Söhne | Emerald |
-| `rune` | mystical, arcane | Fraunces | Violet |
-| `strata` | layered, geological | Söhne | Amber |
-| `glyph` | typographic, symbolic | Söhne | Indigo |
-| `mrkr` | sketched, raw | Fraunces | Black |
+| `etch` | etched, engraved | Apfel Grotezk | Emerald |
+| `rune` | mystical, arcane | PP Rader | Amber |
+| `strata` | layered, geological | PP Cirka | Amber |
+| `glyph` | typographic, symbolic | Migra | Red |
+| `mrkr` | sketched, raw | PP Writer | Gold |
 
 ### Industrial / Technical
 | Preset | Mood | Display Font | Hue |
 |--------|------|-------------|-----|
-| `alloy` | metallic, fused | Space Grotesk | Copper |
-| `forge` | molten, industrial | Space Grotesk | Orange |
-| `anvil` | heavy, foundational | Space Grotesk | Iron |
-| `rivet` | mechanical, utilitarian | Inter | Amber |
-| `brass` | warm, vintage | Fraunces | Gold |
+| `alloy` | metallic, fused | PP Supply Sans | Copper |
+| `forge` | molten, industrial | Tex Gyre Heros | Orange |
+| `anvil` | heavy, foundational | ABC Monument Grotesk | Blue |
+| `rivet` | mechanical, utilitarian | Nacelle | Orange |
+| `brass` | warm, vintage | PP Woodland | Gold |
 
 ### Edgeless / Atmospheric
 | Preset | Mood | Display Font | Hue |
@@ -217,6 +217,14 @@ const myPreset = mergePresets(sigilPreset, {
   },
 }, "my-brand");
 ```
+
+## Preset quality checks
+
+All switchable presets keep body text at 16px or larger, compact text at 14px or larger, and captions at 12px or larger. Text and status colors are checked against the background and all three card surfaces in light and dark mode. Status colors accept `{ light, dark }` values, as primary colors do.
+
+Run `pnpm audit:presets` to verify complete tokens and accurate font metadata, and `pnpm audit:contrast` to check readable text and button states. Decorative border contrast is reported separately as a warning.
+
+After editing a preset, run `pnpm exec tsx scripts/sync-preset-previews.ts` to refresh the catalog, these font tables, and the website's color swatches. The optional `pnpm exec tsx scripts/refine-presets.ts --write` authoring tool adjusts lightness and minimum type sizes in the source files; it never modifies presets at runtime.
 
 ## For AI Agents
 

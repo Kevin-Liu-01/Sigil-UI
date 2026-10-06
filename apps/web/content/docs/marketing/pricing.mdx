@@ -1,7 +1,19 @@
 ---
 title: Pricing
-description: "A Pricing component from the Sigil design system."
+description: "Present pricing options with their features and actions."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <Pricing
+    name="Pro"
+    price="$29"
+    period="/mo"
+    highlighted
+    features={["Unlimited projects", "Priority support", "Custom domains", "Analytics"]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +24,13 @@ import { Pricing } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<Pricing>...</Pricing>
+<Pricing
+    name="Pro"
+    price="$29"
+    period="/mo"
+    highlighted
+    features={["Unlimited projects", "Priority support", "Custom domains", "Analytics"]}
+  />
 ```
 
 ## Props

@@ -1,7 +1,13 @@
 ---
 title: Aside
-description: "A Aside component from the Sigil design system."
+description: "Place supporting content alongside the main reading area."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <Aside sticky={false} width="100%" className="p-[var(--s-space-16)]"><h3>Project details</h3><p>Updated today</p><p>Three contributors</p></Aside>
+</ComponentPreview>
 
 ## Import
 
@@ -9,25 +15,19 @@ description: "A Aside component from the Sigil design system."
 import { Aside } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <Aside />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<Aside>Aside content</Aside>
+<Aside sticky={false} width="100%" className="p-[var(--s-space-16)]"><h3>Project details</h3><p>Updated today</p><p>Three contributors</p></Aside>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `width` | `number | string` | — | — |
-| `sticky` | `boolean` | — | — |
-| `borderSide` | `"left" | "right" | "none"` | — | — |
+| `width` | `number \| string` | — | Width of the rendered content. |
+| `sticky` | `boolean` | — | Sticky configuration. |
+| `borderSide` | `"left" \| "right" \| "none"` | — | Border Side configuration. |
 
 ## Token integration
 

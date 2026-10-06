@@ -1,7 +1,19 @@
 ---
 title: CapabilityGrid
-description: "A CapabilityGrid component from the Sigil design system."
+description: "Explain a set of capabilities in a structured diagram grid."
 ---
+
+## Preview
+
+<ComponentPreview label="Runtime capabilities">
+  <CapabilityGrid
+    categories={[
+      { label: "Runtimes", items: [{ name: "Node" }, { name: "Python" }, { name: "Rust" }] },
+      { label: "System", items: [{ name: "Root", color: "var(--s-success)" }, { name: "GPU", color: "var(--s-success)" }] },
+    ]}
+    callout={{ label: "Unavailable", items: ["Nested virtualization"], variant: "warning" }}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,15 +24,21 @@ import { CapabilityGrid } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<CapabilityGrid>...</CapabilityGrid>
+<CapabilityGrid
+    categories={[
+      { label: "Runtimes", items: [{ name: "Node" }, { name: "Python" }, { name: "Rust" }] },
+      { label: "System", items: [{ name: "Root", color: "var(--s-success)" }, { name: "GPU", color: "var(--s-success)" }] },
+    ]}
+    callout={{ label: "Unavailable", items: ["Nested virtualization"], variant: "warning" }}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `categories` | `CapabilityCategory[]` | — | — |
-| `callout` | `CapabilityCallout` | — | — |
+| `categories` (required) | `CapabilityCategory[]` | — | Categories configuration. |
+| `callout` | `CapabilityCallout` | — | Callout configuration. |
 
 ## Token integration
 

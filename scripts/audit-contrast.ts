@@ -150,6 +150,14 @@ const CHECKS: CheckDef[] = [
   { fg: "info",           bg: "background",  minRatio: 3.0, label: "info on bg", severity: "warn" },
 ];
 
+// Captions and status labels are normal text, including on tinted cards.
+for (const bg of ["background", "surface", "surface-elevated", "surface-sunken"]) {
+  for (const fg of ["text", "text-secondary", "text-muted", "text-subtle", "success", "warning", "error", "info"]) {
+    CHECKS.push({ fg, bg, minRatio: 4.5, label: `${fg} on ${bg}`, severity: "fail" });
+  }
+}
+CHECKS.push({ fg: "primary-contrast", bg: "primary-hover", minRatio: 4.5, label: "button text on hover", severity: "fail" });
+
 // primary-contrast on primary (button text)
 const BUTTON_CHECK: CheckDef = {
   fg: "primary-contrast", bg: "primary", minRatio: 4.5, label: "primary-contrast on primary (btn)", severity: "fail"

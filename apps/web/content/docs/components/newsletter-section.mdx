@@ -3,31 +3,22 @@ title: NewsletterSection
 description: Centered email signup form with customizable title, description, and submit handler.
 ---
 
+## Preview
+
+<ComponentPreview vertical>
+  <NewsletterSection title="Follow new releases" description="Component additions and design-system updates." placeholder="you@example.com" buttonLabel="Subscribe" />
+</ComponentPreview>
+
 ## Import
 
 ```tsx
 import { NewsletterSection } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview vertical>
-  <NewsletterSection
-    title="Stay in the loop"
-    description="Monthly digest of new components, tokens, and presets."
-    placeholder="you@example.com"
-    cta="Subscribe"
-  />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<NewsletterSection
-  title="Stay updated"
-  description="Get the latest news delivered to your inbox."
-  onSubmit={(email) => console.log("Subscribed:", email)}
-/>
+<NewsletterSection title="Follow new releases" description="Component additions and design-system updates." placeholder="you@example.com" buttonLabel="Subscribe" />
 ```
 
 ## Custom labels

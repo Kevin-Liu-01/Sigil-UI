@@ -1,7 +1,13 @@
 ---
 title: HubSpokeDiagram
-description: "A HubSpokeDiagram component from the Sigil design system."
+description: "Show relationships around a central node."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <HubSpokeDiagram hub={{ label: "Design tokens", sublabel: "Shared source" }} spokes={[{ id: "forms", label: "Forms", side: "left" }, { id: "navigation", label: "Navigation", side: "left" }, { id: "charts", label: "Charts", side: "right" }, { id: "layout", label: "Layout", side: "right" }]} />
+</ComponentPreview>
 
 ## Import
 
@@ -12,14 +18,16 @@ import { HubSpokeDiagram } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<HubSpokeDiagram>...</HubSpokeDiagram>
+<HubSpokeDiagram hub={{ label: "Design tokens", sublabel: "Shared source" }} spokes={[{ id: "forms", label: "Forms", side: "left" }, { id: "navigation", label: "Navigation", side: "left" }, { id: "charts", label: "Charts", side: "right" }, { id: "layout", label: "Layout", side: "right" }]} />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `hub` | `{ label: string; icon?: ReactNode; sublabel?: string` | — | — |
+| `hub` (required) | `{ label: string; icon?: ReactNode; sublabel?: string }` | — | Hub configuration. |
+| `spokes` (required) | `SpokeNode[]` | — | Spokes configuration. |
+| `connector` | `"solid" \| "dashed" \| "dashed-animated"` | — | Connector configuration. |
 
 ## Token integration
 

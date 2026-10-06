@@ -55,7 +55,7 @@ export function readConfig(cwd: string = process.cwd()): SigilConfig | null {
 
 export function writeConfig(config: SigilConfig, cwd: string = process.cwd()): void {
   const configPath = getConfigPath(cwd);
-  const content = `import type { SigilConfig } from "@sigil-ui/cli";
+  const content = `import type { SigilConfig } from "@sigil-ui/cli/config";
 
 const config: SigilConfig = {
   preset: "${config.preset}",

@@ -65,7 +65,7 @@ export const AnnouncementBar = forwardRef<HTMLDivElement, AnnouncementBarProps>(
           <button
             type="button"
             onClick={() => setVisible(false)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 p-1"
+            className="absolute right-1 top-1/2 inline-flex size-[var(--s-control-hit-area,2.75rem)] -translate-y-1/2 items-center justify-center"
             style={{ color: "var(--s-text-muted)", background: "none", border: "none", cursor: "pointer" }}
             aria-label="Dismiss"
           >

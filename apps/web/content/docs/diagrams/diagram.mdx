@@ -1,7 +1,13 @@
 ---
 title: Diagram
-description: "A Diagram component from the Sigil design system."
+description: "Provide a shared canvas for token-styled diagrams."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <Diagram><div className="flex flex-wrap items-center justify-center gap-4"><DiagramNode label="Client" /><DiagramConnector direction="horizontal" length={80} /><DiagramNode label="API" /></div></Diagram>
+</ComponentPreview>
 
 ## Import
 
@@ -12,16 +18,17 @@ import { Diagram } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<Diagram>...</Diagram>
+<Diagram><div className="flex flex-wrap items-center justify-center gap-4"><DiagramNode label="Client" /><DiagramConnector direction="horizontal" length={80} /><DiagramNode label="API" /></div></Diagram>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `showGrid` | `boolean` | — | — |
-| `gridVariant` | `DiagramGridVariant` | — | — |
-| `gridSize` | `number` | — | — |
+| `showGrid` | `boolean` | — | Show Grid configuration. |
+| `gridVariant` | `DiagramGridVariant` | — | Grid Variant configuration. |
+| `gridSize` | `number` | — | Grid Size configuration. |
+| `children` | `ReactNode` | — | Content rendered inside the component. |
 
 ## Token integration
 

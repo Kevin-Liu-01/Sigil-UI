@@ -3,17 +3,17 @@ title: Toast
 description: A non-intrusive notification popup with auto-dismiss, action buttons, and swipe-to-dismiss. Built on Radix Toast.
 ---
 
+## Preview
+
+<ComponentPreview>
+  <ToastPreview />
+</ComponentPreview>
+
 ## Import
 
 ```tsx
 import { Toaster, toast } from "@sigil-ui/components";
 ```
-
-## Preview
-
-<ComponentPreview>
-  <Button>Show toast</Button>
-</ComponentPreview>
 
 ## Setup
 
@@ -26,7 +26,49 @@ Add `<Toaster />` to your root layout:
 ## Usage
 
 ```tsx
-toast("Changes saved successfully.");
+"use client";
+
+import { useState } from "react";
+import { Button, Sonner, Toaster, ToastPromise, sonnerToast, toast } from "@sigil-ui/components";
+
+const TRAFFIC = [
+  { month: "Apr", desktop: 186, mobile: 80 },
+  { month: "May", desktop: 224, mobile: 112 },
+  { month: "Jun", desktop: 208, mobile: 132 },
+  { month: "Jul", desktop: 278, mobile: 166 },
+  { month: "Aug", desktop: 305, mobile: 184 },
+  { month: "Sep", desktop: 342, mobile: 218 },
+];
+
+function ToastPreview({ engine = "radix" }: { engine?: "radix" | "sonner" | "promise" }) {
+  const [pending, setPending] = useState(false);
+  async function save(fail = false) {
+    setPending(true);
+    const request = new Promise<void>((resolve, reject) => {
+      window.setTimeout(() => fail ? reject(new Error("Demo request failed")) : resolve(), 800);
+    });
+    try {
+      await ToastPromise(request, { loading: "Saving project…", success: "Project saved", error: "Could not save. Try again." });
+    } catch {
+      // The toast displays the demo failure; keep the button available for retry.
+    } finally { setPending(false); }
+  }
+  return (
+    <div className="grid gap-[var(--s-space-16)] w-full">
+      {engine === "radix" ? <Toaster position="top-right" /> : <Sonner position="top-right" closeButton />}
+      <div className="flex flex-wrap gap-[var(--s-space-12)]">
+        {engine === "promise" ? <>
+          <Button disabled={pending} onClick={() => save()}>Save project</Button>
+          <Button variant="outline" disabled={pending} onClick={() => save(true)}>Try a failed request</Button>
+        </> : <>
+          <Button onClick={() => engine === "sonner" ? sonnerToast.success("Project saved", { description: "Your changes are ready." }) : toast({ title: "Project saved", description: "Your changes are ready.", variant: "success" })}>Show success</Button>
+          <Button variant="outline" onClick={() => engine === "sonner" ? sonnerToast.error("Could not save", { description: "Check your connection and try again." }) : toast({ title: "Could not save", description: "Check your connection and try again.", variant: "error" })}>Show error</Button>
+        </>}
+      </div>
+      <p className="text-[var(--s-text-muted)] text-[length:var(--s-size-sm)]">Notifications appear in the top right. Dismiss them with the close button.</p>
+    </div>
+  );
+}
 ```
 
 ## Variants

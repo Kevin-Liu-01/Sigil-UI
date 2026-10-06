@@ -25,14 +25,14 @@ export const HubSpokeDiagram = forwardRef<HTMLDivElement, HubSpokeDiagramProps>(
     if (connector !== "solid") dashProps.strokeDasharray = "6 4";
 
     const SpokeColumn = ({ items, side }: { items: SpokeNode[]; side: "left" | "right" }) => (
-      <div className="flex flex-col gap-3 justify-center">
+      <div className="min-w-0 flex flex-col gap-[var(--s-space-12)] justify-center">
         {items.map(spoke => (
-          <div key={spoke.id} className={cn("flex items-center gap-3", side === "right" && "flex-row-reverse")}>
+          <div key={spoke.id} className={cn("min-w-0 flex items-center gap-[var(--s-space-4)]", side === "right" && "flex-row-reverse")}>
             <div className="flex items-center gap-2 px-3 py-2 rounded-[var(--s-radius-md,0px)] border border-[color:var(--s-border)] bg-[var(--s-surface)] text-xs font-medium text-[var(--s-text)] [&_svg]:size-3.5 [&_svg]:text-[var(--s-text-muted)]">
               {spoke.icon}
               {spoke.label}
             </div>
-            <svg width="40" height="4" viewBox="0 0 40 4" className="shrink-0" aria-hidden>
+            <svg width="40" height="4" viewBox="0 0 40 4" className="w-[var(--s-space-12)] shrink-0" aria-hidden>
               <line x1="0" y1="2" x2="40" y2="2" stroke="var(--s-border-strong, var(--s-border))" strokeWidth="1.5" {...dashProps} />
             </svg>
           </div>
@@ -50,10 +50,10 @@ export const HubSpokeDiagram = forwardRef<HTMLDivElement, HubSpokeDiagramProps>(
         {leftSpokes.length > 0 && <SpokeColumn items={leftSpokes} side="left" />}
 
         <div className={cn(
-          "relative flex flex-col items-center justify-center gap-1 px-6 py-4 mx-2",
+          "relative flex flex-col items-center justify-center gap-1 px-[var(--s-space-8)] py-[var(--s-space-16)] mx-[var(--s-space-4)]",
           "rounded-[var(--s-radius-lg,0px)] border-2 border-[color:var(--s-primary)]",
           "bg-[var(--s-primary-muted)]",
-          "min-w-[120px] text-center",
+          "min-w-0 text-center break-words",
         )}>
           {hub.icon && <div className="[&_svg]:size-6 text-[var(--s-primary)]">{hub.icon}</div>}
           <span className="text-sm font-bold text-[var(--s-text)]">{hub.label}</span>

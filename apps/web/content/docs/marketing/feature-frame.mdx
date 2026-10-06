@@ -1,7 +1,19 @@
 ---
 title: FeatureFrame
-description: "A FeatureFrame component from the Sigil design system."
+description: "Frame a feature illustration with supporting text."
 ---
+
+## Preview
+
+<ComponentPreview label="Feature highlight">
+  <FeatureFrame
+    icon={<span aria-hidden className="font-mono text-lg">⌘</span>}
+    title="One design contract"
+    description="Every component reads the same complete, validated token schema."
+  >
+    <a href="/docs" className="text-sm font-medium text-[var(--s-primary)]">Read the system guide →</a>
+  </FeatureFrame>
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +24,13 @@ import { FeatureFrame } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<FeatureFrame>...</FeatureFrame>
+<FeatureFrame
+    icon={<span aria-hidden className="font-mono text-lg">⌘</span>}
+    title="One design contract"
+    description="Every component reads the same complete, validated token schema."
+  >
+    <a href="/docs" className="text-sm font-medium text-[var(--s-primary)]">Read the system guide →</a>
+  </FeatureFrame>
 ```
 
 ## Props

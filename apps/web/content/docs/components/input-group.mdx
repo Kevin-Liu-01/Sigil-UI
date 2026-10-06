@@ -1,13 +1,7 @@
 ---
 title: InputGroup
-description: "A InputGroup component from the Sigil design system."
+description: "Combine an input with labels, icons, or adjacent actions."
 ---
-
-## Import
-
-```tsx
-import { InputGroup, InputGroupInput, InputGroupTextarea, InputGroupAddon, InputGroupButton, InputGroupText } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -19,10 +13,20 @@ import { InputGroup, InputGroupInput, InputGroupTextarea, InputGroupAddon, Input
   </InputGroup>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { InputGroup, InputGroupInput, InputGroupTextarea, InputGroupAddon, InputGroupButton, InputGroupText } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<InputGroup>...</InputGroup>
+<InputGroup className="w-full max-w-sm">
+    <InputGroupAddon>$</InputGroupAddon>
+    <InputGroupInput placeholder="0.00" />
+    <InputGroupAddon>USD</InputGroupAddon>
+  </InputGroup>
 ```
 
 ## Sub-components

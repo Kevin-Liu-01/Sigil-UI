@@ -1,13 +1,7 @@
 ---
 title: SigilCursor
-description: "A SigilCursor component from the Sigil design system."
+description: "Apply the active preset's custom pointer treatment."
 ---
-
-## Import
-
-```tsx
-import { SigilCursor } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -18,10 +12,19 @@ import { SigilCursor } from "@sigil-ui/components";
   </div>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { SigilCursor } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<SigilCursor>...</SigilCursor>
+<div className="relative w-full h-32 border border-[color:var(--s-border)] flex items-center justify-center text-sm text-[var(--s-text-muted)]">
+    <SigilCursor variant="dot" />
+    Hover this surface to see the custom cursor
+  </div>
 ```
 
 ## Props
@@ -31,8 +34,8 @@ import { SigilCursor } from "@sigil-ui/components";
 | `enabled` | `boolean` | `true` | Enable the custom cursor. |
 | `hideNative` | `boolean` | `true` | Hide the native cursor while this component is mounted. |
 | `variant` | `SigilCursorVariant` | `sigil` | Cursor drawing style. |
-| `size` | `number | string` | — | Cursor outer size. Accepts a number of pixels or any CSS length. |
-| `dotSize` | `number | string` | — | Center dot size. Accepts a number of pixels or any CSS length. |
+| `size` | `number \| string` | — | Cursor outer size. Accepts a number of pixels or any CSS length. |
+| `dotSize` | `number \| string` | — | Center dot size. Accepts a number of pixels or any CSS length. |
 | `color` | `string` | — | Primary cursor color. |
 | `ringColor` | `string` | — | Ring stroke color. |
 | `dotColor` | `string` | — | Center dot color. |

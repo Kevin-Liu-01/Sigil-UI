@@ -1,7 +1,13 @@
 ---
 title: AnnouncementBar
-description: "A AnnouncementBar component from the Sigil design system."
+description: "Place a short announcement and link above your navigation."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <AnnouncementBar badge="New" message="Sigil UI v2 is here — 46 presets, 350+ components" href="/docs" />
+</ComponentPreview>
 
 ## Import
 
@@ -9,27 +15,21 @@ description: "A AnnouncementBar component from the Sigil design system."
 import { AnnouncementBar } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <AnnouncementBar />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<AnnouncementBar>AnnouncementBar content</AnnouncementBar>
+<AnnouncementBar badge="New" message="Sigil UI v2 is here — 46 presets, 350+ components" href="/docs" />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `icon` | `ReactNode` | — | — |
-| `badge` | `string` | — | — |
-| `message` | `string` | — | — |
-| `href` | `string` | — | — |
-| `dismissible` | `boolean` | — | — |
+| `icon` | `ReactNode` | — | Icon configuration. |
+| `badge` | `string` | — | Badge configuration. |
+| `message` (required) | `string` | — | Message configuration. |
+| `href` | `string` | — | Href configuration. |
+| `dismissible` | `boolean` | — | Dismissible configuration. |
 
 ## Token integration
 

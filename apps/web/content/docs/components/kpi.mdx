@@ -1,13 +1,7 @@
 ---
 title: KPI
-description: "A KPI component from the Sigil design system."
+description: "Display a key metric with a label and change indicator."
 ---
-
-## Import
-
-```tsx
-import { KPI } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -15,10 +9,16 @@ import { KPI } from "@sigil-ui/components";
   <KPI label="Revenue" value="$12,340" />
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { KPI } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<KPI>KPI content</KPI>
+<KPI label="Revenue" value="$12,340" />
 ```
 
 ## Props
@@ -26,9 +26,9 @@ import { KPI } from "@sigil-ui/components";
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `label` | `string` | — | Metric label. |
-| `value` | `string | number` | — | Current value. |
+| `value` | `string \| number` | — | Current value. |
 | `change` | `string` | — | Change amount (e.g. "+12.5%"). |
-| `trend` | `"up" | "down" | "neutral"` | `neutral` | Trend direction. |
+| `trend` | `"up" \| "down" \| "neutral"` | `neutral` | Trend direction. |
 
 ## Token integration
 

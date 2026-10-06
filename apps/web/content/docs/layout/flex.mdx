@@ -1,33 +1,33 @@
 ---
 title: Flex
-description: "A Flex component from the Sigil design system."
+description: "Arrange children with token-based flex alignment and gaps."
 ---
-
-## Import
-
-```tsx
-import { Flex } from "@sigil-ui/components";
-```
 
 ## Preview
 
 <ComponentPreview>
-  <Flex />
+  <Flex gap="var(--s-space-12)" wrap><Badge>Design</Badge><Badge>Build</Badge><Badge>Ship</Badge></Flex>
 </ComponentPreview>
+
+## Import
+
+```tsx
+import { Flex, Badge } from "@sigil-ui/components";
+```
 
 ## Usage
 
 ```tsx
-<Flex>Flex content</Flex>
+<Flex gap="var(--s-space-12)" wrap><Badge>Design</Badge><Badge>Build</Badge><Badge>Ship</Badge></Flex>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `direction` | `"row" | "column" | "row-reverse" | "column-reverse"` | — | — |
-| `align` | `"start" | "center" | "end" | "stretch" | "baseline"` | — | — |
-| `justify` | `"start" | "center" | "end" | "between" | "around" | "evenly"` | — | — |
-| `wrap` | `boolean | "wrap" | "nowrap" | "wrap-reverse"` | — | — |
-| `gap` | `number | string` | — | — |
-| `inline` | `boolean` | — | — |
+| `direction` | `"row" \| "column" \| "row-reverse" \| "column-reverse"` | — | Direction configuration. |
+| `align` | `"start" \| "center" \| "end" \| "stretch" \| "baseline"` | — | Align configuration. |
+| `justify` | `"start" \| "center" \| "end" \| "between" \| "around" \| "evenly"` | — | Justify configuration. |
+| `wrap` | `boolean \| "wrap" \| "nowrap" \| "wrap-reverse"` | — | Wrap configuration. |
+| `gap` | `number \| string` | — | Gap configuration. |
+| `inline` | `boolean` | — | Inline configuration. |

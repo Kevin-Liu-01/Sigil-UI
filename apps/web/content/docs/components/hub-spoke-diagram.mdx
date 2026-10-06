@@ -3,38 +3,22 @@ title: HubSpokeDiagram
 description: A hub-and-spoke layout with a central node connected to left and right spoke nodes.
 ---
 
+## Preview
+
+<ComponentPreview vertical>
+  <HubSpokeDiagram hub={{ label: "Design tokens", sublabel: "Shared source" }} spokes={[{ id: "forms", label: "Forms", side: "left" }, { id: "navigation", label: "Navigation", side: "left" }, { id: "charts", label: "Charts", side: "right" }, { id: "layout", label: "Layout", side: "right" }]} />
+</ComponentPreview>
+
 ## Import
 
 ```tsx
 import { HubSpokeDiagram } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview vertical>
-  <HubSpokeDiagram
-    hub={{ id: "core", label: "Core" }}
-    spokes={[
-      { id: "a", label: "Tokens" },
-      { id: "b", label: "Components" },
-      { id: "c", label: "Presets" },
-      { id: "d", label: "CLI" },
-    ]}
-  />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<HubSpokeDiagram
-  hub={{ label: "API Gateway", sublabel: "v2.1" }}
-  spokes={[
-    { id: "auth", label: "Auth", side: "left" },
-    { id: "users", label: "Users", side: "left" },
-    { id: "billing", label: "Billing", side: "right" },
-    { id: "notify", label: "Notifications", side: "right" },
-  ]}
-/>
+<HubSpokeDiagram hub={{ label: "Design tokens", sublabel: "Shared source" }} spokes={[{ id: "forms", label: "Forms", side: "left" }, { id: "navigation", label: "Navigation", side: "left" }, { id: "charts", label: "Charts", side: "right" }, { id: "layout", label: "Layout", side: "right" }]} />
 ```
 
 ## With icons

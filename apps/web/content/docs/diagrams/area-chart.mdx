@@ -1,7 +1,27 @@
 ---
 title: AreaChart
-description: "A AreaChart component from the Sigil design system."
+description: "Compare changes over time with filled data series."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <AreaChart
+    series={[
+      {
+        label: "Revenue",
+        points: [
+          { label: "Jan", value: 40 },
+          { label: "Feb", value: 55 },
+          { label: "Mar", value: 48 },
+          { label: "Apr", value: 72 },
+          { label: "May", value: 85 },
+          { label: "Jun", value: 95 },
+        ],
+      },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +32,21 @@ import { AreaChart } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<AreaChart>...</AreaChart>
+<AreaChart
+    series={[
+      {
+        label: "Revenue",
+        points: [
+          { label: "Jan", value: 40 },
+          { label: "Feb", value: 55 },
+          { label: "Mar", value: 48 },
+          { label: "Apr", value: 72 },
+          { label: "May", value: 85 },
+          { label: "Jun", value: 95 },
+        ],
+      },
+    ]}
+  />
 ```
 
 ## Props
@@ -24,7 +58,7 @@ import { AreaChart } from "@sigil-ui/components";
 | `height` | `number` | — | — |
 | `stacked` | `boolean` | `false` | Stacked areas. |
 | `showGrid` | `boolean` | `true` | Show grid lines. |
-| `curve` | `"smooth" | "linear"` | `smooth` | Curve type. |
+| `curve` | `"smooth" \| "linear"` | `smooth` | Curve type. |
 
 ## Token integration
 

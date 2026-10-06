@@ -3,49 +3,28 @@ title: Pagination
 description: A page navigation component with previous/next buttons, numbered pages, and ellipsis truncation.
 ---
 
-## Import
-
-```tsx
-import {
-  Pagination, PaginationContent, PaginationItem,
-  PaginationPrevious, PaginationNext, PaginationLink, PaginationEllipsis,
-} from "@sigil-ui/components";
-```
-
 ## Preview
 
 <ComponentPreview>
-  <Pagination total={100} pageSize={10} page={1} />
+  <Pagination currentPage={4} totalPages={12} />
 </ComponentPreview>
+
+## Import
+
+```tsx
+import { Pagination } from "@sigil-ui/components";
+```
 
 ## Usage
 
 ```tsx
-<Pagination>
-  <PaginationContent>
-    <PaginationItem><PaginationPrevious href="/page/1" /></PaginationItem>
-    <PaginationItem><PaginationLink href="/page/1">1</PaginationLink></PaginationItem>
-    <PaginationItem><PaginationLink href="/page/2" isActive>2</PaginationLink></PaginationItem>
-    <PaginationItem><PaginationLink href="/page/3">3</PaginationLink></PaginationItem>
-    <PaginationItem><PaginationNext href="/page/3" /></PaginationItem>
-  </PaginationContent>
-</Pagination>
+<Pagination currentPage={2} totalPages={10} onPageChange={setPage} />
 ```
 
 ## With ellipsis
 
 ```tsx
-<Pagination>
-  <PaginationContent>
-    <PaginationItem><PaginationPrevious href="#" /></PaginationItem>
-    <PaginationItem><PaginationLink href="#">1</PaginationLink></PaginationItem>
-    <PaginationItem><PaginationEllipsis /></PaginationItem>
-    <PaginationItem><PaginationLink href="#" isActive>5</PaginationLink></PaginationItem>
-    <PaginationItem><PaginationEllipsis /></PaginationItem>
-    <PaginationItem><PaginationLink href="#">10</PaginationLink></PaginationItem>
-    <PaginationItem><PaginationNext href="#" /></PaginationItem>
-  </PaginationContent>
-</Pagination>
+<Pagination currentPage={5} totalPages={20} siblingCount={1} />
 ```
 
 ## Button variant
@@ -70,15 +49,14 @@ Use `onClick` instead of `href` for SPA routing:
 
 ## Props
 
-### PaginationLink
+### Pagination
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `href` | `string` | — | Link destination |
-| `isActive` | `boolean` | `false` | Current page |
-| `onClick` | `() => void` | — | Click handler |
-| `className` | `string` | — | Additional CSS classes |
-| `children` | `ReactNode` | — | Page number |
+| `currentPage` | `number` | — | Active page, one-indexed |
+| `totalPages` | `number` | — | Total available pages |
+| `onPageChange` | `(page: number) => void` | — | Called when a page is selected |
+| `siblingCount` | `number` | `1` | Page buttons shown around the active page |
 
 ## Accessibility
 

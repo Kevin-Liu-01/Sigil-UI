@@ -3,34 +3,22 @@ title: StackDiagram
 description: A vertical stack of labeled layers with optional 3D tilt, hatching, and interactive hover states.
 ---
 
+## Preview
+
+<ComponentPreview vertical>
+  <StackDiagram title="Application layers" layers={[{ label: "Interface", children: "Pages and reusable components" }, { label: "Services", children: "Business logic and workflows", accent: true }, { label: "Storage", children: "Persistent application data", hatched: true }]} />
+</ComponentPreview>
+
 ## Import
 
 ```tsx
 import { StackDiagram } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview vertical>
-  <StackDiagram
-    layers={[
-      { id: "ui",      label: "UI",       description: "React components" },
-      { id: "tokens",  label: "Tokens",   description: "var(--s-*)" },
-      { id: "presets", label: "Presets",  description: "519 fields each" },
-    ]}
-  />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<StackDiagram
-  layers={[
-    { label: "UI" },
-    { label: "API" },
-    { label: "DB", accent: true },
-  ]}
-/>
+<StackDiagram title="Application layers" layers={[{ label: "Interface", children: "Pages and reusable components" }, { label: "Services", children: "Business logic and workflows", accent: true }, { label: "Storage", children: "Persistent application data", hatched: true }]} />
 ```
 
 ## With title and tilt

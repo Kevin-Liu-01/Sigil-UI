@@ -29,7 +29,9 @@ export const FooterSection = forwardRef<HTMLElement, FooterSectionProps>(
         {...props}
       >
         <div className="mx-auto max-w-[var(--s-content-max,1200px)] px-[var(--s-page-margin,24px)]">
-          <div className="grid grid-cols-2 md:grid-cols-[1.5fr_repeat(auto-fit,1fr)] gap-x-[var(--s-footer-column-gap,32px)] gap-y-[var(--s-footer-row-gap,32px)] mb-12">
+          <div
+            className="grid grid-cols-2 gap-x-[var(--s-footer-column-gap,32px)] gap-y-[var(--s-footer-row-gap,32px)] mb-12 md:[grid-template-columns:minmax(0,1.5fr)_repeat(var(--s-footer-columns,4),minmax(0,1fr))]"
+          >
             <div className="col-span-2 md:col-span-1">
               {logo && <div className="mb-3 [&_svg]:h-[var(--s-footer-logo-height,24px)] [&_img]:h-[var(--s-footer-logo-height,24px)] [&_svg]:w-auto [&_img]:w-auto">{logo}</div>}
               {tagline && <p className="text-[length:var(--s-footer-link-size,0.875rem)] text-[var(--s-text-muted)] max-w-[var(--s-footer-tagline-max-width,20rem)]">{tagline}</p>}
@@ -50,7 +52,7 @@ export const FooterSection = forwardRef<HTMLElement, FooterSectionProps>(
                 <ul className="flex flex-col gap-[var(--s-footer-link-gap,8px)]">
                   {group.links.map((link, j) => (
                     <li key={j}>
-                      <a href={link.href} className="text-[length:var(--s-footer-link-size,0.875rem)] text-[var(--s-text-muted)] hover:text-[var(--s-text)] transition-colors duration-[var(--s-duration-fast,150ms)]">
+                      <a href={link.href} className="inline-flex min-h-[var(--s-control-hit-area,2.75rem)] items-center text-[length:var(--s-footer-link-size,0.875rem)] text-[var(--s-text-muted)] hover:text-[var(--s-text)] transition-colors duration-[var(--s-duration-fast,150ms)]">
                         {link.label}
                       </a>
                     </li>

@@ -1,7 +1,15 @@
 ---
 title: LargeTextSection
-description: "A LargeTextSection component from the Sigil design system."
+description: "Give a short statement a prominent place in the page."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <LargeTextSection
+    text="Token-driven design system for the agent era."
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,15 +20,17 @@ import { LargeTextSection } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<LargeTextSection>...</LargeTextSection>
+<LargeTextSection
+    text="Token-driven design system for the agent era."
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `text` | `ReactNode` | — | — |
-| `align` | `"left" | "center"` | — | — |
+| `text` (required) | `ReactNode` | — | Text configuration. |
+| `align` | `"left" \| "center"` | — | Align configuration. |
 
 ## Token integration
 

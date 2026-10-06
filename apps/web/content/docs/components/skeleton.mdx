@@ -1,13 +1,7 @@
 ---
 title: Skeleton
-description: "A Skeleton component from the Sigil design system."
+description: "Reserve a content shape while data is loading."
 ---
-
-## Import
-
-```tsx
-import { Skeleton } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -19,10 +13,20 @@ import { Skeleton } from "@sigil-ui/components";
   </div>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Skeleton } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Skeleton>Skeleton content</Skeleton>
+<div className="flex flex-col gap-3 w-full max-w-sm">
+    <Skeleton className="h-6 w-3/4" />
+    <Skeleton className="h-4 w-full" />
+    <Skeleton className="h-4 w-5/6" />
+  </div>
 ```
 
 ## Props

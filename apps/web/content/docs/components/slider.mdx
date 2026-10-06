@@ -1,7 +1,13 @@
 ---
 title: Slider
-description: "A Slider component from the Sigil design system."
+description: "Adjust a numeric value along a draggable track."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <Slider aria-label="Progress" defaultValue={[50]} />
+</ComponentPreview>
 
 ## Import
 
@@ -9,16 +15,10 @@ description: "A Slider component from the Sigil design system."
 import { Slider } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <Slider defaultValue={[50]} />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<Slider>Slider content</Slider>
+<Slider aria-label="Progress" defaultValue={[50]} />
 ```
 
 ## Token integration

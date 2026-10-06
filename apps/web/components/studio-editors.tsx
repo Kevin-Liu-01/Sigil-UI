@@ -2,115 +2,24 @@
 
 import {
   useState,
+  useId,
   useMemo,
-  useCallback,
   useRef,
   useEffect,
   type ReactNode,
 } from "react";
 
-/* ================================================================== */
-/*  Spring simulation                                                  */
-/* ================================================================== */
-
-type SpringParams = { stiffness: number; damping: number; mass: number };
-
-function timeToPhysics(duration: number, bounce: number): SpringParams {
-  const omega = (2 * Math.PI) / Math.max(duration, 0.04);
-  const stiffness = omega * omega;
-  const zeta = Math.max(0.0001, 1 - Math.min(bounce, 0.999));
-  const damping = 2 * zeta * Math.sqrt(stiffness);
-  return { stiffness, damping, mass: 1 };
-}
-
-function physicsToTime(p: SpringParams): { duration: number; bounce: number } {
-  const omega = Math.sqrt(p.stiffness / Math.max(p.mass, 0.01));
-  const zeta = p.damping / (2 * Math.sqrt(p.stiffness * Math.max(p.mass, 0.01)));
-  return {
-    duration: Math.max(0.05, (2 * Math.PI) / omega),
-    bounce: Math.max(0, Math.min(1, 1 - zeta)),
-  };
-}
-
-function simulateSpring(params: SpringParams, steps = 200): number[] {
-  const { stiffness, damping, mass } = params;
-  const omega = Math.sqrt(stiffness / Math.max(mass, 0.001));
-  const zeta = damping / (2 * Math.sqrt(stiffness * Math.max(mass, 0.001)));
-  const settle = zeta > 0.01 ? Math.min(6 / (zeta * omega), 4) : 4;
-  const dt = settle / steps;
-  let x = 0;
-  let v = 0;
-  const pts: number[] = [0];
-  for (let i = 1; i <= steps; i++) {
-    const f = -stiffness * (x - 1) - damping * v;
-    v += (f / mass) * dt;
-    x += v * dt;
-    pts.push(x);
-  }
-  return pts;
-}
-
-function springToCss(bounce: number): string {
-  const y1 = 1 + bounce * 0.56;
-  const x1 = Math.max(0, 0.34 - bounce * 0.16);
-  const x2 = Math.min(1, 0.64 + bounce * 0.08);
-  return `cubic-bezier(${x1.toFixed(2)}, ${y1.toFixed(2)}, ${x2.toFixed(2)}, 1)`;
-}
-
-/* ================================================================== */
-/*  Easing simulation                                                  */
-/* ================================================================== */
-
-type BezierPoint = [number, number, number, number];
-
-const EASING_PRESETS: Record<string, BezierPoint> = {
-  "ease-out-expo": [0.16, 1, 0.3, 1],
-  "ease-in-out": [0.45, 0, 0.55, 1],
-  spring: [0.34, 1.56, 0.64, 1],
-  bounce: [0.68, -0.55, 0.27, 1.55],
-  "ease-out": [0, 0, 0.2, 1],
-  "ease-in": [0.4, 0, 1, 1],
-  snappy: [0.2, 0, 0, 1],
-  linear: [0, 0, 1, 1],
-};
-
-function parseBezier(css: string): BezierPoint | null {
-  const m = css.match(
-    /cubic-bezier\(\s*([^,]+),\s*([^,]+),\s*([^,]+),\s*([^)]+)\)/,
-  );
-  if (!m) return null;
-  return [parseFloat(m[1]), parseFloat(m[2]), parseFloat(m[3]), parseFloat(m[4])];
-}
-
-function sampleBezierY(
-  p: BezierPoint,
-  steps = 200,
-): number[] {
-  const [x1, y1, x2, y2] = p;
-  const pts: number[] = [];
-  for (let i = 0; i <= steps; i++) {
-    const t = i / steps;
-    const cx = 3 * x1;
-    const bx = 3 * (x2 - x1) - cx;
-    const ax = 1 - cx - bx;
-    const cy = 3 * y1;
-    const by = 3 * (y2 - y1) - cy;
-    const ay = 1 - cy - by;
-    const sx = ((ax * t + bx) * t + cx) * t;
-    const sy = ((ay * t + by) * t + cy) * t;
-    pts.push(sy);
-    void sx;
-  }
-  return pts;
-}
+import { useSigilActions, useSigilTokenRevision } from "./sandbox/token-provider";
+import { useStudioControlValue } from "./studio-control-value";
+import { EASING_PRESETS, parseBezier, sampleBezierY, springBounce, springToCss, timeToPhysics, physicsToTime, type SpringParams } from "@/lib/studio-motion";
 
 /* ================================================================== */
 /*  Shared styling constants                                           */
 /* ================================================================== */
 
-const FONT = '"PP Telegraf", "PP Mori", system-ui, sans-serif';
+const FONT = "var(--s-font-body)";
 const FONT_MONO = '"PP Fraktion Mono", ui-monospace, monospace';
-const FONT_DISPLAY = '"PP Mori", system-ui, sans-serif';
+const FONT_DISPLAY = "var(--s-font-display)";
 
 /* ================================================================== */
 /*  Micro Controls (match devbar style)                                */
@@ -133,13 +42,14 @@ function MiniSlider({
   displayValue?: string;
   onChange: (v: number) => void;
 }) {
-  const pct = ((value - min) / (max - min)) * 100;
+  const [draft, update] = useStudioControlValue(value, onChange);
+  const pct = Math.max(0, Math.min(100, ((draft - min) / (max - min)) * 100));
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 8, minHeight: 26 }}>
+    <div data-studio-row={label} style={{ display: "flex", alignItems: "center", gap: 8, minHeight: 32 }}>
       <span
         style={{
           fontFamily: FONT,
-          fontSize: 9.5,
+          fontSize: 11,
           fontWeight: 500,
           color: "var(--db-muted)",
           width: 72,
@@ -149,7 +59,7 @@ function MiniSlider({
       >
         {label}
       </span>
-      <div style={{ flex: 1, position: "relative", height: 14 }}>
+      <div style={{ flex: 1, position: "relative", height: 32 }}>
         <div
           style={{
             position: "absolute",
@@ -191,12 +101,13 @@ function MiniSlider({
           }}
         />
         <input
+          aria-label={label}
           type="range"
           min={min}
           max={max}
           step={step}
-          value={value}
-          onChange={(e) => onChange(parseFloat(e.target.value))}
+          value={draft}
+          onChange={(e) => update(parseFloat(e.target.value))}
           style={{
             position: "absolute",
             inset: 0,
@@ -211,7 +122,7 @@ function MiniSlider({
       <span
         style={{
           fontFamily: FONT_MONO,
-          fontSize: 9.5,
+          fontSize: 11,
           fontWeight: 500,
           color: "var(--db-text2)",
           width: 40,
@@ -251,17 +162,18 @@ function MiniSegmented<T extends string>({
           <button
             key={opt}
             type="button"
+            aria-pressed={active}
             onClick={() => onChange(opt)}
             style={{
               padding: "3px 10px",
               border: "none",
               background: active ? "var(--db-accent-dim)" : "transparent",
               fontFamily: FONT,
-              fontSize: 9,
+              fontSize: 11,
               fontWeight: active ? 600 : 400,
               color: active ? "var(--db-accent)" : "var(--db-muted)",
               cursor: "pointer",
-              transition: "all 120ms ease-out",
+              transition: "background-color 120ms ease-out, border-color 120ms ease-out, color 120ms ease-out",
               borderRight:
                 opt !== options[options.length - 1]
                   ? "1px solid var(--db-border)"
@@ -329,6 +241,8 @@ function CurveCanvas({ points, label }: { points: number[]; label?: string }) {
         </span>
       )}
       <svg
+        role="img"
+        aria-label={label ? `${label} curve` : "Easing curve"}
         width={W}
         height={H}
         viewBox={`0 0 ${W} ${H}`}
@@ -384,69 +298,44 @@ type SpringMode = "Time" | "Physics";
 
 export type SpringCurveEditorProps = {
   duration: number;
-  bounce: number;
-  onDurationChange: (seconds: number) => void;
-  onBounceChange: (bounce: number) => void;
-  onEasingChange?: (css: string) => void;
+  easing: string;
+  onChange: (value: { duration: number; easing: string }) => void;
 };
 
-export function SpringCurveEditor({
-  duration,
-  bounce,
-  onDurationChange,
-  onBounceChange,
-  onEasingChange,
-}: SpringCurveEditorProps) {
+export function SpringCurveEditor({ duration, easing, onChange }: SpringCurveEditorProps) {
+  const bounce = springBounce(easing);
   const [mode, setMode] = useState<SpringMode>("Time");
-  const [physics, setPhysics] = useState<SpringParams>(() =>
-    timeToPhysics(duration, bounce),
-  );
-
-  const isSyncing = useRef(false);
-
+  const [physics, setPhysics] = useState<SpringParams>(() => timeToPhysics(duration, bounce));
+  const emitted = useRef("");
+  const pendingRevision = useRef(0);
+  const revision = useSigilTokenRevision();
+  const { getSnapshot } = useSigilActions();
   useEffect(() => {
-    if (mode === "Time" && !isSyncing.current) {
-      setPhysics(timeToPhysics(duration, bounce));
-    }
-  }, [duration, bounce, mode]);
+    if (revision < pendingRevision.current) return;
+    const signature = `${duration}:${easing}`;
+    if (signature !== emitted.current) setPhysics(timeToPhysics(duration, springBounce(easing)));
+  }, [duration, easing, revision]);
 
-  const handleTimeChange = useCallback(
-    (d: number, b: number) => {
-      isSyncing.current = true;
-      onDurationChange(d);
-      onBounceChange(b);
-      onEasingChange?.(springToCss(b));
-      setPhysics(timeToPhysics(d, b));
-      requestAnimationFrame(() => {
-        isSyncing.current = false;
-      });
-    },
-    [onDurationChange, onBounceChange, onEasingChange],
-  );
-
-  const handlePhysicsChange = useCallback(
-    (p: SpringParams) => {
-      isSyncing.current = true;
-      setPhysics(p);
-      const t = physicsToTime(p);
-      onDurationChange(t.duration);
-      onBounceChange(t.bounce);
-      onEasingChange?.(springToCss(t.bounce));
-      requestAnimationFrame(() => {
-        isSyncing.current = false;
-      });
-    },
-    [onDurationChange, onBounceChange, onEasingChange],
-  );
-
-  const curvePoints = useMemo(() => {
-    const p = mode === "Time" ? timeToPhysics(duration, bounce) : physics;
-    return simulateSpring(p);
-  }, [mode, duration, bounce, physics]);
+  const apply = (d: number, b: number) => {
+    const next = { duration: Math.round(d * 1000) / 1000, easing: springToCss(b) };
+    emitted.current = `${next.duration}:${next.easing}`;
+    onChange(next);
+    pendingRevision.current = getSnapshot().revision;
+  };
+  const handleTimeChange = (d: number, b: number) => {
+    setPhysics(timeToPhysics(d, b));
+    apply(d, b);
+  };
+  const handlePhysicsChange = (p: SpringParams) => {
+    setPhysics(p);
+    const time = physicsToTime(p);
+    apply(time.duration, time.bounce);
+  };
+  const curvePoints = useMemo(() => sampleBezierY(parseBezier(easing) ?? EASING_PRESETS.spring), [easing]);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-      <CurveCanvas points={curvePoints} label="spring" />
+      <CurveCanvas points={curvePoints} label="Applied spring" />
 
       <div
         style={{
@@ -459,7 +348,7 @@ export function SpringCurveEditor({
         <span
           style={{
             fontFamily: FONT,
-            fontSize: 9.5,
+            fontSize: 11,
             fontWeight: 500,
             color: "var(--db-muted)",
             width: 72,
@@ -483,7 +372,7 @@ export function SpringCurveEditor({
             min={0.05}
             max={2.0}
             step={0.01}
-            displayValue={duration.toFixed(2)}
+            displayValue={`${duration.toFixed(2)}s`}
             onChange={(v) => handleTimeChange(v, bounce)}
           />
           <MiniSlider
@@ -502,7 +391,7 @@ export function SpringCurveEditor({
             label="Stiffness"
             value={physics.stiffness}
             min={10}
-            max={1000}
+            max={20000}
             step={5}
             displayValue={physics.stiffness.toFixed(0)}
             onChange={(v) =>
@@ -513,7 +402,7 @@ export function SpringCurveEditor({
             label="Damping"
             value={physics.damping}
             min={1}
-            max={100}
+            max={2000}
             step={1}
             displayValue={physics.damping.toFixed(0)}
             onChange={(v) =>
@@ -586,6 +475,7 @@ export function EasingCurveEditor({
             <button
               key={name}
               type="button"
+              aria-pressed={active}
               onClick={() =>
                 onEasingChange(
                   `cubic-bezier(${pts[0]}, ${pts[1]}, ${pts[2]}, ${pts[3]})`,
@@ -599,11 +489,11 @@ export function EasingCurveEditor({
                   : "1px solid var(--db-border)",
                 background: active ? "var(--db-accent-dim)" : "transparent",
                 fontFamily: FONT,
-                fontSize: 8,
+                fontSize: 10,
                 fontWeight: active ? 600 : 400,
                 color: active ? "var(--db-accent)" : "var(--db-muted)",
                 cursor: "pointer",
-                transition: "all 120ms ease-out",
+                transition: "background-color 120ms ease-out, border-color 120ms ease-out, color 120ms ease-out",
                 lineHeight: 1.4,
               }}
             >
@@ -616,7 +506,7 @@ export function EasingCurveEditor({
       <div
         style={{
           fontFamily: FONT_MONO,
-          fontSize: 8,
+          fontSize: 10,
           color: "var(--db-muted)",
           opacity: 0.6,
           overflow: "hidden",
@@ -644,10 +534,13 @@ export function SubSection({
   children: ReactNode;
 }) {
   const [open, setOpen] = useState(defaultOpen);
+  const contentId = useId();
   return (
     <div>
       <button
         type="button"
+        aria-expanded={open}
+        aria-controls={contentId}
         onClick={() => setOpen((v) => !v)}
         style={{
           width: "100%",
@@ -678,7 +571,7 @@ export function SubSection({
         <span
           style={{
             fontFamily: FONT_DISPLAY,
-            fontSize: 9,
+            fontSize: 11,
             fontWeight: 500,
             color: "var(--db-text2)",
             letterSpacing: "0.02em",
@@ -687,16 +580,7 @@ export function SubSection({
           {title}
         </span>
       </button>
-      <div
-        style={{
-          overflow: "hidden",
-          maxHeight: open ? 500 : 0,
-          opacity: open ? 1 : 0,
-          transition:
-            "max-height 250ms cubic-bezier(0.16, 1, 0.3, 1), opacity 180ms ease",
-          paddingLeft: 14,
-        }}
-      >
+      {open && <div id={contentId} style={{ paddingLeft: 14 }}>
         <div
           style={{
             display: "flex",
@@ -709,7 +593,7 @@ export function SubSection({
         >
           {children}
         </div>
-      </div>
+      </div>}
     </div>
   );
 }

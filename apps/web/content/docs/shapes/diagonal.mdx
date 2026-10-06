@@ -1,13 +1,7 @@
 ---
 title: Diagonal
-description: "A Diagonal component from the Sigil design system."
+description: "Draw diagonal line patterns within a surface."
 ---
-
-## Import
-
-```tsx
-import { Diagonal } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -15,17 +9,23 @@ import { Diagonal } from "@sigil-ui/components";
   <Diagonal />
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Diagonal } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Diagonal>Diagonal content</Diagonal>
+<Diagonal />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `direction` | `"left" | "right"` | `right` | Diagonal cut direction. |
+| `direction` | `"left" \| "right"` | `right` | Diagonal cut direction. |
 | `height` | `number` | `80` | Height of the diagonal section. |
 | `fill` | `string` | — | Fill color (CSS value). Defaults to the surface token. |
 

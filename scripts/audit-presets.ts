@@ -50,6 +50,14 @@ void main().catch((error) => {
 function auditPreset(loaderName: string, preset: SigilPreset) {
   if (preset.name !== loaderName) failures.push(`${loaderName}: export name is "${preset.name}"`);
   if (!preset.metadata.description.trim()) failures.push(`${loaderName}: missing description`);
+  const catalog = presetCatalog.find(entry => entry.name === loaderName);
+  if (catalog) {
+    for (const role of ["display", "body", "mono"] as const) {
+      const actual = preset.tokens.typography[`font-${role}`].split(",")[0].trim().replace(/^['"]|['"]$/g, "");
+      if (catalog.fonts[role] !== actual) failures.push(`${loaderName}: ${role} font metadata differs from its tokens`);
+    }
+  }
+
 
   const tokens = preset.tokens as unknown as JsonObject;
   const categories = Object.keys(tokens);

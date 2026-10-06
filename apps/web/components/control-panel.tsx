@@ -4,7 +4,7 @@ import { useState, useCallback, type ReactNode } from "react";
 import { NativeSelect } from "@sigil-ui/components";
 import { useSigilTokens } from "./sandbox/token-provider";
 import { useSigilSound } from "./sound-provider";
-import { Palette, Type, Space, SquareSlash, RectangleHorizontal, Layers, Clock, Grid3X3, Ruler, Volume2 } from "lucide-react";
+import { Palette, Type, Space, SquareSlash, RectangleHorizontal, Layers, Clock, Grid3X3, Ruler, Volume2 } from "@/components/icons";
 
 const DISPLAY_FONTS = [
   "ABC Monument Grotesk", "PP Neue Montreal", "PP Mori", "Apfel Grotezk",
@@ -233,9 +233,10 @@ export function ControlPanel({ open, onClose }: { open: boolean; onClose: () => 
     [patchTokens],
   );
 
-  const handleReset = useCallback(() => {
+  const handleReset = useCallback(async () => {
     const base = activePreset.replace("*", "");
-    setPreset(base);
+    const result = await setPreset(base);
+    if (!result.ok) return;
     play("preset");
   }, [activePreset, setPreset, play]);
 

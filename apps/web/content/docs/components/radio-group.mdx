@@ -1,7 +1,16 @@
 ---
 title: RadioGroup
-description: "A RadioGroup component from the Sigil design system."
+description: "Select one option from a related group."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <RadioGroup aria-label="Release channel" defaultValue="a">
+    <div className="flex items-center gap-2"><RadioGroupItem value="a" aria-label="Stable" /><span>Stable</span></div>
+    <div className="flex items-center gap-2"><RadioGroupItem value="b" aria-label="Preview" /><span>Preview</span></div>
+  </RadioGroup>
+</ComponentPreview>
 
 ## Import
 
@@ -9,19 +18,13 @@ description: "A RadioGroup component from the Sigil design system."
 import { RadioGroup, RadioGroupItem } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <RadioGroup defaultValue="a">
-    <RadioGroupItem value="a" />
-    <RadioGroupItem value="b" />
-  </RadioGroup>
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<RadioGroup>...</RadioGroup>
+<RadioGroup aria-label="Release channel" defaultValue="a">
+    <div className="flex items-center gap-2"><RadioGroupItem value="a" aria-label="Stable" /><span>Stable</span></div>
+    <div className="flex items-center gap-2"><RadioGroupItem value="b" aria-label="Preview" /><span>Preview</span></div>
+  </RadioGroup>
 ```
 
 ## Sub-components

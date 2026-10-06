@@ -1,13 +1,7 @@
 ---
 title: NativeSelect
-description: "A NativeSelect component from the Sigil design system."
+description: "Choose an option with the browser's native select control."
 ---
-
-## Import
-
-```tsx
-import { NativeSelect } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -20,17 +14,28 @@ import { NativeSelect } from "@sigil-ui/components";
   </NativeSelect>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { NativeSelect } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<NativeSelect>NativeSelect content</NativeSelect>
+<NativeSelect className="w-full max-w-xs" defaultValue="published">
+    <option value="draft">Draft</option>
+    <option value="review">In Review</option>
+    <option value="published">Published</option>
+    <option value="archived">Archived</option>
+  </NativeSelect>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `error` | `string | boolean` | — | — |
+| `error` | `string \| boolean` | — | Error configuration. |
 
 ## Token integration
 

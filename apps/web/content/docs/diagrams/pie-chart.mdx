@@ -1,7 +1,20 @@
 ---
 title: PieChart
-description: "A PieChart component from the Sigil design system."
+description: "Compare category shares as segments of a circle."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <PieChart
+    slices={[
+      { label: "Direct", value: 45 },
+      { label: "Organic", value: 30 },
+      { label: "Referral", value: 15 },
+      { label: "Social", value: 10 },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +25,14 @@ import { PieChart } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<PieChart>...</PieChart>
+<PieChart
+    slices={[
+      { label: "Direct", value: 45 },
+      { label: "Organic", value: 30 },
+      { label: "Referral", value: 15 },
+      { label: "Social", value: 10 },
+    ]}
+  />
 ```
 
 ## Props

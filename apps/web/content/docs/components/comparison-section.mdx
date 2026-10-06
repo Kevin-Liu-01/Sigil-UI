@@ -3,41 +3,22 @@ title: ComparisonSection
 description: Feature comparison table with check/cross icons or custom text per cell.
 ---
 
+## Preview
+
+<ComponentPreview vertical>
+  <ComparisonSection title="One system, fewer overrides" usLabel="Sigil" themLabel="Manual styling" features={[{ name: "Shared design tokens", us: true, them: false }, { name: "Theme switching", us: "One preset", them: "Per component" }, { name: "Accessible primitives", us: true, them: "Add separately" }]} />
+</ComponentPreview>
+
 ## Import
 
 ```tsx
 import { ComparisonSection } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview vertical>
-  <ComparisonSection
-    title="Compare plans"
-    columns={["Hobby", "Pro", "Team"]}
-    features={[
-      { label: "Projects",     values: ["1", "Unlimited", "Unlimited"] },
-      { label: "Custom domain", values: [false, true, true] },
-      { label: "SSO",          values: [false, false, true] },
-    ]}
-  />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<ComparisonSection
-  label="Comparison"
-  title="How we compare"
-  usLabel="Sigil"
-  themLabel="Others"
-  features={[
-    { name: "Token system", us: true, them: false },
-    { name: "Preset switching", us: true, them: false },
-    { name: "Components", us: "350+ token-driven components", them: "40+" },
-    { name: "Bundle size", us: "12kb", them: "48kb" },
-  ]}
-/>
+<ComparisonSection title="One system, fewer overrides" usLabel="Sigil" themLabel="Manual styling" features={[{ name: "Shared design tokens", us: true, them: false }, { name: "Theme switching", us: "One preset", them: "Per component" }, { name: "Accessible primitives", us: true, them: "Add separately" }]} />
 ```
 
 ## Props

@@ -1,13 +1,7 @@
 ---
 title: DropdownMenu
-description: "A DropdownMenu component from the Sigil design system."
+description: "Group contextual actions in a keyboard-accessible menu."
 ---
-
-## Import
-
-```tsx
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuGroup, DropdownMenuSub, DropdownMenuContent, DropdownMenuItem, DropdownMenuCheckboxItem, DropdownMenuRadioItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuSubTrigger, DropdownMenuSubContent } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -25,10 +19,26 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownMenuGroup, DropdownMenuSub, 
 </DropdownMenu>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuGroup, DropdownMenuSub, DropdownMenuContent, DropdownMenuItem, DropdownMenuCheckboxItem, DropdownMenuRadioItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuSubTrigger, DropdownMenuSubContent } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<DropdownMenu>...</DropdownMenu>
+<DropdownMenu>
+  <DropdownMenuTrigger asChild><Button variant="outline">Options</Button></DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuLabel>Actions</DropdownMenuLabel>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>Edit</DropdownMenuItem>
+    <DropdownMenuItem>Duplicate</DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>Delete</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
 ```
 
 ## Sub-components

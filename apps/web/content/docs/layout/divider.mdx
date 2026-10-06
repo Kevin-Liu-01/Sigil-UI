@@ -1,19 +1,19 @@
 ---
 title: Divider
-description: "A Divider component from the Sigil design system."
+description: "Separate regions with a token-aligned structural band."
 ---
-
-## Import
-
-```tsx
-import { SigilDivider } from "@sigil-ui/components";
-```
 
 ## Preview
 
 <ComponentPreview>
   <SigilDivider />
 </ComponentPreview>
+
+## Import
+
+```tsx
+import { SigilDivider } from "@sigil-ui/components";
+```
 
 ## Usage
 
@@ -47,9 +47,9 @@ The layout box must stay on full-cell intervals.
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `orientation` | `"horizontal" | "vertical"` | `horizontal` | Divider orientation. |
+| `orientation` | `"horizontal" \| "vertical"` | `horizontal` | Divider orientation. |
 | `pattern` | `DividerPattern` | — | Pattern variant filling the divider band. Defaults to the surrounding page grid pattern. |
-| `size` | `"xs" | "sm" | "md" | "lg" | "xl"` | `md` | Band thickness. |
+| `size` | `"xs" \| "sm" \| "md" \| "lg" \| "xl"` | `md` | Band thickness. |
 | `opacity` | `number` | `1` | Pattern opacity. |
 | `scale` | `number` | `1` | Pattern scale multiplier. |
 | `showBorders` | `boolean` | `true` | Show border lines on the band edges. |

@@ -3,22 +3,22 @@ title: Box3D
 description: A CSS 3D box with six faces, configurable dimensions, and GSAP-powered rotation. No WebGL required.
 ---
 
+## Preview
+
+<ComponentPreview>
+  <Box3D className="w-full max-w-sm p-8" hoverLift><strong>Token-driven surfaces</strong><p>Move over the panel to explore its depth.</p></Box3D>
+</ComponentPreview>
+
 ## Import
 
 ```tsx
 import { Box3D } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <Box3D size={80} />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<Box3D />
+<Box3D className="w-full max-w-sm p-8" hoverLift><strong>Token-driven surfaces</strong><p>Move over the panel to explore its depth.</p></Box3D>
 ```
 
 Renders a cube using CSS 3D transforms (`transform-style: preserve-3d`). Each face is a positioned `<div>`. GSAP handles smooth rotation on hover and idle animation.

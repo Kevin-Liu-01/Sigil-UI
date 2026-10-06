@@ -9,6 +9,10 @@ import { notFound } from "next/navigation";
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import type { Metadata } from "next";
 import * as mdxComponents from "../../../components/mdx-components";
+import { DocsMain } from "../../../components/docs-main";
+import { DocsComponentCatalog } from "../../../components/docs-component-catalog";
+import { DocsLanding } from "../../../components/docs-landing";
+import { DocsPageHeader } from "../../../components/docs-page-header";
 
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
@@ -16,16 +20,35 @@ export default async function Page(props: {
   const params = await props.params;
   const page = source.getPage(params.slug);
   if (!page) notFound();
+  const isDocsLanding = !params.slug?.length;
 
   const MDX = page.data.body;
   const components = { ...defaultMdxComponents, ...mdxComponents } as any;
 
   return (
-    <DocsPage toc={page.data.toc} full={page.data.full}>
-      <DocsTitle>{page.data.title}</DocsTitle>
-      <DocsDescription>{page.data.description}</DocsDescription>
+    <DocsPage
+      breadcrumb={{ enabled: false }}
+      toc={page.data.toc}
+      full={page.data.full}
+      slots={{ container: DocsMain }}
+    >
+      {isDocsLanding ? (
+        <>
+          <DocsTitle>{page.data.title}</DocsTitle>
+          <DocsDescription>{page.data.description}</DocsDescription>
+        </>
+      ) : (
+        <DocsPageHeader
+          markdown={await page.data.getText("raw")}
+          title={page.data.title}
+          description={page.data.description}
+          section={params.slug?.[0] ?? "guide"}
+        />
+      )}
       <DocsBody>
-        <MDX components={components} />
+        {isDocsLanding ? (
+          <DocsLanding catalog={<DocsComponentCatalog />}><MDX components={components} /></DocsLanding>
+        ) : <MDX components={components} />}
       </DocsBody>
     </DocsPage>
   );

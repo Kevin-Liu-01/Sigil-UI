@@ -3,59 +3,22 @@ title: HubRouteDiagram
 description: A source-to-hub routing diagram that fans out to categorized left and right target groups.
 ---
 
+## Preview
+
+<ComponentPreview vertical>
+  <HubRouteDiagram source={{ label: "Application" }} hub={{ label: "Gateway", layers: [{ label: "Authenticate" }, { label: "Route" }, { label: "Observe" }] }} leftTargets={[{ label: "Database" }, { label: "Storage" }]} rightTargets={[{ label: "Search" }, { label: "Events" }]} />
+</ComponentPreview>
+
 ## Import
 
 ```tsx
 import { HubRouteDiagram } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview vertical>
-  <HubRouteDiagram
-    source={{ label: "Edge" }}
-    hub={{
-      label: "API gateway",
-      layers: [
-        { id: "auth", label: "Auth" },
-        { id: "rate", label: "Rate limit" },
-        { id: "log",  label: "Audit log" },
-      ],
-    }}
-    leftLabel="Inputs"
-    leftTargets={[
-      { id: "web", label: "Web" },
-      { id: "mob", label: "Mobile" },
-      { id: "cli", label: "CLI" },
-    ]}
-    rightLabel="Services"
-    rightTargets={[
-      { id: "billing",  label: "Billing" },
-      { id: "notify",   label: "Notifications" },
-      { id: "analytics", label: "Analytics" },
-    ]}
-  />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<HubRouteDiagram
-  source={{ label: "Request" }}
-  hub={{
-    label: "Router",
-    layers: [
-      { label: "Auth" },
-      { label: "Rate Limit" },
-      { label: "Transform" },
-      { label: "Cache" },
-    ],
-  }}
-  leftTargets={[{ label: "Service A" }, { label: "Service B" }]}
-  rightTargets={[{ label: "DB" }, { label: "Queue" }]}
-  leftLabel="Services"
-  rightLabel="Infrastructure"
-/>
+<HubRouteDiagram source={{ label: "Application" }} hub={{ label: "Gateway", layers: [{ label: "Authenticate" }, { label: "Route" }, { label: "Observe" }] }} leftTargets={[{ label: "Database" }, { label: "Storage" }]} rightTargets={[{ label: "Search" }, { label: "Events" }]} />
 ```
 
 ## Props

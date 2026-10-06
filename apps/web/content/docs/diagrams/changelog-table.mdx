@@ -1,7 +1,33 @@
 ---
 title: ChangelogTable
-description: "A ChangelogTable component from the Sigil design system."
+description: "List releases and changes in a compact table."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <ChangelogTable
+    releases={[
+      {
+        version: "2.1.0",
+        date: "2026-04-20",
+        entries: [
+          { type: "added", description: "New radar chart component" },
+          { type: "fixed", description: "Tooltip positioning in dark mode" },
+          { type: "changed", description: "Updated token compiler output" },
+        ],
+      },
+      {
+        version: "2.0.0",
+        date: "2026-04-01",
+        entries: [
+          { type: "added", description: "Complete design token overhaul" },
+          { type: "removed", description: "Legacy CSS class API" },
+        ],
+      },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +38,27 @@ import { ChangelogTable } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<ChangelogTable>...</ChangelogTable>
+<ChangelogTable
+    releases={[
+      {
+        version: "2.1.0",
+        date: "2026-04-20",
+        entries: [
+          { type: "added", description: "New radar chart component" },
+          { type: "fixed", description: "Tooltip positioning in dark mode" },
+          { type: "changed", description: "Updated token compiler output" },
+        ],
+      },
+      {
+        version: "2.0.0",
+        date: "2026-04-01",
+        entries: [
+          { type: "added", description: "Complete design token overhaul" },
+          { type: "removed", description: "Legacy CSS class API" },
+        ],
+      },
+    ]}
+  />
 ```
 
 ## Props

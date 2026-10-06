@@ -1,6 +1,6 @@
 import type { DesignDocument, SigilTokens } from "../types";
-import { defaultTokens } from "../tokens";
-import { deepMerge, isThemedColor } from "./merge";
+import { resolveSigilTokens } from "../validation";
+import { isThemedColor } from "./merge";
 import { compileToCss } from "./css";
 import { compileToTailwind } from "./tailwind";
 import { compileToW3CJson } from "./w3c";
@@ -25,10 +25,7 @@ function tokenRow(token: string, value: string, role?: string): string[] {
  */
 export function compileDesignMd(doc: DesignDocument): string {
   const { metadata, tokens } = doc;
-  const resolved = deepMerge(
-    defaultTokens,
-    tokens as Record<string, unknown>,
-  ) as SigilTokens;
+  const resolved = resolveSigilTokens(tokens).tokens;
 
   const out: string[] = [];
 

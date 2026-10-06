@@ -5,16 +5,18 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "node scripts/build-tokens-css.mjs && next build",
     "readme:hero": "node scripts/build-readme-hero.mjs",
     "start": "next start",
-    "tokens:build": "node scripts/build-tokens-css.mjs"
+    "tokens:build": "node scripts/build-tokens-css.mjs",
+    "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {
     "@ai-sdk/gateway": "^3.0.104",
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/sortable": "^10.0.0",
     "@dnd-kit/utilities": "^3.2.2",
+    "@phosphor-icons/react": "^2.1.10",
     "@sigil-ui/components": "workspace:*",
     "@sigil-ui/presets": "workspace:*",
     "@sigil-ui/tokens": "workspace:*",
@@ -27,6 +29,7 @@
     "fumadocs-mdx": "^14.3.1",
     "fumadocs-ui": "^16.8.2",
     "gsap": "^3.15.0",
+    "lenis": "^1.3.25",
     "lucide-react": "^1.8.0",
     "marked": "^16.4.2",
     "mermaid": "^11.14.0",
@@ -34,6 +37,7 @@
     "next-themes": "^0.4.6",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
+    "recharts": "^3.8.1",
     "shaders": "^2.5.107",
     "tailwind-merge": "^3.5.0",
     "tailwindcss": "^4.2.4"

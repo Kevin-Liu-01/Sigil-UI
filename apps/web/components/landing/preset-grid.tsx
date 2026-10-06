@@ -8,7 +8,7 @@ import {
   useOptionalSigilActivePreset,
 } from "@/components/sandbox/token-provider";
 import { useSigilSound } from "@/components/sound-provider";
-import { Check } from "lucide-react";
+import { Check } from "@/components/icons";
 
 const CATEGORY_ORDER = ["structural", "minimal", "dark", "colorful", "editorial", "industrial", "edgeless"] as const;
 type Category = (typeof CATEGORY_ORDER)[number];

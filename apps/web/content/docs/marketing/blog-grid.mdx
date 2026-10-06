@@ -1,7 +1,20 @@
 ---
 title: BlogGrid
-description: "A BlogGrid component from the Sigil design system."
+description: "Present articles in a responsive grid of summaries."
 ---
+
+## Preview
+
+<ComponentPreview label="Editorial cards">
+  <BlogGrid
+    columns={3}
+    posts={[
+      { category: "Design systems", title: "Why constraints scale", excerpt: "A practical guide to keeping interface decisions coherent.", author: "Sigil", date: "6 min", href: "/docs" },
+      { category: "Tokens", title: "One source of visual truth", excerpt: "How a complete token model prevents component drift.", author: "Sigil", date: "4 min", href: "/docs" },
+      { category: "Workflow", title: "Designing with agents", excerpt: "Give agents enforceable constraints instead of screenshots.", author: "Sigil", date: "8 min", href: "/docs" },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,16 +25,23 @@ import { BlogGrid } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<BlogGrid>...</BlogGrid>
+<BlogGrid
+    columns={3}
+    posts={[
+      { category: "Design systems", title: "Why constraints scale", excerpt: "A practical guide to keeping interface decisions coherent.", author: "Sigil", date: "6 min", href: "/docs" },
+      { category: "Tokens", title: "One source of visual truth", excerpt: "How a complete token model prevents component drift.", author: "Sigil", date: "4 min", href: "/docs" },
+      { category: "Workflow", title: "Designing with agents", excerpt: "Give agents enforceable constraints instead of screenshots.", author: "Sigil", date: "8 min", href: "/docs" },
+    ]}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `posts` | `BlogPost[]` | — | — |
-| `variant` | `"grid" | "featured"` | — | — |
-| `columns` | `number` | — | — |
+| `posts` (required) | `BlogPost[]` | — | Posts configuration. |
+| `variant` | `"grid" \| "featured"` | — | Selects a supported visual treatment. |
+| `columns` | `number` | — | Columns configuration. |
 
 ## Token integration
 

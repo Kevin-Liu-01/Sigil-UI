@@ -1,24 +1,24 @@
 ---
 title: Center
-description: "A Center component from the Sigil design system."
+description: "Center content within the available layout space."
 ---
-
-## Import
-
-```tsx
-import { Center } from "@sigil-ui/components";
-```
 
 ## Preview
 
 <ComponentPreview>
-  <Center />
+  <Center className="w-full min-h-[calc(var(--s-grid-cell)*4)] border border-[var(--s-border)]"><Badge>Centered in both directions</Badge></Center>
 </ComponentPreview>
+
+## Import
+
+```tsx
+import { Center, Badge } from "@sigil-ui/components";
+```
 
 ## Usage
 
 ```tsx
-<Center>Center content</Center>
+<Center className="w-full min-h-[calc(var(--s-grid-cell)*4)] border border-[var(--s-border)]"><Badge>Centered in both directions</Badge></Center>
 ```
 
 ## Props

@@ -1,7 +1,26 @@
 ---
 title: DependencyGraph
-description: "A DependencyGraph component from the Sigil design system."
+description: "Map dependencies between connected nodes."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <DependencyGraph
+    nodes={[
+      { id: "app", label: "App", x: 250, y: 40 },
+      { id: "api", label: "API", x: 120, y: 150 },
+      { id: "db", label: "DB", x: 380, y: 150 },
+      { id: "cache", label: "Cache", x: 250, y: 260, group: "infra" },
+    ]}
+    edges={[
+      { from: "app", to: "api" },
+      { from: "app", to: "db" },
+      { from: "api", to: "cache", label: "reads", dashed: true },
+      { from: "db", to: "cache", label: "syncs" },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,18 +31,31 @@ import { DependencyGraph } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<DependencyGraph>...</DependencyGraph>
+<DependencyGraph
+    nodes={[
+      { id: "app", label: "App", x: 250, y: 40 },
+      { id: "api", label: "API", x: 120, y: 150 },
+      { id: "db", label: "DB", x: 380, y: 150 },
+      { id: "cache", label: "Cache", x: 250, y: 260, group: "infra" },
+    ]}
+    edges={[
+      { from: "app", to: "api" },
+      { from: "app", to: "db" },
+      { from: "api", to: "cache", label: "reads", dashed: true },
+      { from: "db", to: "cache", label: "syncs" },
+    ]}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `nodes` | `DepNode[]` | — | — |
-| `edges` | `DepEdge[]` | — | — |
-| `width` | `number` | — | — |
-| `height` | `number` | — | — |
-| `nodeRadius` | `number` | — | — |
+| `nodes` (required) | `DepNode[]` | — | Nodes configuration. |
+| `edges` (required) | `DepEdge[]` | — | Edges configuration. |
+| `width` | `number` | — | Width of the rendered content. |
+| `height` | `number` | — | Height of the rendered content. |
+| `nodeRadius` | `number` | — | Node Radius configuration. |
 
 ## Token integration
 

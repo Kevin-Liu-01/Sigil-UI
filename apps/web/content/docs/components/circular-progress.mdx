@@ -1,13 +1,7 @@
 ---
 title: CircularProgress
-description: "A CircularProgress component from the Sigil design system."
+description: "Show progress as a circular indicator."
 ---
-
-## Import
-
-```tsx
-import { CircularProgress } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -20,10 +14,21 @@ import { CircularProgress } from "@sigil-ui/components";
   </div>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { CircularProgress } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<CircularProgress>CircularProgress content</CircularProgress>
+<div className="flex items-center gap-6">
+    <CircularProgress value={25} />
+    <CircularProgress value={50} />
+    <CircularProgress value={75} />
+    <CircularProgress value={100} />
+  </div>
 ```
 
 ## Props

@@ -6,11 +6,10 @@ import { readConfig, configExists } from "../utils/config.js";
 import { detectProject, PM_INSTALL } from "../utils/detect.js";
 import {
   getComponent,
-  getAllComponents,
-  ensureComponentSupportFiles,
   listComponentNames,
   resolveComponentSource,
 } from "../utils/registry.js";
+import { collectComponentTree, copyComponentTree } from "../utils/copy-component.js";
 import { printIntro, symbols } from "../utils/terminal.js";
 
 export const addCommand = new Command("add")
@@ -80,15 +79,15 @@ export const addCommand = new Command("add")
 
         const sourcePath = resolveComponentSource(name, file, cwd);
 
-        if (fs.existsSync(sourcePath)) {
-          const sourceContent = fs.readFileSync(sourcePath, "utf-8");
-          ensureComponentSupportFiles(componentsDir, sourceContent);
-          fs.copySync(sourcePath, destPath);
-          console.log(symbols.success, `Added ${file}`);
-        } else {
-          const stub = generateComponentStub(name, file);
-          fs.writeFileSync(destPath, stub, "utf-8");
-          console.log(symbols.warning, `Created ${file} (source not found; scaffolded fallback)`);
+        try {
+          const tree = collectComponentTree(sourcePath);
+          copyComponentTree(tree, destPath, opts.overwrite, entry.exportAlias);
+          for (const dependency of tree.dependencies) depsToInstall.add(dependency);
+          console.log(symbols.success, `Added ${file} with ${tree.files.length} source file(s)`);
+        } catch (error) {
+          console.log(symbols.error, `Could not add ${file}: ${error instanceof Error ? error.message : String(error)}`);
+          failed.push(name);
+          continue;
         }
 
         added.push(name);
@@ -115,6 +114,7 @@ export const addCommand = new Command("add")
     }
     if (failed.length > 0) {
       console.log(chalk.red(`Failed: ${failed.join(", ")}`));
+      process.exitCode = 1;
     }
   });
 
@@ -136,33 +136,4 @@ function resolveWithDependencies(names: string[]): string[] {
   }
 
   return [...resolved];
-}
-
-function generateComponentStub(name: string, _file: string): string {
-  const pascalName = name
-    .split("-")
-    .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
-    .join("");
-
-  return `import { forwardRef, type ComponentPropsWithoutRef } from "react";
-import { clsx } from "clsx";
-
-type ${pascalName}Props = ComponentPropsWithoutRef<"div">;
-
-export const ${pascalName} = forwardRef<HTMLDivElement, ${pascalName}Props>(
-  ({ className, children, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={clsx("sigil-${name}", className)}
-        {...props}
-      >
-        {children}
-      </div>
-    );
-  },
-);
-
-${pascalName}.displayName = "${pascalName}";
-`;
 }

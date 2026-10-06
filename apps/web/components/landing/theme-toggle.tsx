@@ -1,86 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Moon, Sun } from "@/components/icons";
 import { Switch } from "@sigil-ui/components";
 import { useThemeSwitch } from "@/components/theme-provider";
-
-const SPRING = "cubic-bezier(0.34, 1.56, 0.64, 1)";
-const SMOOTH = "cubic-bezier(0.16, 1, 0.3, 1)";
-
-function MoonIcon({ visible }: { visible: boolean }) {
-  return (
-    <svg
-      width="13"
-      height="13"
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="absolute"
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "rotate(0deg) scale(1)" : "rotate(-90deg) scale(0.5)",
-        transition: `opacity 200ms ${SMOOTH}, transform 350ms ${SPRING}`,
-        willChange: "transform, opacity",
-        color: "var(--s-text)",
-      }}
-    >
-      <path
-        d="M13.5 9.5a5.5 5.5 0 01-7-7 5.5 5.5 0 107 7z"
-        fill="currentColor"
-      />
-    </svg>
-  );
-}
-
-const RAYS = [0, 45, 90, 135, 180, 225, 270, 315].map((angle) => {
-  const rad = (angle * Math.PI) / 180;
-  return {
-    x1: 8 + Math.cos(rad) * 4.5,
-    y1: 8 + Math.sin(rad) * 4.5,
-    x2: 8 + Math.cos(rad) * 6.2,
-    y2: 8 + Math.sin(rad) * 6.2,
-  };
-});
-
-function SunIcon({ visible }: { visible: boolean }) {
-  return (
-    <svg
-      width="13"
-      height="13"
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="absolute"
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "rotate(0deg) scale(1)" : "rotate(90deg) scale(0.5)",
-        transition: `opacity 200ms ${SMOOTH}, transform 350ms ${SPRING}`,
-        willChange: "transform, opacity",
-        color: "var(--s-text)",
-      }}
-    >
-      <circle cx="8" cy="8" r="2.5" stroke="currentColor" strokeWidth="1.3" />
-      {RAYS.map((r, i) => (
-        <line
-          key={i}
-          x1={r.x1}
-          y1={r.y1}
-          x2={r.x2}
-          y2={r.y2}
-          stroke="currentColor"
-          strokeWidth="1.3"
-          strokeLinecap="round"
-          style={{
-            opacity: visible ? 1 : 0,
-            transform: visible ? "scale(1)" : "scale(0)",
-            transformOrigin: "8px 8px",
-            transition: `opacity 150ms ${SMOOTH} ${visible ? 40 + i * 18 : 0}ms, transform 250ms ${SPRING} ${visible ? 40 + i * 18 : 0}ms`,
-          }}
-        />
-      ))}
-    </svg>
-  );
-}
 
 export function SigilThemeToggle() {
   const { resolvedTheme, setTheme } = useThemeSwitch();
@@ -103,8 +26,8 @@ export function SigilThemeToggle() {
       thumbClassName="!size-7 data-[state=checked]:!translate-x-6"
       thumbIcon={
         <>
-          <MoonIcon visible={isDark} />
-          <SunIcon visible={!isDark} />
+          <Moon className="sigil-theme-glyph" data-visible={isDark} />
+          <Sun className="sigil-theme-glyph" data-visible={!isDark} />
         </>
       }
     />

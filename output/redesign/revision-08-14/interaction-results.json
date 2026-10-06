@@ -1,0 +1,83 @@
+{
+  "chrome": {
+    "cta": {
+      "x": 57,
+      "y": 557.6015625,
+      "width": 178.609375,
+      "height": 44
+    },
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "errors": []
+  },
+  "reticle": {
+    "matrix": {
+      "x": 565.90625,
+      "y": 175,
+      "width": 564.09375,
+      "height": 564.125
+    },
+    "errors": []
+  },
+  "blueprint": {
+    "status": 1,
+    "deployLabel": 1,
+    "errors": []
+  },
+  "compiler": {
+    "consoleBox": {
+      "x": 524.46875,
+      "y": 257.5,
+      "width": 874.53125,
+      "height": 576
+    },
+    "checks": 5,
+    "pass": 1,
+    "errors": []
+  },
+  "runway": {
+    "cuts": [
+      {
+        "name": "Onyx",
+        "text": "CUT 01 / LAYERED SCENE DARK LAYER 01 / HERO Night, held in depth. Large cinematic field. One controlled reading path. Showing Onyx: Cinematic / monolithic"
+      },
+      {
+        "name": "Etch",
+        "text": "CUT 02 / HAIRLINE COLUMN EDITORIAL EDITORIAL PROOF VOL. 46 HAIRLINE COLUMN / EDITION 02 A system that reads like a printed argument. Typography establishes the hierarchy before any"
+      },
+      {
+        "name": "Kova",
+        "text": "CUT 03 / LOCKED RAILS STRUCTURAL RAIL A LOCKED OPTICAL CENTER Every edge resolves. COLOR TYPE SPACE MOTION Showing Kova: Optical / engineered"
+      },
+      {
+        "name": "Alloy",
+        "text": "CUT 04 / PRODUCTION FRAME INDUSTRIAL PRODUCTION FRAME 519 ASSEMBLY VERIFIED Built for the line. INPUT COMPILE SHIP Showing Alloy: Machined / dense"
+      }
+    ],
+    "errors": []
+  },
+  "materials": {
+    "before": [
+      "oklch(0.2225 0.0041 84.5879)",
+      "oklch(0.9228 0.0075 80.7204)"
+    ],
+    "after": [
+      "oklch(0.9228 0.0075 80.7204)",
+      "oklch(0.2225 0.0041 84.5879)"
+    ],
+    "swapped": true,
+    "errors": []
+  },
+  "manual": {
+    "fieldBox": {
+      "x": 16,
+      "y": 567.84375,
+      "width": 358,
+      "height": 106
+    },
+    "overflow": 0,
+    "errors": []
+  }
+}

@@ -19,6 +19,7 @@ type StructuralConfig = {
   gutterPattern: GutterPattern;
   marginPattern: GutterPattern;
   contentMax: number;
+  contentMaxWide: number;
   railGap: number;
   gridCell: number;
   crossStroke: number;
@@ -34,6 +35,7 @@ function deriveStructuralConfig(tokens: SigilTokens | null): StructuralConfig {
   let gutterPattern: GutterPattern = "none";
   let marginPattern: GutterPattern = "none";
   let contentMax = 1200;
+  let contentMaxWide = 1400;
   let railGap = 50;
   let gridCell = 50;
   let crossStroke = 1.5;
@@ -53,6 +55,7 @@ function deriveStructuralConfig(tokens: SigilTokens | null): StructuralConfig {
     if (sigil?.["cross-stroke"]) crossStroke = parseFloat(sigil["cross-stroke"] as string) || crossStroke;
     if (sigil?.["rail-gap"]) railGap = parseInt(sigil["rail-gap"] as string) || railGap;
     if (layout?.["content-max"]) contentMax = parseInt(layout["content-max"] as string) || contentMax;
+    if (layout?.["content-max-wide"]) contentMaxWide = parseInt(layout["content-max-wide"] as string) || contentMaxWide;
     const mb = sigil?.["margin-border"] as string | undefined;
     // "none" is an intentional token value. Dropping it here made the
     // layout primitive fall back to a visible border, producing a doubled
@@ -81,6 +84,7 @@ function deriveStructuralConfig(tokens: SigilTokens | null): StructuralConfig {
     gutterPattern,
     marginPattern,
     contentMax,
+    contentMaxWide,
     railGap,
     gridCell,
     crossStroke,
@@ -93,7 +97,15 @@ function deriveStructuralConfig(tokens: SigilTokens | null): StructuralConfig {
   };
 }
 
-export function SigilFrame({ children }: { children: ReactNode }) {
+export function SigilFrame({
+  children,
+  studio = false,
+  study = !studio,
+}: {
+  children: ReactNode;
+  studio?: boolean;
+  study?: boolean;
+}) {
   const tokens: SigilTokens | null = useOptionalSigilTokenValues();
 
   // Derive only the slice we care about. useMemo keeps the config object
@@ -115,6 +127,7 @@ export function SigilFrame({ children }: { children: ReactNode }) {
       (tokens?.sigil as Record<string, unknown> | undefined)?.["margin-border"],
       (tokens?.sigil as Record<string, unknown> | undefined)?.["gutter-visible"],
       (tokens?.layout as Record<string, unknown> | undefined)?.["content-max"],
+      (tokens?.layout as Record<string, unknown> | undefined)?.["content-max-wide"],
       (tokens?.pageRhythm as Record<string, unknown> | undefined)?.mode,
       (tokens?.pageRhythm as Record<string, unknown> | undefined)?.snap,
       (tokens?.pageRhythm as Record<string, unknown> | undefined)?.["band-stroke"],
@@ -123,18 +136,21 @@ export function SigilFrame({ children }: { children: ReactNode }) {
 
   const frame = (
     <SigilFrameBase
-      showGutterGrid={!config.isEdgeless}
-      showMarginLines={!config.isEdgeless || config.marginPattern !== "none"}
-      gutterPattern={config.gutterPattern}
-      marginPattern={config.marginPattern}
-      marginBorder={config.marginBorder}
-      contentMax={config.effectiveContentMax}
-      railGap={config.railGap}
+      className={study ? "landing-study-frame" : studio ? "landing-studio-frame" : undefined}
+      showGutterGrid={study ? false : !config.isEdgeless}
+      showMarginLines={study ? false : !config.isEdgeless || config.marginPattern !== "none"}
+      gutterPattern={study ? "none" : config.gutterPattern}
+      marginPattern={study ? "none" : config.marginPattern}
+      marginBorder={study
+        ? "var(--s-border-thin, 1px) var(--s-border-style, solid) var(--s-border)"
+        : config.marginBorder}
+      contentMax={study ? config.contentMaxWide : config.effectiveContentMax}
+      railGap={study ? 0 : config.railGap}
       gridCell={config.gridCell}
       crossStroke={config.crossStroke}
-      rhythm={config.rhythm}
-      snap={config.snap}
-      bandStroke={config.bandStroke}
+      rhythm={study ? "hairline" : config.rhythm}
+      snap={study ? false : config.snap}
+      bandStroke={study ? "border" : config.bandStroke}
     >
       {children}
     </SigilFrameBase>

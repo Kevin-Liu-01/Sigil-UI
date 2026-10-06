@@ -1,7 +1,19 @@
 ---
 title: WaterfallChart
-description: "A WaterfallChart component from the Sigil design system."
+description: "Show how successive changes contribute to a final total."
 ---
+
+## Preview
+
+<ComponentPreview label="Build-time comparison">
+  <WaterfallChart
+    rows={[
+      { label: "Cold build", steps: [{ label: "Install", duration: 420 }, { label: "Compile", duration: 360 }, { label: "Bundle", duration: 180 }] },
+      { label: "Cached", steps: [{ label: "Restore", duration: 90, color: "var(--s-primary)" }, { label: "Verify", duration: 55, color: "var(--s-success)" }], accent: true },
+    ]}
+    badge="6.6× faster"
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +24,13 @@ import { WaterfallChart } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<WaterfallChart>...</WaterfallChart>
+<WaterfallChart
+    rows={[
+      { label: "Cold build", steps: [{ label: "Install", duration: 420 }, { label: "Compile", duration: 360 }, { label: "Bundle", duration: 180 }] },
+      { label: "Cached", steps: [{ label: "Restore", duration: 90, color: "var(--s-primary)" }, { label: "Verify", duration: 55, color: "var(--s-success)" }], accent: true },
+    ]}
+    badge="6.6× faster"
+  />
 ```
 
 ## Props

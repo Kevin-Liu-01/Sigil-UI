@@ -1,11 +1,12 @@
 "use client";
 
-import { forwardRef, useCallback, type HTMLAttributes } from "react";
+import { forwardRef, useCallback, useState, type HTMLAttributes } from "react";
 import { cn } from "../utils";
 import { useSigilSound } from "../sound-context";
 
-export interface NumberFieldProps extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
+export interface NumberFieldProps extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "defaultValue"> {
   value?: number;
+  defaultValue?: number;
   onValueChange?: (value: number) => void;
   min?: number;
   max?: number;
@@ -14,18 +15,31 @@ export interface NumberFieldProps extends Omit<HTMLAttributes<HTMLDivElement>, "
 }
 
 export const NumberField = forwardRef<HTMLDivElement, NumberFieldProps>(function NumberField(
-  { value = 0, onValueChange, min = -Infinity, max = Infinity, step = 1, disabled, className, ...rest },
+  props,
   ref,
 ) {
+  const { value: controlledValue, defaultValue = 0, onValueChange, min = -Infinity, max = Infinity, step = 1, disabled, className, ...rest } = props;
+  const isControlled = "value" in props;
   const { play } = useSigilSound();
+  const [internalValue, setInternalValue] = useState(defaultValue);
+  const rawValue = (isControlled ? controlledValue : internalValue) ?? 0;
+  const value = Math.min(max, Math.max(min, Number.isFinite(rawValue) ? rawValue : 0));
+  const incrementBy = Number.isFinite(step) && step > 0 ? step : 1;
 
   const clamp = useCallback(
     (v: number) => Math.min(max, Math.max(min, v)),
     [min, max],
   );
 
-  const decrement = () => { play("tap"); onValueChange?.(clamp(value - step)); };
-  const increment = () => { play("tap"); onValueChange?.(clamp(value + step)); };
+  const update = (next: number) => {
+    if (disabled) return;
+    const clamped = clamp(next);
+    if (!isControlled) setInternalValue(clamped);
+    play("tap");
+    onValueChange?.(clamped);
+  };
+  const decrement = () => update(value - incrementBy);
+  const increment = () => update(value + incrementBy);
 
   const btnBase = cn(
     "inline-flex h-full w-10 cursor-pointer items-center justify-center shrink-0",

@@ -3,35 +3,22 @@ title: PipelineDiagram
 description: A step-by-step pipeline visualization with numbered nodes and animated connectors.
 ---
 
+## Preview
+
+<ComponentPreview vertical>
+  <PipelineDiagram steps={[{ label: "Receive", description: "Validate the request" }, { label: "Process", description: "Run the workflow" }, { label: "Store", description: "Persist the result" }, { label: "Notify", description: "Send confirmation" }]} />
+</ComponentPreview>
+
 ## Import
 
 ```tsx
 import { PipelineDiagram } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview vertical>
-  <PipelineDiagram
-    steps={[
-      { id: "design", label: "DESIGN.md",    description: "Source" },
-      { id: "compile", label: "compile",     description: "tokens.ts" },
-      { id: "css",    label: "CSS vars",     description: "--s-*" },
-      { id: "render", label: "Components",   description: "consumers" },
-    ]}
-  />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<PipelineDiagram
-  steps={[
-    { label: "Ingest" },
-    { label: "Transform" },
-    { label: "Load" },
-  ]}
-/>
+<PipelineDiagram steps={[{ label: "Receive", description: "Validate the request" }, { label: "Process", description: "Run the workflow" }, { label: "Store", description: "Persist the result" }, { label: "Notify", description: "Send confirmation" }]} />
 ```
 
 ## Vertical direction

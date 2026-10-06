@@ -1,13 +1,7 @@
 ---
 title: ScaleIn
-description: "A ScaleIn component from the Sigil design system."
+description: "Reveal content with a restrained scale transition."
 ---
-
-## Import
-
-```tsx
-import { ScaleIn } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -17,10 +11,18 @@ import { ScaleIn } from "@sigil-ui/components";
 </ScaleIn>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { ScaleIn } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<ScaleIn>...</ScaleIn>
+<ScaleIn>
+  <Badge>Scale in</Badge>
+</ScaleIn>
 ```
 
 ## Props
@@ -29,7 +31,7 @@ import { ScaleIn } from "@sigil-ui/components";
 |---|---|---|---|
 | `initialScale` | `number` | `0.92` | Initial scale factor. |
 | `delay` | `number` | `0` | Delay before animation in ms. |
-| `trigger` | `"scroll" | "mount"` | — | — |
+| `trigger` | `"scroll" \| "mount"` | — | — |
 | `viewOptions` | `UseInViewOptions` | — | — |
 
 ## Token integration

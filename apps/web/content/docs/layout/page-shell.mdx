@@ -3,6 +3,14 @@ title: PageShell
 description: "Top-level `<main>` wrapper that centers content with token-driven max-width. Use `inset` for full-bleed tool layouts inside an AppShell."
 ---
 
+## Preview
+
+<ComponentPreview label="Centered page shell">
+  <PageShell className="!w-full" style={{ padding: "var(--s-section-padding-compact)" }}>
+    <div className="border border-[var(--s-border)] bg-[var(--s-surface)] p-[var(--s-space-8)] text-center text-sm text-[var(--s-text)]">Token-constrained page content</div>
+  </PageShell>
+</ComponentPreview>
+
 ## Import
 
 ```tsx
@@ -12,7 +20,9 @@ import { PageShell } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<PageShell>...</PageShell>
+<PageShell className="!w-full" style={{ padding: "var(--s-section-padding-compact)" }}>
+    <div className="border border-[var(--s-border)] bg-[var(--s-surface)] p-[var(--s-space-8)] text-center text-sm text-[var(--s-text)]">Token-constrained page content</div>
+  </PageShell>
 ```
 
 ## Props

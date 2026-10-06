@@ -1,0 +1,38 @@
+# Redesign concept audit
+
+- Concepts: 20
+- Captures: 120
+- Errors: 31
+- Warnings: 0
+
+- **error** `token-lathe` / `horizontal-overflow`: 82px overflow.
+- **error** `-concepts` / `broken-image`: http://localhost:4010/concepts/previews/liquid-sigil-desktop-dark.png, http://localhost:4010/concepts/previews/token-foundry-desktop-dark.png, http://localhost:4010/concepts/previews/spec-to-system-desktop-dark.png, http://localhost:4010/concepts/previews/token-lathe-desktop-dark.png, http://localhost:4010/concepts/previews/source-result-tear-desktop-dark.png, http://localhost:4010/concepts/previews/monochrome-press-desktop-dark.png, http://localhost:4010/concepts/previews/oxide-instrument-desktop-dark.png, http://localhost:4010/concepts/previews/chrome-selection-museum-desktop-dark.png, http://localhost:4010/concepts/previews/reticle-machine-room-desktop-dark.png, http://localhost:4010/concepts/previews/blueprint-becomes-product-desktop-dark.png, http://localhost:4010/concepts/previews/constraint-compiler-desktop-dark.png, http://localhost:4010/concepts/previews/preset-runway-desktop-dark.png, http://localhost:4010/concepts/previews/carbon-and-bone-desktop-dark.png, http://localhost:4010/concepts/previews/brushed-steel-manual-desktop-dark.png
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `broken-image`: http://localhost:4010/concepts/previews/liquid-sigil-desktop-dark.png, http://localhost:4010/concepts/previews/token-foundry-desktop-dark.png, http://localhost:4010/concepts/previews/spec-to-system-desktop-dark.png, http://localhost:4010/concepts/previews/token-lathe-desktop-dark.png, http://localhost:4010/concepts/previews/source-result-tear-desktop-dark.png, http://localhost:4010/concepts/previews/monochrome-press-desktop-dark.png, http://localhost:4010/concepts/previews/oxide-instrument-desktop-dark.png, http://localhost:4010/concepts/previews/chrome-selection-museum-desktop-dark.png, http://localhost:4010/concepts/previews/reticle-machine-room-desktop-dark.png, http://localhost:4010/concepts/previews/blueprint-becomes-product-desktop-dark.png, http://localhost:4010/concepts/previews/constraint-compiler-desktop-dark.png, http://localhost:4010/concepts/previews/preset-runway-desktop-dark.png, http://localhost:4010/concepts/previews/carbon-and-bone-desktop-dark.png, http://localhost:4010/concepts/previews/brushed-steel-manual-desktop-dark.png
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)
+- **error** `-concepts` / `runtime`: console: Failed to load resource: the server responded with a status of 404 (Not Found)

@@ -1,7 +1,18 @@
 ---
 title: SocialIcons
-description: "A SocialIcons component from the Sigil design system."
+description: "Link to social profiles with recognizable icons."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <SocialIcons
+    links={[
+      { label: "GitHub", href: "https://github.com", icon: <span aria-hidden className="text-xs font-semibold">GH</span> },
+      { label: "X", href: "https://x.com", icon: <span aria-hidden className="text-xs font-semibold">X</span> },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -9,24 +20,23 @@ description: "A SocialIcons component from the Sigil design system."
 import { SocialIcons } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <SocialIcons github="https://github.com" twitter="https://twitter.com" />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<SocialIcons>...</SocialIcons>
+<SocialIcons
+    links={[
+      { label: "GitHub", href: "https://github.com", icon: <span aria-hidden className="text-xs font-semibold">GH</span> },
+      { label: "X", href: "https://x.com", icon: <span aria-hidden className="text-xs font-semibold">X</span> },
+    ]}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `links` | `SocialLink[]` | — | — |
-| `size` | `"sm" | "md"` | — | — |
+| `links` (required) | `SocialLink[]` | — | Links configuration. |
+| `size` | `"sm" \| "md"` | — | Sets the component's size. |
 
 ## Token integration
 

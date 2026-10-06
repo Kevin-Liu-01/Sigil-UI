@@ -1,7 +1,22 @@
 ---
 title: StatsSection
-description: "A StatsSection component from the Sigil design system."
+description: "Present a group of metrics with labels and context."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <StatsSection
+    label="By the numbers"
+    title="Sigil at a glance"
+    stats={[
+      { value: "350+", label: "Components" },
+      { value: "519", label: "Design tokens" },
+      { value: "46", label: "Presets" },
+      { value: "33", label: "Token categories" },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,18 +27,27 @@ import { StatsSection } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<StatsSection>...</StatsSection>
+<StatsSection
+    label="By the numbers"
+    title="Sigil at a glance"
+    stats={[
+      { value: "350+", label: "Components" },
+      { value: "519", label: "Design tokens" },
+      { value: "46", label: "Presets" },
+      { value: "33", label: "Token categories" },
+    ]}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `label` | `string` | — | — |
-| `title` | `ReactNode` | — | — |
-| `description` | `string` | — | — |
-| `stats` | `StatItem[]` | — | — |
-| `variant` | `"inline" | "cards" | "bordered"` | — | — |
+| `label` | `string` | — | Readable label for the component. |
+| `title` | `ReactNode` | — | Heading displayed in the component. |
+| `description` | `string` | — | Supporting text below the heading. |
+| `stats` (required) | `StatItem[]` | — | Stats configuration. |
+| `variant` | `"inline" \| "cards" \| "bordered"` | — | Selects a supported visual treatment. |
 
 ## Token integration
 

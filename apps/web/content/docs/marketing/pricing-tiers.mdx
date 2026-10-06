@@ -1,7 +1,18 @@
 ---
 title: PricingTiers
-description: "A PricingTiers component from the Sigil design system."
+description: "Arrange pricing plans in a tiered comparison."
 ---
+
+## Preview
+
+<ComponentPreview label="Pricing tiers">
+  <PricingTiers
+    tiers={[
+      { name: "Open source", price: "$0", description: "Build with the complete local system.", features: [{ label: "Tokens", value: "519" }, { label: "Presets", value: "46" }], cta: <Button variant="outline" className="w-full">View GitHub</Button> },
+      { name: "Studio", price: "$24", period: "/ month", description: "Collaborative design tooling for teams.", badge: "Popular", highlighted: true, features: [{ label: "Projects", value: "Unlimited" }, { label: "Seats", value: "5" }], cta: <Button className="w-full">Start building</Button> },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,14 +23,19 @@ import { PricingTiers } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<PricingTiers>...</PricingTiers>
+<PricingTiers
+    tiers={[
+      { name: "Open source", price: "$0", description: "Build with the complete local system.", features: [{ label: "Tokens", value: "519" }, { label: "Presets", value: "46" }], cta: <Button variant="outline" className="w-full">View GitHub</Button> },
+      { name: "Studio", price: "$24", period: "/ month", description: "Collaborative design tooling for teams.", badge: "Popular", highlighted: true, features: [{ label: "Projects", value: "Unlimited" }, { label: "Seats", value: "5" }], cta: <Button className="w-full">Start building</Button> },
+    ]}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `tiers` | `PricingTier[]` | — | — |
+| `tiers` (required) | `PricingTier[]` | — | Tiers configuration. |
 
 ## Token integration
 

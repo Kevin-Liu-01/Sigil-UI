@@ -1,7 +1,22 @@
 ---
 title: CodeShowcaseSection
-description: "A CodeShowcaseSection component from the Sigil design system."
+description: "Pair a code example with supporting product context."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <CodeShowcaseSection
+    label="Quick start"
+    title="Get started in seconds"
+    description="Copy, paste, ship."
+    tabs={[
+      { label: "npm",  language: "bash", code: "npm install @sigil-ui/components" },
+      { label: "pnpm", language: "bash", code: "pnpm add @sigil-ui/components" },
+      { label: "yarn", language: "bash", code: "yarn add @sigil-ui/components" },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,17 +27,26 @@ import { CodeShowcaseSection } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<CodeShowcaseSection>...</CodeShowcaseSection>
+<CodeShowcaseSection
+    label="Quick start"
+    title="Get started in seconds"
+    description="Copy, paste, ship."
+    tabs={[
+      { label: "npm",  language: "bash", code: "npm install @sigil-ui/components" },
+      { label: "pnpm", language: "bash", code: "pnpm add @sigil-ui/components" },
+      { label: "yarn", language: "bash", code: "yarn add @sigil-ui/components" },
+    ]}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `label` | `string` | — | — |
-| `title` | `string` | — | — |
-| `description` | `string` | — | — |
-| `tabs` | `CodeTab[]` | — | — |
+| `label` | `string` | — | Readable label for the component. |
+| `title` | `string` | — | Heading displayed in the component. |
+| `description` | `string` | — | Supporting text below the heading. |
+| `tabs` (required) | `CodeTab[]` | — | Tabs configuration. |
 
 ## Token integration
 

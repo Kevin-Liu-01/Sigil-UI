@@ -1,7 +1,22 @@
 ---
 title: MiniBarList
-description: "A MiniBarList component from the Sigil design system."
+description: "Compare a short list of values with compact bars."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <MiniBarList
+    valueLabel="Views"
+    items={[
+      { label: "/docs/getting-started", value: 4230 },
+      { label: "/docs/components/button", value: 3150 },
+      { label: "/docs/theming", value: 2840 },
+      { label: "/docs/diagrams/flow-diagram", value: 1920 },
+      { label: "/docs/installation", value: 1480 },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +27,16 @@ import { MiniBarList } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<MiniBarList>...</MiniBarList>
+<MiniBarList
+    valueLabel="Views"
+    items={[
+      { label: "/docs/getting-started", value: 4230 },
+      { label: "/docs/components/button", value: 3150 },
+      { label: "/docs/theming", value: 2840 },
+      { label: "/docs/diagrams/flow-diagram", value: 1920 },
+      { label: "/docs/installation", value: 1480 },
+    ]}
+  />
 ```
 
 ## Props

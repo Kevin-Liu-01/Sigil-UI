@@ -3,34 +3,22 @@ title: IsometricStackDiagram
 description: A 3D isometric stack of labeled layers rendered as an SVG with configurable dimensions and hatching.
 ---
 
+## Preview
+
+<ComponentPreview vertical>
+  <IsometricStackDiagram layers={[{ label: "Application" }, { label: "Services", hatched: true }, { label: "Infrastructure" }]} />
+</ComponentPreview>
+
 ## Import
 
 ```tsx
 import { IsometricStackDiagram } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview vertical>
-  <IsometricStackDiagram
-    layers={[
-      { id: "ui",    label: "UI" },
-      { id: "tokens", label: "Tokens" },
-      { id: "css",   label: "CSS variables" },
-    ]}
-  />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<IsometricStackDiagram
-  layers={[
-    { label: "App" },
-    { label: "Runtime" },
-    { label: "OS", hatched: true },
-  ]}
-/>
+<IsometricStackDiagram layers={[{ label: "Application" }, { label: "Services", hatched: true }, { label: "Infrastructure" }]} />
 ```
 
 ## Custom dimensions and colors

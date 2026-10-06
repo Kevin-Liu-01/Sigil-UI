@@ -1,13 +1,7 @@
 ---
 title: Empty
-description: "A Empty component from the Sigil design system."
+description: "Explain an empty state and guide the user toward a next step."
 ---
-
-## Import
-
-```tsx
-import { Empty } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -15,20 +9,26 @@ import { Empty } from "@sigil-ui/components";
   <Empty>No items found</Empty>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Empty } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Empty>Empty content</Empty>
+<Empty>No items found</Empty>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `icon` | `ReactNode` | — | — |
-| `title` | `string` | — | — |
-| `description` | `string` | — | — |
-| `action` | `ReactNode` | — | — |
+| `icon` | `ReactNode` | — | Icon configuration. |
+| `title` | `string` | — | Heading displayed in the component. |
+| `description` | `string` | — | Supporting text below the heading. |
+| `action` | `ReactNode` | — | Action configuration. |
 
 ## Token integration
 

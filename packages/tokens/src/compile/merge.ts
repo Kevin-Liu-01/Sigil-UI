@@ -1,5 +1,7 @@
 import type { ThemedColor } from "../types";
 
+const UNSAFE_MERGE_KEYS = new Set(["__proto__", "prototype", "constructor"]);
+
 /**
  * Recursive partial — same shape as T but every leaf is optional.
  * Used by `mergePresets` and any other API that accepts override patches.
@@ -11,7 +13,11 @@ export type DeepPartial<T> = {
 export function isPlainObject(
   value: unknown,
 ): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
+  if (typeof value !== "object" || value === null || Array.isArray(value)) {
+    return false;
+  }
+  const prototype = Object.getPrototypeOf(value);
+  return prototype === Object.prototype || prototype === null;
 }
 
 /**
@@ -40,6 +46,7 @@ export function deepMerge<T extends Record<string, unknown>>(
 ): T {
   const result: Record<string, unknown> = { ...base };
   for (const [key, value] of Object.entries(override)) {
+    if (UNSAFE_MERGE_KEYS.has(key)) continue;
     const baseValue = result[key];
     if (isPlainObject(baseValue) && isPlainObject(value)) {
       result[key] = deepMerge(baseValue, value);

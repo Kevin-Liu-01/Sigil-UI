@@ -1,0 +1,80 @@
+---
+title: DESIGN.md
+description: Generate, edit, and compile the markdown spec that controls your design system.
+---
+
+DESIGN.md holds your design decisions in readable token tables. It covers 519 tokens across 33 categories, including colors, typography, spacing, motion, and page composition.
+
+## Generate the spec
+
+Run this in a project initialized with Sigil:
+
+```bash
+npx @sigil-ui/cli@latest design generate
+```
+
+The command uses the preset in `sigil.config.ts`. To start from a specific preset:
+
+```bash
+npx @sigil-ui/cli@latest design generate --preset anvil
+```
+
+This writes `DESIGN.md` in the current directory. Keep it in version control so people and agents edit the same specification.
+
+## Edit the token tables
+
+Change values in the generated tables while keeping their category names and token keys intact. Use OKLCH for colors and retain all fields so the specification stays complete.
+
+Start with one change, such as the primary color or a radius. Components consume the compiled CSS variables, so they update together.
+
+## Compile the outputs
+
+```bash
+npx @sigil-ui/cli@latest design compile
+```
+
+The default output directory is `.sigil/compiled`:
+
+| File | Purpose |
+| --- | --- |
+| `tokens.css` | CSS custom properties for light and dark modes |
+| `tokens.tailwind.css` | Tailwind v4 theme mappings, including an import of `tokens.css` |
+| `tokens.json` | W3C Design Tokens JSON for other tools |
+
+To use a different path:
+
+```bash
+npx @sigil-ui/cli@latest design compile --input DESIGN.md --out src/styles/design
+```
+
+## Connect it to your app
+
+For a stylesheet at `src/styles/globals.css`, after compiling to `src/styles/design`:
+
+```css title="src/styles/globals.css"
+@import "tailwindcss";
+@import "./design/tokens.tailwind.css";
+@source "../../node_modules/@sigil-ui/components/src";
+```
+
+Load this global stylesheet from your app's entry point. It replaces the default token imports from the manual [installation guide](/docs/installation).
+
+Compilation is explicit: **run `design compile` again after changing the token tables**. It does not watch the markdown file automatically. Add the command to your build script if your project needs that behavior.
+
+## Keep embedded examples current
+
+```bash
+npx @sigil-ui/cli@latest design sync
+```
+
+`sync` refreshes the compiled sections inside DESIGN.md. `compile` writes the separate files your app imports. Use the appropriate command for the output you need.
+
+## Working with agents
+
+Point your agent at DESIGN.md and `.sigil/AGENTS.md`. Ask it to change token values and compile the result. For behavior changes, update the component; for appearance changes, update the token spec.
+
+## See also
+
+- [Theming](/docs/theming)
+- [Presets](/docs/presets)
+- [CLI reference](/docs/cli)

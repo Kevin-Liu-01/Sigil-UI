@@ -19,7 +19,7 @@ import {
 import {
   Cpu, HardDrive, Zap, Shield, Globe,
   ExternalLink, Package,
-} from "lucide-react";
+} from "@/components/icons";
 
 /* ------------------------------------------------------------------ */
 /* Announcement Bar                                                     */

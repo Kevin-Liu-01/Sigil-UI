@@ -5,12 +5,12 @@ import { source } from "../../lib/source";
 
 function SigilLogo() {
   return (
-    <div className="flex items-center gap-2.5">
+    <div className="sigil-docs-logo-lockup">
       <svg
         viewBox="0 0 120 120"
         xmlns="http://www.w3.org/2000/svg"
-        width={18}
-        height={18}
+        className="sigil-docs-logo"
+        aria-hidden
       >
         <polygon
           points="0,0 56,0 56,32 40,40 40,56 0,56"
@@ -26,14 +26,23 @@ function SigilLogo() {
         />
         <polygon
           points="120,120 64,120 64,88 80,80 80,64 120,64"
-          fill="var(--s-primary, #18181b)"
+          fill="var(--s-primary)"
         />
       </svg>
-      <span className="font-[family-name:var(--s-font-display)] font-bold text-[15px] tracking-[-0.03em]">
+      <span className="sigil-docs-wordmark">
         sigil
-        <span className="opacity-30 font-light">/</span>
-        <span className="font-medium text-[13px]">UI</span>
+        <span aria-hidden>/</span>
+        <small>UI</small>
       </span>
+    </div>
+  );
+}
+
+function DocsSidebarBanner() {
+  return (
+    <div className="sigil-docs-sidebar-banner">
+      <span>System reference</span>
+      <strong>519 tokens · 33 categories</strong>
     </div>
   );
 }
@@ -43,12 +52,16 @@ export default function Layout({ children }: { children: ReactNode }) {
     <RootProvider>
       <DocsLayout
         tree={source.pageTree}
+        githubUrl="https://github.com/Kevin-Liu-01/sigil-ui"
+        containerProps={{ className: "sigil-docs-layout" }}
         nav={{
           title: <SigilLogo />,
           url: "/",
         }}
         sidebar={{
           defaultOpenLevel: 1,
+          banner: <DocsSidebarBanner />,
+          className: "sigil-docs-sidebar",
         }}
       >
         {children}

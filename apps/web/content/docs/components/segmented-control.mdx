@@ -1,7 +1,13 @@
 ---
 title: SegmentedControl
-description: "A SegmentedControl component from the Sigil design system."
+description: "Choose one value from a compact row of options."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <SegmentedControlPreview />
+</ComponentPreview>
 
 ## Import
 
@@ -9,19 +15,23 @@ description: "A SegmentedControl component from the Sigil design system."
 import { SegmentedControl, SegmentedControlItem } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <SegmentedControl>
-    <SegmentedControlItem value="a">All</SegmentedControlItem>
-    <SegmentedControlItem value="b">Active</SegmentedControlItem>
-  </SegmentedControl>
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<SegmentedControl>...</SegmentedControl>
+"use client";
+
+import { useState } from "react";
+import { SegmentedControl, SegmentedControlItem } from "@sigil-ui/components";
+
+function SegmentedControlPreview() {
+  const [period, setPeriod] = useState("Week");
+  return <div className="grid gap-[var(--s-space-16)] w-full">
+    <SegmentedControl value={period} onValueChange={setPeriod} aria-label="Report period">
+      {["Day", "Week", "Month"].map((value) => <SegmentedControlItem key={value} value={value}>{value}</SegmentedControlItem>)}
+    </SegmentedControl>
+    <p role="status" className="text-[var(--s-text-muted)] text-[length:var(--s-size-sm)]">Showing the {period.toLowerCase()} report.</p>
+  </div>;
+}
 ```
 
 ## Sub-components
@@ -34,8 +44,9 @@ This component includes the following parts:
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `value` | `string` | — | — |
-| `onValueChange` | `(value: string) => void` | — | — |
+| `value` (required) | `string` | — | The current controlled value. |
+| `onValueChange` (required) | `(value: string) => void` | — | Called when the user changes the value. |
+| `children` (required) | `ReactNode` | — | Content rendered inside the component. |
 
 ## Token integration
 

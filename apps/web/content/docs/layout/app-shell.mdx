@@ -1,7 +1,20 @@
 ---
 title: AppShell
-description: "A AppShell component from the Sigil design system."
+description: "Arrange application navigation, a sidebar, and the main workspace."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <AppShell
+    header={<div className="px-4 py-2 text-sm font-medium border-b border-[color:var(--s-border)] bg-[var(--s-surface)]">Header</div>}
+    sidebar={<div className="p-3 text-xs text-[var(--s-text-muted)]">Sidebar</div>}
+    sidebarWidth={160}
+    className="min-h-0 h-48 w-full max-w-2xl border border-[color:var(--s-border)] bg-[var(--s-background)] overflow-hidden"
+  >
+    <div className="p-4 text-sm text-[var(--s-text)]">Main content area</div>
+  </AppShell>
+</ComponentPreview>
 
 ## Import
 
@@ -12,15 +25,22 @@ import { AppShell } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<AppShell>...</AppShell>
+<AppShell
+    header={<div className="px-4 py-2 text-sm font-medium border-b border-[color:var(--s-border)] bg-[var(--s-surface)]">Header</div>}
+    sidebar={<div className="p-3 text-xs text-[var(--s-text-muted)]">Sidebar</div>}
+    sidebarWidth={160}
+    className="min-h-0 h-48 w-full max-w-2xl border border-[color:var(--s-border)] bg-[var(--s-background)] overflow-hidden"
+  >
+    <div className="p-4 text-sm text-[var(--s-text)]">Main content area</div>
+  </AppShell>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `header` | `ReactNode` | — | — |
-| `sidebar` | `ReactNode` | — | — |
-| `footer` | `ReactNode` | — | — |
-| `sidebarWidth` | `number | string` | — | — |
-| `sidebarPosition` | `"left" | "right"` | — | — |
+| `header` | `ReactNode` | — | Header configuration. |
+| `sidebar` | `ReactNode` | — | Sidebar configuration. |
+| `footer` | `ReactNode` | — | Footer configuration. |
+| `sidebarWidth` | `number \| string` | — | Sidebar Width configuration. |
+| `sidebarPosition` | `"left" \| "right"` | — | Sidebar Position configuration. |

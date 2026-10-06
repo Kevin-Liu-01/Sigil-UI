@@ -1,13 +1,7 @@
 ---
 title: Navbar
-description: "A Navbar component from the Sigil design system."
+description: "Arrange brand navigation and primary page actions."
 ---
-
-## Import
-
-```tsx
-import { Navbar, NavbarLogo, NavbarLinks, NavbarActions } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -24,10 +18,25 @@ import { Navbar, NavbarLogo, NavbarLinks, NavbarActions } from "@sigil-ui/compon
 </Navbar>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Navbar, NavbarLogo, NavbarLinks, NavbarActions } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Navbar>...</Navbar>
+<Navbar>
+  <NavbarLogo>Sigil</NavbarLogo>
+  <NavbarLinks>
+    <a href="#">Docs</a>
+    <a href="#">Components</a>
+  </NavbarLinks>
+  <NavbarActions>
+    <Button size="sm">Get Started</Button>
+  </NavbarActions>
+</Navbar>
 ```
 
 ## Sub-components

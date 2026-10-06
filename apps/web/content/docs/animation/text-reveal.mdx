@@ -1,13 +1,7 @@
 ---
 title: TextReveal
-description: "A TextReveal component from the Sigil design system."
+description: "Reveal a passage of text progressively."
 ---
-
-## Import
-
-```tsx
-import { TextReveal } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -15,10 +9,16 @@ import { TextReveal } from "@sigil-ui/components";
   <TextReveal text="Hover to reveal" />
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { TextReveal } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<TextReveal>TextReveal content</TextReveal>
+<TextReveal text="Hover to reveal" />
 ```
 
 ## Props
@@ -29,7 +29,7 @@ import { TextReveal } from "@sigil-ui/components";
 | `by` | `RevealUnit` | `word` | Reveal by word or character. |
 | `interval` | `number` | `60` | Stagger interval between units in ms. |
 | `delay` | `number` | `0` | Base delay in ms. |
-| `trigger` | `"scroll" | "mount"` | — | — |
+| `trigger` | `"scroll" \| "mount"` | — | — |
 | `viewOptions` | `UseInViewOptions` | — | — |
 
 ## Token integration

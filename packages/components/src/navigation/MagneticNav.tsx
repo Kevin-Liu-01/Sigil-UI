@@ -28,7 +28,7 @@ export const MagneticNav = forwardRef<HTMLElement, MagneticNavProps>(
         <ul
           className={cn(
             "sigil-magnetic-nav-list",
-            "relative m-0 flex list-none gap-[var(--s-navbar-item-gap,4px)] p-[3px]",
+            "relative m-0 flex flex-wrap list-none gap-[var(--s-navbar-item-gap,4px)] p-[3px]",
             "rounded-[var(--s-radius-lg,10px)]",
             orientation === "vertical" && "flex-col",
           )}

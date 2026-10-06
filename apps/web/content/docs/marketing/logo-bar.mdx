@@ -1,7 +1,18 @@
 ---
 title: LogoBar
-description: "A LogoBar component from the Sigil design system."
+description: "Arrange brand marks in a compact horizontal row."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <LogoBar logos={[
+  { src: "/brands/react.svg", alt: "React", monochrome: true },
+  { src: "/brands/nextdotjs.svg", alt: "Next.js", monochrome: true },
+  { src: "/brands/typescript.svg", alt: "TypeScript", monochrome: true },
+  { src: "/brands/tailwindcss.svg", alt: "Tailwind CSS", monochrome: true },
+]} />
+</ComponentPreview>
 
 ## Import
 
@@ -12,8 +23,15 @@ import { LogoBar } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<LogoBar>...</LogoBar>
+<LogoBar logos={[
+  { src: "/brands/react.svg", alt: "React", monochrome: true },
+  { src: "/brands/nextdotjs.svg", alt: "Next.js", monochrome: true },
+  { src: "/brands/typescript.svg", alt: "TypeScript", monochrome: true },
+  { src: "/brands/tailwindcss.svg", alt: "Tailwind CSS", monochrome: true },
+]} />
 ```
+
+The preview uses locally hosted marks from [theSVG](https://thesvg.org/). Set `monochrome` to tint a logo with the active text color. Omit it to preserve the original image colors.
 
 ## Props
 

@@ -1,24 +1,24 @@
 ---
 title: TabularValue
-description: "A TabularValue component from the Sigil design system."
+description: "Keep changing numeric values aligned with tabular figures."
 ---
-
-## Import
-
-```tsx
-import { TabularValue } from "@sigil-ui/components";
-```
 
 ## Preview
 
 <ComponentPreview>
-  <TabularValue />
+  <Stack gap="var(--s-space-8)"><TabularValue size="xl">$12,840.00</TabularValue><TabularValue muted>+1,280.50 this month</TabularValue></Stack>
 </ComponentPreview>
+
+## Import
+
+```tsx
+import { Stack, TabularValue } from "@sigil-ui/components";
+```
 
 ## Usage
 
 ```tsx
-<TabularValue>TabularValue content</TabularValue>
+<Stack gap="var(--s-space-8)"><TabularValue size="xl">$12,840.00</TabularValue><TabularValue muted>+1,280.50 this month</TabularValue></Stack>
 ```
 
 ## Props
@@ -26,7 +26,7 @@ import { TabularValue } from "@sigil-ui/components";
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `size` | `TabularValueSize` | `sm` | Size preset. |
-| `as` | `"span" | "div" | "td" | "p" | "dd" | "time"` | `span` | Render as a different element. |
+| `as` | `"span" \| "div" \| "td" \| "p" \| "dd" \| "time"` | `span` | Render as a different element. |
 | `muted` | `boolean` | `false` | Muted text color. |
 
 ## Token integration

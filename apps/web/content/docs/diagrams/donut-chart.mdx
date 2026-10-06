@@ -1,7 +1,22 @@
 ---
 title: DonutChart
-description: "A DonutChart component from the Sigil design system."
+description: "Show how categories contribute to a total."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <DonutChart
+    segments={[
+      { label: "Direct", value: 45 },
+      { label: "Organic", value: 30 },
+      { label: "Referral", value: 15 },
+      { label: "Social", value: 10 },
+    ]}
+    centerValue="2.4K"
+    centerLabel="visitors"
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +27,16 @@ import { DonutChart } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<DonutChart>...</DonutChart>
+<DonutChart
+    segments={[
+      { label: "Direct", value: 45 },
+      { label: "Organic", value: 30 },
+      { label: "Referral", value: 15 },
+      { label: "Social", value: 10 },
+    ]}
+    centerValue="2.4K"
+    centerLabel="visitors"
+  />
 ```
 
 ## Props

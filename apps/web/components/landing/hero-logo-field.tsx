@@ -3,18 +3,23 @@
 import React, { useEffect, useLayoutEffect, useState, useRef, useCallback, useMemo, cloneElement } from "react";
 import type { ReactElement } from "react";
 import {
-  Avatar, AvatarGroup, Badge, Button, Calendar, Card, CardContent, Checkbox,
-  CommitGrid, Input, KPI, Meter, Progress, Separator, SparkLine,
+  Badge, Button, Calendar, Card, CardContent, Checkbox,
+  Input, KPI, Meter, Progress, Separator, SparkLine,
   Slider, Stepper, Switch, Tabs, TabsList, TabsTrigger,
   ToggleGroup, ToggleGroupItem,
 } from "@sigil-ui/components";
 import { MarkdownChrome, TokenPreviewGlyph, type TokenPreviewKind } from "./token-visuals";
-import { Palette, RectangleHorizontal, SquareSlash, Clock, Type, Layers, FileUp, Volume2, Sparkles, Radio } from "lucide-react";
+import { Palette, RectangleHorizontal, SquareSlash, Clock, Type, Layers, FileUp, Volume2, Sparkles, Radio, Rocket, Shield, Heart, Code, Bold, Italic, Underline, Strikethrough, Ruler, BarChart3, Box } from "@/components/icons";
+import { HeroStack } from "./hero-stack";
+import { HeroActivity } from "./hero-activity";
+import { useSigilActions } from "../sandbox/token-provider";
+import { STUDIO_PRESETS } from "@/lib/studio-presets";
 import { OklchText } from "../oklch-text";
 
 /* ── Timing ──────────────────────────────────────────────────── */
 const CYCLE_MS = 4200;
 const PHASE_MS = 1050;
+const SELECTION_PAD = 6;
 
 function isPresetSwitching() {
   return document.documentElement.hasAttribute("data-sigil-preset-switching");
@@ -217,7 +222,9 @@ function ContinuousSparkLine({
         overflow: "hidden",
         position: "relative",
         width: "100%",
-        height,
+        height: "100%",
+        flex: 1,
+        minHeight: 0,
       }}
     >
       <svg
@@ -267,7 +274,7 @@ function ContinuousSparkLine({
         style={{
           position: "absolute",
           right: paddingX + 1,
-          top: dotY,
+          top: `${(dotY / height) * 100}%`,
           width: dotR * 2,
           height: dotR * 2,
           marginTop: -dotR,
@@ -297,9 +304,10 @@ interface LiveRequestsCardProps {
   accent?: boolean;
   intervalMs?: number;
   length?: number;
+  active?: boolean;
 }
 
-function LiveRequestsCard({ accent = false, intervalMs = 320, length = 32 }: LiveRequestsCardProps) {
+function LiveRequestsCard({ accent = false, intervalMs = 320, length = 32, active = true }: LiveRequestsCardProps) {
   const seed = useMemo(() => {
     // Hand-shaped seed with gentle peaks/valleys so the first paint
     // already reads as "live data" instead of a flat warmup.
@@ -314,6 +322,7 @@ function LiveRequestsCard({ accent = false, intervalMs = 320, length = 32 }: Liv
   const [p99, setP99] = useState<number>(12);
 
   useEffect(() => {
+    if (!active) return;
     let tick = 0;
     const id = window.setInterval(() => {
       if (isPresetSwitching()) return;
@@ -342,16 +351,16 @@ function LiveRequestsCard({ accent = false, intervalMs = 320, length = 32 }: Liv
       }
     }, intervalMs);
     return () => window.clearInterval(id);
-  }, [intervalMs]);
+  }, [intervalMs, active]);
 
   const lineColor = accent ? "oklch(0.70 0.22 190)" : "var(--s-primary)";
 
   return (
     <>
       <div className=" px-0.5 flex items-center justify-between">
-        <span style={{ ...mono9, color: "var(--s-text-muted)" }}>requests / min</span>
+        <span style={{ ...mono9, color: "var(--s-text-muted)" }}>Requests / min</span>
         <span
-          className="font-[family-name:var(--s-font-mono)] text-[8px] tabular-nums inline-flex items-center gap-1"
+          className="font-[family-name:var(--s-font-mono)] text-[length:var(--s-hero-demo-label)] tabular-nums inline-flex items-center gap-1"
           style={{ color: "var(--s-text-muted)" }}
         >
           <span
@@ -378,7 +387,7 @@ function LiveRequestsCard({ accent = false, intervalMs = 320, length = 32 }: Liv
 }
 
 /* `mono9` is declared later — forward-reference via lazy lookup. */
-const mono9 = { fontFamily: "var(--s-font-mono)", fontSize: 9, letterSpacing: "0.05em" } as const;
+const mono9 = { fontFamily: "var(--s-font-mono)", fontSize: "var(--s-hero-demo-label)" } as const;
 
 /* ── Single uniform stroke preset ────────────────────────────── */
 const S = { fill: "none" as const, strokeWidth: 0.25, pathLength: 1 };
@@ -628,35 +637,27 @@ const HERO_CELLS = [
 // These are used by the PresetSwatches cell so each tile actually inherits
 // its preset's brand color instead of all reading from --s-primary.
 type PresetSwatch = { name: string; color: string };
-const PRESET_SWATCH_ROW_A: PresetSwatch[] = [
-  { name: "sigil", color: "#9b99e8" },
-  { name: "onyx", color: "#a855f7" },
-  { name: "forge", color: "#ea580c" },
-  { name: "flux", color: "#06b6d4" },
-  { name: "vex", color: "#ec4899" },
-];
-const PRESET_SWATCH_ROW_B: PresetSwatch[] = [
-  { name: "rune", color: "#b45309" },
-  { name: "kova", color: "#38bdf8" },
-  { name: "cobalt", color: "#2563eb" },
-  { name: "helix", color: "#059669" },
-  { name: "cipher", color: "#22c55e" },
-];
+const swatches = (names: string[]): PresetSwatch[] => names.map(name => {
+  const preset = STUDIO_PRESETS.find(preset => preset.name === name)!;
+  return { name, color: preset.colors[0] };
+});
+const PRESET_SWATCH_ROW_A = swatches(["sigil", "shard", "rivet", "flux", "vex"]);
+const PRESET_SWATCH_ROW_B = swatches(["rune", "kova", "cobalt", "helix", "cipher"]);
 
 const HERO_TOKEN_STEPS = [
   { token: "--s-primary", before: "primary: oklch(0.55 0.12 275)", line: "primary: oklch(0.66 0.18 275)", label: "primary geometry" },
   { token: "--s-border", before: "border: oklch(0.20 0.01 260)", line: "border: oklch(0.24 0.01 260)", label: "cell outline" },
   { token: "--s-radius-md", before: "radius-md: 8px", line: "radius-md: 16px", label: "component corners" },
   { token: "--s-duration-slow", before: "duration-slow: 600ms", line: "duration-slow: 300ms", label: "draw timing" },
-  { token: "--s-font-display", before: 'font-display: "IBM Plex Sans"', line: 'font-display: "Space Grotesk"', label: "heading typeface" },
+  { token: "--s-font-display", before: 'font-display: "InterVariable"', line: 'font-display: "Outfit"', label: "heading typeface" },
   { token: "--s-success", before: "success: oklch(0.60 0.15 145)", line: "success: oklch(0.72 0.19 145)", label: "positive signal" },
   { token: "--s-radius-sm", before: "radius-sm: 0", line: "radius-sm: 9999px", label: "badge shape" },
   { token: "--s-shadow-md", before: "shadow-md: 0 4px 12px", line: "shadow-md: 0 0 24px", label: "card glow" },
   { token: "--s-accent", before: "accent: oklch(0.60 0.16 250)", line: "accent: oklch(0.70 0.22 190)", label: "chart highlight" },
-  { token: "--s-radius-full", before: "radius-full: 9999px", line: "radius-full: 8px", label: "avatar shape" },
+  { token: "--s-control-icon-size", before: "control-icon-size: 20px", line: "control-icon-size: 24px", label: "logo size" },
   { token: "--s-border-style", before: "border-style: solid", line: "border-style: dashed", label: "outline style" },
   { token: "--s-surface", before: "surface: oklch(0.16 0 0)", line: "surface: oklch(0.22 0.03 275)", label: "card tint" },
-  { token: "--s-font-body", before: 'font-body: "Inter"', line: 'font-body: "DM Sans"', label: "body typeface" },
+  { token: "--s-font-body", before: 'font-body: "InterVariable"', line: 'font-body: "Sora"', label: "body typeface" },
 ] as const;
 
 const HERO_CURSOR_STEPS = [
@@ -669,7 +670,7 @@ const HERO_CURSOR_STEPS = [
   { component: "Badges", ...HERO_TOKEN_STEPS[6] },
   { component: "Coverage", ...HERO_TOKEN_STEPS[7] },
   { component: "SparkLine", ...HERO_TOKEN_STEPS[8] },
-  { component: "Team", ...HERO_TOKEN_STEPS[9] },
+  { component: "Stack", ...HERO_TOKEN_STEPS[9] },
   { component: "Sliders", ...HERO_TOKEN_STEPS[10] },
   { component: "Switches", ...HERO_TOKEN_STEPS[11] },
   { component: "Buttons", ...HERO_TOKEN_STEPS[12] },
@@ -678,7 +679,8 @@ const HERO_CURSOR_STEPS = [
 const TOKEN_SECTIONS: { name: string; icon: React.ElementType; indices: number[] }[] = [
   { name: "Colors", icon: Palette, indices: [0, 5, 8, 11] },
   { name: "Borders", icon: RectangleHorizontal, indices: [1, 10] },
-  { name: "Radius", icon: SquareSlash, indices: [2, 6, 9] },
+  { name: "Radius", icon: SquareSlash, indices: [2, 6] },
+  { name: "Controls", icon: Box, indices: [9] },
   { name: "Motion", icon: Clock, indices: [3] },
   { name: "Typography", icon: Type, indices: [4, 12] },
   { name: "Shadows", icon: Layers, indices: [7] },
@@ -1052,7 +1054,7 @@ function renderVariant(elements: V) {
 const STEP_KEYS = [
   "UsageCard", "PresetSwatches", "DatePicker", "TokenAction",
   "KPI", "CommitGrid", "Badges", "Coverage",
-  "SparkLine", "Team", "Sliders", "Switches", "Buttons",
+  "SparkLine", "Stack", "Sliders", "Switches", "Buttons",
 ] as const;
 
 const TOTAL_STEPS = 13;
@@ -1071,22 +1073,26 @@ const COMMIT_DAYS = (() => {
   const days: { date: string; count: number }[] = [];
   const rand = seededRandom(42);
   const base = new Date(Date.UTC(2026, 2, 1));
-  for (let i = 48; i >= 0; i--) {
+  for (let i = 111; i >= 0; i--) {
     const d = new Date(base);
-    d.setUTCDate(d.getUTCDate() + (49 - i));
+    d.setUTCDate(d.getUTCDate() + (112 - i));
     days.push({ date: d.toISOString().split("T")[0], count: Math.floor(rand() * 7 * (1 + Math.sin(i / 4))) });
   }
   return days;
 })();
 
-export function HeroLogoField() {
+export function HeroLogoField({ intro }: { intro?: React.ReactNode }) {
+  const { setPreset, preloadPreset } = useSigilActions();
+  const [demoVisible, setDemoVisible] = useState(false);
+  const [motionAllowed, setMotionAllowed] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [idx, setIdx] = useState(0);
   const [phase, setPhase] = useState(0);
   const [appliedSet, setAppliedSet] = useState<Set<string>>(new Set());
   const appliedQueue = useRef<string[]>([]);
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(() => new Date());
   const [formats, setFormats] = useState<string[]>(["bold"]);
-  const [tokenFileName, setTokenFileName] = useState("sigil.tokens.md");
+  const [tokenFileName, setTokenFileName] = useState("DESIGN.md");
   const [spacingValue, setSpacingValue] = useState(16);
   const [radiusValue, setRadiusValue] = useState(8);
   const [switchState, setSwitchState] = useState<Record<string, boolean>>({
@@ -1096,6 +1102,21 @@ export function HeroLogoField() {
   });
 
   const wrapRef = useRef<HTMLDivElement>(null);
+  const demoAnimating = demoVisible && motionAllowed && switchState.motion;
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setMotionAllowed(!media.matches && !document.hidden);
+    update();
+    media.addEventListener("change", update);
+    document.addEventListener("visibilitychange", update);
+    const observer = new IntersectionObserver(([entry]) => setDemoVisible(entry.isIntersecting));
+    if (wrapRef.current) observer.observe(wrapRef.current);
+    return () => {
+      observer.disconnect();
+      media.removeEventListener("change", update);
+      document.removeEventListener("visibilitychange", update);
+    };
+  }, []);
   const containerRef = useRef<HTMLDivElement>(null);
   const mdScrollRef = useRef<HTMLDivElement>(null);
   const componentRefs = useRef<Record<string, HTMLDivElement | null>>({});
@@ -1116,7 +1137,7 @@ export function HeroLogoField() {
 
 
   useEffect(() => {
-    if (!mounted) return;
+    if (!mounted || !demoAnimating) return;
     const interval = setInterval(() => {
       if (isPresetSwitching()) return;
       setPhase((current) => {
@@ -1140,7 +1161,7 @@ export function HeroLogoField() {
       });
     }, PHASE_MS);
     return () => clearInterval(interval);
-  }, [mounted, idx]);
+  }, [mounted, idx, demoAnimating]);
 
   useEffect(() => {
     if (phase < 1) {
@@ -1149,7 +1170,7 @@ export function HeroLogoField() {
     }
     const target = componentRefs.current[STEP_KEYS[activeStepIndices[idx % activeStepIndices.length]]];
     if (!target) return;
-    const pad = 6;
+    const pad = SELECTION_PAD;
     setSelRect({
       top: target.offsetTop - pad,
       left: target.offsetLeft - pad,
@@ -1161,7 +1182,7 @@ export function HeroLogoField() {
   useEffect(() => {
     const target = componentRefs.current[STEP_KEYS[activeStepIndices[idx % activeStepIndices.length]]];
     if (!target) return;
-    const pad = 6;
+    const pad = SELECTION_PAD;
     setCursorTarget({
       left: target.offsetLeft + target.offsetWidth + pad - 10,
       top: target.offsetTop + target.offsetHeight + pad - 10,
@@ -1177,7 +1198,7 @@ export function HeroLogoField() {
   }, [phase, idx]);
 
   useEffect(() => {
-    if (phase !== 2) {
+    if (phase !== 2 || !demoAnimating) {
       setLabelParts(null);
       return;
     }
@@ -1196,6 +1217,7 @@ export function HeroLogoField() {
 
     const tick = () => {
       if (cancelled) return;
+      if (isPresetSwitching()) { setTimeout(tick, 50); return; }
       step++;
       if (step <= total) {
         setLabelParts({ prefix, value: oldVal.slice(0, total - step), isNew: false });
@@ -1210,7 +1232,7 @@ export function HeroLogoField() {
     };
     const delay = setTimeout(tick, 80);
     return () => { cancelled = true; clearTimeout(delay); };
-  }, [phase, idx]);
+  }, [phase, idx, demoAnimating]);
 
   useEffect(() => {
     const container = mdScrollRef.current;
@@ -1248,18 +1270,22 @@ export function HeroLogoField() {
   const flipLabel = selRect ? (selRect.top + selRect.height + 36) > containerHeight : false;
 
   const overlayCenterX = (displayRect?.left ?? 0) + (displayRect?.width ?? 0) / 2;
-  const labelClampedCenter = Math.max(8, Math.min(overlayCenterX, containerWidth - 8));
-  const labelLeftInOverlay = labelClampedCenter - (displayRect?.left ?? 0);
+  const labelPlacement: React.CSSProperties = overlayCenterX < containerWidth * 0.3
+    ? { left: SELECTION_PAD }
+    : overlayCenterX > containerWidth * 0.7
+      ? { right: SELECTION_PAD }
+      : { left: "50%", transform: "translateX(-50%)" };
   const labelMaxWidth = containerWidth > 0 ? containerWidth - 16 : undefined;
 
-  const mono9: React.CSSProperties = { fontFamily: "var(--s-font-mono)", fontSize: 9, letterSpacing: "0.08em", textTransform: "uppercase" };
-  const mono10: React.CSSProperties = { fontFamily: "var(--s-font-mono)", fontSize: 10, lineHeight: 1.62 };
+  const mono9: React.CSSProperties = { fontFamily: "var(--s-font-mono)", fontSize: "var(--s-hero-demo-label)", letterSpacing: "0.08em", textTransform: "none" };
+  const mono10: React.CSSProperties = { fontFamily: "var(--s-font-mono)", fontSize: "var(--s-hero-demo-label)", lineHeight: 1.62 };
   const cellBg = "var(--s-surface, var(--s-background))";
 
   return (
     <div
       ref={wrapRef}
       className="hero-logo-field"
+      data-hero-intro={Boolean(intro)}
       style={{
         overflow: "visible",
         width: "100%",
@@ -1275,16 +1301,16 @@ export function HeroLogoField() {
           transition: "opacity 400ms cubic-bezier(0.32, 0.72, 0, 1)",
           gridTemplateColumns: "repeat(12, minmax(0, 1fr))",
           gridTemplateRows: "auto auto auto",
-          gap: "calc(var(--s-grid-cell, 40px) / 8)",
+          gap: "var(--s-hero-demo-gap)",
           width: "100%",
           position: "relative",
         }}
       >
-        {/* Row 1: sigil.tokens.md (3 cols) + UsageCard (2) + PresetSwatches (2) */}
+        {intro && <div className="sigil-hero-intro">{intro}</div>}
+        {/* Row 1: DESIGN.md (3 cols) + UsageCard (2) + PresetSwatches (2) */}
         <div
+          className="sigil-hero-spec"
           style={{
-            gridColumn: "1 / 6",
-            gridRow: "1",
             height: "100%",
             border: "var(--s-border-thin,1px) var(--s-border-style,solid) var(--s-border-strong, var(--s-border))",
             borderRadius: "var(--s-radius-md,8px)",
@@ -1295,16 +1321,16 @@ export function HeroLogoField() {
             flexDirection: "column",
           } as React.CSSProperties}
         >
-          <div style={{ ...mono9, fontSize: 10, borderBottom: "var(--s-border-thin,1px) var(--s-border-style,solid) var(--s-border)", padding: "calc(var(--s-grid-cell, 40px) / 10) calc(var(--s-grid-cell, 40px) / 5)", color: "var(--s-text)", display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--s-surface-elevated, var(--s-surface))", flexShrink: 0 }}>
-            <span style={{ fontWeight: 700 }}>sigil.tokens.md</span>
-            <span style={{ fontSize: 9, color: "var(--s-text-muted)" }}>{appliedSet.size}/{activeStepIndices.length}</span>
+          <div style={{ ...mono9, fontSize: "var(--s-hero-demo-label)", borderBottom: "var(--s-border-thin,1px) var(--s-border-style,solid) var(--s-border)", padding: "calc(var(--s-grid-cell, 40px) / 10) calc(var(--s-grid-cell, 40px) / 5)", color: "var(--s-text)", display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--s-surface-elevated, var(--s-surface))", flexShrink: 0 }}>
+            <span style={{ fontWeight: 700 }}>DESIGN.md</span>
+            <span style={{ fontSize: "var(--s-hero-demo-label)", color: "var(--s-text-muted)" }}>{appliedSet.size}/{activeStepIndices.length}</span>
           </div>
-          <div ref={mdScrollRef} style={{ ...mono10, padding: "calc(var(--s-grid-cell, 40px) / 10) calc(var(--s-grid-cell, 40px) / 5)", fontSize: 10, lineHeight: 1.5, flex: 1, minHeight: 0, overflow: "hidden" }}>
+          <div ref={mdScrollRef} style={{ ...mono10, padding: "calc(var(--s-grid-cell, 40px) / 10) calc(var(--s-grid-cell, 40px) / 5)", fontSize: "var(--s-hero-demo-label)", lineHeight: 1.5, flex: 1, minHeight: 0, overflow: "hidden" }}>
             {TOKEN_SECTIONS.map((section, si) => {
               const Icon = section.icon;
               return (
                 <React.Fragment key={section.name}>
-                  <div style={{ color: "var(--s-text)", fontWeight: 700, marginTop: si > 0 ? 2 : 0, fontSize: 10 }}>
+                  <div style={{ color: "var(--s-text)", fontWeight: 700, marginTop: si > 0 ? 2 : 0, fontSize: "var(--s-hero-demo-label)" }}>
                     {section.name}
                   </div>
                   {section.indices.map((stepIdx) => {
@@ -1323,15 +1349,17 @@ export function HeroLogoField() {
                         // var(--s-primary) is light-gray in dark mode and
                         // wouldn't visually differentiate from the loading
                         // state.
-                        style={{ color: isDone ? "oklch(0.66 0.18 275)" : isActive ? "var(--s-text)" : "var(--s-text-muted)", transition: "color 300ms", paddingLeft: 6, borderLeft: "2px solid transparent", display: "flex", alignItems: "center", gap: 3 }}
+                        style={{ color: isDone ? "oklch(0.66 0.18 275)" : isActive ? "var(--s-text)" : "var(--s-text-muted)", transition: "color 300ms", paddingLeft: 6, borderLeft: "2px solid transparent", display: "flex", alignItems: "center", gap: 3, minWidth: 0, overflow: "hidden" }}
                       >
                         <Icon size={7} style={{ opacity: 0.4, flexShrink: 0 }} />
-                        {isActive && isTyping && labelParts ? (
-                          <span>{labelParts.prefix}{labelParts.value}</span>
-                        ) : (
-                          <OklchText>{isDone ? t.line : t.before}</OklchText>
-                        )}
-                        {isDone && !isActive ? " ✓" : ""}
+                        <span style={{ minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                          {isActive && isTyping && labelParts ? (
+                            <>{labelParts.prefix}{labelParts.value}</>
+                          ) : (
+                            <OklchText>{isDone ? t.line : t.before}</OklchText>
+                          )}
+                        </span>
+                        {isDone && !isActive ? <span style={{ flexShrink: 0 }}>✓</span> : null}
                       </div>
                     );
                   })}
@@ -1342,18 +1370,17 @@ export function HeroLogoField() {
         </div>
 
         <div
+          className="sigil-hero-live"
           style={{
-            gridColumn: "6 / 13",
-            gridRow: "1",
             display: "grid",
             gridTemplateColumns: "repeat(7, minmax(0, 1fr))",
             gridTemplateRows: "auto minmax(0, 1fr) auto",
-            gap: "calc(var(--s-grid-cell, 40px) / 8)",
+            gap: "var(--s-hero-demo-gap)",
             alignSelf: "stretch",
           }}
         >
         <div
-          ref={setComponentRef("UsageCard")}
+          ref={setComponentRef("UsageCard")} data-demo-cell="UsageCard"
           style={{
             gridColumn: "1 / 5",
             ...(applied("UsageCard") ? { "--s-primary": "oklch(0.66 0.18 275)" } : {}),
@@ -1369,16 +1396,16 @@ export function HeroLogoField() {
           >
             <CardContent className="pt-1.5 pb-0.5 px-1.5">
               <div className="flex items-center justify-between">
-                <span style={{ ...mono9, fontSize: 8, color: "var(--s-text-muted)" }}>usage</span>
-                <Badge size="sm" className="text-[7px] px-1 py-0" style={applied("UsageCard") ? { background: "var(--s-primary)", borderColor: "var(--s-primary)" } : undefined}>live</Badge>
+                <span style={{ ...mono9, fontSize: "var(--s-hero-demo-label)", color: "var(--s-text-muted)" }}>Usage</span>
+                <Badge size="sm" className="text-[length:var(--s-hero-demo-label)] px-1 py-0" style={applied("UsageCard") ? { background: "var(--s-primary)", borderColor: "var(--s-primary)" } : undefined}>Live</Badge>
               </div>
-              <div className="font-[family-name:var(--s-font-mono)] text-[13px] font-bold tabular-nums leading-tight" style={{ color: applied("UsageCard") ? "var(--s-primary)" : "var(--s-text)", transition: "color 600ms" }}>12.4k</div>
+              <div className="font-[family-name:var(--s-font-mono)] text-[length:var(--s-size-xl)] font-bold tabular-nums leading-tight" style={{ color: applied("UsageCard") ? "var(--s-primary)" : "var(--s-text)", transition: "color 600ms" }}>12.4k</div>
               <Progress value={applied("UsageCard") ? 88 : 72} className="mt-1 h-[3px]" />
             </CardContent>
           </Card>
         </div>
 
-        <div ref={setComponentRef("PresetSwatches")} style={{ gridColumn: "5 / 8" }}>
+        <div ref={setComponentRef("PresetSwatches")} data-demo-cell="PresetSwatches" style={{ gridColumn: "5 / 8" }}>
           <Card
             className={`overflow-hidden h-full ${applied("PresetSwatches") ? "hero-logo-field__apply" : ""}`}
             style={{
@@ -1388,7 +1415,7 @@ export function HeroLogoField() {
             }}
           >
             <CardContent className="p-1 px-1.5 flex flex-col justify-center h-full">
-              <div className="mb-0.5" style={{ ...mono9, fontSize: 8, color: "var(--s-text-muted)" }}>preset</div>
+              <div className="mb-0.5" style={{ ...mono9, fontSize: "var(--s-hero-demo-label)", color: "var(--s-text-muted)" }}>Preset</div>
               {[PRESET_SWATCH_ROW_A, PRESET_SWATCH_ROW_B].map((row, rowIdx) => (
                 <div key={rowIdx} className={rowIdx === 0 ? "flex gap-1" : "flex mt-1 gap-1"}>
                   {row.map((swatch, itemIdx) => {
@@ -1401,10 +1428,13 @@ export function HeroLogoField() {
                         type="button"
                         aria-label={swatch.name}
                         title={swatch.name}
+                        onPointerEnter={() => void preloadPreset(swatch.name)}
+                        onFocus={() => void preloadPreset(swatch.name)}
+                        onClick={() => void setPreset(swatch.name)}
                         className="shrink-0 cursor-pointer p-0 transition-transform duration-[var(--s-duration-fast,150ms)] hover:scale-110"
                         style={{
-                          width: 12,
-                          height: 12,
+                          width: "var(--s-hero-demo-icon)",
+                          height: "var(--s-hero-demo-icon)",
                           background: swatch.color,
                           borderRadius: "var(--s-radius-sm,3px)",
                           border: isActive
@@ -1426,9 +1456,9 @@ export function HeroLogoField() {
 
         {/* Row 2: DatePicker spans the right stack. The wrapper flexes vertically
             so the Calendar fills the leftover height in the column, which
-            bottom-aligns the right side with the sigil.tokens.md panel. */}
+            bottom-aligns the right side with the DESIGN.md panel. */}
         <div
-          ref={setComponentRef("DatePicker")}
+          ref={setComponentRef("DatePicker")} data-demo-cell="DatePicker"
           className={`overflow-hidden ${radiusApplied ? "hero-logo-field__apply" : ""}`}
           style={{
             gridColumn: "1 / 8",
@@ -1449,10 +1479,12 @@ export function HeroLogoField() {
         >
           <Calendar
             mode="single"
-            selected={new Date()}
+            selected={selectedDate}
+            onSelect={setSelectedDate}
+            fixedWeeks
             captionLayout="label"
             disableNavigation={false}
-            className="border-0 rounded-none bg-transparent p-2 w-full h-full flex flex-col [--cell-size:1.25rem] [&_[data-slot=calendar-day]]:text-[9px] [&_[data-slot=calendar-day]]:leading-none"
+            className="border-0 rounded-none bg-transparent p-2 w-full h-full flex flex-col [--cell-size:1.25rem] [&_[data-slot=calendar-day]]:text-[length:var(--s-hero-demo-label)] [&_[data-slot=calendar-day]]:leading-none"
             // Override the Calendar component's internal class names directly
             // (the Calendar spreads user-provided classNames LAST, so these
             // fully replace the defaults rather than merge into them).
@@ -1460,15 +1492,17 @@ export function HeroLogoField() {
               months: "relative flex flex-col flex-1 min-h-0",
               month: "flex w-full flex-col flex-1 min-h-0 gap-1",
               nav: "absolute inset-x-0 top-0 flex w-full items-center justify-between pointer-events-none",
-              button_previous: "pointer-events-auto z-[1] inline-flex h-5 w-5 items-center justify-center rounded-[var(--s-radius-sm,4px)] text-[var(--s-text-muted)] hover:text-[var(--s-text)] hover:bg-[var(--s-surface)] select-none",
-              button_next: "pointer-events-auto z-[1] inline-flex h-5 w-5 items-center justify-center rounded-[var(--s-radius-sm,4px)] text-[var(--s-text-muted)] hover:text-[var(--s-text)] hover:bg-[var(--s-surface)] select-none",
+              button_previous: "pointer-events-auto z-[1] inline-flex h-[var(--s-space-24)] w-[var(--s-space-24)] items-center justify-center rounded-[var(--s-radius-sm,4px)] text-[var(--s-text-muted)] hover:text-[var(--s-text)] hover:bg-[var(--s-surface)] select-none",
+              button_next: "pointer-events-auto z-[1] inline-flex h-[var(--s-space-24)] w-[var(--s-space-24)] items-center justify-center rounded-[var(--s-radius-sm,4px)] text-[var(--s-text-muted)] hover:text-[var(--s-text)] hover:bg-[var(--s-surface)] select-none",
               month_caption: "flex h-5 w-full items-center justify-center px-6",
-              caption_label: "text-[10px] font-medium text-[var(--s-text)] select-none",
-              table: "w-full flex-1 flex flex-col min-h-0 border-collapse",
-              weekdays: "flex h-4",
-              weekday: "flex-1 text-center font-[family-name:var(--s-font-mono,inherit)] text-[7px] font-medium uppercase tracking-[0.08em] text-[var(--s-text-muted)] inline-flex items-center justify-center select-none",
-              week: "mt-0.5 flex w-full flex-1 min-h-0",
+              caption_label: "text-[length:var(--s-hero-demo-label)] font-medium text-[var(--s-text)] select-none",
+              month_grid: "sigil-hero-calendar-grid",
+              weeks: "sigil-hero-calendar-weeks",
+              weekdays: "flex h-[var(--s-space-24)]",
+              weekday: "flex-1 text-center font-[family-name:var(--s-font-mono,inherit)] text-[length:var(--s-hero-demo-label)] font-medium uppercase tracking-[0.08em] text-[var(--s-text-muted)] inline-flex items-center justify-center select-none",
+              week: "sigil-hero-calendar-week",
               day: "group/day relative aspect-auto flex-1 p-0 text-center select-none",
+              day_button: "sigil-hero-calendar-day",
               outside: "text-[var(--s-text-muted)] opacity-50",
               dropdowns: "hidden",
               dropdown: "hidden",
@@ -1482,7 +1516,7 @@ export function HeroLogoField() {
             visually. The bottom "duration tick" bar is the actual demo: its
             animation-duration is the value being demonstrated, so the bar
             visibly speeds up (300ms) → slows down (600ms) when applied. */}
-        <div ref={setComponentRef("TokenAction")} style={{ gridColumn: "1 / 8" }}>
+        <div ref={setComponentRef("TokenAction")} data-demo-cell="TokenAction" style={{ gridColumn: "1 / 8" }}>
           <div
             className={`relative overflow-hidden ${applied("TokenAction") ? "hero-logo-field__apply" : ""}`}
             style={{
@@ -1492,27 +1526,30 @@ export function HeroLogoField() {
               // calendar's animation goes 8px → 16px, this box stays at the
               // baseline.
               background: applied("TokenAction") ? "color-mix(in oklch, var(--s-primary) 8%, var(--s-surface, var(--s-background)))" : cellBg,
-              padding: "calc(var(--s-grid-cell, 40px) / 8) calc(var(--s-grid-cell, 40px) / 5)",
+              height: "var(--s-grid-cell, 40px)",
+              paddingInline: "calc(var(--s-grid-cell, 40px) / 5)",
+              display: "flex",
+              alignItems: "center",
               transition: "background-color 600ms, border-color 600ms",
               // Bind the duration-bar sweep to the demoed duration value.
               "--hlf-tick-duration": applied("TokenAction") ? "300ms" : "600ms",
             } as React.CSSProperties}
           >
-            <div className="grid grid-cols-[auto_1fr_auto] gap-1 items-center">
+            <div className="grid w-full min-w-0 grid-cols-[auto_minmax(0,1fr)_auto] gap-1 items-center">
               <TokensFilePicker
                 accept=".md,.toml,.css"
-                hasFile={tokenFileName !== "sigil.tokens.md"}
+                hasFile={tokenFileName !== "DESIGN.md"}
                 onFileSelected={(file) => setTokenFileName(file.name)}
               />
               <Input
                 value={tokenFileName}
                 readOnly
-                className={`h-7 text-[9px] ${applied("TokenAction") ? "hero-logo-field__typed" : ""}`}
+                className={`h-7 text-[length:var(--s-hero-demo-label)] ${applied("TokenAction") ? "hero-logo-field__typed" : ""}`}
                 // Re-key whenever the typed-in animation should replay (apply
                 // step lands or a new file is uploaded).
                 key={`${tokenFileName}-${applied("TokenAction") ? "typed" : "idle"}`}
               />
-              <Button size="sm" className="h-7 px-2.5 text-[9px]">{applied("TokenAction") ? "Saved" : "Apply"}</Button>
+              <Button size="sm" className="h-7 px-2.5 text-[length:var(--s-hero-demo-label)]">{applied("TokenAction") ? "Saved" : "Apply"}</Button>
             </div>
             <div aria-hidden="true" className="hero-logo-field__duration-bar" />
           </div>
@@ -1520,17 +1557,22 @@ export function HeroLogoField() {
         </div>
 
         {/* Row 4: KPI + CommitGrid + Badges + Coverage/ToggleGroup */}
-        <div ref={setComponentRef("KPI")} className="h-full" style={{ gridColumn: "1 / 4" }}>
+        <div ref={setComponentRef("KPI")} data-demo-cell="KPI" className="h-full">
+          <Card className="h-full">
+          <CardContent className="sigil-hero-cell-content sigil-hero-revenue">
           <KPI
-            label="ARR"
-            value="$7.52m"
-            change="+67%"
+            label="Annual revenue"
+            value="$7.52M"
+            change="+67% this year"
             trend="up"
-            className={`text-[9px] ${applied("KPI") ? "hero-logo-field__apply" : ""}`}
-            style={{ fontFamily: applied("KPI") ? '"Space Grotesk", var(--s-font-display)' : undefined }}
+            className={`sigil-hero-kpi ${applied("KPI") ? "hero-logo-field__apply" : ""}`}
+            style={{ fontFamily: applied("KPI") ? '"Outfit", var(--s-font-display)' : undefined }}
           />
+          <SparkLine data={[18, 22, 20, 30, 26, 34, 38, 35, 47, 52, 58, 67]} width={240} height={48} color="var(--s-success)" preserveAspectRatio="none" className="sigil-hero-revenue-chart" />
+          </CardContent>
+          </Card>
         </div>
-        <div ref={setComponentRef("CommitGrid")} className="h-full" style={{ gridColumn: "4 / 8" }}>
+        <div ref={setComponentRef("CommitGrid")} data-demo-cell="CommitGrid" className="h-full">
           <Card
             className={`h-full flex items-center justify-center ${applied("CommitGrid") ? "hero-logo-field__apply" : ""}`}
             style={{
@@ -1539,12 +1581,13 @@ export function HeroLogoField() {
               transition: "background-color var(--s-duration-slow,600ms), border-color var(--s-duration-slow,600ms)",
             }}
           >
-            <CardContent className="h-full px-1 py-1.5">
-              <CommitGrid data={COMMIT_DAYS} weeks={10} cellSize={10} gap={2} showDayLabels={false} showMonthLabels={false} color={applied("CommitGrid") ? "var(--s-success, #22c55e)" : "var(--s-primary)"} />
+            <CardContent className="sigil-hero-cell-content sigil-hero-activity">
+              <div className="sigil-hero-cell-label"><BarChart3 /> Activity</div>
+              <HeroActivity data={COMMIT_DAYS} accent={applied("CommitGrid")} />
             </CardContent>
           </Card>
         </div>
-        <div ref={setComponentRef("Badges")} className="h-full" style={{ gridColumn: "8 / 10" }}>
+        <div ref={setComponentRef("Badges")} data-demo-cell="Badges" className="h-full min-w-0">
           <Card
             className={`h-full ${applied("Badges") ? "hero-logo-field__apply" : ""}`}
             style={{
@@ -1553,24 +1596,24 @@ export function HeroLogoField() {
               transition: "background-color var(--s-duration-slow,600ms), border-color var(--s-duration-slow,600ms)",
             }}
           >
-            <CardContent className="p-2 h-full flex flex-col justify-between" style={{ gap: 4 }}>
-              <div className="flex items-center gap-1 flex-wrap">
-                <Badge size="sm" variant={appliedSet.size >= 4 ? "default" : "outline"} className="text-[7px]" style={applied("Badges") ? { borderRadius: 9999 } : undefined}>
-                  {appliedSet.size >= 4 ? "staged" : "staging"}
+            <CardContent className="sigil-hero-cell-content sigil-hero-options">
+              <div className="grid min-w-0 grid-cols-2 gap-1">
+                <Badge size="sm" variant={appliedSet.size >= 4 ? "default" : "outline"} className="min-w-0 justify-center overflow-hidden px-0.5 text-[length:var(--s-hero-demo-label)]" style={applied("Badges") ? { borderRadius: 9999 } : undefined}>
+                  {appliedSet.size >= 4 ? "Staged" : "Staging"}
                 </Badge>
-                <Badge size="sm" variant="outline" className="text-[7px]" style={applied("Badges") ? { borderRadius: 9999 } : undefined}>v2.4</Badge>
+                <Badge size="sm" variant="outline" className="min-w-0 justify-center px-0.5 text-[length:var(--s-hero-demo-label)]" style={applied("Badges") ? { borderRadius: 9999 } : undefined}>v2.4</Badge>
               </div>
-              <div className="flex items-center gap-1">
-                {["us", "eu", "ap"].map((r) => (
-                  <Badge key={r} size="sm" variant="outline" className="text-[7px]" style={applied("Badges") ? { borderRadius: 9999 } : undefined}>{r}</Badge>
+              <div className="grid min-w-0 grid-cols-3 gap-0.5">
+                {["US", "EU", "AP"].map((r) => (
+                  <Badge key={r} size="sm" variant="outline" className="min-w-0 justify-center px-0 text-[length:var(--s-hero-demo-label)]" style={applied("Badges") ? { borderRadius: 9999 } : undefined}>{r}</Badge>
                 ))}
               </div>
-              <Checkbox label="Dark" defaultChecked />
-              <Checkbox label="Animate" />
+              <Checkbox label="Dark" defaultChecked className="min-w-0 gap-1 [&_label]:truncate [&_label]:text-[length:var(--s-hero-demo-label)]" />
+              <Checkbox label="Animate" className="min-w-0 gap-1 [&_label]:truncate [&_label]:text-[length:var(--s-hero-demo-label)]" />
             </CardContent>
           </Card>
         </div>
-        <div ref={setComponentRef("Coverage")} className="h-full" style={{ gridColumn: "10 / 13" }}>
+        <div ref={setComponentRef("Coverage")} data-demo-cell="Coverage" className="h-full">
           <Card
             className={`h-full ${applied("Coverage") ? "hero-logo-field__apply" : ""}`}
             style={{
@@ -1579,21 +1622,21 @@ export function HeroLogoField() {
               transition: "background-color var(--s-duration-slow,600ms), border-color var(--s-duration-slow,600ms)",
             }}
           >
-            <CardContent className="p-2 h-full flex flex-col">
-              <textarea
-                value="Design tokens control every visual property. One file configures color, type, spacing, and motion."
-                readOnly
+            <CardContent className="sigil-hero-cell-content sigil-hero-editor">
+              <p
+                className="sigil-hero-type-preview"
+                aria-label="Typography preview"
                 style={{
                   width: "100%",
                   flex: 1,
-                  minHeight: 0,
-                  resize: "none",
                   background: "transparent",
                   border: "none",
                   outline: "none",
                   fontFamily: formats.includes("mono") ? "var(--s-font-mono)" : "var(--s-font-body, var(--s-font-mono))",
-                  fontSize: 9,
-                  lineHeight: 1.5,
+                  fontSize: "var(--s-hero-demo-body)",
+                  lineHeight: "var(--s-leading-normal)",
+                  whiteSpace: "pre-line",
+                  margin: 0,
                   color: "var(--s-text)",
                   fontWeight: formats.includes("bold") ? 700 : 400,
                   fontStyle: formats.includes("italic") ? "italic" : "normal",
@@ -1602,18 +1645,18 @@ export function HeroLogoField() {
                   textTransform: formats.includes("uppercase") ? "uppercase" : undefined,
                   padding: 0,
                 }}
-              />
+              >{"One file. Every detail.\nColor, type, spacing, and motion.\nEvery component follows."}</p>
               <div className="flex flex-col gap-1 mt-1" style={{ flexShrink: 0 }}>
                 <ToggleGroup type="multiple" value={formats} onValueChange={(v) => setFormats(Array.isArray(v) ? v : [v])} className="w-full">
-                  <ToggleGroupItem value="bold" size="sm" className="text-[8px] h-5 flex-1 font-bold">B</ToggleGroupItem>
-                  <ToggleGroupItem value="italic" size="sm" className="text-[8px] h-5 flex-1 italic">I</ToggleGroupItem>
-                  <ToggleGroupItem value="underline" size="sm" className="text-[8px] h-5 flex-1 underline">U</ToggleGroupItem>
-                  <ToggleGroupItem value="strikethrough" size="sm" className="text-[8px] h-5 flex-1 line-through">S</ToggleGroupItem>
+                  <ToggleGroupItem value="bold" size="sm" className="text-[length:var(--s-hero-demo-label)] min-h-[var(--s-space-24)] flex-1 font-bold" aria-label="Bold"><Bold /></ToggleGroupItem>
+                  <ToggleGroupItem value="italic" size="sm" className="text-[length:var(--s-hero-demo-label)] min-h-[var(--s-space-24)] flex-1 italic" aria-label="Italic"><Italic /></ToggleGroupItem>
+                  <ToggleGroupItem value="underline" size="sm" className="text-[length:var(--s-hero-demo-label)] min-h-[var(--s-space-24)] flex-1 underline" aria-label="Underline"><Underline /></ToggleGroupItem>
+                  <ToggleGroupItem value="strikethrough" size="sm" className="text-[length:var(--s-hero-demo-label)] min-h-[var(--s-space-24)] flex-1 line-through" aria-label="Strikethrough"><Strikethrough /></ToggleGroupItem>
                 </ToggleGroup>
                 <ToggleGroup type="multiple" value={formats} onValueChange={(v) => setFormats(Array.isArray(v) ? v : [v])} className="w-full">
-                  <ToggleGroupItem value="uppercase" size="sm" className="text-[7px] h-5 flex-1 uppercase">Aa</ToggleGroupItem>
-                  <ToggleGroupItem value="tracking" size="sm" className="text-[7px] h-5 flex-1 tracking-widest">T↔</ToggleGroupItem>
-                  <ToggleGroupItem value="mono" size="sm" className="text-[7px] h-5 flex-1 font-mono">{'</>'}</ToggleGroupItem>
+                  <ToggleGroupItem value="uppercase" size="sm" className="text-[length:var(--s-hero-demo-label)] min-h-[var(--s-space-24)] flex-1 uppercase">Aa</ToggleGroupItem>
+                  <ToggleGroupItem value="tracking" size="sm" className="text-[length:var(--s-hero-demo-label)] min-h-[var(--s-space-24)] flex-1 tracking-widest">T↔</ToggleGroupItem>
+                  <ToggleGroupItem value="mono" size="sm" className="text-[length:var(--s-hero-demo-label)] min-h-[var(--s-space-24)] flex-1 font-mono">{'</>'}</ToggleGroupItem>
                 </ToggleGroup>
               </div>
             </CardContent>
@@ -1621,7 +1664,7 @@ export function HeroLogoField() {
         </div>
 
         {/* Row 5: SparkLine + Team + Sliders + Switches + Buttons */}
-        <div ref={setComponentRef("SparkLine")} className="h-full" style={{ gridColumn: "1 / 3" }}>
+        <div ref={setComponentRef("SparkLine")} data-demo-cell="SparkLine" className="h-full">
           <Card
             className={`h-full ${applied("SparkLine") ? "hero-logo-field__apply" : ""}`}
             style={{
@@ -1630,31 +1673,24 @@ export function HeroLogoField() {
               transition: "background-color var(--s-duration-slow,600ms), border-color var(--s-duration-slow,600ms)",
             }}
           >
-            <CardContent className="p-0.5 flex-col flex ">
-              <LiveRequestsCard accent={applied("SparkLine")} />
+            <CardContent className="sigil-hero-cell-content sigil-hero-requests">
+              <LiveRequestsCard accent={applied("SparkLine")} active={demoAnimating && switchState.live} />
             </CardContent>
           </Card>
         </div>
-        <div ref={setComponentRef("Team")} className="h-full" style={{ gridColumn: "3 / 5" }}>
+        <div ref={setComponentRef("Stack")} data-demo-cell="Stack" className="h-full min-w-0">
           <Card
-            className={`h-full ${applied("Team") ? "hero-logo-field__apply" : ""}`}
+            className={`h-full ${applied("Stack") ? "hero-logo-field__apply" : ""}`}
             style={{
-              borderColor: applied("Team") ? "var(--s-primary)" : "var(--s-border)",
+              borderColor: applied("Stack") ? "var(--s-primary)" : "var(--s-border)",
               background: cellBg,
               transition: "background-color var(--s-duration-slow,600ms), border-color var(--s-duration-slow,600ms)",
             }}
           >
-            <CardContent className="p-2.5">
-              <div className="mb-1" style={{ ...mono9, color: "var(--s-text-muted)" }}>team</div>
-              <AvatarGroup max={3}>
-                <Avatar src="https://github.com/shadcn.png" name="shadcn" size="sm" className={applied("Team") ? "!rounded-[8px] [&_img]:!rounded-[8px] [&_span]:!rounded-[8px]" : undefined} />
-                <Avatar src="https://github.com/leerob.png" name="Lee" size="sm" className={applied("Team") ? "!rounded-[8px] [&_img]:!rounded-[8px] [&_span]:!rounded-[8px]" : undefined} />
-                <Avatar src="https://github.com/rauchg.png" name="G" size="sm" className={applied("Team") ? "!rounded-[8px] [&_img]:!rounded-[8px] [&_span]:!rounded-[8px]" : undefined} />
-              </AvatarGroup>
-            </CardContent>
+            <CardContent className="sigil-hero-cell-content"><HeroStack enlarged={applied("Stack")} /></CardContent>
           </Card>
         </div>
-        <div ref={setComponentRef("Sliders")} className="h-full" style={{ gridColumn: "5 / 8" }}>
+        <div ref={setComponentRef("Sliders")} data-demo-cell="Sliders" className="h-full">
           <Card
             className={`h-full ${applied("Sliders") ? "hero-logo-field__apply" : ""}`}
             style={{
@@ -1664,25 +1700,25 @@ export function HeroLogoField() {
               transition: "background-color var(--s-duration-slow,600ms), border-color var(--s-duration-slow,600ms)",
             }}
           >
-            <CardContent className="px-2.5 py-2 flex flex-col gap-2">
+            <CardContent className="sigil-hero-cell-content sigil-hero-sliders">
               <div>
                 <div className="mb-1 flex items-center justify-between gap-2">
-                  <span style={{ ...mono9, color: "var(--s-text-muted)" }}>spacing</span>
-                  <span className="font-[family-name:var(--s-font-mono)] tabular-nums" style={{ fontSize: 9, color: "var(--s-text)" }}>{spacingValue}px</span>
+                  <span className="sigil-hero-cell-label"><Ruler /> Spacing</span>
+                  <span className="font-[family-name:var(--s-font-mono)] tabular-nums" style={{ fontSize: "var(--s-hero-demo-label)", color: "var(--s-text)" }}>{spacingValue}px</span>
                 </div>
-                <Slider value={[spacingValue]} onValueChange={(v: number[]) => setSpacingValue(v[0])} min={4} max={48} step={4} className="w-full" />
+                <Slider value={[spacingValue]} onValueChange={(v: number[]) => setSpacingValue(v[0])} min={4} max={48} step={4} aria-label="Spacing" className="w-full" />
               </div>
               <div>
                 <div className="mb-1 flex items-center justify-between gap-2">
-                  <span style={{ ...mono9, color: "var(--s-text-muted)" }}>radius</span>
-                  <span className="font-[family-name:var(--s-font-mono)] tabular-nums" style={{ fontSize: 9, color: "var(--s-text)" }}>{radiusValue}px</span>
+                  <span className="sigil-hero-cell-label"><SquareSlash /> Radius</span>
+                  <span className="font-[family-name:var(--s-font-mono)] tabular-nums" style={{ fontSize: "var(--s-hero-demo-label)", color: "var(--s-text)" }}>{radiusValue}px</span>
                 </div>
-                <Slider value={[radiusValue]} onValueChange={(v: number[]) => setRadiusValue(v[0])} min={0} max={24} step={2} className="w-full"  />
+                <Slider value={[radiusValue]} onValueChange={(v: number[]) => setRadiusValue(v[0])} min={0} max={24} step={2} aria-label="Radius" className="w-full"  />
               </div>
             </CardContent>
           </Card>
         </div>
-        <div ref={setComponentRef("Switches")} className="h-full" style={{ gridColumn: "8 / 10" }}>
+        <div ref={setComponentRef("Switches")} data-demo-cell="Switches" className="h-full">
           <Card
             className={`h-full ${applied("Switches") ? "hero-logo-field__apply" : ""}`}
             style={{
@@ -1691,11 +1727,11 @@ export function HeroLogoField() {
               transition: "background-color var(--s-duration-slow,600ms), border-color var(--s-duration-slow,600ms)",
             }}
           >
-            <CardContent className="p-2 flex flex-col gap-1.5 justify-center h-full">
+            <CardContent className="sigil-hero-cell-content sigil-hero-switches">
               {[
-                { id: "sound", icon: Volume2, label: "sound" },
-                { id: "motion", icon: Sparkles, label: "motion" },
-                { id: "live", icon: Radio, label: "live" },
+                { id: "sound", icon: Volume2, label: "Sound" },
+                { id: "motion", icon: Sparkles, label: "Motion" },
+                { id: "live", icon: Radio, label: "Live" },
               ].map(({ id, icon: Icon, label }) => {
                 const checked = switchState[id] ?? false;
                 const toggle = () =>
@@ -1707,10 +1743,10 @@ export function HeroLogoField() {
                     className="flex items-center justify-between gap-2 cursor-pointer select-none"
                   >
                     <span className="inline-flex items-center gap-1 min-w-0">
-                      <Icon size={9} className="shrink-0" style={{ color: checked ? "var(--s-text)" : "var(--s-text-muted)" }} />
+                      <Icon className="shrink-0" style={{ color: checked ? "var(--s-text)" : "var(--s-text-muted)" }} />
                       <span
-                        className="font-[family-name:var(--s-font-mono)] truncate"
-                        style={{ fontSize: 8, letterSpacing: "0.05em", color: checked ? "var(--s-text)" : "var(--s-text-muted)" }}
+                        className="font-[family-name:var(--s-font-body)] truncate"
+                        style={{ fontSize: "var(--s-hero-demo-label)", color: checked ? "var(--s-text)" : "var(--s-text-muted)" }}
                       >
                         {label}
                       </span>
@@ -1731,7 +1767,7 @@ export function HeroLogoField() {
             </CardContent>
           </Card>
         </div>
-        <div ref={setComponentRef("Buttons")} className="h-full" style={{ gridColumn: "10 / 13" }}>
+        <div ref={setComponentRef("Buttons")} data-demo-cell="Buttons" className="h-full">
           <Card
             className={`h-full ${applied("Buttons") ? "hero-logo-field__apply" : ""}`}
             style={{
@@ -1740,15 +1776,15 @@ export function HeroLogoField() {
               transition: "background-color var(--s-duration-slow,600ms), border-color var(--s-duration-slow,600ms)",
             }}
           >
-            <CardContent className="p-2 flex items-center justify-center h-full">
+            <CardContent className="sigil-hero-cell-content sigil-hero-buttons">
               <div
-                className="grid grid-cols-2 gap-1.5 w-full"
-                style={{ fontFamily: applied("Buttons") ? '"DM Sans", var(--s-font-body)' : undefined }}
+                className="sigil-hero-action-grid"
+                style={{ fontFamily: applied("Buttons") ? '"Sora", var(--s-font-body)' : undefined }}
               >
-                <Button size="sm" className="min-h-[calc(var(--s-grid-cell,40px)*0.65)] w-full px-1.5 text-[8px] leading-none justify-center">Primary</Button>
-                <Button size="sm" variant="outline" className="min-h-[calc(var(--s-grid-cell,40px)*0.65)] w-full px-1.5 text-[8px] leading-none justify-center">Outline</Button>
-                <Button size="sm" variant="secondary" className="min-h-[calc(var(--s-grid-cell,40px)*0.65)] w-full px-1.5 text-[8px] leading-none justify-center">Secondary</Button>
-                <Button size="sm" variant="ghost" className="min-h-[calc(var(--s-grid-cell,40px)*0.65)] w-full px-1 text-[8px] leading-none justify-center">Ghost</Button>
+                <Button size="sm" className="w-full justify-center"><Rocket />Primary</Button>
+                <Button size="sm" variant="outline" className="w-full justify-center"><Shield />Outline</Button>
+                <Button size="sm" variant="secondary" className="w-full justify-center"><Heart />Secondary</Button>
+                <Button size="sm" variant="ghost" className="w-full justify-center"><Code />Ghost</Button>
               </div>
             </CardContent>
           </Card>
@@ -1776,8 +1812,7 @@ export function HeroLogoField() {
             key={`sel-${activeComponent}-${idx}`}
             style={{
               position: "absolute",
-              left: labelLeftInOverlay,
-              transform: "translateX(-50%)",
+              ...labelPlacement,
               ...(flipLabel ? { top: -32 } : { bottom: -32 }),
               padding: "5px 10px",
               background: "var(--s-background)",
@@ -1785,7 +1820,7 @@ export function HeroLogoField() {
               borderRadius: "var(--s-radius-sm,4px)",
               boxShadow: "var(--s-shadow-md, 0 4px 12px rgb(0 0 0 / 0.1))",
               fontFamily: "var(--s-font-mono)",
-              fontSize: 9,
+              fontSize: "var(--s-hero-demo-label)",
               lineHeight: 1.4,
               whiteSpace: "nowrap",
               width: "max-content",

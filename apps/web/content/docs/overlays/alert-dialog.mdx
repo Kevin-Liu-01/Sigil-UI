@@ -1,13 +1,7 @@
 ---
 title: AlertDialog
-description: "A AlertDialog component from the Sigil design system."
+description: "Ask for confirmation before an action that needs extra care."
 ---
-
-## Import
-
-```tsx
-import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogTitle, AlertDialogDescription, AlertDialogAction, AlertDialogCancel } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -27,10 +21,28 @@ import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader,
 </AlertDialog>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogTitle, AlertDialogDescription, AlertDialogAction, AlertDialogCancel } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<AlertDialog>...</AlertDialog>
+<AlertDialog>
+  <AlertDialogTrigger asChild><Button variant="destructive">Delete</Button></AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+      <AlertDialogDescription>This action cannot be undone.</AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+      <AlertDialogAction>Delete</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>
 ```
 
 ## Sub-components

@@ -1,7 +1,29 @@
 ---
 title: MetricCard
-description: "A MetricCard component from the Sigil design system."
+description: "Pair a key value with its label and supporting context."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <div className="grid w-full grid-cols-1 gap-[var(--s-space-16)] sm:grid-cols-2">
+    <MetricCard
+      label="Total Revenue"
+      value="$24.5K"
+      delta="+12.3%"
+      deltaLabel="vs last month"
+      sparkData={[18, 22, 19, 25, 28, 24, 30, 35, 32, 38]}
+    />
+    <MetricCard
+      label="Active Users"
+      value="1,284"
+      delta="-3.1%"
+      deltaLabel="vs last week"
+      sparkData={[40, 38, 42, 35, 30, 33, 28, 25, 22, 20]}
+      sparkColor="var(--s-error, #ef4444)"
+    />
+  </div>
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +34,23 @@ import { MetricCard } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<MetricCard>...</MetricCard>
+<div className="grid w-full grid-cols-1 gap-[var(--s-space-16)] sm:grid-cols-2">
+    <MetricCard
+      label="Total Revenue"
+      value="$24.5K"
+      delta="+12.3%"
+      deltaLabel="vs last month"
+      sparkData={[18, 22, 19, 25, 28, 24, 30, 35, 32, 38]}
+    />
+    <MetricCard
+      label="Active Users"
+      value="1,284"
+      delta="-3.1%"
+      deltaLabel="vs last week"
+      sparkData={[40, 38, 42, 35, 30, 33, 28, 25, 22, 20]}
+      sparkColor="var(--s-error, #ef4444)"
+    />
+  </div>
 ```
 
 ## Props
@@ -20,7 +58,7 @@ import { MetricCard } from "@sigil-ui/components";
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `label` | `string` | — | — |
-| `value` | `string | number` | — | — |
+| `value` | `string \| number` | — | — |
 | `delta` | `string` | — | — |
 | `deltaLabel` | `string` | — | — |
 | `icon` | `ReactNode` | — | — |

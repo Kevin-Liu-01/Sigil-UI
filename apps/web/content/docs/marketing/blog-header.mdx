@@ -1,7 +1,18 @@
 ---
 title: BlogHeader
-description: "A BlogHeader component from the Sigil design system."
+description: "Introduce an article with its title, metadata, and description."
 ---
+
+## Preview
+
+<ComponentPreview label="Interactive blog header" vertical>
+  <BlogHeader
+    title="Notes on"
+    accent="designed software"
+    subtitle="Research, field notes, and practical guidance from the Sigil team."
+    categories={["All", "Tokens", "Components", "Workflow"]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,20 +23,25 @@ import { BlogHeader } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<BlogHeader>...</BlogHeader>
+<BlogHeader
+    title="Notes on"
+    accent="designed software"
+    subtitle="Research, field notes, and practical guidance from the Sigil team."
+    categories={["All", "Tokens", "Components", "Workflow"]}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `title` | `string` | — | — |
-| `accent` | `string` | — | — |
-| `subtitle` | `string` | — | — |
-| `categories` | `string[]` | — | — |
-| `activeCategory` | `string` | — | — |
-| `onCategoryChange` | `(category: string) => void` | — | — |
-| `icon` | `ReactNode` | — | — |
+| `title` (required) | `string` | — | Heading displayed in the component. |
+| `accent` | `string` | — | Accent configuration. |
+| `subtitle` | `string` | — | Subtitle configuration. |
+| `categories` | `string[]` | — | Categories configuration. |
+| `activeCategory` | `string` | — | Active Category configuration. |
+| `onCategoryChange` | `(category: string) => void` | — | On Category Change configuration. |
+| `icon` | `ReactNode` | — | Icon configuration. |
 
 ## Token integration
 

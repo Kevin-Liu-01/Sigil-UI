@@ -13,7 +13,7 @@ export interface NavbarProps extends HTMLAttributes<HTMLElement> {
 
 /** Navigation bar with configurable sticky/transparent behavior. */
 export const Navbar = forwardRef<HTMLElement, NavbarProps>(function Navbar(
-  { sticky = true, transparent = false, className, children, ...rest },
+  { sticky = true, transparent = false, className, children, style, ...rest },
   ref,
 ) {
   return (
@@ -27,9 +27,16 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps>(function Navbar(
         sticky && "sticky top-0 left-0 right-0",
         transparent
           ? "bg-transparent"
-          : "bg-[var(--s-background)] backdrop-blur-[var(--s-navbar-backdrop-blur,12px)] backdrop-saturate-[1.8] border-b border-[color:var(--s-border)] border-[style:var(--s-border-style,solid)]",
+          : "bg-[var(--s-background)] backdrop-blur-[var(--s-navbar-backdrop-blur,12px)] backdrop-saturate-[1.8]",
         className,
       )}
+      style={{
+        borderBottom: transparent
+          ? "none"
+          : "var(--s-navbar-border, var(--s-border-thin, 1px) var(--s-border-style, solid))",
+        borderBottomColor: transparent ? undefined : "var(--s-border)",
+        ...style,
+      }}
       {...rest}
     >
       {children}

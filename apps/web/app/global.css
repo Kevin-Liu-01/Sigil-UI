@@ -5,6 +5,7 @@
 @import "fumadocs-ui/css/preset.css";
 
 @theme inline {
+  --font-sans: var(--s-font-body);
   --font-display: var(--s-font-display);
   --font-body: var(--s-font-body);
   --font-mono: var(--s-font-mono);
@@ -19,7 +20,13 @@
 /* Font Faces — Pangram Pangram Collection                            */
 /* ================================================================== */
 
-/* PP Neue Montreal (default body + display) */
+/* Inter 4.1 by Rasmus Andersson. Original variable fonts, served locally. */
+@font-face { font-family: "InterVariable"; src: url("/fonts/inter/InterVariable.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "InterVariable"; src: url("/fonts/inter/InterVariable-Italic.woff2") format("woff2"); font-weight: 100 900; font-style: italic; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("/fonts/inter/InterVariable.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("/fonts/inter/InterVariable-Italic.woff2") format("woff2"); font-weight: 100 900; font-style: italic; font-display: swap; }
+
+/* PP Neue Montreal (optional font family) */
 @font-face { font-family: "PP Neue Montreal"; src: url("/fonts/PPNeueMontreal-Light.otf") format("opentype"); font-weight: 300; font-style: normal; font-display: swap; }
 @font-face { font-family: "PP Neue Montreal"; src: url("/fonts/PPNeueMontreal-Book.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
 @font-face { font-family: "PP Neue Montreal"; src: url("/fonts/PPNeueMontreal-Medium.otf") format("opentype"); font-weight: 500; font-style: normal; font-display: swap; }
@@ -181,6 +188,10 @@
 /* TT Commons Classic */
 @font-face { font-family: "TT Commons Classic"; src: url("/fonts/TT Commons Classic Trial Var Roman.ttf") format("truetype"); font-weight: 100 900; font-style: normal; font-display: swap; }
 
+/* Licensed local families — the Font Lab enables these only when installed. */
+@font-face { font-family: "Haffer Trial"; src: local("Haffer TRIAL"), local("Haffer Trial"), local("Haffer"); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Louize Display"; src: local("Louize Display Trial"), local("Louize Display trial"), local("Louize Display"); font-weight: 300 700; font-style: normal; font-display: swap; }
+
 /* Vulf Sans */
 @font-face { font-family: "Vulf Sans"; src: url("/fonts/VulfSans-Light.ttf") format("truetype"); font-weight: 300; font-style: normal; font-display: swap; }
 @font-face { font-family: "Vulf Sans"; src: url("/fonts/VulfSans-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
@@ -261,6 +272,7 @@ html {
 body {
   margin: 0;
   font-family: var(--s-font-body);
+  font-size: var(--s-size-base, 1rem);
   letter-spacing: var(--s-tracking-normal, 0.01em);
   background-color: var(--s-background, #0a0a0f);
   color: var(--s-text, #fafafa);
@@ -268,6 +280,55 @@ body {
   transition:
     background-color 400ms cubic-bezier(0.16, 1, 0.3, 1),
     color 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  background-image:
+    var(--s-runtime-noise-image, none),
+    var(--s-runtime-pattern-image, none),
+    var(--s-runtime-gradient-image, none);
+  background-size:
+    12px 12px,
+    calc(var(--s-grid-cell, 48px) * var(--s-bg-pattern-scale, 1)) calc(var(--s-grid-cell, 48px) * var(--s-bg-pattern-scale, 1)),
+    cover;
+}
+
+body[data-sigil-bg-pattern="dots"] {
+  --s-runtime-pattern-image: radial-gradient(circle, color-mix(in oklab, var(--s-border) calc(var(--s-bg-pattern-opacity, 0.05) * 100%), transparent) var(--s-grid-dot-size, 1px), transparent var(--s-grid-dot-size, 1px));
+}
+
+body[data-sigil-bg-pattern="grid"] {
+  --s-runtime-pattern-image: linear-gradient(color-mix(in oklab, var(--s-border) calc(var(--s-bg-pattern-opacity, 0.05) * 100%), transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--s-border) calc(var(--s-bg-pattern-opacity, 0.05) * 100%), transparent) 1px, transparent 1px);
+}
+
+body[data-sigil-bg-pattern="crosshatch"] {
+  --s-runtime-pattern-image: repeating-linear-gradient(45deg, color-mix(in oklab, var(--s-border) calc(var(--s-bg-pattern-opacity, 0.05) * 100%), transparent) 0 1px, transparent 1px 8px), repeating-linear-gradient(-45deg, color-mix(in oklab, var(--s-border) calc(var(--s-bg-pattern-opacity, 0.05) * 100%), transparent) 0 1px, transparent 1px 8px);
+}
+
+body[data-sigil-bg-pattern="diagonal"] {
+  --s-runtime-pattern-image: repeating-linear-gradient(45deg, color-mix(in oklab, var(--s-border) calc(var(--s-bg-pattern-opacity, 0.05) * 100%), transparent) 0 1px, transparent 1px 10px);
+}
+
+body[data-sigil-bg-pattern="diamond"] {
+  --s-runtime-pattern-image: linear-gradient(45deg, transparent 48%, color-mix(in oklab, var(--s-border) calc(var(--s-bg-pattern-opacity, 0.05) * 100%), transparent) 49% 51%, transparent 52%), linear-gradient(-45deg, transparent 48%, color-mix(in oklab, var(--s-border) calc(var(--s-bg-pattern-opacity, 0.05) * 100%), transparent) 49% 51%, transparent 52%);
+}
+
+body[data-sigil-bg-pattern="hexagon"],
+body[data-sigil-bg-pattern="triangle"] {
+  --s-runtime-pattern-image: linear-gradient(30deg, transparent 48%, color-mix(in oklab, var(--s-border) calc(var(--s-bg-pattern-opacity, 0.05) * 100%), transparent) 49% 51%, transparent 52%), linear-gradient(-30deg, transparent 48%, color-mix(in oklab, var(--s-border) calc(var(--s-bg-pattern-opacity, 0.05) * 100%), transparent) 49% 51%, transparent 52%);
+}
+
+body[data-sigil-bg-gradient="linear"] {
+  --s-runtime-gradient-image: linear-gradient(var(--s-bg-gradient-angle, 180deg), var(--s-gradient-start, transparent), var(--s-gradient-end, transparent));
+}
+
+body[data-sigil-bg-gradient="radial"] {
+  --s-runtime-gradient-image: radial-gradient(circle at center, var(--s-gradient-start, transparent), var(--s-gradient-end, transparent));
+}
+
+body[data-sigil-bg-gradient="conic"] {
+  --s-runtime-gradient-image: conic-gradient(from var(--s-bg-gradient-angle, 0deg), var(--s-gradient-start, transparent), var(--s-gradient-end, transparent), var(--s-gradient-start, transparent));
+}
+
+body[data-sigil-bg-noise="true"] {
+  --s-runtime-noise-image: repeating-radial-gradient(circle at 30% 20%, color-mix(in oklab, var(--s-text) calc(var(--s-bg-noise-opacity, 0.03) * 100%), transparent) 0 0.5px, transparent 0.5px 3px);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -280,26 +341,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .s-grid-bg,
 .r-grid-bg {
-  background-image: linear-gradient(
-      var(--s-grid-line-color, var(--s-border)) var(--s-border-width-thin, 1px),
-      transparent var(--s-border-width-thin, 1px)
-    ),
-    linear-gradient(
-      90deg,
-      var(--s-grid-line-color, var(--s-border)) var(--s-border-width-thin, 1px),
-      transparent var(--s-border-width-thin, 1px)
-    );
-  background-size: var(--s-grid-cell) var(--s-grid-cell);
+  background-image: none;
 }
 
 .s-grid-bg-subtle,
 .r-grid-bg-subtle {
-  background-image: linear-gradient(
-      var(--s-grid-line-color, var(--s-border)) 0.5px,
-      transparent 0.5px
-    ),
-    linear-gradient(90deg, var(--s-grid-line-color, var(--s-border)) 0.5px, transparent 0.5px);
-  background-size: var(--s-grid-cell) var(--s-grid-cell);
+  background-image: none;
 }
 
 /* ================================================================== */
@@ -363,7 +410,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .s-dot-grid {
   background-image: radial-gradient(
-    color-mix(in oklab, var(--s-border) 5%, transparent) var(--s-grid-dot-size, 1px),
+    color-mix(in oklab, var(--s-border) calc(var(--s-grid-show-dots, 1) * 5%), transparent) var(--s-grid-dot-size, 1px),
     transparent 0
   );
   background-size:
@@ -373,7 +420,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .s-dot-grid-subtle {
   background-image: radial-gradient(
-    color-mix(in oklab, var(--s-border) 3%, transparent)
+    color-mix(in oklab, var(--s-border) calc(var(--s-grid-show-dots, 1) * 3%), transparent)
       var(--s-grid-dot-size, 1px),
     transparent 0
   );
@@ -775,6 +822,330 @@ html[data-switching-theme] *::after {
   contain-intrinsic-size: auto calc(20 * var(--s-grid-cell));
 }
 
+/* The homepage is presented as the live canvas inside Sigil Studio. The
+   content column keeps its structural rails, then receives a quiet elevation
+   cue so the margin + gutter system reads as the surrounding workspace. */
+.landing-studio-frame .sigil-page-content {
+  position: relative;
+  z-index: 1;
+  box-shadow:
+    0 0 0 var(--s-border-width-thin, 1px) var(--s-grid-line-color, var(--s-border-muted)),
+    var(--s-shadow-xl);
+}
+
+.landing-studio-frame > [aria-hidden="true"] {
+  background-color: var(--s-surface-sunken);
+}
+
+/* Production landing direction: the redesign study's wide, hairline canvas.
+   The structural grid still owns every boundary, but its decorative rails
+   collapse so the product and component system carry the visual weight. */
+.landing-study-frame {
+  --s-site-header-height: var(--s-navbar-height);
+  --s-hero-split-gap: 0px;
+  --s-hero-copy-padding: var(--s-space-16);
+  --s-hero-media-padding: var(--s-space-12);
+  --s-hero-grid-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  --s-hero-content-align: left;
+  --s-content-max: var(--s-content-max-wide);
+  background: var(--s-surface-sunken);
+}
+
+.landing-study-frame:has([data-sigil-release-banner="expanded"]) { --s-site-header-height: calc(var(--s-navbar-height) + var(--s-band-height)); }
+
+.landing-study-frame .sigil-page-content {
+  position: relative;
+  z-index: 1;
+  box-shadow: none;
+}
+
+.landing-study-frame .landing-studio-canvas {
+  background: var(--s-background);
+}
+
+.landing-study-frame .sigil-page-content > [data-slot="divider"] {
+  display: none;
+}
+
+/* Landing composition consumes the scoped token spec above. */
+.sigil-landing-hero {
+  min-height: var(--s-hero-min-height);
+}
+
+.sigil-landing-hero-copy {
+  --s-section-heading-margin-bottom: 0px;
+  --s-section-content-gap: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--s-hero-description-gap);
+  padding: var(--s-hero-copy-padding);
+  border-bottom: var(--s-border-thin) var(--s-border-style) var(--s-border);
+}
+
+.sigil-landing-hero-media { padding: var(--s-hero-media-padding); }
+
+.sigil-install-command {
+  min-width: 0;
+  display: grid;
+  gap: var(--s-space-8);
+  font-size: var(--s-size-xs);
+}
+
+.sigil-install-command button {
+  display: flex;
+  align-items: center;
+  gap: var(--s-space-12);
+  width: fit-content;
+  max-width: 100%;
+  min-height: var(--s-control-hit-area);
+  padding: var(--s-space-12) var(--s-space-16);
+  border: var(--s-border-thin) var(--s-border-style) var(--s-border);
+  border-radius: var(--s-radius-button);
+  background: var(--s-background);
+  color: var(--s-text);
+  cursor: pointer;
+  transition: border-color var(--s-duration-fast) var(--s-ease-default);
+}
+
+.sigil-install-command code {
+  min-width: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  font-family: var(--s-font-mono);
+}
+
+.sigil-install-command svg {
+  flex-shrink: 0;
+  width: var(--s-control-icon-size);
+  height: var(--s-control-icon-size);
+}
+
+.sigil-install-command button:hover { border-color: var(--s-border-interactive); }
+.sigil-install-command button:focus-visible,
+.sigil-landing-examples a:focus-visible {
+  outline: var(--s-focus-ring-width) solid var(--s-focus-ring-color);
+  outline-offset: var(--s-focus-ring-offset);
+}
+
+/* Landing grid: section boundaries meet the outer rails. Padding belongs to
+   individual content cells, never between adjoining borders. */
+.landing-study-frame {
+  --s-landing-cell-padding: var(--s-space-16);
+  --s-landing-intro-columns: minmax(0, 1fr);
+  --s-button-text-transform: none;
+}
+.sigil-landing-section { background: var(--s-background); scroll-margin-top: calc(2 * var(--s-navbar-height) + var(--s-space-16)); }
+.landing-study-frame [data-slot="accent-cta"] { text-transform: var(--s-button-text-transform); letter-spacing: var(--s-button-letter-spacing); font-family: var(--s-font-body); }
+.sigil-landing-section-intro {
+  display: grid;
+  grid-template-columns: var(--s-landing-intro-columns);
+  border-bottom: var(--s-border-thin) var(--s-border-style) var(--s-border);
+}
+.sigil-landing-section-intro > * { min-width: 0; margin: 0; padding: var(--s-landing-cell-padding); }
+.sigil-landing-section-intro h2 {
+  font-family: var(--s-font-display); font-size: var(--s-heading-h3-size);
+  line-height: var(--s-heading-h3-leading); letter-spacing: var(--s-heading-h3-tracking);
+  font-weight: var(--s-heading-h3-weight); text-wrap: balance;
+}
+.sigil-landing-section-intro p { color: var(--s-text-secondary); font-size: var(--s-size-base); line-height: var(--s-leading-relaxed); text-wrap: pretty; }
+.sigil-landing-canvas-bar svg, .sigil-landing-detail-heading svg,
+.sigil-landing-example-label svg, .sigil-landing-metrics svg, .sigil-design-controls legend svg,
+.sigil-design-output svg, .sigil-landing-footer h3 svg {
+  width: var(--s-control-icon-size); height: var(--s-control-icon-size); flex-shrink: 0;
+}
+.sigil-landing-gallery { padding: var(--s-landing-cell-padding); }
+.sigil-landing-section-actions {
+  margin: 0; padding: var(--s-space-16) var(--s-landing-cell-padding);
+  border-top: var(--s-border-thin) var(--s-border-style) var(--s-border);
+}
+.sigil-landing-canvas { min-width: 0; overflow: hidden; }
+.sigil-landing-canvas-bar {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: var(--s-space-8); padding: var(--s-space-12) var(--s-landing-cell-padding);
+  border-bottom: var(--s-border-thin) var(--s-border-style) var(--s-border);
+  background: var(--s-surface); font-size: var(--s-size-sm);
+}
+.sigil-landing-canvas-bar > span { display: inline-flex; align-items: center; gap: var(--s-space-8); }
+.sigil-landing-canvas-bar > span + span { color: var(--s-text-muted); }
+.sigil-landing-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); background: var(--s-border); gap: var(--s-border-thin); border-top: var(--s-border-thin) var(--s-border-style) var(--s-border); }
+.sigil-landing-metrics > div { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-space-8); padding: var(--s-space-16); background: var(--s-surface); }
+.sigil-landing-metrics > div > span:last-child { color: var(--s-text-muted); font-size: var(--s-size-sm); }
+.sigil-landing-metrics svg { color: var(--s-text-muted); }
+.sigil-landing-example-label, .sigil-landing-detail-heading { display: flex; align-items: center; gap: var(--s-space-8); }
+.sigil-landing-example-label { color: var(--s-text-muted); font-size: var(--s-size-sm); }
+.sigil-landing-detail-heading h3 { margin: 0; font-size: var(--s-size-lg); font-weight: var(--s-weight-semibold); }
+.sigil-landing-examples { display: grid; }
+.sigil-landing-examples a {
+  display: grid; gap: var(--s-space-16); padding: var(--s-landing-cell-padding);
+  color: var(--s-text); text-decoration: none;
+  transition: background-color var(--s-duration-fast) var(--s-ease-default);
+}
+.sigil-landing-examples a + a { border-top: var(--s-border-thin) var(--s-border-style) var(--s-border); }
+.sigil-landing-examples a:hover { background: var(--s-surface); }
+.sigil-landing-examples h3 { display: flex; align-items: center; gap: var(--s-space-12); margin: 0; font-family: var(--s-font-display); font-size: var(--s-size-xl); font-weight: var(--s-weight-semibold); }
+.sigil-landing-examples h3 svg { width: var(--s-control-icon-size); height: var(--s-control-icon-size); }
+.sigil-landing-examples p { margin: 0; color: var(--s-text-secondary); font-size: var(--s-size-sm); }
+.sigil-landing-start-cell { padding: var(--s-landing-cell-padding); }
+.sigil-design-demo, .sigil-landing-preset-explorer { display: grid; grid-template-columns: minmax(0, 1fr); }
+.sigil-design-controls, .sigil-design-result, .sigil-landing-preset-result, .sigil-landing-preset-choices {
+  min-width: 0; padding: var(--s-landing-cell-padding); display: grid; align-content: start; gap: var(--s-space-16);
+}
+.sigil-design-demo > div + div, .sigil-landing-preset-explorer > div + div { border-top: var(--s-border-thin) var(--s-border-style) var(--s-border); }
+.sigil-design-demo p { margin: 0; color: var(--s-text-secondary); font-size: var(--s-size-sm); line-height: var(--s-leading-relaxed); }
+.sigil-design-controls fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+.sigil-design-controls legend { display: flex; align-items: center; gap: var(--s-space-8); margin-bottom: var(--s-space-8); font-size: var(--s-size-sm); font-weight: var(--s-weight-medium); }
+.sigil-design-controls fieldset > div { display: flex; flex-wrap: wrap; gap: var(--s-space-8); }
+.sigil-design-output { border-top: var(--s-border-thin) var(--s-border-style) var(--s-border); padding-top: var(--s-space-16); min-width: 0; }
+.sigil-design-output > span { display: flex; align-items: center; gap: var(--s-space-8); font-size: var(--s-size-xs); color: var(--s-text-muted); }
+.sigil-design-output pre { margin: var(--s-space-12) 0 0; overflow-x: auto; font-family: var(--s-font-mono); font-size: var(--s-size-xs); line-height: var(--s-leading-relaxed); }
+.sigil-design-result { background: var(--s-surface-sunken); }
+[data-design-spec-preview] { color: var(--s-text); font-family: var(--s-font-body); }
+.sigil-landing-preset-result { background: var(--s-surface-sunken); }
+@media (min-width: 48rem) {
+  .landing-study-frame { --s-landing-cell-padding: var(--s-space-24); --s-landing-intro-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .sigil-landing-section-intro h2 { font-size: var(--s-heading-h2-size); line-height: var(--s-heading-h2-leading); }
+  .sigil-landing-section-intro p { align-self: center; }
+  .sigil-landing-metrics { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .sigil-landing-examples a { grid-template-columns: 0.6fr 1fr 1.2fr; align-items: center; }
+  .sigil-design-demo, .sigil-landing-preset-explorer { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sigil-design-demo > div + div, .sigil-landing-preset-explorer > div + div { border-top: 0; border-left: var(--s-border-thin) var(--s-border-style) var(--s-border); }
+}
+
+.sigil-docs-catalog-search {
+  display: grid;
+  gap: var(--s-space-8);
+  padding-block: var(--s-space-24);
+}
+.sigil-docs-catalog-search label { color: var(--s-text); font-weight: var(--s-weight-medium); }
+.sigil-docs-catalog-search p { margin: 0; color: var(--s-text-muted); font-size: var(--s-size-sm); }
+
+@media (min-width: 48rem) {
+  .landing-study-frame { --s-hero-copy-padding: var(--s-space-24); --s-hero-media-padding: var(--s-space-16); }
+}
+@media (min-width: 80rem) {
+  .sigil-landing-hero-copy {
+    border-bottom: 0;
+    border-right: var(--s-border-thin) var(--s-border-style) var(--s-border);
+  }
+}
+
+/* Shared product composition: dense cells, connected borders, and readable
+   controls. Visual values inherit from the active Sigil token spec. */
+.sigil-landing-section-intro h2 { display: flex; align-items: baseline; gap: var(--s-space-12); }
+.sigil-landing-section-intro h2 > svg { width: var(--s-space-24); height: var(--s-space-24); flex-shrink: 0; align-self: flex-start; margin-top: var(--s-space-4); }
+.sigil-catalog-hero { align-items: stretch; }
+.sigil-catalog-hero-visual { padding: var(--s-landing-cell-padding); background: var(--s-surface-sunken); }
+.sigil-component-system { width: 100%; min-width: 0; padding-block: var(--s-space-16); }
+.sigil-component-system svg:not(.sigil-component-system-connectors) { width: var(--s-space-20); height: var(--s-space-20); flex-shrink: 0; }
+.sigil-component-system-source { border: var(--s-border-thin) var(--s-border-style) var(--s-border); background: var(--s-background); }
+.sigil-component-system-source > div:first-child { display: flex; align-items: center; flex-wrap: wrap; gap: var(--s-space-8); padding: var(--s-space-16); }
+.sigil-component-system-source strong { font-weight: var(--s-weight-semibold); }
+.sigil-component-system-source > div:first-child > span { margin-left: auto; font-size: var(--s-size-sm); color: var(--s-text-muted); }
+.sigil-component-system-tokens { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: var(--s-border-thin) var(--s-border-style) var(--s-border); }
+.sigil-component-system-tokens > span { display: grid; justify-items: start; align-content: start; gap: var(--s-space-8); min-width: 0; padding: var(--s-space-12); font-size: var(--s-size-sm); color: var(--s-text-secondary); }
+.sigil-component-system-tokens > span + span { border-left: var(--s-border-thin) var(--s-border-style) var(--s-border); }
+.sigil-component-system-tokens > span > strong { font-size: var(--s-size-3xl); line-height: var(--s-leading-tight); color: var(--s-text); }
+.sigil-component-system-swatches, .sigil-component-system-spacing { display: flex; align-items: center; gap: var(--s-space-4); height: var(--s-space-32); }
+.sigil-component-system-swatches > i { display: block; width: var(--s-space-20); height: var(--s-space-20); border-radius: var(--s-radius-full); background: var(--s-primary); }
+.sigil-component-system-swatches > i:nth-child(2) { background: var(--s-text-muted); }
+.sigil-component-system-swatches > i:nth-child(3) { background: var(--s-text); }
+.sigil-component-system-spacing > i { display: block; height: var(--s-space-16); width: var(--s-space-8); background: var(--s-text-muted); }
+.sigil-component-system-spacing > i:nth-child(2) { width: var(--s-space-16); }
+.sigil-component-system-spacing > i:nth-child(3) { width: var(--s-space-24); background: var(--s-primary); }
+.sigil-component-system-connectors { display: none; width: 100%; height: var(--s-space-48); overflow: visible; }
+.sigil-component-system-parts { display: grid; gap: var(--s-space-12); margin-top: var(--s-space-16); }
+.sigil-component-system-parts > div { display: grid; align-content: start; gap: var(--s-space-16); min-width: 0; padding: var(--s-space-16); border: var(--s-border-thin) var(--s-border-style) var(--s-border); background: var(--s-background); }
+.sigil-component-system-parts h3 { display: flex; align-items: center; gap: var(--s-space-8); margin: 0; font-size: var(--s-size-sm); font-weight: var(--s-weight-medium); }
+.sigil-component-system-parts code { color: var(--s-text-muted); font-family: var(--s-font-mono); font-size: var(--s-size-xs); overflow-wrap: anywhere; }
+.sigil-component-system-switch { display: flex; align-items: center; flex-wrap: wrap; gap: var(--s-space-8); min-height: var(--s-input-height); font-size: var(--s-size-sm); }
+.sigil-component-system > p { display: flex; align-items: center; gap: var(--s-space-8); margin: var(--s-space-16) 0 0; font-size: var(--s-size-sm); color: var(--s-text-muted); }
+.sigil-component-browser-section { scroll-margin-top: calc(var(--s-site-header-height) + var(--s-space-16)); }
+.sigil-catalog { display: grid; grid-template-columns: minmax(0, 1fr); background: var(--s-background); }
+.sigil-catalog .sigil-catalog-sidebar { display: none; }
+.sigil-catalog-main { min-width: 0; }
+.sigil-catalog-tools { display: flex; align-items: end; flex-wrap: wrap; gap: var(--s-space-16); padding: var(--s-landing-cell-padding); border-bottom: var(--s-border-thin) var(--s-border-style) var(--s-border); }
+.sigil-catalog-search { flex: 1 1 calc(4 * var(--s-grid-cell)); min-width: 0; }
+.sigil-catalog-search, .sigil-catalog-mobile-category { display: grid; gap: var(--s-space-8); }
+.sigil-catalog-search label, .sigil-catalog-mobile-category label { font-size: var(--s-size-sm); font-weight: var(--s-weight-medium); }
+.sigil-catalog-search input { min-height: var(--s-control-hit-area); }
+.sigil-catalog-mobile-category { flex: 1 1 calc(4 * var(--s-grid-cell)); min-width: 0; }
+.sigil-catalog-mobile-category [data-slot="select-trigger"] { min-height: var(--s-control-hit-area); }
+.sigil-catalog-summary { display: flex; align-items: center; flex-wrap: wrap; justify-content: space-between; gap: var(--s-space-8); flex: 1 0 100%; }
+.sigil-catalog-summary p { margin: 0; font-size: var(--s-size-sm); color: var(--s-text-muted); font-variant-numeric: tabular-nums; }
+.sigil-catalog-summary button svg { width: var(--s-control-icon-size); height: var(--s-control-icon-size); }
+.sigil-catalog-category-option { display: flex; align-items: center; gap: var(--s-space-8); }
+.sigil-catalog-category-option svg { width: var(--s-control-icon-size); height: var(--s-control-icon-size); }
+.sigil-catalog-category-option > span:last-child { margin-left: auto; color: var(--s-text-muted); font-variant-numeric: tabular-nums; }
+.sigil-catalog-results { container-type: inline-size; }
+.sigil-catalog-group > h3 { display: flex; align-items: center; gap: var(--s-space-8); margin: 0; padding: var(--s-space-16) var(--s-landing-cell-padding); font-size: var(--s-size-base); font-weight: var(--s-weight-semibold); border-bottom: var(--s-border-thin) var(--s-border-style) var(--s-border); }
+.sigil-catalog-group > h3 svg { width: var(--s-space-20); height: var(--s-space-20); }
+.sigil-catalog-group > h3 span { margin-left: auto; font-size: var(--s-size-sm); font-weight: var(--s-weight-normal); color: var(--s-text-muted); font-variant-numeric: tabular-nums; }
+.sigil-catalog-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-border-thin); background: var(--s-background); border-bottom: var(--s-border-thin) var(--s-border-style) var(--s-border); }
+.sigil-catalog-card { display: flex; flex-direction: column; min-width: 0; background: var(--s-background); outline: var(--s-border-thin) var(--s-border-style) var(--s-border); }
+.sigil-catalog-card-preview { display: flex; flex: 1; align-items: center; justify-content: center; min-width: 0; min-height: calc(2 * var(--s-grid-cell)); padding: var(--s-space-16); }
+.sigil-catalog-card-preview > * { max-width: 100%; min-width: 0; }
+.sigil-catalog-card[data-wide="true"] .sigil-catalog-card-preview > * { width: 100%; }
+.sigil-catalog-card footer { display: flex; align-items: center; flex-wrap: wrap; gap: var(--s-space-8); padding: var(--s-space-8) var(--s-space-16); border-top: var(--s-border-thin) var(--s-border-style) var(--s-border-muted); }
+.sigil-catalog-card h4 { margin: 0; font-size: var(--s-size-sm); font-weight: var(--s-weight-medium); overflow-wrap: anywhere; }
+.sigil-catalog-card footer > span { font-size: var(--s-size-xs); color: var(--s-text-muted); }
+.sigil-catalog-card footer a { display: inline-flex; align-items: center; justify-content: center; margin-left: auto; min-width: var(--s-control-hit-area); min-height: var(--s-control-hit-area); color: var(--s-text-muted); }
+.sigil-catalog-card footer a svg { width: var(--s-space-20); height: var(--s-space-20); }
+.sigil-catalog-card footer a:hover { color: var(--s-primary); background: var(--s-surface); }
+.sigil-catalog-card footer a:focus-visible { outline: var(--s-focus-ring-width) var(--s-border-style) var(--s-focus-ring-color); outline-offset: var(--s-focus-ring-offset); }
+.sigil-catalog-sidebar-preview { position: relative; height: calc(5 * var(--s-grid-cell)); max-width: 100%; }
+.sigil-catalog-sidebar-preview [data-slot="sidebar-header"] { min-height: var(--s-navbar-height); }
+.sigil-catalog-sidebar-preview [data-slot="sidebar-header"] > svg { width: var(--s-space-20); height: var(--s-space-20); flex-shrink: 0; }
+.sigil-catalog-sidebar-preview[data-collapsed] .sigil-preview-sidebar-title { display: none; }
+.sigil-catalog-more { display: flex; justify-content: center; padding: var(--s-landing-cell-padding); }
+.sigil-catalog-more svg { width: var(--s-control-icon-size); height: var(--s-control-icon-size); }
+.sigil-catalog-empty { display: grid; justify-items: center; gap: var(--s-space-16); text-align: center; padding: var(--s-space-48) var(--s-landing-cell-padding); }
+.sigil-catalog-empty > svg { width: var(--s-space-32); height: var(--s-space-32); color: var(--s-text-muted); }
+.sigil-catalog-empty h3 { margin: 0; font-size: var(--s-size-xl); }
+.sigil-catalog-empty p { margin: 0; color: var(--s-text-muted); font-size: var(--s-size-sm); }
+@container (min-width: 38rem) {
+  .sigil-catalog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sigil-catalog-card[data-wide="true"] { grid-column: span 2; }
+}
+@container (min-width: 62rem) {
+  .sigil-catalog-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (min-width: 32rem) {
+  .sigil-component-system-tokens > span { padding: var(--s-space-16); }
+  .sigil-component-system-parts { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-space-12); margin-top: 0; }
+  .sigil-component-system-connectors { display: block; }
+}
+@media (min-width: 64rem) {
+  .sigil-catalog-hero { grid-template-columns: var(--s-hero-grid-columns); }
+  .sigil-catalog-hero > .sigil-landing-hero-copy { border-bottom: 0; border-right: var(--s-border-thin) var(--s-border-style) var(--s-border); }
+  .sigil-catalog { grid-template-columns: var(--s-sidebar-width) minmax(0, 1fr); }
+  .sigil-catalog .sigil-catalog-sidebar { display: flex; align-self: start; top: var(--s-site-header-height); width: 100%; height: calc(100dvh - var(--s-site-header-height) - var(--s-space-64)); border-right: 0; background: var(--s-background); }
+  .sigil-catalog-sidebar [data-slot="sidebar-header"] { min-width: 0; padding: var(--s-space-20) var(--s-space-16); }
+  .sigil-catalog-sidebar [data-slot="sidebar-header"] > svg { width: var(--s-space-20); height: var(--s-space-20); }
+  .sigil-catalog-sidebar [data-slot="sidebar-header"] > span { margin-left: auto; font-size: var(--s-size-sm); color: var(--s-text-muted); }
+  .sigil-catalog-sidebar [data-slot="sidebar-content"] { overflow: hidden; min-height: 0; padding: var(--s-space-8); }
+  .sigil-catalog-category-scroll { height: 100%; }
+  .sigil-catalog-sidebar [data-slot="sidebar-item"] { min-height: var(--s-control-hit-area); }
+  .sigil-catalog-sidebar [data-slot="sidebar-item"] > span:last-child { display: flex; align-items: center; gap: var(--s-space-8); flex: 1; min-width: 0; text-align: left; }
+  .sigil-catalog-category-count { margin-left: auto; color: var(--s-text-muted); font-size: var(--s-size-xs); font-variant-numeric: tabular-nums; }
+  .sigil-catalog-main { border-left: var(--s-border-thin) var(--s-border-style) var(--s-border); }
+  .sigil-catalog-mobile-category { display: none; }
+  .sigil-catalog-search { flex: 1 1 50%; }
+  .sigil-catalog-summary { flex: 1 1 auto; min-height: var(--s-control-hit-area); justify-content: flex-end; }
+}
+
+/* StudioCanvas owns the single visible bezel. Existing diagram components
+   retain their internal separators, but their outer border joins this frame
+   instead of producing a doubled edge. */
+.landing-studio-canvas > [data-slot] {
+  border-width: 0;
+  border-radius: 0;
+}
+
+.landing-studio-canvas > [data-slot="layer-stack-diagram"] > :first-child {
+  border-width: 0;
+}
+
 .s-transition-all,
 .s-transition-all > * {
   transition:
@@ -785,11 +1156,11 @@ html[data-switching-theme] *::after {
     transform var(--s-duration-fast) var(--s-ease-out);
 }
 
-/* CSS fallback for browsers without View Transitions API              */
-html[data-switching-preset],
-html[data-switching-preset] *,
-html[data-switching-preset] *::before,
-html[data-switching-preset] *::after {
+/* Apply a preset atomically instead of animating thousands of token changes. */
+html[data-sigil-preset-switching],
+html[data-sigil-preset-switching] *,
+html[data-sigil-preset-switching] *::before,
+html[data-sigil-preset-switching] *::after {
   transition-duration: var(--s-duration-instant, 0ms) !important;
 }
 
@@ -937,65 +1308,391 @@ html[data-switching-preset] *::after {
 }
 
 /* ================================================================== */
-/* Component preview                                                   */
+/* Docs shell + component preview                                      */
 /* ================================================================== */
+
+.sigil-docs-layout {
+  --fd-layout-width: var(--s-content-max-wide);
+  --s-docs-article-width: calc(var(--s-grid-cell) * 20);
+  --s-docs-gutter: var(--s-space-24);
+  background-color: var(--s-background);
+  background-image: none;
+}
+
+/* Match the docs shell's desktop sidebar breakpoint. Mobile keeps its zero
+   column width so the off-canvas menu cannot displace the page content. */
+@media (min-width: 48rem) {
+  .sigil-docs-layout {
+    --fd-sidebar-width: calc(var(--s-grid-cell) * 5.5);
+  }
+}
+
+.sigil-docs-logo-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-space-12);
+  color: var(--s-text);
+}
+
+.sigil-docs-logo {
+  width: calc(var(--s-grid-cell) * 0.4);
+  height: calc(var(--s-grid-cell) * 0.4);
+}
+
+.sigil-docs-wordmark {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--s-space-4);
+  font-family: var(--s-font-display);
+  font-size: var(--s-size-lg);
+  font-weight: var(--s-weight-semibold);
+  letter-spacing: var(--s-tracking-tight);
+}
+
+.sigil-docs-wordmark > span {
+  color: var(--s-text-subtle);
+  font-weight: var(--s-weight-normal);
+}
+
+.sigil-docs-wordmark > small {
+  font-size: var(--s-size-sm);
+  font-weight: var(--s-weight-medium);
+}
+
+.sigil-docs-sidebar-banner {
+  display: grid;
+  gap: var(--s-space-4);
+  padding: var(--s-space-8);
+  border-bottom: var(--s-border-thin) var(--s-border-style) var(--s-border-muted);
+}
+
+.sigil-docs-sidebar-banner span {
+  color: var(--s-text);
+  font-size: var(--s-size-sm);
+  font-weight: var(--s-weight-medium);
+}
+
+.sigil-docs-sidebar-banner strong {
+  color: var(--s-text-secondary);
+  font-family: var(--s-font-mono);
+  font-size: var(--s-size-xs);
+  font-weight: var(--s-weight-medium);
+}
+
+#nd-sidebar.sigil-docs-sidebar {
+  background: var(--s-background);
+  border-inline-end: var(--s-border-thin) solid var(--s-border);
+  box-shadow: none;
+}
+
+#nd-sidebar.sigil-docs-sidebar a[href^="/docs"] {
+  border-radius: var(--s-radius-sm);
+  font-size: var(--s-size-sm);
+  letter-spacing: var(--s-tracking-normal);
+}
+
+#nd-sidebar.sigil-docs-sidebar a[href^="/docs"][data-active="true"] {
+  color: var(--s-text);
+  background: var(--s-surface);
+  box-shadow: inset var(--s-border-thin) 0 0 var(--s-primary);
+}
+
+#nd-sidebar.sigil-docs-sidebar a[href^="/docs"]:hover {
+  color: var(--s-text);
+  background: var(--s-surface);
+}
+
+#nd-page {
+  box-sizing: border-box;
+  min-height: calc(100dvh - var(--s-space-16));
+  max-width: var(--s-docs-article-width);
+  min-width: 0;
+  padding: var(--s-space-32) var(--s-docs-gutter) var(--s-space-48);
+  gap: var(--s-space-12);
+  background: transparent;
+  border: 0;
+}
+
+.sigil-docs-page {
+  display: flex;
+  grid-area: main;
+  width: 100%;
+  justify-self: center;
+  margin-inline: auto;
+  flex-direction: column;
+}
+
+#nd-page[data-full="true"] {
+  max-width: var(--s-content-max-wide);
+}
+
+#nd-page > h1 {
+  margin: 0;
+  max-width: var(--s-section-heading-max-width);
+  color: var(--s-text);
+  font-family: var(--s-heading-family, var(--s-font-display));
+  font-size: var(--s-heading-h1-size);
+  font-weight: var(--s-heading-h1-weight);
+  line-height: var(--s-heading-h1-leading);
+  letter-spacing: var(--s-heading-h1-tracking);
+  text-wrap: balance;
+}
+
+#nd-page > h1 + p {
+  max-width: var(--s-section-description-max-width);
+  margin-block: 0 var(--s-space-20);
+  color: var(--s-text-muted);
+  font-size: var(--s-size-lg);
+  line-height: var(--s-leading-relaxed);
+  text-wrap: pretty;
+}
+
+.sigil-docs-detail-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--s-space-20);
+  margin-bottom: var(--s-space-8);
+  padding-bottom: var(--s-space-20);
+  border-bottom: var(--s-border-thin) solid var(--s-border-muted);
+}
+
+.sigil-docs-detail-copy {
+  display: grid;
+  min-width: 0;
+  gap: var(--s-space-12);
+}
+
+.sigil-docs-detail-kicker,
+.sigil-docs-detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-space-8);
+}
+
+.sigil-docs-detail-kicker span,
+.sigil-docs-detail-tags > span {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--s-control-height-sm);
+  padding-inline: var(--s-space-8);
+  border: var(--s-border-thin) solid var(--s-border-muted);
+  border-radius: var(--s-radius-sm);
+  color: var(--s-text-muted);
+  background: var(--s-surface);
+  font-family: var(--s-font-mono);
+  font-size: var(--s-size-xs);
+  font-weight: var(--s-weight-medium);
+  letter-spacing: var(--s-tracking-wide);
+}
+
+.sigil-docs-detail-kicker span:first-child {
+  color: var(--s-primary);
+}
+
+.sigil-docs-detail-header h1 {
+  max-width: var(--s-section-heading-max-width);
+  margin: 0;
+  color: var(--s-text);
+  font-family: var(--s-font-display);
+  font-size: var(--s-heading-h1-size);
+  font-weight: var(--s-heading-h1-weight);
+  line-height: var(--s-heading-h1-leading);
+  letter-spacing: var(--s-heading-h1-tracking);
+  text-wrap: balance;
+}
+
+.sigil-docs-detail-header p {
+  max-width: var(--s-section-description-max-width);
+  margin: 0;
+  color: var(--s-text-muted);
+  font-size: var(--s-size-lg);
+  line-height: var(--s-leading-relaxed);
+  text-wrap: pretty;
+}
+
+.sigil-docs-detail-tags {
+  margin-top: var(--s-space-4);
+}
+
+.sigil-docs-detail-tags > span {
+  min-height: 0;
+  border-color: transparent;
+  background: transparent;
+  padding-inline: 0;
+}
+
+.sigil-docs-detail-tags > span + span::before {
+  width: var(--s-space-4);
+  height: var(--s-space-4);
+  margin-inline-end: var(--s-space-8);
+  border-radius: var(--s-radius-full);
+  background: var(--s-border-strong);
+  content: "";
+}
+
+.sigil-docs-page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--s-space-8);
+}
+
+.sigil-docs-page-actions button {
+  display: inline-flex;
+  min-height: var(--s-control-hit-area);
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-space-8);
+  padding-inline: var(--s-space-12);
+  border: var(--s-border-thin) solid var(--s-border);
+  border-radius: var(--s-radius-button);
+  color: var(--s-text-secondary);
+  background: var(--s-surface);
+  font-family: var(--s-font-body);
+  font-size: var(--s-size-xs);
+  font-weight: var(--s-weight-medium);
+  cursor: pointer;
+  transition:
+    color var(--s-duration-fast) var(--s-ease-default),
+    background-color var(--s-duration-fast) var(--s-ease-default),
+    border-color var(--s-duration-fast) var(--s-ease-default),
+    transform var(--s-duration-fast) var(--s-ease-default);
+}
+
+.sigil-docs-page-actions button:hover,
+.sigil-docs-page-actions button[data-copied="true"] {
+  color: var(--s-primary-contrast);
+  background: var(--s-primary);
+  border-color: var(--s-primary);
+}
+
+.sigil-docs-page-actions button:active {
+  transform: scale(0.96);
+}
+
+.sigil-docs-page-actions button:focus-visible {
+  outline: var(--s-focus-ring-width) solid var(--s-focus-ring-color);
+  outline-offset: var(--s-focus-ring-offset);
+}
+
+.sigil-docs-page-actions svg {
+  width: var(--s-control-icon-size);
+  height: var(--s-control-icon-size);
+}
+
+#nd-page .prose {
+  color: var(--s-text-secondary);
+  font-family: var(--s-font-body);
+  line-height: var(--s-leading-relaxed);
+}
+
+#nd-page[data-full="false"] .prose {
+  width: 100%;
+  max-width: none;
+}
+
+#nd-page[data-full="false"] .prose > h2 {
+  margin-top: var(--s-space-32);
+  padding-top: 0;
+  color: var(--s-text);
+  font-size: var(--s-size-2xl);
+  font-weight: var(--s-weight-semibold);
+  line-height: var(--s-leading-tight);
+  text-wrap: balance;
+}
+
+#nd-page[data-full="false"] .prose > h3 {
+  margin-top: var(--s-space-32);
+  color: var(--s-text);
+  font-size: var(--s-size-lg);
+  font-weight: var(--s-weight-semibold);
+  line-height: var(--s-leading-normal);
+  text-wrap: balance;
+}
+
+#nd-page[data-full="false"] .prose > p,
+#nd-page[data-full="false"] .prose > ul,
+#nd-page[data-full="false"] .prose > ol {
+  max-width: var(--s-prose-max);
+  text-wrap: pretty;
+}
+
+#nd-page[data-full="true"] .prose {
+  max-width: none;
+}
 
 .sigil-preview {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
-  padding: 32px;
-  border: 1px solid var(--s-border);
-  border-radius: var(--s-radius-lg, 12px);
-  background: var(--s-background);
-  margin: 20px 0;
+  justify-content: center;
+  min-height: calc(var(--s-grid-cell) * 5.5);
+  gap: var(--s-space-12);
+  padding: var(--s-space-20);
+  border: var(--s-border-thin) solid var(--s-border);
+  border-radius: var(--s-radius-card);
+  background-color: var(--s-background);
+  background-image: none;
+  margin: var(--s-space-16) 0;
   position: relative;
-  transition: background-color var(--s-duration-normal, 200ms) cubic-bezier(0.16, 1, 0.3, 1), border-color var(--s-duration-normal, 200ms) cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.sigil-preview::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background:
-    radial-gradient(circle at 1px 1px, var(--s-border-muted) 0.5px, transparent 0.5px);
-  background-size: 16px 16px;
-  opacity: 0.4;
-  pointer-events: none;
+  overflow: hidden;
+  transition:
+    background-color var(--s-duration-normal) ease,
+    border-color var(--s-duration-normal) ease;
 }
 
 .sigil-preview-vertical {
   flex-direction: column;
   align-items: stretch;
+  justify-content: center;
 }
 
 .sigil-preview-wrapper {
-  margin: 20px 0;
+  overflow: hidden;
+  margin: var(--s-space-16) 0;
+  border: var(--s-border-thin) solid var(--s-border);
+  border-radius: var(--s-radius-card);
+  background: var(--s-surface);
+  box-shadow: none;
 }
 
 .sigil-preview-wrapper .sigil-preview {
   margin: 0;
+  border: 0;
+  border-top: var(--s-border-thin) solid var(--s-border);
+  border-radius: 0;
 }
 
-.sigil-preview-label {
-  font-family: var(--s-font-mono);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  color: var(--s-text-muted);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 6px 12px;
-  border: 1px solid var(--s-border);
-  border-bottom: none;
-  border-radius: var(--s-radius-lg, 12px) var(--s-radius-lg, 12px) 0 0;
+.sigil-preview-toolbar {
+  display: flex;
+  min-height: var(--s-grid-cell);
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-space-16);
+  padding-inline: var(--s-space-16);
+  color: var(--s-text);
   background: var(--s-surface);
+  font-family: var(--s-font-body);
+  font-size: var(--s-size-sm);
+  font-weight: var(--s-weight-medium);
 }
 
-.sigil-preview-label + .sigil-preview {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+.sigil-preview-toolbar strong {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-space-8);
+  color: var(--s-text-muted);
+  font-weight: var(--s-weight-medium);
+}
+
+.sigil-preview-toolbar i {
+  width: var(--s-space-8);
+  height: var(--s-space-8);
+  border-radius: var(--s-radius-full);
+  background: var(--s-success);
+  box-shadow: var(--s-shadow-glow);
 }
 
 /* ================================================================== */
@@ -1017,29 +1714,798 @@ nav[data-fd-sidebar] {
 }
 
 /* ================================================================== */
+/* Docs landing gallery                                                */
+/* ================================================================== */
+
+.sigil-docs-gallery {
+  width: 100%;
+  max-width: none;
+  margin-top: var(--s-space-16);
+  color: var(--s-text);
+}
+
+.sigil-docs-gallery-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: var(--s-space-24);
+  align-items: end;
+  padding-block: var(--s-space-16) var(--s-space-20);
+  border-top: var(--s-border-thin) solid var(--s-border);
+}
+
+.sigil-docs-gallery-header > div {
+  display: grid;
+  gap: var(--s-space-12);
+}
+
+.sigil-docs-eyebrow,
+.sigil-docs-gallery-index {
+  color: var(--s-text-muted);
+  font-family: var(--s-font-mono);
+  font-size: var(--s-size-xs);
+  font-weight: var(--s-weight-medium);
+  letter-spacing: var(--s-tracking-wider);
+  text-transform: uppercase;
+}
+
+.sigil-docs-gallery-header h2 {
+  max-width: var(--s-section-heading-max-width);
+  margin: 0;
+  color: var(--s-text);
+  font-family: var(--s-heading-family, var(--s-font-display));
+  font-size: var(--s-heading-h2-size);
+  font-weight: var(--s-heading-h2-weight);
+  line-height: var(--s-heading-h2-leading);
+  letter-spacing: var(--s-heading-h2-tracking);
+  text-wrap: balance;
+}
+
+.sigil-docs-gallery-header > p {
+  max-width: var(--s-section-description-max-width);
+  margin: 0;
+  color: var(--s-text-muted);
+  font-size: var(--s-size-base);
+  line-height: var(--s-leading-relaxed);
+  text-wrap: pretty;
+}
+
+.sigil-docs-gallery-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.3fr);
+  align-items: stretch;
+  margin-bottom: var(--s-space-16);
+  border: var(--s-border-thin) solid var(--s-border);
+  background: var(--s-surface);
+}
+
+.sigil-docs-gallery-stats > span,
+.sigil-docs-gallery-stats > a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-space-8);
+  min-height: var(--s-grid-cell);
+  padding-inline: var(--s-space-16);
+  border-inline-end: var(--s-border-thin) solid var(--s-border);
+  color: var(--s-text-muted);
+  font-family: var(--s-font-mono);
+  font-size: var(--s-size-xs);
+  text-decoration: none;
+}
+
+.sigil-docs-gallery-stats > span strong {
+  color: var(--s-text);
+  font-weight: var(--s-weight-semibold);
+}
+
+.sigil-docs-gallery-stats > a {
+  justify-content: space-between;
+  border-inline-end: 0;
+  color: var(--s-primary);
+  font-weight: var(--s-weight-medium);
+  transition: background-color var(--s-duration-fast) ease;
+}
+
+.sigil-docs-gallery-stats > a:hover {
+  background: var(--s-surface-elevated);
+}
+
+.sigil-docs-gallery-stats svg,
+.sigil-docs-gallery-caption svg {
+  width: var(--s-control-icon-size);
+  height: var(--s-control-icon-size);
+}
+
+.sigil-docs-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s-border-thin);
+  padding: var(--s-border-thin);
+  background: var(--s-border);
+}
+
+.sigil-docs-gallery-card {
+  display: grid;
+  grid-template-rows: minmax(calc(var(--s-grid-cell) * 6.5), auto) auto;
+  min-width: 0;
+  background: var(--s-background);
+}
+
+.sigil-docs-gallery-stage {
+  display: grid;
+  min-width: 0;
+  place-items: center;
+  padding: var(--s-space-20);
+  overflow: hidden;
+  background-color: var(--s-surface-sunken);
+  background-image: none;
+}
+
+.sigil-docs-gallery-caption {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: var(--s-space-16);
+  align-items: start;
+  padding: var(--s-space-20);
+  border-top: var(--s-border-thin) solid var(--s-border);
+}
+
+.sigil-docs-gallery-caption h3 {
+  margin: 0 0 var(--s-space-4);
+  color: var(--s-text);
+  font-family: var(--s-font-display);
+  font-size: var(--s-size-base);
+  font-weight: var(--s-weight-semibold);
+  line-height: var(--s-leading-normal);
+  letter-spacing: var(--s-tracking-normal);
+}
+
+.sigil-docs-gallery-caption p {
+  max-width: none;
+  margin: 0;
+  color: var(--s-text-muted);
+  font-size: var(--s-size-xs);
+  line-height: var(--s-leading-relaxed);
+  text-wrap: pretty;
+}
+
+.sigil-docs-gallery-caption > a {
+  display: inline-grid;
+  width: var(--s-control-hit-area);
+  height: var(--s-control-hit-area);
+  place-items: center;
+  border: var(--s-border-thin) solid var(--s-border);
+  border-radius: var(--s-radius-button);
+  color: var(--s-text);
+  background: var(--s-background);
+  transition:
+    color var(--s-duration-fast) ease,
+    background-color var(--s-duration-fast) ease,
+    border-color var(--s-duration-fast) ease;
+}
+
+.sigil-docs-gallery-caption > a:hover {
+  color: var(--s-primary-contrast);
+  background: var(--s-primary);
+  border-color: var(--s-primary);
+}
+
+.sigil-docs-demo-panel {
+  display: grid;
+  width: min(100%, calc(var(--s-grid-cell) * 8));
+  gap: var(--s-space-20);
+  padding: var(--s-space-16);
+  border: var(--s-border-thin) solid var(--s-border);
+  border-radius: var(--s-radius-card);
+  background: var(--s-background);
+  box-shadow: var(--s-shadow-card);
+}
+
+.sigil-docs-demo-row {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: var(--s-space-12);
+}
+
+.sigil-docs-demo-row > div {
+  min-width: 0;
+}
+
+.sigil-docs-demo-row > div:not([data-slot="avatar-group"]) {
+  flex: 1;
+}
+
+.sigil-docs-demo-row > [data-slot="avatar-group"] {
+  flex: none;
+}
+
+.sigil-docs-demo-row strong,
+.sigil-docs-demo-heading strong,
+.sigil-docs-demo-output strong,
+.sigil-docs-demo-calendar-note strong {
+  display: block;
+  color: var(--s-text);
+  font-family: var(--s-font-display);
+  font-size: var(--s-size-sm);
+  font-weight: var(--s-weight-semibold);
+  line-height: var(--s-leading-normal);
+}
+
+.sigil-docs-demo-row p,
+.sigil-docs-demo-heading p,
+.sigil-docs-demo-output p {
+  margin: 0;
+  color: var(--s-text-muted);
+  font-size: var(--s-size-xs);
+  line-height: var(--s-leading-normal);
+}
+
+.sigil-docs-demo-icon {
+  display: inline-grid;
+  width: var(--s-control-hit-area);
+  height: var(--s-control-hit-area);
+  flex: none;
+  place-items: center;
+  border: var(--s-border-thin) solid var(--s-border);
+  border-radius: var(--s-radius-md);
+  color: var(--s-primary);
+  background: var(--s-surface);
+}
+
+.sigil-docs-demo-icon svg,
+.sigil-docs-demo-heading > svg,
+.sigil-docs-demo-output > svg {
+  width: var(--s-control-icon-size);
+  height: var(--s-control-icon-size);
+}
+
+.sigil-docs-demo-actions {
+  display: flex;
+  gap: var(--s-space-8);
+}
+
+.sigil-docs-demo-actions > :first-child {
+  flex: 1;
+}
+
+.sigil-docs-demo-actions--split > * {
+  flex: 1;
+}
+
+.sigil-docs-demo-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-space-16);
+}
+
+.sigil-docs-demo-heading > div {
+  display: grid;
+  gap: var(--s-space-8);
+}
+
+.sigil-docs-demo-heading > svg {
+  color: var(--s-primary);
+}
+
+.sigil-docs-demo-control {
+  display: grid;
+  gap: var(--s-space-4);
+}
+
+.sigil-docs-demo-row--compact {
+  justify-content: space-between;
+  color: var(--s-text-muted);
+  font-family: var(--s-font-mono);
+  font-size: var(--s-size-xs);
+}
+
+.sigil-docs-demo-analytics {
+  display: grid;
+  width: min(100%, calc(var(--s-grid-cell) * 9));
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  gap: var(--s-border-thin);
+  padding: var(--s-border-thin);
+  background: var(--s-border);
+}
+
+.sigil-docs-demo-chart {
+  display: grid;
+  align-content: space-between;
+  gap: var(--s-space-16);
+  padding: var(--s-space-16);
+  background: var(--s-background);
+}
+
+.sigil-docs-demo-chart strong {
+  display: block;
+  margin-top: var(--s-space-4);
+  color: var(--s-text);
+  font-family: var(--s-font-display);
+  font-size: var(--s-size-xl);
+  font-weight: var(--s-weight-semibold);
+}
+
+.sigil-docs-demo-chart span {
+  color: var(--s-text-muted);
+  font-family: var(--s-font-mono);
+  font-size: var(--s-size-xs);
+}
+
+.sigil-docs-demo-invite {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--s-space-8);
+}
+
+.sigil-docs-demo-note {
+  margin: 0;
+  color: var(--s-text-muted);
+  font-size: var(--s-size-xs);
+}
+
+.sigil-docs-demo-calendar-wrap {
+  display: grid;
+  width: min(100%, calc(var(--s-grid-cell) * 7.5));
+  padding: var(--s-border-thin);
+  gap: var(--s-border-thin);
+  background: var(--s-border);
+}
+
+.sigil-docs-demo-calendar {
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+}
+
+.sigil-docs-demo-calendar-note {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-space-16);
+  padding: var(--s-space-12) var(--s-space-16);
+  color: var(--s-text-muted);
+  background: var(--s-background);
+  font-family: var(--s-font-mono);
+  font-size: var(--s-size-xs);
+}
+
+.sigil-docs-demo-activity {
+  overflow: hidden;
+}
+
+.sigil-docs-demo-commit-scroll {
+  width: 100%;
+  overflow-x: auto;
+  padding-block: var(--s-space-8);
+}
+
+.sigil-docs-demo-intensity {
+  display: inline-flex;
+  flex: 1;
+  justify-content: flex-end;
+  gap: var(--s-space-4);
+}
+
+.sigil-docs-demo-intensity i,
+.sigil-docs-demo-swatches i {
+  display: block;
+  width: var(--s-space-12);
+  height: var(--s-space-12);
+  background: var(--s-primary);
+}
+
+.sigil-docs-demo-intensity i:nth-child(1) { opacity: 0.2; }
+.sigil-docs-demo-intensity i:nth-child(2) { opacity: 0.45; }
+.sigil-docs-demo-intensity i:nth-child(3) { opacity: 0.7; }
+.sigil-docs-demo-intensity i:nth-child(4) { opacity: 1; }
+
+.sigil-docs-demo-tabs > [role="tablist"] {
+  width: 100%;
+}
+
+.sigil-docs-demo-tabs > [role="tabpanel"] {
+  margin-top: 0;
+}
+
+.sigil-docs-demo-code {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: var(--s-space-12) var(--s-space-20);
+  padding: var(--s-space-20);
+  border: var(--s-border-thin) solid var(--s-border);
+  background: var(--s-surface-sunken);
+  font-family: var(--s-font-mono);
+  font-size: var(--s-size-xs);
+}
+
+.sigil-docs-demo-code span {
+  color: var(--s-text-muted);
+}
+
+.sigil-docs-demo-code strong {
+  overflow: hidden;
+  color: var(--s-primary);
+  font-weight: var(--s-weight-medium);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sigil-docs-demo-swatches {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--s-space-8);
+  padding: var(--s-space-20);
+  border: var(--s-border-thin) solid var(--s-border);
+  background: var(--s-surface-sunken);
+}
+
+.sigil-docs-demo-swatches i {
+  width: 100%;
+  height: calc(var(--s-grid-cell) * 0.7);
+  background: var(--s-primary);
+}
+
+.sigil-docs-demo-swatches i:nth-child(3n + 1) { background: var(--s-accent); }
+.sigil-docs-demo-swatches i:nth-child(3n + 2) { background: var(--s-success); }
+.sigil-docs-demo-swatches i:nth-child(3n + 3) { background: var(--s-info); }
+
+.sigil-docs-demo-output {
+  display: flex;
+  align-items: center;
+  gap: var(--s-space-12);
+  padding: var(--s-space-20);
+  border: var(--s-border-thin) solid var(--s-border);
+  background: var(--s-surface-sunken);
+}
+
+.sigil-docs-demo-output > svg {
+  flex: none;
+  color: var(--s-primary);
+}
+
+.sigil-docs-demo-output > div {
+  min-width: 0;
+  flex: 1;
+}
+
+/* ================================================================== */
+/* Complete component catalog                                         */
+/* ================================================================== */
+
+.sigil-docs-catalog {
+  width: 100%;
+  margin-top: var(--s-space-32);
+  color: var(--s-text);
+}
+
+.sigil-docs-catalog-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: end;
+  gap: var(--s-space-24);
+  padding-block: var(--s-space-20);
+  border-top: var(--s-border-thin) solid var(--s-border);
+}
+
+.sigil-docs-catalog-header > div {
+  display: grid;
+  gap: var(--s-space-12);
+}
+
+.sigil-docs-catalog-header h2 {
+  margin: 0;
+  color: var(--s-text);
+  font-family: var(--s-font-display);
+  font-size: var(--s-heading-h2-size);
+  font-weight: var(--s-heading-h2-weight);
+  line-height: var(--s-heading-h2-leading);
+  letter-spacing: var(--s-heading-h2-tracking);
+  text-wrap: balance;
+}
+
+.sigil-docs-catalog-header > p {
+  max-width: var(--s-section-description-max-width);
+  margin: 0;
+  color: var(--s-text-muted);
+  font-size: var(--s-size-base);
+  line-height: var(--s-leading-relaxed);
+  text-wrap: pretty;
+}
+
+.sigil-docs-catalog-nav {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  border-top: var(--s-border-thin) solid var(--s-border);
+  border-left: var(--s-border-thin) solid var(--s-border);
+}
+
+.sigil-docs-catalog-nav > a {
+  display: flex;
+  min-width: 0;
+  min-height: var(--s-grid-cell);
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-space-8);
+  padding-inline: var(--s-space-12);
+  border-right: var(--s-border-thin) solid var(--s-border);
+  border-bottom: var(--s-border-thin) solid var(--s-border);
+  color: var(--s-text-muted);
+  background: var(--s-background);
+  font-family: var(--s-font-mono);
+  font-size: var(--s-size-xs);
+  text-decoration: none;
+  transition:
+    color var(--s-duration-fast) var(--s-ease-default),
+    background-color var(--s-duration-fast) var(--s-ease-default);
+}
+
+.sigil-docs-catalog-nav > a:hover {
+  color: var(--s-primary-contrast);
+  background: var(--s-primary);
+}
+
+.sigil-docs-catalog-nav span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sigil-docs-catalog-nav strong {
+  color: var(--s-text);
+  font-weight: var(--s-weight-medium);
+}
+
+.sigil-docs-catalog-nav > a:hover strong {
+  color: inherit;
+}
+
+.sigil-docs-catalog-groups {
+  display: flex;
+  flex-direction: column;
+}
+
+.sigil-docs-catalog-group {
+  scroll-margin-top: calc(var(--s-navbar-height) + var(--s-space-16));
+  padding-top: var(--s-space-32);
+}
+
+.sigil-docs-catalog-group > header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--s-space-16);
+  padding: 0 0 var(--s-space-20);
+}
+
+.sigil-docs-catalog-group > header > span,
+.sigil-docs-catalog-group > header > strong {
+  color: var(--s-text-muted);
+  font-family: var(--s-font-mono);
+  font-size: var(--s-size-xs);
+  font-weight: var(--s-weight-medium);
+  letter-spacing: var(--s-tracking-wider);
+}
+
+.sigil-docs-catalog-group > header h3 {
+  margin: 0 0 var(--s-space-4);
+  color: var(--s-text);
+  font-family: var(--s-font-display);
+  font-size: var(--s-heading-h3-size);
+  font-weight: var(--s-heading-h3-weight);
+  line-height: var(--s-heading-h3-leading);
+  letter-spacing: var(--s-heading-h3-tracking);
+}
+
+.sigil-docs-catalog-group > header p {
+  max-width: var(--s-section-description-max-width);
+  margin: 0;
+  color: var(--s-text-muted);
+  font-size: var(--s-size-sm);
+  line-height: var(--s-leading-relaxed);
+  text-wrap: pretty;
+}
+
+.sigil-docs-catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: var(--s-border-thin) solid var(--s-border);
+  border-left: var(--s-border-thin) solid var(--s-border);
+  background: var(--s-background);
+}
+
+.sigil-docs-catalog-grid > a {
+  display: flex;
+  min-width: 0;
+  min-height: calc(var(--s-grid-cell) * 2.25);
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-space-16);
+  padding: var(--s-space-20);
+  border-right: var(--s-border-thin) solid var(--s-border);
+  border-bottom: var(--s-border-thin) solid var(--s-border);
+  color: var(--s-text);
+  background: var(--s-background);
+  text-decoration: none;
+  transition:
+    color var(--s-duration-fast) var(--s-ease-default),
+    background-color var(--s-duration-fast) var(--s-ease-default);
+}
+
+.sigil-docs-catalog-grid > a:hover {
+  color: var(--s-primary-contrast);
+  background: var(--s-primary);
+}
+
+.sigil-docs-catalog-grid > a > div {
+  min-width: 0;
+}
+
+.sigil-docs-catalog-grid h4 {
+  margin: 0 0 var(--s-space-8);
+  color: inherit;
+  font-family: var(--s-font-display);
+  font-size: var(--s-size-base);
+  font-weight: var(--s-weight-semibold);
+  line-height: var(--s-leading-normal);
+  letter-spacing: var(--s-tracking-normal);
+}
+
+.sigil-docs-catalog-grid p {
+  display: -webkit-box;
+  max-width: none;
+  margin: 0;
+  overflow: hidden;
+  color: var(--s-text-muted);
+  font-size: var(--s-size-xs);
+  line-height: var(--s-leading-relaxed);
+  text-wrap: pretty;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.sigil-docs-catalog-grid > a:hover p {
+  color: color-mix(in oklch, var(--s-primary-contrast) 72%, transparent);
+}
+
+.sigil-docs-catalog-grid svg {
+  width: var(--s-control-icon-size);
+  height: var(--s-control-icon-size);
+  flex: none;
+}
+
+@media (max-width: 72rem) {
+  .sigil-docs-gallery-stage {
+    padding: var(--s-space-16);
+  }
+
+  .sigil-docs-demo-analytics {
+    grid-template-columns: 1fr;
+  }
+
+  .sigil-docs-catalog-nav {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .sigil-docs-catalog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 52rem) {
+  #nd-page,
+  #nd-page[data-full="true"] {
+    padding: var(--s-space-20) var(--s-page-margin-sm) var(--s-space-32);
+    border-inline: 0;
+  }
+
+  .sigil-docs-gallery-header,
+  .sigil-docs-catalog-header,
+  .sigil-docs-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sigil-docs-gallery-header {
+    gap: var(--s-space-16);
+  }
+
+  .sigil-docs-detail-header {
+    grid-template-columns: 1fr;
+    gap: var(--s-space-20);
+  }
+
+  .sigil-docs-page-actions {
+    justify-content: flex-start;
+  }
+
+  .sigil-docs-catalog-header {
+    gap: var(--s-space-16);
+  }
+
+  .sigil-docs-catalog-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sigil-docs-gallery-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .sigil-docs-gallery-stats > a {
+    grid-column: 1 / -1;
+    border-top: var(--s-border-thin) solid var(--s-border);
+  }
+
+  .sigil-docs-gallery-stats > span:nth-child(3) {
+    border-inline-end: 0;
+  }
+
+  .sigil-docs-gallery-card {
+    grid-template-rows: minmax(calc(var(--s-grid-cell) * 5.5), auto) auto;
+  }
+
+  .sigil-docs-gallery-stage,
+  .sigil-preview {
+    padding: var(--s-space-20);
+  }
+}
+
+@media (max-width: 34rem) {
+  .sigil-docs-page-actions,
+  .sigil-docs-page-actions button {
+    width: 100%;
+  }
+
+  .sigil-docs-gallery-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .sigil-docs-gallery-stats > span {
+    border-inline-end: 0;
+    border-bottom: var(--s-border-thin) solid var(--s-border);
+  }
+
+  .sigil-docs-gallery-caption {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .sigil-docs-gallery-caption > a {
+    grid-column: 2;
+  }
+
+  .sigil-docs-demo-invite,
+  .sigil-docs-demo-analytics {
+    grid-template-columns: 1fr;
+  }
+
+  .sigil-docs-catalog-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================================================================== */
 /* Fumadocs overrides — content typography                             */
 /* ================================================================== */
 
-[data-fd-doc] h1,
-[data-fd-doc] h2,
-[data-fd-doc] h3,
-[data-fd-doc] h4 {
+#nd-page h1,
+#nd-page h2,
+#nd-page h3,
+#nd-page h4 {
   font-family: var(--s-font-display);
-  letter-spacing: -0.02em;
+  letter-spacing: var(--s-heading-tracking);
 }
 
-[data-fd-doc] code:not(pre code) {
+#nd-page code:not(pre code) {
   font-family: var(--s-font-mono);
-  font-size: 0.85em;
-  padding: 2px 5px;
-  border-radius: var(--s-radius-sm, 6px);
+  font-size: var(--s-size-sm);
+  padding: var(--s-space-4) var(--s-space-8);
+  border-radius: var(--s-radius-sm);
   background: var(--s-surface);
-  border: 1px solid var(--s-border-muted);
+  border: var(--s-border-thin) solid var(--s-border-muted);
 }
 
-[data-fd-doc] pre {
-  border: 1px solid var(--s-border) !important;
-  border-radius: var(--s-radius-md, 8px) !important;
+#nd-page pre {
+  border: var(--s-border-thin) solid var(--s-border) !important;
+  border-radius: var(--s-radius-md) !important;
   font-family: var(--s-font-mono) !important;
 }
 
@@ -1049,27 +2515,37 @@ nav[data-fd-sidebar] {
 
 /* Scope these to prose tables only — never bleed into component previews
    (Calendar, DataTable, etc.) which render their own table elements. */
-[data-fd-doc] table:not(.sigil-preview table):not([data-slot] table) {
-  border-collapse: collapse;
+#nd-page table:not(.sigil-preview table):not([data-slot] table) {
+  border-collapse: separate;
+  border-spacing: 0;
   width: 100%;
-  font-size: 0.875rem;
+  overflow: hidden;
+  border: var(--s-border-thin) solid var(--s-border);
+  border-radius: var(--s-radius-md);
+  background: var(--s-surface);
+  font-size: var(--s-size-sm);
 }
 
-[data-fd-doc] table:not(.sigil-preview table):not([data-slot] table) th {
-  font-weight: 600;
+#nd-page table:not(.sigil-preview table):not([data-slot] table) th {
+  font-weight: var(--s-weight-semibold);
   text-align: left;
-  padding: 8px 12px;
-  border-bottom: 1px solid var(--s-border);
+  padding: var(--s-table-cell-py) var(--s-table-cell-px);
+  border-bottom: var(--s-border-thin) solid var(--s-border);
   font-family: var(--s-font-display);
-  font-size: 0.8125rem;
-  letter-spacing: 0.01em;
+  font-size: var(--s-size-xs);
+  letter-spacing: var(--s-tracking-wide);
   color: var(--s-text-secondary);
+  background: var(--s-surface-sunken);
 }
 
-[data-fd-doc] table:not(.sigil-preview table):not([data-slot] table) td {
-  padding: 8px 12px;
-  border-bottom: 1px solid var(--s-border-muted);
+#nd-page table:not(.sigil-preview table):not([data-slot] table) td {
+  padding: var(--s-table-cell-py) var(--s-table-cell-px);
+  border-bottom: var(--s-border-thin) solid var(--s-border-muted);
   vertical-align: top;
+}
+
+#nd-page table:not(.sigil-preview table):not([data-slot] table) tr:last-child td {
+  border-bottom: 0;
 }
 
 /* Reset any accidentally-applied prose-table styling inside previews. */
@@ -1085,11 +2561,10 @@ nav[data-fd-sidebar] {
 /* Transitions crossfade handles the visual change instead)            */
 /* ================================================================== */
 
-.sigil-preview *,
-[data-fd-doc] pre,
-[data-fd-doc] pre *,
-[data-fd-doc] code,
-[data-fd-doc] code * {
+#nd-page pre,
+#nd-page pre *,
+#nd-page code,
+#nd-page code * {
   transition-duration: 0s !important;
 }
 
@@ -1328,7 +2803,7 @@ nav[data-fd-sidebar] {
 .design-markdown td {
   min-width: calc(3 * var(--s-grid-cell));
   padding: var(--s-table-cell-py) var(--s-table-cell-px);
-  border: var(--s-border-width-thin) var(--s-border-style) var(--s-border-muted);
+  border: var(--s-border-thin) var(--s-border-style) var(--s-border-muted);
   text-align: left;
   vertical-align: top;
 }
@@ -1353,7 +2828,7 @@ nav[data-fd-sidebar] {
 .design-markdown pre {
   overflow-x: auto;
   padding: var(--s-code-padding);
-  border: var(--s-border-width-thin) var(--s-border-style) var(--s-border-muted);
+  border: var(--s-border-thin) var(--s-border-style) var(--s-border-muted);
   background: var(--s-code-bg);
 }
 
@@ -1367,4 +2842,211 @@ nav[data-fd-sidebar] {
     max-width: none;
     padding: var(--s-card-padding-lg);
   }
+}
+
+/* One filled icon family and locally served brand marks share token sizing. */
+.sigil-icon, .sigil-brand-logo { flex-shrink: 0; vertical-align: middle; }
+.sigil-brand-logo {
+  display: inline-block;
+  width: var(--s-control-icon-size);
+  height: var(--s-control-icon-size);
+  background-color: currentColor;
+  mask-image: var(--s-brand-source);
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+}
+.sigil-theme-glyph {
+  position: absolute;
+  width: var(--s-control-icon-size);
+  height: var(--s-control-icon-size);
+  opacity: 0;
+  transform: rotate(-45deg) scale(0.6);
+  transition: opacity var(--s-duration-fast) var(--s-ease-default), transform var(--s-duration-fast) var(--s-ease-default);
+}
+.sigil-theme-glyph[data-visible="true"] { opacity: 1; transform: rotate(0) scale(1); }
+.sigil-docs-catalog-search label,
+.sigil-docs-catalog-nav span,
+.sigil-docs-detail-tags > span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-space-8);
+}
+.sigil-docs-catalog-group > header > span { display: inline-flex; align-items: center; }
+
+/* Hero demo spec: all density and icon decisions live here. Cards consume it
+   while the grid controls their available space at each container width. */
+.hero-logo-field {
+  --s-hero-demo-padding: var(--s-space-12);
+  --s-hero-demo-gap: var(--s-space-8);
+  --s-hero-demo-icon: var(--s-space-16);
+  --s-hero-demo-label: var(--s-size-xs);
+  --s-hero-demo-body: var(--s-size-lg);
+  --s-hero-demo-cell-height: calc(var(--s-space-48) * 4);
+  container: hero-demo / inline-size;
+}
+.hero-logo-field[data-hero-intro="true"] { padding: var(--s-hero-demo-padding); }
+.sigil-hero-intro { grid-column: 1 / 6; grid-row: 1; min-width: 0; }
+.sigil-hero-intro .sigil-landing-hero-copy { height: 100%; border: 0; }
+.hero-logo-field[data-hero-intro="true"] .sigil-hero-spec { grid-column: 6 / 9; }
+.hero-logo-field[data-hero-intro="true"] .sigil-hero-live { grid-column: 9 / 13; }
+.sigil-hero-spec { grid-column: 1 / 6; grid-row: 1; min-width: 0; }
+.sigil-hero-live { grid-column: 6 / 13; grid-row: 1; min-width: 0; }
+.hero-logo-field__grid > [data-demo-cell] {
+  grid-column: span 4;
+  min-width: 0;
+  min-height: var(--s-hero-demo-cell-height);
+}
+@container hero-demo (min-width: 70rem) {
+  .hero-logo-field__grid > [data-demo-cell="KPI"],
+  .hero-logo-field__grid > [data-demo-cell="CommitGrid"] { grid-column: span 3; }
+  .hero-logo-field__grid > [data-demo-cell="Badges"] { grid-column: span 2; }
+  .hero-logo-field__grid > [data-demo-cell="Coverage"] { grid-column: span 4; }
+  .hero-logo-field__grid > [data-demo-cell="SparkLine"],
+  .hero-logo-field__grid > [data-demo-cell="Stack"],
+  .hero-logo-field__grid > [data-demo-cell="Switches"] { grid-column: span 2; }
+  .hero-logo-field__grid > [data-demo-cell="Sliders"],
+  .hero-logo-field__grid > [data-demo-cell="Buttons"] { grid-column: span 3; }
+}
+@container hero-demo (max-width: 70rem) {
+  .sigil-hero-intro { grid-column: 1 / -1; grid-row: 1; }
+  .hero-logo-field[data-hero-intro="true"] .sigil-hero-spec { grid-column: 1 / 6; grid-row: 2; }
+  .hero-logo-field[data-hero-intro="true"] .sigil-hero-live { grid-column: 6 / 13; grid-row: 2; }
+}
+.sigil-hero-cell-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  padding: var(--s-hero-demo-padding);
+  gap: var(--s-hero-demo-gap);
+}
+.sigil-hero-cell-label {
+  display: flex;
+  align-items: center;
+  gap: var(--s-space-4);
+  font-family: var(--s-font-body);
+  font-size: var(--s-hero-demo-label);
+  color: var(--s-text-muted);
+  white-space: nowrap;
+}
+.sigil-hero-cell-content .sigil-icon,
+[data-demo-cell="Coverage"] .sigil-icon {
+  width: var(--s-hero-demo-icon);
+  height: var(--s-hero-demo-icon);
+}
+.sigil-hero-kpi { padding: 0; border: 0; box-shadow: none; gap: var(--s-space-4); background: transparent; }
+.sigil-hero-kpi > :first-child { font-size: var(--s-hero-demo-label); text-transform: none; letter-spacing: var(--s-tracking-normal); }
+.sigil-hero-kpi > :nth-child(2) { font-size: var(--s-size-4xl); line-height: var(--s-leading-tight); letter-spacing: var(--s-tracking-tight); }
+.sigil-hero-kpi > :last-child { font-size: var(--s-hero-demo-label); }
+.sigil-hero-revenue-chart { width: 100%; flex: 1; min-height: var(--s-space-32); }
+.sigil-hero-options { justify-content: space-between; }
+.sigil-hero-options [data-slot="badge"] { font-size: var(--s-hero-demo-label); padding-block: var(--s-space-4); }
+.sigil-hero-options label { font-size: var(--s-hero-demo-label); }
+.sigil-hero-type-preview { min-width: 0; overflow-wrap: anywhere; }
+.sigil-hero-editor [data-slot="toggle-group-item"] { min-height: var(--s-space-24); }
+.sigil-hero-switches > label { flex: 1; }
+.sigil-hero-sliders > div { display: flex; flex-direction: column; justify-content: center; flex: 1; gap: var(--s-space-12); }
+.sigil-hero-live [data-demo-cell="PresetSwatches"] button { flex: 1; max-width: var(--s-space-24); }
+.sigil-hero-spec { font-size: var(--s-hero-demo-label); }
+#sigil-studio-sidebar[aria-hidden="true"] { content-visibility: hidden; }
+
+.sigil-hero-activity { justify-content: space-between; }
+.sigil-hero-activity-grid { width: 100%; min-width: 0; }
+.sigil-hero-sliders, .sigil-hero-switches { justify-content: space-around; }
+.sigil-hero-requests { overflow: hidden; }
+.sigil-hero-requests > :first-child { flex-wrap: wrap; gap: var(--s-space-4); }
+.sigil-hero-action-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: var(--s-hero-demo-gap);
+  height: 100%;
+}
+.sigil-hero-action-grid button {
+  height: 100%;
+  padding-inline: var(--s-space-4);
+  font-size: var(--s-size-sm);
+  flex-direction: column;
+  gap: var(--s-space-8);
+}
+.sigil-hero-stack { display: flex; flex-direction: column; height: 100%; gap: var(--s-hero-demo-gap); }
+.sigil-hero-stack-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); flex: 1; gap: var(--s-space-4); }
+.sigil-hero-stack-grid > div { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--s-space-4); min-width: 0; }
+.sigil-hero-stack-grid .sigil-brand-logo { width: var(--s-space-32); height: var(--s-space-32); }
+.sigil-hero-stack-grid span:last-child { font-size: var(--s-hero-demo-label); color: var(--s-text-secondary); }
+.sigil-hero-calendar-grid { display: flex; flex-direction: column; flex: 1; min-height: 0; width: 100%; }
+.sigil-hero-calendar-weeks { display: grid; grid-template-rows: repeat(6, minmax(0, 1fr)); flex: 1; min-height: 0; }
+.sigil-hero-calendar-week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); min-height: 0; }
+.hero-logo-field [data-slot="calendar-day"] { height: 100%; width: 100%; min-height: 0; }
+
+@container hero-demo (max-width: 34rem) {
+  .sigil-hero-editor { --s-hero-demo-body: var(--s-size-sm); }
+  .sigil-hero-spec, .hero-logo-field[data-hero-intro="true"] .sigil-hero-spec { grid-column: 1 / -1; grid-row: auto; max-height: calc(7 * var(--s-grid-cell)); }
+  .sigil-hero-live, .hero-logo-field[data-hero-intro="true"] .sigil-hero-live { grid-column: 1 / -1; grid-row: auto; min-height: calc(9 * var(--s-grid-cell)); }
+  .hero-logo-field__grid > [data-demo-cell] { grid-column: span 6; }
+  .hero-logo-field__grid > [data-demo-cell="Buttons"] { grid-column: 1 / -1; }
+
+}
+@container hero-demo (max-width: 22rem) {
+  .sigil-hero-kpi > :nth-child(2) { font-size: var(--s-size-2xl); }
+  .sigil-hero-stack-grid { grid-template-columns: minmax(0, 1fr); }
+  .sigil-hero-stack-grid > div { flex-direction: row; justify-content: flex-start; }
+  .sigil-hero-stack-grid .sigil-brand-logo { width: var(--s-space-24); height: var(--s-space-24); }
+  .sigil-hero-cell-label { white-space: normal; }
+  .sigil-hero-switches > label { gap: var(--s-space-4); }
+  .sigil-hero-sliders > div > div { flex-wrap: wrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sigil-theme-glyph { transition: none; }
+}
+
+.sigil-hero-stack[data-enlarged="true"] .sigil-brand-logo { width: var(--s-space-32); height: var(--s-space-32); }
+.sigil-docs-catalog-nav > a { padding-block: var(--s-space-8); }
+.sigil-docs-catalog-nav span { white-space: normal; }
+
+.sigil-docs-catalog-nav { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 48rem) {
+  .sigil-docs-catalog-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.sigil-landing-footer { --s-landing-cell-padding: var(--s-space-24); color: var(--s-text); background: var(--s-surface); }
+.sigil-landing-footer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-border-thin); background: var(--s-border); }
+.sigil-landing-footer-grid > * { min-width: 0; padding: var(--s-landing-cell-padding); background: var(--s-background); }
+.sigil-landing-footer-brand { grid-column: span 2; }
+.sigil-landing-footer-logo { display: inline-flex; align-items: center; gap: var(--s-space-8); color: var(--s-text); text-decoration: none; font-weight: var(--s-weight-semibold); }
+.sigil-landing-footer-brand p { margin-block: var(--s-space-16); font-size: var(--s-size-sm); line-height: var(--s-leading-relaxed); color: var(--s-text-muted); text-wrap: pretty; }
+.sigil-landing-footer-socials { display: flex; gap: var(--s-space-8); }
+.sigil-landing-footer-socials a { display: flex; align-items: center; justify-content: center; width: var(--s-control-hit-area); height: var(--s-control-hit-area); color: var(--s-text-muted); border: var(--s-border-thin) var(--s-border-style) var(--s-border); }
+.sigil-landing-footer nav { display: flex; flex-direction: column; align-items: flex-start; gap: var(--s-space-12); }
+.sigil-landing-footer h3 { display: flex; align-items: center; gap: var(--s-space-8); margin: 0 0 var(--s-space-4); font-weight: var(--s-weight-semibold); font-size: var(--s-size-sm); }
+.sigil-landing-footer nav a { font-size: var(--s-size-xs); overflow-wrap: anywhere; }
+.sigil-landing-footer nav a, .sigil-landing-footer-bottom a { color: var(--s-text-muted); text-decoration: none; }
+.sigil-landing-footer a:hover { color: var(--s-text); }
+.sigil-landing-footer a:focus-visible { outline: var(--s-focus-ring-width) solid var(--s-focus-ring-color); outline-offset: var(--s-focus-ring-offset); }
+.sigil-landing-footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-space-12); padding: var(--s-space-16) var(--s-landing-cell-padding); border-top: var(--s-border-thin) var(--s-border-style) var(--s-border); font-size: var(--s-size-xs); color: var(--s-text-muted); }
+@media (min-width: 64rem) { .sigil-landing-footer-grid { grid-template-columns: repeat(7, minmax(0, 1fr)); } }
+
+/* A continuous docs canvas, with reading width controlled by the article. */
+#nd-page[data-full] .prose > :first-child { margin-top: 0; }
+#nd-page .prose { font-size: var(--s-size-base); }
+.sigil-docs-detail-header { align-items: start; }
+.sigil-docs-detail-tags svg { width: var(--s-control-icon-size); height: var(--s-control-icon-size); }
+.sigil-preview > * { min-width: 0; max-width: 100%; }
+.sigil-docs-example { display: grid; gap: var(--s-space-16); width: 100%; }
+.sigil-docs-example-actions { display: flex; flex-wrap: wrap; gap: var(--s-space-12); }
+.sigil-docs-example-output { color: var(--s-text-muted); font-size: var(--s-size-sm); }
+@media (max-width: 47.99rem) {
+  .sigil-docs-layout { --s-docs-gutter: var(--s-space-16); }
+  #nd-page { padding-top: var(--s-space-20); }
+  .sigil-docs-detail-header h1 { font-size: var(--s-heading-h2-size); overflow-wrap: anywhere; }
+}
+
+/* Studio changes the article's available width without changing the viewport. */
+.sigil-docs-page { container: docs-article / inline-size; }
+@container docs-article (max-width: 40rem) {
+  .sigil-docs-detail-header { grid-template-columns: minmax(0, 1fr); }
+  .sigil-docs-page-actions { justify-content: flex-start; }
 }

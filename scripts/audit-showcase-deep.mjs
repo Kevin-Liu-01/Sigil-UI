@@ -52,18 +52,18 @@ async function main() {
   await page.goto(`${BASE}/components`, { waitUntil: "domcontentloaded", timeout: 60_000 });
   await page.waitForTimeout(800);
 
+  const more = page.locator(".sigil-catalog-more button");
+  while (await more.count()) await more.click();
+
   // Take full-page screenshot
   console.log("Capturing full-page screenshot of /components (All)...");
   await page.screenshot({ path: path.join(outDir, "components-all.png"), fullPage: true, animations: "disabled" });
 
   // Walk every showcase cell, measure render quality
   const cellReports = await page.evaluate(() => {
-    const cells = [...document.querySelectorAll('[class*="group"][class*="flex"][class*="min-w-0"][class*="flex-col"]')];
+    const cells = [...document.querySelectorAll('.sigil-catalog-card')];
     return cells.map((el) => {
-      const labelEl = el.querySelector('span:not([aria-hidden])');
-      const name = el.querySelector('a[href]')?.textContent?.trim()
-        ?? labelEl?.textContent?.trim()
-        ?? el.textContent?.trim().split("\n")[0];
+      const name = el.getAttribute("data-component-name");
       const r = el.getBoundingClientRect();
       // count rendered descendants
       const descendants = el.querySelectorAll("*").length;

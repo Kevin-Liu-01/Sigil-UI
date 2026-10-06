@@ -230,7 +230,7 @@ export function getSigilPatternStyles(
           `repeating-linear-gradient(${a}deg, transparent, transparent ${period}, ${C} ${period}, ${C} ${end})`,
           `repeating-linear-gradient(${b}deg, transparent, transparent ${period}, ${C} ${period}, ${C} ${end})`,
         ].join(", "),
-        backgroundSize: "100% 100%, 100% 100%",
+        backgroundSize: "auto, auto",
       };
     }
     case "diagonal": {
@@ -239,7 +239,10 @@ export function getSigilPatternStyles(
       const end = varTile;
       return {
         backgroundImage: `repeating-linear-gradient(${angle}deg, transparent, transparent ${period}, ${C} ${period}, ${C} ${end})`,
-        backgroundSize: "100% 100%",
+        // The gradient owns its repeat period. Sizing the image to the whole
+        // divider made its phase depend on the band's document position and
+        // produced visibly clipped / crawling hatch lines.
+        backgroundSize: "auto",
       };
     }
     case "diamond": {

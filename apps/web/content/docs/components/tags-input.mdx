@@ -1,13 +1,7 @@
 ---
 title: TagsInput
-description: "A TagsInput component from the Sigil design system."
+description: "Add and remove values in a tag-based input."
 ---
-
-## Import
-
-```tsx
-import { TagsInput } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -15,22 +9,29 @@ import { TagsInput } from "@sigil-ui/components";
   <TagsInput placeholder="Add tag..." />
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { TagsInput } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<TagsInput>TagsInput content</TagsInput>
+<TagsInput placeholder="Add tag..." />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `value` | `string[]` | — | — |
-| `defaultValue` | `string[]` | — | — |
-| `onChange` | `(tags: string[]) => void` | — | — |
-| `placeholder` | `string` | — | — |
-| `disabled` | `boolean` | — | — |
-| `max` | `number` | — | — |
+| `value` | `string[]` | — | The current controlled value. |
+| `defaultValue` | `string[]` | — | Initial value when the component manages its own state. |
+| `onChange` | `(tags: string[]) => void` | — | Called when the value changes. |
+| `placeholder` | `string` | — | Hint shown before a value is entered. |
+| `disabled` | `boolean` | — | Prevents user interaction when enabled. |
+| `max` | `number` | — | Largest allowed value. |
+| `inputLabel` | `string` | — | Input Label configuration. |
 
 ## Token integration
 

@@ -1,6 +1,6 @@
 ---
 title: Chart
-description: Token-aware chart wrapper that passes Sigil colors to your charting library.
+description: "Build responsive Recharts visualizations with token-styled axes, tooltips, and legends."
 ---
 
 # Chart
@@ -13,25 +13,25 @@ description: Token-aware chart wrapper that passes Sigil colors to your charting
 npx @sigil-ui/cli add chart
 ```
 
+## Preview
+
+<ComponentPreview vertical>
+  <ChartContainerPreview />
+</ComponentPreview>
+
+This chart uses the actual `ChartContainer`, `ChartTooltip`, and `ChartLegend` components.
+
+Install Recharts alongside Sigil if it is not already in your project:
+
+```bash
+pnpm add recharts
+```
+
 ## Import
 
 ```tsx
 import { ChartContainer, ChartTooltip, ChartLegend } from "@sigil-ui/components";
 ```
-
-## Preview
-
-<ComponentPreview vertical>
-  <BarChart
-    groups={[
-      { label: "Mon", bars: [{ value: 14, color: "var(--s-primary)" }] },
-      { label: "Tue", bars: [{ value: 22, color: "var(--s-primary)" }] },
-      { label: "Wed", bars: [{ value: 18, color: "var(--s-primary)" }] },
-      { label: "Thu", bars: [{ value: 30, color: "var(--s-primary)" }] },
-      { label: "Fri", bars: [{ value: 26, color: "var(--s-primary)" }] },
-    ]}
-  />
-</ComponentPreview>
 
 ## Usage
 

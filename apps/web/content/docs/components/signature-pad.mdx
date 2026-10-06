@@ -1,13 +1,7 @@
 ---
 title: SignaturePad
-description: "A SignaturePad component from the Sigil design system."
+description: "Draw a signature and clear or export the result."
 ---
-
-## Import
-
-```tsx
-import { SignaturePad } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -15,22 +9,28 @@ import { SignaturePad } from "@sigil-ui/components";
   <SignaturePad className="w-full max-w-md h-32" />
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { SignaturePad } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<SignaturePad>SignaturePad content</SignaturePad>
+<SignaturePad className="w-full max-w-md h-32" />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `width` | `number` | — | — |
-| `height` | `number` | — | — |
-| `strokeColor` | `string` | — | — |
-| `strokeWidth` | `number` | — | — |
-| `onChange` | `(dataUrl: string | null) => void` | — | — |
-| `disabled` | `boolean` | — | — |
+| `width` | `number` | — | Width of the rendered content. |
+| `height` | `number` | — | Height of the rendered content. |
+| `strokeColor` | `string` | — | Stroke Color configuration. |
+| `strokeWidth` | `number` | — | Stroke Width configuration. |
+| `onChange` | `(dataUrl: string \| null) => void` | — | Called when the value changes. |
+| `disabled` | `boolean` | — | Prevents user interaction when enabled. |
 
 ## Token integration
 

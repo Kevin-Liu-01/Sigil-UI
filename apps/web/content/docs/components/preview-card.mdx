@@ -1,87 +1,61 @@
 ---
 title: PreviewCard
-description: A link preview card that shows a thumbnail, title, and description. Ideal for URL previews and content summaries.
+description: "Reveal a link's context on hover or keyboard focus."
 ---
-
-## Import
-
-```tsx
-import { PreviewCard } from "@sigil-ui/components";
-```
 
 ## Preview
 
 <ComponentPreview>
-  <PreviewCard>
-  <PreviewCardTrigger asChild><Button variant="link">Preview</Button></PreviewCardTrigger>
+<PreviewCard>
+  <PreviewCardTrigger href="/docs/installation">Preview the installation guide</PreviewCardTrigger>
   <PreviewCardContent>
     <p className="text-sm">Card preview content.</p>
   </PreviewCardContent>
 </PreviewCard>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { PreviewCard, PreviewCardTrigger, PreviewCardContent } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<PreviewCard
-  href="https://sigil-ui.dev"
-  title="Sigil UI"
-  description="Token-driven React component library"
-  image="/og-image.png"
-/>
+<PreviewCard>
+  <PreviewCardTrigger href="/docs/installation">Installation guide</PreviewCardTrigger>
+  <PreviewCardContent
+    title="Set up Sigil"
+    description="Install the library, load a preset, and compose your first page."
+    side="bottom"
+  />
+</PreviewCard>
 ```
 
-## Without image
-
-```tsx
-<PreviewCard
-  href="https://example.com"
-  title="Example Domain"
-  description="This domain is for use in illustrative examples."
-/>
-```
-
-## Compact variant
-
-```tsx
-<PreviewCard
-  variant="compact"
-  href="https://sigil-ui.dev"
-  title="Sigil UI"
-  description="Token-driven components"
-  image="/og-image.png"
-/>
-```
-
-Renders the image as a small square thumbnail on the left.
-
-## Token integration
-
-| CSS Variable | Used for |
-|---|---|
-| `--s-surface` | Card background |
-| `--s-surface-elevated` | Hover background |
-| `--s-border` | Card border |
-| `--s-text` | Title color |
-| `--s-text-muted` | Description and URL color |
-| `--s-card-radius` | Border radius |
-| `--s-shadow-sm` | Resting elevation |
-| `--s-duration-fast` | Hover transition |
+Use `PreviewCardTrigger` for the link and put the preview's title, description, and optional image on `PreviewCardContent`. The root coordinates open state and positioning.
 
 ## Props
 
+### PreviewCard
+
+| Prop | Type | Description |
+|---|---|---|
+| `open` | `boolean` | Controlled visibility. |
+| `defaultOpen` | `boolean` | Initial visibility in uncontrolled mode. |
+| `onOpenChange` | `(open: boolean) => void` | Called when visibility changes. |
+
+### PreviewCardContent
+
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `href` | `string` | — | Link URL |
-| `title` | `string` | — | Preview title |
-| `description` | `string` | — | Preview description |
-| `image` | `string` | — | Thumbnail image URL |
-| `variant` | `"default" \| "compact"` | `"default"` | Layout variant |
-| `target` | `string` | `"_blank"` | Link target |
-| `className` | `string` | — | Additional CSS classes |
+| `title` | `string` | — | Preview heading. |
+| `description` | `string` | — | Supporting description. |
+| `image` | `string` | — | Optional image URL. |
+| `side` | `"top" \| "bottom" \| "left" \| "right"` | `"bottom"` | Preferred side of the trigger. |
+| `sideOffset` | `number` | `8` | Distance from the trigger. |
+| `children` | `ReactNode` | — | Additional preview content. |
 
 ## Accessibility
 
-- Renders as an `<a>` element wrapping the card content
-- Image has an empty `alt` since the title provides context
-- Focus ring uses `--s-border-interactive`
+The trigger remains a normal link. The preview provides supplementary context, so the link text must explain the destination without requiring a hover.

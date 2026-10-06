@@ -1,7 +1,13 @@
 ---
 title: DiagramNode
-description: "A DiagramNode component from the Sigil design system."
+description: "Represent an item or step inside a diagram."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <DiagramNode label="API gateway" sublabel="Routes incoming requests" badge="Healthy" />
+</ComponentPreview>
 
 ## Import
 
@@ -12,20 +18,20 @@ import { DiagramNode } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<DiagramNode>...</DiagramNode>
+<DiagramNode label="API gateway" sublabel="Routes incoming requests" badge="Healthy" />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `icon` | `ReactNode` | — | — |
-| `label` | `string` | — | — |
-| `sublabel` | `string` | — | — |
-| `variant` | `DiagramNodeVariant` | — | — |
-| `size` | `DiagramNodeSize` | — | — |
-| `mono` | `boolean` | — | — |
-| `badge` | `ReactNode` | — | — |
+| `icon` | `ReactNode` | — | Icon configuration. |
+| `label` (required) | `string` | — | Readable label for the component. |
+| `sublabel` | `string` | — | Sublabel configuration. |
+| `variant` | `DiagramNodeVariant` | — | Selects a supported visual treatment. |
+| `size` | `DiagramNodeSize` | — | Sets the component's size. |
+| `mono` | `boolean` | — | Mono configuration. |
+| `badge` | `ReactNode` | — | Badge configuration. |
 
 ## Token integration
 

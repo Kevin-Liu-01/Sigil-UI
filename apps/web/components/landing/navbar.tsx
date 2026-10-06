@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { BrandLogo } from "@/components/brand-logo";
+
+import { useState, useEffect, useCallback, useRef, useId } from "react";
 import { NavbarLogo } from "@/components/landing/hero-logo-field";
-import { Star, PanelsTopLeft, Menu, X, Search, BookOpen, ArrowDown, ChevronDown, ChevronUp } from "lucide-react";
+import { Star, PanelsTopLeft, Menu, X, Search, BookOpen, ArrowDown, ChevronDown, ChevronUp } from "@/components/icons";
 import { SigilThemeToggle } from "./theme-toggle";
 
 const NAV_LINKS = [
@@ -11,14 +13,6 @@ const NAV_LINKS = [
   { label: "Demos", href: "/demos" },
   { label: "Walkthrough", href: "/walkthrough" },
 ] as const;
-
-function GitHubIcon({ size = 15 }: { size?: number }) {
-  return (
-    <svg viewBox="0 0 16 16" width={size} height={size} fill="currentColor">
-      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
-    </svg>
-  );
-}
 
 function useGitHubStars(): number | null {
   const [stars, setStars] = useState<number | null>(null);
@@ -61,6 +55,24 @@ export function LandingNavbar() {
   const stars = useGitHubStars();
   const [mobileOpen, setMobileOpen] = useState(false);
   const scrolled = useScrolled();
+  const menuId = useId();
+  const menuButton = useRef<HTMLButtonElement>(null);
+  const header = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const closeOutside = (event: PointerEvent) => {
+      if (event.target instanceof Node && !header.current?.contains(event.target)) setMobileOpen(false);
+    };
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const closeOnDesktop = () => { if (desktop.matches) setMobileOpen(false); };
+    document.addEventListener("pointerdown", closeOutside);
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => {
+      document.removeEventListener("pointerdown", closeOutside);
+      desktop.removeEventListener("change", closeOnDesktop);
+    };
+  }, [mobileOpen]);
 
   const openSearch = useCallback(() => {
     window.dispatchEvent(new Event("sigil:open-search"));
@@ -68,21 +80,21 @@ export function LandingNavbar() {
 
   const inner = (
     <div
-      className="mx-auto flex items-center justify-between w-full overflow-hidden border-b border-[var(--s-grid-line-color,var(--s-border-muted))] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+      className="mx-auto flex items-center justify-between w-full overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
       style={{
         maxWidth: "var(--s-content-max, 1200px)",
         paddingInline: "var(--s-navbar-padding-x, 24px)",
-        // Use the structural band height token — never `calc(... + 1px)`.
-        // The +1px compensation lives in the preset (--s-band-height).
-        height: "var(--s-band-height, var(--s-grid-cell))",
+        height: "var(--s-navbar-height, var(--s-band-height, var(--s-grid-cell)))",
         boxSizing: "border-box",
+        borderBottom: "var(--s-navbar-border, var(--s-border-thin, 1px) var(--s-border-style, solid))",
+        borderBottomColor: "var(--s-grid-line-color, var(--s-border-muted))",
         // Chrome (translucent surface + backdrop blur) lives on the navbar
         // row only — NOT on the parent <header>. Otherwise the banner
         // wrapper below inherits the header surface and shows a wide
         // opaque strip when the banner is collapsed.
         background: "color-mix(in oklch, var(--s-background) 85%, transparent)",
-        backdropFilter: "blur(16px) saturate(1.5)",
-        WebkitBackdropFilter: "blur(16px) saturate(1.5)",
+        backdropFilter: "blur(var(--s-navbar-backdrop-blur, 16px)) saturate(1.5)",
+        WebkitBackdropFilter: "blur(var(--s-navbar-backdrop-blur, 16px)) saturate(1.5)",
       }}
     >
       {/* ── Logo ── */}
@@ -95,7 +107,7 @@ export function LandingNavbar() {
       </a>
 
       {/* ── Center: Nav Links ── */}
-      <nav className="hidden lg:flex items-center gap-1">
+      <nav aria-label="Main navigation" className="hidden lg:flex items-center gap-[var(--s-navbar-item-gap,4px)]">
         {NAV_LINKS.map((link) => (
           <a
             key={link.label}
@@ -112,6 +124,7 @@ export function LandingNavbar() {
         {/* Search */}
         <button
           type="button"
+          aria-label="Search documentation"
           onClick={openSearch}
           className="hidden md:inline-flex items-center gap-2 h-8 pl-2.5 pr-2 rounded-[var(--s-radius-sm,6px)] border border-[var(--s-border)] border-[style:var(--s-border-style,solid)] bg-[var(--s-surface)] text-[var(--s-text-muted)] hover:text-[var(--s-text)] hover:border-[var(--s-border-strong)] cursor-pointer transition-all duration-[var(--s-duration-fast,150ms)]"
         >
@@ -128,11 +141,12 @@ export function LandingNavbar() {
         {/* GitHub */}
         <a
           href="https://github.com/Kevin-Liu-01/sigil-ui"
+          aria-label="Sigil UI on GitHub"
           target="_blank"
           rel="noopener noreferrer"
           className="hidden md:inline-flex items-center gap-1.5 h-8 px-2.5 rounded-[var(--s-radius-sm,6px)] border border-[var(--s-border)] border-[style:var(--s-border-style,solid)] bg-[var(--s-surface)] no-underline text-[var(--s-text-muted)] hover:text-[var(--s-text)] hover:border-[var(--s-border-strong)] transition-all duration-[var(--s-duration-fast,150ms)]"
         >
-          <GitHubIcon size={14} />
+          <BrandLogo name="github" />
           {stars !== null ? (
             <>
               <Star size={10} className="fill-current opacity-60" />
@@ -141,7 +155,7 @@ export function LandingNavbar() {
               </span>
             </>
           ) : (
-            <span className="w-6 h-3 rounded-[2px] bg-[var(--s-border)] animate-pulse" />
+            <span className="text-[length:var(--s-size-xs)]">GitHub</span>
           )}
         </a>
 
@@ -171,6 +185,8 @@ export function LandingNavbar() {
           type="button"
           className="inline-flex lg:hidden items-center justify-center h-8 w-8 rounded-[var(--s-radius-sm,6px)] border border-[var(--s-border)] border-[style:var(--s-border-style,solid)] bg-[var(--s-surface)] text-[var(--s-text-muted)] hover:text-[var(--s-text)] hover:border-[var(--s-border-strong)] cursor-pointer transition-all duration-[var(--s-duration-fast,150ms)]"
           aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
+          ref={menuButton}
+          aria-controls={menuId}
           aria-expanded={mobileOpen}
           onClick={() => setMobileOpen((open) => !open)}
         >
@@ -199,6 +215,13 @@ export function LandingNavbar() {
 
   return (
     <header
+      ref={header}
+      onKeyDown={(event) => {
+        if (event.key === "Escape" && mobileOpen) {
+          setMobileOpen(false);
+          menuButton.current?.focus();
+        }
+      }}
       className="sticky top-0 z-50 w-full transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
       style={{
         // Header is a transparent structural wrapper. The visible chrome
@@ -213,7 +236,7 @@ export function LandingNavbar() {
     >
       {inner}
       <ReleaseBanner />
-      {mobileOpen && <MobileMenu onNavigate={() => setMobileOpen(false)} stars={stars} />}
+      {mobileOpen && <MobileMenu id={menuId} onNavigate={() => setMobileOpen(false)} stars={stars} />}
     </header>
   );
 }
@@ -228,15 +251,6 @@ const PACKAGES = [
   { label: "cli", pkg: "@sigil-ui/cli" },
   { label: "create-app", pkg: "create-sigil-app" },
 ] as const;
-
-function NpmIcon({ size = 14 }: { size?: number }) {
-  return (
-    <svg viewBox="0 0 256 256" width={size} height={size} aria-label="npm">
-      <rect fill="#C12127" width="256" height="256" rx="12" />
-      <path fill="#fff" d="M42.7 42.7h170.6v170.6H128V71.1H85.3v142.2H42.7z" />
-    </svg>
-  );
-}
 
 function formatDownloads(n: number): string {
   if (n >= 1000000) return `${(n / 1000000).toFixed(1)}M`;
@@ -294,6 +308,7 @@ function ReleaseBanner() {
 
   return (
     <div
+      data-sigil-release-banner={mode}
       className="w-full flex items-start justify-center transition-[height] duration-[450ms] ease-[cubic-bezier(0.16,1,0.3,1)]"
       style={{
         // Reserve a full structural band when expanded so the banner sits
@@ -326,9 +341,9 @@ function ReleaseBanner() {
               color: "var(--s-text)",
             }}
           >
-            <NpmIcon size={16} />
-            <span className="font-semibold text-[var(--s-text)]">Sigil UI v1.0.0</span>
-            <span className="text-[var(--s-text-muted)] hidden sm:inline">is live</span>
+            <BrandLogo name="npm" />
+            <span className="font-semibold text-[var(--s-text)]">Sigil UI packages</span>
+            <span className="text-[var(--s-text-muted)] hidden sm:inline">on npm</span>
 
             <div className="hidden md:block w-px h-3.5 bg-[var(--s-border)] mx-0.5" />
 
@@ -388,9 +403,9 @@ function ReleaseBanner() {
             pointerEvents: collapsed ? "auto" : "none",
           }}
         >
-          <NpmIcon size={10} />
+          <BrandLogo name="npm" />
           <span className="font-[family-name:var(--s-font-mono)] text-[10px] font-semibold tracking-[-0.01em] tabular-nums">
-            Sigil v1.0.0
+            Sigil on npm
           </span>
           <ChevronDown size={11} className="opacity-70" />
         </button>
@@ -399,9 +414,12 @@ function ReleaseBanner() {
   );
 }
 
-function MobileMenu({ onNavigate, stars }: { onNavigate: () => void; stars: number | null }) {
+function MobileMenu({ id, onNavigate, stars }: { id: string; onNavigate: () => void; stars: number | null }) {
   return (
     <div
+      id={id}
+      role="navigation"
+      aria-label="Mobile navigation"
       className="lg:hidden border-t border-[var(--s-border)] bg-[color-mix(in_oklch,var(--s-background)_95%,transparent)] backdrop-blur-xl"
       style={{
         animation: "navbar-mobile-in 250ms cubic-bezier(0.16, 1, 0.3, 1) both",
@@ -448,7 +466,7 @@ function MobileMenu({ onNavigate, stars }: { onNavigate: () => void; stars: numb
             onClick={onNavigate}
             className="flex items-center gap-3 rounded-[var(--s-radius-sm,6px)] px-3 py-2.5 text-[14px] font-medium text-[var(--s-text-muted)] no-underline hover:text-[var(--s-text)] hover:bg-[color-mix(in_oklch,var(--s-text)_6%,transparent)] transition-all duration-[var(--s-duration-fast,150ms)]"
           >
-            <GitHubIcon size={14} />
+            <BrandLogo name="github" />
             <span>GitHub</span>
             {stars !== null && (
               <span className="ml-auto flex items-center gap-1 text-[var(--s-text-muted)]">

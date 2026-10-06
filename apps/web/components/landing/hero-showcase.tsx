@@ -104,7 +104,7 @@ import {
   CircleCheckBig,
   Send,
   Loader2,
-} from "lucide-react";
+} from "@/components/icons";
 
 const EASING = "cubic-bezier(0.16, 1, 0.3, 1)";
 
@@ -574,7 +574,7 @@ function AvatarStackRow() {
 function BreadcrumbRow() {
   return (
     <div className="p-2.5" style={{ border: "1px solid var(--s-border)", borderRadius: "var(--s-radius-md, 6px)" }}>
-      <Breadcrumb items={[{ label: "Home", href: "#" }, { label: "Settings", href: "#" }, { label: "Tokens" }]} />
+      <Breadcrumb items={[{ label: "Docs", href: "/docs" }, { label: "Theming", href: "/docs/theming" }, { label: "Tokens" }]} />
     </div>
   );
 }

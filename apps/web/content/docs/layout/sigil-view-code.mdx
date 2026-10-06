@@ -3,6 +3,16 @@ title: SigilViewCode
 description: Toggle between a live demo and the source code that produced it.
 ---
 
+## Preview
+
+<ComponentPreview label="View or inspect source" vertical>
+  <SigilViewCode code={'<Button variant="primary">Deploy</Button>'}>
+    <div className="flex min-h-36 items-center justify-center bg-[var(--s-background)] p-[var(--s-space-8)]">
+      <Button variant="primary">Deploy</Button>
+    </div>
+  </SigilViewCode>
+</ComponentPreview>
+
 ## Import
 
 ```tsx
@@ -28,6 +38,6 @@ state, local toolbar markup, or one-off code panels.
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `code` | `string` | — | Source code to render in code mode |
-| `defaultView` | `"preview" | "code"` | `"preview"` | Initial mode |
+| `defaultView` | `"preview" \| "code"` | `"preview"` | Initial mode |
 | `previewLabel` | `string` | `"View"` | Label for preview tab |
 | `codeLabel` | `string` | `"Code"` | Label for source tab |

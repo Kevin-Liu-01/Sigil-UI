@@ -1,7 +1,16 @@
 ---
 title: TreeView
-description: "A TreeView component from the Sigil design system."
+description: "Browse hierarchical items with expandable branches."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <TreeView
+    defaultExpanded={["src"]}
+    data={[{ id: "src", label: "src", children: [{ id: "components", label: "components" }, { id: "utils", label: "utils" }] }]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -9,26 +18,23 @@ description: "A TreeView component from the Sigil design system."
 import { TreeView } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <TreeView data={[{ id: "1", name: "src", children: [{ id: "2", name: "components" }, { id: "3", name: "utils" }] }]} />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<TreeView>...</TreeView>
+<TreeView
+    defaultExpanded={["src"]}
+    data={[{ id: "src", label: "src", children: [{ id: "components", label: "components" }, { id: "utils", label: "utils" }] }]}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `data` | `TreeNode[]` | — | — |
-| `defaultExpanded` | `string[]` | — | — |
-| `onSelect` | `(id: string) => void` | — | — |
-| `selectedId` | `string` | — | — |
+| `data` (required) | `TreeNode[]` | — | Data used to render the visualization. |
+| `defaultExpanded` | `string[]` | — | Default Expanded configuration. |
+| `onSelect` | `(id: string) => void` | — | On Select configuration. |
+| `selectedId` | `string` | — | Selected Id configuration. |
 
 ## Token integration
 

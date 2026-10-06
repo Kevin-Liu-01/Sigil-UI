@@ -1,6 +1,6 @@
 import type { SigilTokens } from "../types";
-import { defaultTokens } from "../tokens";
-import { deepMerge, isThemedColor } from "./merge";
+import { resolveSigilTokens } from "../validation";
+import { isThemedColor } from "./merge";
 
 type W3CTokenValue = {
   $value: unknown;
@@ -19,10 +19,7 @@ type W3CGroup = {
 export function compileToW3CJson(
   tokens: SigilTokens | Partial<SigilTokens>,
 ): string {
-  const resolved = deepMerge(
-    defaultTokens,
-    tokens as Record<string, unknown>,
-  ) as SigilTokens;
+  const resolved = resolveSigilTokens(tokens, { partial: true }).tokens;
   const output: W3CGroup = {};
 
   // Colors

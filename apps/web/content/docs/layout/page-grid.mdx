@@ -1,7 +1,17 @@
 ---
 title: PageGrid
-description: "A PageGrid component from the Sigil design system."
+description: "Align page content to a shared column grid."
 ---
+
+## Preview
+
+<ComponentPreview label="Page alignment grid">
+  <PageGrid showRails showCross className="min-h-64 overflow-hidden border border-[var(--s-border)] bg-[var(--s-background)]">
+    <div className="mx-auto max-w-md p-[var(--s-space-8)] text-center">
+      <div className="border border-[var(--s-border-strong)] bg-[var(--s-surface)] p-[var(--s-space-6)] text-sm text-[var(--s-text)]">Content aligned to the grid</div>
+    </div>
+  </PageGrid>
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +22,11 @@ import { PageGrid } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<PageGrid>...</PageGrid>
+<PageGrid showRails showCross className="min-h-64 overflow-hidden border border-[var(--s-border)] bg-[var(--s-background)]">
+    <div className="mx-auto max-w-md p-[var(--s-space-8)] text-center">
+      <div className="border border-[var(--s-border-strong)] bg-[var(--s-surface)] p-[var(--s-space-6)] text-sm text-[var(--s-text)]">Content aligned to the grid</div>
+    </div>
+  </PageGrid>
 ```
 
 ## Props

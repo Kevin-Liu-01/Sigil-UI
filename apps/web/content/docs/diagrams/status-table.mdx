@@ -1,7 +1,22 @@
 ---
 title: StatusTable
-description: "A StatusTable component from the Sigil design system."
+description: "Summarize the state of several services or resources."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <StatusTable
+    title="System Status"
+    services={[
+      { name: "API", status: "operational", uptime: "99.98%", lastIncident: "14 days ago" },
+      { name: "Database", status: "operational", uptime: "99.99%" },
+      { name: "CDN", status: "degraded", uptime: "99.90%", lastIncident: "2 hours ago" },
+      { name: "Auth", status: "operational", uptime: "99.95%", lastIncident: "7 days ago" },
+      { name: "Webhooks", status: "maintenance", lastIncident: "Now" },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,15 +27,24 @@ import { StatusTable } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<StatusTable>...</StatusTable>
+<StatusTable
+    title="System Status"
+    services={[
+      { name: "API", status: "operational", uptime: "99.98%", lastIncident: "14 days ago" },
+      { name: "Database", status: "operational", uptime: "99.99%" },
+      { name: "CDN", status: "degraded", uptime: "99.90%", lastIncident: "2 hours ago" },
+      { name: "Auth", status: "operational", uptime: "99.95%", lastIncident: "7 days ago" },
+      { name: "Webhooks", status: "maintenance", lastIncident: "Now" },
+    ]}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `services` | `ServiceEntry[]` | — | — |
-| `title` | `string` | — | — |
+| `services` (required) | `ServiceEntry[]` | — | Services configuration. |
+| `title` | `string` | — | Heading displayed in the component. |
 
 ## Token integration
 

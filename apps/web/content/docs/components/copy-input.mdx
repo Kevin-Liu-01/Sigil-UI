@@ -1,7 +1,13 @@
 ---
 title: CopyInput
-description: CopyInput is a token-driven Sigil component in the forms and inputs group.
+description: "Display a value with a copy button and clear feedback."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <CopyInputPreview />
+</ComponentPreview>
 
 ## Import
 
@@ -9,17 +15,13 @@ description: CopyInput is a token-driven Sigil component in the forms and inputs
 import { CopyInput } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <CopyInput defaultValue="npx @sigil-ui/cli add button" readOnly />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<CopyInput defaultValue="npx @sigil-ui/cli add button" readOnly />
+<CopyInput aria-label="Install command" defaultValue="npx @sigil-ui/cli add button" readOnly />
 ```
+
+The copy button uses the current field value, including edits to an uncontrolled input. `onCopyValue` runs only after a successful copy. A disabled input also disables the copy button; clipboard failures show a retry message.
 
 ## CLI
 

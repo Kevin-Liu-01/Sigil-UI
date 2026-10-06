@@ -1,7 +1,7 @@
 "use client";
 
 import { forwardRef, useState, type ButtonHTMLAttributes } from "react";
-import { CalendarIcon } from "lucide-react";
+import { CalendarBlankIcon as CalendarIcon } from "@phosphor-icons/react/dist/ssr/CalendarBlank";
 import type { DateRange as RDPDateRange } from "react-day-picker";
 
 export type DateRange = RDPDateRange;
@@ -22,17 +22,22 @@ function formatDate(date: Date): string {
 /*  Single DatePicker                                                  */
 /* ------------------------------------------------------------------ */
 
-export interface DatePickerProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "value"> {
+export interface DatePickerProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "value" | "defaultValue"> {
   value?: Date;
+  defaultValue?: Date;
   onValueChange?: (date: Date | undefined) => void;
   placeholder?: string;
 }
 
 export const DatePicker = forwardRef<HTMLButtonElement, DatePickerProps>(function DatePicker(
-  { value, onValueChange, placeholder = "Pick a date", className, ...rest },
+  props,
   ref,
 ) {
+  const { value: controlledValue, defaultValue, onValueChange, placeholder = "Pick a date", className, ...rest } = props;
+  const isControlled = "value" in props;
   const [open, setOpen] = useState(false);
+  const [internalValue, setInternalValue] = useState(defaultValue);
+  const value = isControlled ? controlledValue : internalValue;
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -50,7 +55,7 @@ export const DatePicker = forwardRef<HTMLButtonElement, DatePickerProps>(functio
           {...rest}
         >
           <span className="flex items-center gap-2 truncate">
-            <CalendarIcon className="size-4 shrink-0 text-[var(--s-text-muted)]" />
+            <CalendarIcon weight="fill" className="size-4 shrink-0 text-[var(--s-text-muted)]" />
             {value ? formatDate(value) : placeholder}
           </span>
         </Button>
@@ -61,6 +66,7 @@ export const DatePicker = forwardRef<HTMLButtonElement, DatePickerProps>(functio
           selected={value}
           defaultMonth={value}
           onSelect={(day) => {
+            if (!isControlled) setInternalValue(day);
             onValueChange?.(day);
             setOpen(false);
           }}
@@ -76,8 +82,9 @@ export const DatePicker = forwardRef<HTMLButtonElement, DatePickerProps>(functio
 /* ------------------------------------------------------------------ */
 
 export interface DateRangePickerProps
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "value"> {
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "value" | "defaultValue"> {
   value?: DateRange;
+  defaultValue?: DateRange;
   onValueChange?: (range: DateRange | undefined) => void;
   placeholder?: string;
   /** Number of calendar months to show side-by-side. */
@@ -86,17 +93,14 @@ export interface DateRangePickerProps
 
 export const DateRangePicker = forwardRef<HTMLButtonElement, DateRangePickerProps>(
   function DateRangePicker(
-    {
-      value,
-      onValueChange,
-      placeholder = "Pick a date range",
-      numberOfMonths = 2,
-      className,
-      ...rest
-    },
+    props,
     ref,
   ) {
+    const { value: controlledValue, defaultValue, onValueChange, placeholder = "Pick a date range", numberOfMonths = 2, className, ...rest } = props;
+    const isControlled = "value" in props;
     const [open, setOpen] = useState(false);
+    const [internalValue, setInternalValue] = useState(defaultValue);
+    const value = isControlled ? controlledValue : internalValue;
 
     const label =
       value?.from && value?.to
@@ -121,7 +125,7 @@ export const DateRangePicker = forwardRef<HTMLButtonElement, DateRangePickerProp
             {...rest}
           >
             <span className="flex items-center gap-2 truncate">
-              <CalendarIcon className="size-4 shrink-0 text-[var(--s-text-muted)]" />
+              <CalendarIcon weight="fill" className="size-4 shrink-0 text-[var(--s-text-muted)]" />
               {label ?? placeholder}
             </span>
           </Button>
@@ -132,6 +136,7 @@ export const DateRangePicker = forwardRef<HTMLButtonElement, DateRangePickerProp
             selected={value}
             defaultMonth={value?.from}
             onSelect={(range) => {
+              if (!isControlled) setInternalValue(range);
               onValueChange?.(range);
               if (range?.from && range?.to) {
                 setOpen(false);

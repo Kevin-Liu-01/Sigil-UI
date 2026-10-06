@@ -1,7 +1,22 @@
 ---
 title: FeatureSection
-description: "A FeatureSection component from the Sigil design system."
+description: "Introduce a product capability with text and visual content."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <FeatureSection
+    label="WHY SIGIL"
+    title="Edit tokens, not components"
+    description="Change one value, every consumer updates."
+    features={[
+      { title: "Token-driven", description: "519 fields compile to CSS custom properties." },
+      { title: "46 presets", description: "Switch the entire visual identity in one command." },
+      { title: "Agent-friendly", description: "MDX-first DESIGN.md you can hand to any LLM." },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,19 +27,28 @@ import { FeatureSection } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<FeatureSection>...</FeatureSection>
+<FeatureSection
+    label="WHY SIGIL"
+    title="Edit tokens, not components"
+    description="Change one value, every consumer updates."
+    features={[
+      { title: "Token-driven", description: "519 fields compile to CSS custom properties." },
+      { title: "46 presets", description: "Switch the entire visual identity in one command." },
+      { title: "Agent-friendly", description: "MDX-first DESIGN.md you can hand to any LLM." },
+    ]}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `label` | `string` | — | — |
-| `title` | `ReactNode` | — | — |
-| `description` | `ReactNode` | — | — |
-| `features` | `FeatureItem[]` | — | — |
-| `columns` | `2 | 3 | 4` | — | — |
-| `align` | `"left" | "center"` | — | — |
+| `label` | `string` | — | Readable label for the component. |
+| `title` (required) | `ReactNode` | — | Heading displayed in the component. |
+| `description` | `ReactNode` | — | Supporting text below the heading. |
+| `features` (required) | `FeatureItem[]` | — | Features configuration. |
+| `columns` | `2 \| 3 \| 4` | — | Columns configuration. |
+| `align` | `"left" \| "center"` | — | Align configuration. |
 
 ## Token integration
 

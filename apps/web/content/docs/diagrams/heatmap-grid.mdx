@@ -1,7 +1,22 @@
 ---
 title: HeatmapGrid
-description: "A HeatmapGrid component from the Sigil design system."
+description: "Map values to color intensity across a grid."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <HeatmapGrid
+    xLabels={["Mon", "Tue", "Wed", "Thu", "Fri"]}
+    yLabels={["9am", "12pm", "3pm", "6pm"]}
+    data={[
+      [{ value: 2 }, { value: 5 }, { value: 8 }, { value: 3 }, { value: 1 }],
+      [{ value: 7 }, { value: 9 }, { value: 4 }, { value: 6 }, { value: 3 }],
+      [{ value: 4 }, { value: 3 }, { value: 6 }, { value: 8 }, { value: 5 }],
+      [{ value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }, { value: 7 }],
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +27,16 @@ import { HeatmapGrid } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<HeatmapGrid>...</HeatmapGrid>
+<HeatmapGrid
+    xLabels={["Mon", "Tue", "Wed", "Thu", "Fri"]}
+    yLabels={["9am", "12pm", "3pm", "6pm"]}
+    data={[
+      [{ value: 2 }, { value: 5 }, { value: 8 }, { value: 3 }, { value: 1 }],
+      [{ value: 7 }, { value: 9 }, { value: 4 }, { value: 6 }, { value: 3 }],
+      [{ value: 4 }, { value: 3 }, { value: 6 }, { value: 8 }, { value: 5 }],
+      [{ value: 1 }, { value: 2 }, { value: 3 }, { value: 4 }, { value: 7 }],
+    ]}
+  />
 ```
 
 ## Props

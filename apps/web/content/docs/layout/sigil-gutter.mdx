@@ -1,24 +1,24 @@
 ---
 title: SigilGutter
-description: "A SigilGutter component from the Sigil design system."
+description: "Render the margin rails of a structural page grid."
 ---
-
-## Import
-
-```tsx
-import { SigilGutter, SigilPageGrid, SigilFrame, SigilFullBleed } from "@sigil-ui/components";
-```
 
 ## Preview
 
 <ComponentPreview>
-  <SigilGutter />
+  <div className="grid w-full grid-cols-[var(--s-space-32)_1fr_var(--s-space-32)] min-h-[calc(var(--s-grid-cell)*4)]"><SigilGutter pattern="grid" /><Center>Content between the rails</Center><SigilGutter side="right" pattern="grid" /></div>
 </ComponentPreview>
+
+## Import
+
+```tsx
+import { SigilGutter, Center } from "@sigil-ui/components";
+```
 
 ## Usage
 
 ```tsx
-<SigilGutter>...</SigilGutter>
+<div className="grid w-full grid-cols-[var(--s-space-32)_1fr_var(--s-space-32)] min-h-[calc(var(--s-grid-cell)*4)]"><SigilGutter pattern="grid" /><Center>Content between the rails</Center><SigilGutter side="right" pattern="grid" /></div>
 ```
 
 ## Sub-components
@@ -33,11 +33,12 @@ This component includes the following parts:
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `showGrid` | `boolean` | — | — |
-| `gridCell` | `number` | — | — |
-| `pattern` | `GutterPattern` | — | — |
-| `side` | `PatternSide` | — | — |
-| `visible` | `boolean` | — | — |
+| `showGrid` | `boolean` | — | Show Grid configuration. |
+| `gridCell` | `number` | — | Grid Cell configuration. |
+| `pattern` | `GutterPattern` | — | Pattern configuration. |
+| `side` | `PatternSide` | — | Side configuration. |
+| `visible` | `boolean` | — | Visible configuration. |
+| `className` | `string` | — | Additional classes merged with the component styles. |
 
 ## Token integration
 

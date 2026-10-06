@@ -1,7 +1,23 @@
 ---
 title: OrbitDiagram
-description: "A OrbitDiagram component from the Sigil design system."
+description: "Arrange related objects around a central element."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <OrbitDiagram
+    center={{ label: "Sigil" }}
+    nodes={[
+      { label: "Tokens" },
+      { label: "Components" },
+      { label: "Presets" },
+      { label: "CLI" },
+      { label: "Docs" },
+      { label: "Demos" },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,14 +28,27 @@ import { OrbitDiagram } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<OrbitDiagram>...</OrbitDiagram>
+<OrbitDiagram
+    center={{ label: "Sigil" }}
+    nodes={[
+      { label: "Tokens" },
+      { label: "Components" },
+      { label: "Presets" },
+      { label: "CLI" },
+      { label: "Docs" },
+      { label: "Demos" },
+    ]}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `center` | `{ label: string; icon?: ReactNode` | — | — |
+| `center` (required) | `{ label: string; icon?: ReactNode }` | — | Center configuration. |
+| `nodes` (required) | `OrbitNode[]` | — | Nodes configuration. |
+| `size` | `number` | — | Sets the component's size. |
+| `labels` | `string[]` | — | Labels configuration. |
 
 ## Token integration
 

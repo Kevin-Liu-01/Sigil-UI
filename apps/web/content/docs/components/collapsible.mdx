@@ -1,13 +1,7 @@
 ---
 title: Collapsible
-description: "A Collapsible component from the Sigil design system."
+description: "Reveal optional content from an accessible trigger."
 ---
-
-## Import
-
-```tsx
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -18,10 +12,19 @@ import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@sigil-ui/c
   </Collapsible>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Collapsible>...</Collapsible>
+<Collapsible>
+    <CollapsibleTrigger>Toggle content</CollapsibleTrigger>
+    <CollapsibleContent>Hidden content here</CollapsibleContent>
+  </Collapsible>
 ```
 
 ## Sub-components

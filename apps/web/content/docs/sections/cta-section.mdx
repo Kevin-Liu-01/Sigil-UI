@@ -1,7 +1,13 @@
 ---
 title: CTASection
-description: "A CTASection component from the Sigil design system."
+description: "Close a page section with a message and action links."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <CTASection title="Build with a shared design system" description="Start with a preset, then make it your own." actions={[{ label: "Get started", href: "/docs/installation" }, { label: "Browse components", href: "/components", variant: "secondary" }]} />
+</ComponentPreview>
 
 ## Import
 
@@ -12,18 +18,18 @@ import { CTASection } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<CTASection>...</CTASection>
+<CTASection title="Build with a shared design system" description="Start with a preset, then make it your own." actions={[{ label: "Get started", href: "/docs/installation" }, { label: "Browse components", href: "/components", variant: "secondary" }]} />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `title` | `ReactNode` | — | — |
-| `description` | `ReactNode` | — | — |
-| `actions` | `CTAAction[]` | — | — |
-| `variant` | `"centered" | "split"` | — | — |
-| `media` | `ReactNode` | — | — |
+| `title` (required) | `ReactNode` | — | Heading displayed in the component. |
+| `description` | `ReactNode` | — | Supporting text below the heading. |
+| `actions` | `CTAAction[]` | — | Actions configuration. |
+| `variant` | `"centered" \| "split"` | — | Selects a supported visual treatment. |
+| `media` | `ReactNode` | — | Media configuration. |
 
 ## Token integration
 

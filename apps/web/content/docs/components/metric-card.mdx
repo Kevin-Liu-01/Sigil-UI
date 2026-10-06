@@ -3,16 +3,10 @@ title: MetricCard
 description: "A dashboard stat card displaying a key metric with delta indicator and inline sparkline."
 ---
 
-## Import
-
-```tsx
-import { MetricCard } from "@sigil-ui/components";
-```
-
 ## Preview
 
 <ComponentPreview>
-  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, maxWidth: 480 }}>
+  <div className="grid w-full grid-cols-1 gap-[var(--s-space-16)] sm:grid-cols-2">
     <MetricCard
       label="Total Revenue"
       value="$24.5K"
@@ -30,6 +24,12 @@ import { MetricCard } from "@sigil-ui/components";
     />
   </div>
 </ComponentPreview>
+
+## Import
+
+```tsx
+import { MetricCard } from "@sigil-ui/components";
+```
 
 ## Usage
 

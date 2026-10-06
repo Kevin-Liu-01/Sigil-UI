@@ -16,6 +16,25 @@ export type { DeepPartial } from "./compile";
 
 export { createPreset, mergePresets, sigilPreset } from "./presets";
 
+export {
+  SigilTokenValidationError,
+  applyTokenPatch,
+  applyTokenPatches,
+  assertValidSigilTokens,
+  isSafeTokenKey,
+  resolveSigilPreset,
+  resolveSigilTokens,
+  validateSigilTokens,
+} from "./validation";
+
+export type {
+  PresetResolution,
+  ResolveTokenOptions,
+  TokenMutationResult,
+  TokenPatch,
+  TokenResolution,
+} from "./validation";
+
 export { defaultTokens } from "./tokens";
 
 export { TokenLayer } from "./types";
@@ -59,5 +78,8 @@ export type {
   SpacingScale,
   SpacingTokens,
   ThemedColor,
+  TokenValidationIssue,
+  TokenValidationIssueCode,
+  TokenValidationMode,
   TypographyTokens,
 } from "./types";

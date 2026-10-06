@@ -1,7 +1,13 @@
 ---
 title: HubRouteDiagram
-description: "A HubRouteDiagram component from the Sigil design system."
+description: "Connect multiple routes through a central hub."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <HubRouteDiagram source={{ label: "Application" }} hub={{ label: "Gateway", layers: [{ label: "Authenticate" }, { label: "Route" }, { label: "Observe" }] }} leftTargets={[{ label: "Database" }, { label: "Storage" }]} rightTargets={[{ label: "Search" }, { label: "Events" }]} />
+</ComponentPreview>
 
 ## Import
 
@@ -12,14 +18,19 @@ import { HubRouteDiagram } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<HubRouteDiagram>...</HubRouteDiagram>
+<HubRouteDiagram source={{ label: "Application" }} hub={{ label: "Gateway", layers: [{ label: "Authenticate" }, { label: "Route" }, { label: "Observe" }] }} leftTargets={[{ label: "Database" }, { label: "Storage" }]} rightTargets={[{ label: "Search" }, { label: "Events" }]} />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `source` | `{ label: string; icon?: ReactNode` | — | — |
+| `source` (required) | `{ label: string; icon?: ReactNode }` | — | Source configuration. |
+| `hub` (required) | `{ label: string; layers: HubRouteLayer[] }` | — | Hub configuration. |
+| `leftTargets` (required) | `HubRouteNode[]` | — | Left Targets configuration. |
+| `rightTargets` (required) | `HubRouteNode[]` | — | Right Targets configuration. |
+| `leftLabel` | `string` | — | Left Label configuration. |
+| `rightLabel` | `string` | — | Right Label configuration. |
 
 ## Token integration
 

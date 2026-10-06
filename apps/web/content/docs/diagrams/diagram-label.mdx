@@ -1,7 +1,17 @@
 ---
 title: DiagramLabel
-description: "A DiagramLabel component from the Sigil design system."
+description: "Label a diagram element with consistent typography."
 ---
+
+## Preview
+
+<ComponentPreview label="Annotation variants">
+  <div className="flex flex-wrap items-center justify-center gap-[var(--s-space-8)] py-[var(--s-space-6)]">
+    <DiagramLabel text="Input" variant="default" showDot />
+    <DiagramLabel text="Compiled" variant="accent" showDot showLine lineLength={36} />
+    <DiagramLabel text="Conflict" variant="warn" showDot />
+  </div>
+</ComponentPreview>
 
 ## Import
 
@@ -12,19 +22,23 @@ import { DiagramLabel } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<DiagramLabel>...</DiagramLabel>
+<div className="flex flex-wrap items-center justify-center gap-[var(--s-space-8)] py-[var(--s-space-6)]">
+    <DiagramLabel text="Input" variant="default" showDot />
+    <DiagramLabel text="Compiled" variant="accent" showDot showLine lineLength={36} />
+    <DiagramLabel text="Conflict" variant="warn" showDot />
+  </div>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `text` | `string` | — | — |
-| `variant` | `"default" | "accent" | "warn"` | — | — |
-| `showDot` | `boolean` | — | — |
-| `showLine` | `boolean` | — | — |
-| `lineLength` | `number` | — | — |
-| `position` | `"top" | "bottom" | "left" | "right"` | — | — |
+| `text` (required) | `string` | — | Text configuration. |
+| `variant` | `"default" \| "accent" \| "warn"` | — | Selects a supported visual treatment. |
+| `showDot` | `boolean` | — | Show Dot configuration. |
+| `showLine` | `boolean` | — | Show Line configuration. |
+| `lineLength` | `number` | — | Line Length configuration. |
+| `position` | `"top" \| "bottom" \| "left" \| "right"` | — | Position configuration. |
 
 ## Token integration
 

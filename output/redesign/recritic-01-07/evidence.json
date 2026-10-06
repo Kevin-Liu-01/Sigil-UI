@@ -1,0 +1,681 @@
+[
+  {
+    "slug": "liquid-sigil",
+    "name": "desktop",
+    "theme": "dark",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "dark",
+      "motion": "lenis-gsap",
+      "h1": "The spec becomes material.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1676,
+        "client": 946
+      }
+    }
+  },
+  {
+    "slug": "liquid-sigil",
+    "name": "desktop",
+    "theme": "light",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "light",
+      "motion": "lenis-gsap",
+      "h1": "The spec becomes material.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1676,
+        "client": 946
+      }
+    }
+  },
+  {
+    "slug": "liquid-sigil",
+    "name": "mobile",
+    "theme": "dark",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "dark",
+      "motion": "lenis-gsap",
+      "h1": "The spec becomes material.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1966,
+        "client": 800
+      }
+    }
+  },
+  {
+    "slug": "liquid-sigil",
+    "name": "mobile",
+    "theme": "light",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "light",
+      "motion": "lenis-gsap",
+      "h1": "The spec becomes material.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1966,
+        "client": 800
+      }
+    }
+  },
+  {
+    "slug": "token-foundry",
+    "name": "desktop",
+    "theme": "dark",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "dark",
+      "motion": "lenis-gsap",
+      "h1": "One file enters. A system leaves.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1617,
+        "client": 946
+      }
+    }
+  },
+  {
+    "slug": "token-foundry",
+    "name": "desktop",
+    "theme": "light",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "light",
+      "motion": "lenis-gsap",
+      "h1": "One file enters. A system leaves.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1617,
+        "client": 946
+      }
+    }
+  },
+  {
+    "slug": "token-foundry",
+    "name": "mobile",
+    "theme": "dark",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "dark",
+      "motion": "lenis-gsap",
+      "h1": "One file enters. A system leaves.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1984,
+        "client": 800
+      }
+    }
+  },
+  {
+    "slug": "token-foundry",
+    "name": "mobile",
+    "theme": "light",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "light",
+      "motion": "lenis-gsap",
+      "h1": "One file enters. A system leaves.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1984,
+        "client": 800
+      }
+    }
+  },
+  {
+    "slug": "spec-to-system",
+    "name": "desktop",
+    "theme": "dark",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "dark",
+      "motion": "lenis-gsap",
+      "h1": "Source on the left. Proof on the right.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1444,
+        "client": 946
+      }
+    }
+  },
+  {
+    "slug": "spec-to-system",
+    "name": "desktop",
+    "theme": "light",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "light",
+      "motion": "lenis-gsap",
+      "h1": "Source on the left. Proof on the right.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1444,
+        "client": 946
+      }
+    }
+  },
+  {
+    "slug": "spec-to-system",
+    "name": "mobile",
+    "theme": "dark",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "dark",
+      "motion": "lenis-gsap",
+      "h1": "Source on the left. Proof on the right.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 2173,
+        "client": 800
+      }
+    }
+  },
+  {
+    "slug": "spec-to-system",
+    "name": "mobile",
+    "theme": "light",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "light",
+      "motion": "lenis-gsap",
+      "h1": "Source on the left. Proof on the right.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 2173,
+        "client": 800
+      }
+    }
+  },
+  {
+    "slug": "token-lathe",
+    "name": "desktop",
+    "theme": "dark",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "dark",
+      "motion": "lenis-gsap",
+      "h1": "Turn one token. Reshape everything.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1184,
+        "client": 946
+      }
+    }
+  },
+  {
+    "slug": "token-lathe",
+    "name": "desktop",
+    "theme": "light",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "light",
+      "motion": "lenis-gsap",
+      "h1": "Turn one token. Reshape everything.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1184,
+        "client": 946
+      }
+    }
+  },
+  {
+    "slug": "token-lathe",
+    "name": "mobile",
+    "theme": "dark",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "dark",
+      "motion": "lenis-gsap",
+      "h1": "Turn one token. Reshape everything.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1955,
+        "client": 800
+      }
+    }
+  },
+  {
+    "slug": "token-lathe",
+    "name": "mobile",
+    "theme": "light",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "light",
+      "motion": "lenis-gsap",
+      "h1": "Turn one token. Reshape everything.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1955,
+        "client": 800
+      }
+    }
+  },
+  {
+    "slug": "source-result-tear",
+    "name": "desktop",
+    "theme": "dark",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "dark",
+      "motion": "lenis-gsap",
+      "h1": "The interface is inside the specification.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1228,
+        "client": 946
+      }
+    }
+  },
+  {
+    "slug": "source-result-tear",
+    "name": "desktop",
+    "theme": "light",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "light",
+      "motion": "lenis-gsap",
+      "h1": "The interface is inside the specification.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1228,
+        "client": 946
+      }
+    }
+  },
+  {
+    "slug": "source-result-tear",
+    "name": "mobile",
+    "theme": "dark",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "dark",
+      "motion": "lenis-gsap",
+      "h1": "The interface is inside the specification.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1750,
+        "client": 800
+      }
+    }
+  },
+  {
+    "slug": "source-result-tear",
+    "name": "mobile",
+    "theme": "light",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "light",
+      "motion": "lenis-gsap",
+      "h1": "The interface is inside the specification.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1750,
+        "client": 800
+      }
+    }
+  },
+  {
+    "slug": "monochrome-press",
+    "name": "desktop",
+    "theme": "dark",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "dark",
+      "motion": "lenis-gsap",
+      "h1": "A design system, printed with pressure.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1805,
+        "client": 946
+      }
+    }
+  },
+  {
+    "slug": "monochrome-press",
+    "name": "desktop",
+    "theme": "light",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "light",
+      "motion": "lenis-gsap",
+      "h1": "A design system, printed with pressure.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1805,
+        "client": 946
+      }
+    }
+  },
+  {
+    "slug": "monochrome-press",
+    "name": "mobile",
+    "theme": "dark",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "dark",
+      "motion": "lenis-gsap",
+      "h1": "A design system, printed with pressure.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1950,
+        "client": 800
+      }
+    }
+  },
+  {
+    "slug": "monochrome-press",
+    "name": "mobile",
+    "theme": "light",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "light",
+      "motion": "lenis-gsap",
+      "h1": "A design system, printed with pressure.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1950,
+        "client": 800
+      }
+    }
+  },
+  {
+    "slug": "oxide-instrument",
+    "name": "desktop",
+    "theme": "dark",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "dark",
+      "motion": "lenis-gsap",
+      "h1": "Every stage exposed. Every signal legible.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1239,
+        "client": 946
+      }
+    }
+  },
+  {
+    "slug": "oxide-instrument",
+    "name": "desktop",
+    "theme": "light",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "light",
+      "motion": "lenis-gsap",
+      "h1": "Every stage exposed. Every signal legible.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 1239,
+        "client": 946
+      }
+    }
+  },
+  {
+    "slug": "oxide-instrument",
+    "name": "mobile",
+    "theme": "dark",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "dark",
+      "motion": "lenis-gsap",
+      "h1": "Every stage exposed. Every signal legible.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 2197,
+        "client": 800
+      }
+    }
+  },
+  {
+    "slug": "oxide-instrument",
+    "name": "mobile",
+    "theme": "light",
+    "status": 200,
+    "runtime": [],
+    "state": {
+      "theme": "light",
+      "motion": "lenis-gsap",
+      "h1": "Every stage exposed. Every signal legible.",
+      "overflow": 0,
+      "scroll": {
+        "top": 0,
+        "height": 2197,
+        "client": 800
+      }
+    }
+  },
+  {
+    "slug": "liquid-sigil",
+    "interaction": "pointer",
+    "before": {
+      "transform": "",
+      "rect": {
+        "x": 711.421875,
+        "y": 272.3426513671875,
+        "width": 576,
+        "height": 576,
+        "top": 272.3426513671875,
+        "right": 1287.421875,
+        "bottom": 848.3426513671875,
+        "left": 711.421875
+      }
+    },
+    "after": {
+      "transform": "perspective(60rem) rotateX(1.12deg) rotateY(1.28deg)",
+      "light": "left: 82%; top: 22%;"
+    },
+    "runtime": []
+  },
+  {
+    "slug": "token-foundry",
+    "interaction": "advance+scroll",
+    "before": "1/4 online",
+    "after": "2/4 online",
+    "statuses": [
+      "ready",
+      "ready",
+      "queued",
+      "queued"
+    ],
+    "revealBefore": {
+      "opacity": "0",
+      "transform": "matrix(1, 0, 0, 1, 0, 1.75)"
+    },
+    "revealAfter": {
+      "opacity": "1",
+      "transform": "matrix(1, 0, 0, 1, 0, 0)"
+    },
+    "runtime": []
+  },
+  {
+    "slug": "spec-to-system",
+    "interaction": "desktop-slider",
+    "val": "75% source visible",
+    "runtime": []
+  },
+  {
+    "slug": "spec-to-system",
+    "interaction": "mobile-tabs",
+    "selectedBefore": [
+      "true",
+      "false"
+    ],
+    "selectedAfter": [
+      "false",
+      "true"
+    ],
+    "panelText": "Compiled surfaceEvery decision has a source.No scattered classes. No visual drift.Compile design",
+    "runtime": []
+  },
+  {
+    "slug": "token-lathe",
+    "interaction": "slider",
+    "before": {
+      "aria": "Central specimen with 8 pixel corner radius",
+      "radius": "21%"
+    },
+    "after": {
+      "aria": "Central specimen with 16 pixel corner radius",
+      "radius": "40%",
+      "text": "80radius index"
+    },
+    "readouts": [
+      "16px",
+      "10px",
+      "20px",
+      "350+",
+      "46",
+      "519",
+      "33"
+    ],
+    "runtime": []
+  },
+  {
+    "slug": "source-result-tear",
+    "interaction": "desktop-slider",
+    "val": "76% source visible",
+    "runtime": []
+  },
+  {
+    "slug": "source-result-tear",
+    "interaction": "mobile-tabs",
+    "selectedBefore": [
+      "true",
+      "false"
+    ],
+    "selectedAfter": [
+      "false",
+      "true"
+    ],
+    "panelText": "Result / live surfaceOne source of visual truth.This card does not know the preset. It only knows the constraints it inh",
+    "runtime": []
+  },
+  {
+    "slug": "monochrome-press",
+    "interaction": "rail-anchor",
+    "scrollBefore": {
+      "top": 0,
+      "height": 1805,
+      "client": 946
+    },
+    "scrollAfter": {
+      "top": 859,
+      "height": 1805,
+      "client": 946
+    },
+    "factsVisible": {
+      "top": 148.796875,
+      "bottom": 608.96875,
+      "display": "block"
+    },
+    "runtime": []
+  },
+  {
+    "slug": "oxide-instrument",
+    "interaction": "tabs-keyboard",
+    "count": 3,
+    "initial": [
+      {
+        "id": "oxide-tab-0",
+        "selected": "true",
+        "tabIndex": 0,
+        "controls": "oxide-diagnostic-panel"
+      },
+      {
+        "id": "oxide-tab-1",
+        "selected": "false",
+        "tabIndex": -1,
+        "controls": "oxide-diagnostic-panel"
+      },
+      {
+        "id": "oxide-tab-2",
+        "selected": "false",
+        "tabIndex": -1,
+        "controls": "oxide-diagnostic-panel"
+      }
+    ],
+    "after": [
+      {
+        "id": "oxide-tab-0",
+        "selected": "false",
+        "tabIndex": -1
+      },
+      {
+        "id": "oxide-tab-1",
+        "selected": "true",
+        "tabIndex": 0
+      },
+      {
+        "id": "oxide-tab-2",
+        "selected": "false",
+        "tabIndex": -1
+      }
+    ],
+    "panel": {
+      "labelledby": "oxide-tab-1",
+      "text": "Channel 02Preset matrix46 validnominal",
+      "focused": false
+    },
+    "active": "oxide-tab-1",
+    "runtime": []
+  }
+]

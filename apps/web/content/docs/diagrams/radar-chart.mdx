@@ -1,7 +1,25 @@
 ---
 title: RadarChart
-description: "A RadarChart component from the Sigil design system."
+description: "Compare multiple dimensions on radial axes."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <RadarChart
+    axes={[
+      { label: "Speed" },
+      { label: "Power" },
+      { label: "Range" },
+      { label: "Defense" },
+      { label: "Accuracy" },
+    ]}
+    series={[
+      { label: "Model A", values: [80, 60, 90, 40, 70] },
+      { label: "Model B", values: [50, 85, 60, 75, 55], color: "var(--s-success, #22c55e)" },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,18 +30,30 @@ import { RadarChart } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<RadarChart>...</RadarChart>
+<RadarChart
+    axes={[
+      { label: "Speed" },
+      { label: "Power" },
+      { label: "Range" },
+      { label: "Defense" },
+      { label: "Accuracy" },
+    ]}
+    series={[
+      { label: "Model A", values: [80, 60, 90, 40, 70] },
+      { label: "Model B", values: [50, 85, 60, 75, 55], color: "var(--s-success, #22c55e)" },
+    ]}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `axes` | `RadarAxis[]` | — | — |
-| `series` | `RadarSeries[]` | — | — |
-| `width` | `number` | — | — |
-| `height` | `number` | — | — |
-| `rings` | `number` | — | — |
+| `axes` (required) | `RadarAxis[]` | — | Axes configuration. |
+| `series` (required) | `RadarSeries[]` | — | Series configuration. |
+| `width` | `number` | — | Width of the rendered content. |
+| `height` | `number` | — | Height of the rendered content. |
+| `rings` | `number` | — | Rings configuration. |
 
 ## Token integration
 

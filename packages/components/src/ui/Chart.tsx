@@ -15,21 +15,22 @@ export interface ChartContainerProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const ChartContainer = forwardRef<HTMLDivElement, ChartContainerProps>(
-  function ChartContainer({ height = 350, className, children, ...rest }, ref) {
+  function ChartContainer({ height = 350, className, style, children, ...rest }, ref) {
     return (
       <div
         ref={ref}
         data-slot="chart"
+        style={{ height, ...style }}
         className={cn(
-          "w-full text-[var(--s-text-muted)] text-xs",
-          "[&_.recharts-cartesian-axis-tick_text]:fill-[var(--s-text-muted)]",
+          "sigil-chart min-w-0 w-full text-[var(--s-text-muted)] text-[length:var(--s-size-sm)]",
+          "[&_.recharts-cartesian-axis-tick-value]:fill-[var(--s-text-muted)]",
           "[&_.recharts-cartesian-grid_line]:stroke-[var(--s-border)]",
           "[&_.recharts-curve]:stroke-2",
           className,
         )}
         {...rest}
       >
-        <ResponsiveContainer width="100%" height={height as number}>
+        <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0} initialDimension={{ width: 1, height: 1 }}>
           {children as React.ReactElement}
         </ResponsiveContainer>
       </div>
@@ -47,15 +48,15 @@ export function ChartTooltip({ className, ...rest }: ChartTooltipProps) {
       cursor={{ stroke: "var(--s-border)", strokeWidth: 1 }}
       contentStyle={{
         backgroundColor: "var(--s-surface)",
-        border: "1px solid var(--s-border)",
+        border: "var(--s-border-thin) var(--s-border-style) var(--s-border)",
         borderRadius: "var(--s-radius-md, 6px)",
         boxShadow: "var(--s-shadow-md)",
-        padding: "8px 12px",
-        fontSize: "13px",
+        padding: "var(--s-space-8) var(--s-space-12)",
+        fontSize: "var(--s-size-sm)",
         color: "var(--s-text)",
       }}
-      labelStyle={{ color: "var(--s-text-muted)", marginBottom: 4, fontWeight: 500 }}
-      itemStyle={{ color: "var(--s-text)", padding: "1px 0" }}
+      labelStyle={{ color: "var(--s-text-muted)", marginBottom: "var(--s-space-4)", fontWeight: "var(--s-weight-medium)" }}
+      itemStyle={{ color: "var(--s-text)", padding: "var(--s-border-thin) 0" }}
       {...(rest as Record<string, unknown>)}
     />
   );
@@ -76,7 +77,7 @@ export function ChartLegend({
     <RechartsLegend
       verticalAlign={verticalAlign}
       align={align}
-      wrapperStyle={{ paddingTop: 12, fontSize: 13 }}
+      wrapperStyle={{ paddingTop: "var(--s-space-12)", fontSize: "var(--s-size-sm)" }}
       formatter={(value: string) => (
         <span className={cn("text-[var(--s-text)] ml-1", className)}>{value}</span>
       )}

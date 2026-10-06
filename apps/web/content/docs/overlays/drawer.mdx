@@ -1,13 +1,7 @@
 ---
 title: Drawer
-description: "A Drawer component from the Sigil design system."
+description: "Reveal supporting content in a dismissible edge panel."
 ---
-
-## Import
-
-```tsx
-import { Drawer, DrawerTrigger, DrawerClose, DrawerContent, DrawerHeader, DrawerFooter, DrawerTitle, DrawerDescription } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -26,10 +20,27 @@ import { Drawer, DrawerTrigger, DrawerClose, DrawerContent, DrawerHeader, Drawer
 </Drawer>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Drawer, DrawerTrigger, DrawerClose, DrawerContent, DrawerHeader, DrawerFooter, DrawerTitle, DrawerDescription } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Drawer>...</Drawer>
+<Drawer>
+  <DrawerTrigger asChild><Button variant="outline">Open drawer</Button></DrawerTrigger>
+  <DrawerContent>
+    <DrawerHeader>
+      <DrawerTitle>Settings</DrawerTitle>
+      <DrawerDescription>Adjust your preferences.</DrawerDescription>
+    </DrawerHeader>
+    <DrawerFooter>
+      <DrawerClose asChild><Button variant="ghost">Close</Button></DrawerClose>
+    </DrawerFooter>
+  </DrawerContent>
+</Drawer>
 ```
 
 ## Sub-components

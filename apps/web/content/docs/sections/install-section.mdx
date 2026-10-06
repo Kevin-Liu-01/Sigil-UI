@@ -1,7 +1,21 @@
 ---
 title: InstallSection
-description: "A InstallSection component from the Sigil design system."
+description: "Present installation commands and setup guidance."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <InstallSection
+    label="Get started"
+    title="Install in seconds"
+    commands={[
+      { label: "npm",  command: "npm install @sigil-ui/components" },
+      { label: "pnpm", command: "pnpm add @sigil-ui/components" },
+      { label: "yarn", command: "yarn add @sigil-ui/components" },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,18 +26,26 @@ import { InstallSection } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<InstallSection>...</InstallSection>
+<InstallSection
+    label="Get started"
+    title="Install in seconds"
+    commands={[
+      { label: "npm",  command: "npm install @sigil-ui/components" },
+      { label: "pnpm", command: "pnpm add @sigil-ui/components" },
+      { label: "yarn", command: "yarn add @sigil-ui/components" },
+    ]}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `label` | `string` | — | — |
-| `title` | `string` | — | — |
-| `description` | `string` | — | — |
-| `note` | `string` | — | — |
-| `commands` | `InstallCommand[]` | — | — |
+| `label` | `string` | — | Readable label for the component. |
+| `title` | `string` | — | Heading displayed in the component. |
+| `description` | `string` | — | Supporting text below the heading. |
+| `note` | `string` | — | Note configuration. |
+| `commands` (required) | `InstallCommand[]` | — | Commands configuration. |
 
 ## Token integration
 

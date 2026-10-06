@@ -1,13 +1,7 @@
 ---
 title: Textarea
-description: "A Textarea component from the Sigil design system."
+description: "Enter longer text in a multiline form control."
 ---
-
-## Import
-
-```tsx
-import { Textarea } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -15,17 +9,23 @@ import { Textarea } from "@sigil-ui/components";
   <Textarea placeholder="Write something..." rows={3} />
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Textarea } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Textarea>Textarea content</Textarea>
+<Textarea placeholder="Write something..." rows={3} />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `error` | `string | boolean` | — | Error message — puts the textarea in error state when truthy. |
+| `error` | `string \| boolean` | — | Error message — puts the textarea in error state when truthy. |
 
 ## Token integration
 

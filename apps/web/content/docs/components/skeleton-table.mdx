@@ -1,7 +1,13 @@
 ---
 title: SkeletonTable
-description: SkeletonTable is a token-driven Sigil component in the feedback and status group.
+description: "Reserve table rows while records are loading."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <SkeletonTable className="w-full max-w-lg" />
+</ComponentPreview>
 
 ## Import
 
@@ -9,16 +15,10 @@ description: SkeletonTable is a token-driven Sigil component in the feedback and
 import { SkeletonTable } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview vertical>
-  <SkeletonTable rows={5} columns={4} className="w-full" />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<SkeletonTable />
+<SkeletonTable className="w-full max-w-lg" />
 ```
 
 ## CLI

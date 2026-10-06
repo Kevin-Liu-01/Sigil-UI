@@ -1,13 +1,7 @@
 ---
 title: Sheet
-description: "A Sheet component from the Sigil design system."
+description: "Open an accessible panel from an edge of the screen."
 ---
-
-## Import
-
-```tsx
-import { Sheet, SheetTrigger, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -23,10 +17,24 @@ import { Sheet, SheetTrigger, SheetClose, SheetContent, SheetHeader, SheetTitle,
 </Sheet>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Sheet, SheetTrigger, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Sheet>...</Sheet>
+<Sheet>
+  <SheetTrigger asChild><Button variant="outline">Open sheet</Button></SheetTrigger>
+  <SheetContent>
+    <SheetHeader>
+      <SheetTitle>Settings</SheetTitle>
+      <SheetDescription>Configure your preferences.</SheetDescription>
+    </SheetHeader>
+  </SheetContent>
+</Sheet>
 ```
 
 ## Sub-components

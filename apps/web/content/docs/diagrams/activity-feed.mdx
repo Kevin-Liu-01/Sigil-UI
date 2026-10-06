@@ -1,7 +1,21 @@
 ---
 title: ActivityFeed
-description: "A ActivityFeed component from the Sigil design system."
+description: "Show recent events in a compact, chronological feed."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <ActivityFeed
+    entries={[
+      { id: "1", title: "Deployment succeeded", description: "v2.1.0 deployed to production", timestamp: "2m ago", variant: "success" },
+      { id: "2", title: "PR #142 merged", description: "Add radar chart component", timestamp: "15m ago", variant: "info" },
+      { id: "3", title: "Build failed", description: "Type error in BillingChart.tsx", timestamp: "1h ago", variant: "error" },
+      { id: "4", title: "New comment", description: "Alice commented on PR #140", timestamp: "3h ago", variant: "default" },
+      { id: "5", title: "Dependency update", description: "Bumped @sigil-ui/tokens to 1.4.0", timestamp: "5h ago", variant: "warning" },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +26,15 @@ import { ActivityFeed } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<ActivityFeed>...</ActivityFeed>
+<ActivityFeed
+    entries={[
+      { id: "1", title: "Deployment succeeded", description: "v2.1.0 deployed to production", timestamp: "2m ago", variant: "success" },
+      { id: "2", title: "PR #142 merged", description: "Add radar chart component", timestamp: "15m ago", variant: "info" },
+      { id: "3", title: "Build failed", description: "Type error in BillingChart.tsx", timestamp: "1h ago", variant: "error" },
+      { id: "4", title: "New comment", description: "Alice commented on PR #140", timestamp: "3h ago", variant: "default" },
+      { id: "5", title: "Dependency update", description: "Bumped @sigil-ui/tokens to 1.4.0", timestamp: "5h ago", variant: "warning" },
+    ]}
+  />
 ```
 
 ## Props

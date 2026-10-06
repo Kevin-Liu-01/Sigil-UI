@@ -1,13 +1,7 @@
 ---
 title: Menubar
-description: "A Menubar component from the Sigil design system."
+description: "Provide application menus with keyboard navigation."
 ---
-
-## Import
-
-```tsx
-import { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem, MenubarSeparator, MenubarCheckboxItem, MenubarRadioItem } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -32,10 +26,33 @@ import { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem, Menu
 </Menubar>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem, MenubarSeparator, MenubarCheckboxItem, MenubarRadioItem } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Menubar>...</Menubar>
+<Menubar>
+  <MenubarMenu>
+    <MenubarTrigger>File</MenubarTrigger>
+    <MenubarContent>
+      <MenubarItem>New</MenubarItem>
+      <MenubarItem>Open</MenubarItem>
+      <MenubarSeparator />
+      <MenubarItem>Save</MenubarItem>
+    </MenubarContent>
+  </MenubarMenu>
+  <MenubarMenu>
+    <MenubarTrigger>Edit</MenubarTrigger>
+    <MenubarContent>
+      <MenubarItem>Undo</MenubarItem>
+      <MenubarItem>Redo</MenubarItem>
+    </MenubarContent>
+  </MenubarMenu>
+</Menubar>
 ```
 
 ## Sub-components

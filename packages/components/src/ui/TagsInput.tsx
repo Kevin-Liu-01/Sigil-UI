@@ -17,10 +17,11 @@ export interface TagsInputProps extends Omit<HTMLAttributes<HTMLDivElement>, "on
   placeholder?: string;
   disabled?: boolean;
   max?: number;
+  inputLabel?: string;
 }
 
 export const TagsInput = forwardRef<HTMLDivElement, TagsInputProps>(function TagsInput(
-  { value: controlledValue, defaultValue = [], onChange, placeholder = "Add tag...", disabled, max, className, ...props },
+  { value: controlledValue, defaultValue = [], onChange, placeholder = "Add tag...", disabled, max, inputLabel = "Add tag", className, ...props },
   ref,
 ) {
   const [internalValue, setInternalValue] = useState(defaultValue);
@@ -97,7 +98,7 @@ export const TagsInput = forwardRef<HTMLDivElement, TagsInputProps>(function Tag
             <button
               type="button"
               onClick={(e) => { e.stopPropagation(); removeTag(i); }}
-              className="text-[var(--s-text-muted)] hover:text-[var(--s-text)] transition-colors ml-0.5"
+              className="-mr-1 ml-0.5 inline-flex size-5 items-center justify-center text-[var(--s-text-muted)] transition-colors hover:text-[var(--s-text)]"
               aria-label={`Remove ${tag}`}
             >
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
@@ -110,6 +111,7 @@ export const TagsInput = forwardRef<HTMLDivElement, TagsInputProps>(function Tag
       <input
         ref={inputRef}
         type="text"
+        aria-label={inputLabel}
         disabled={disabled}
         placeholder={tags.length === 0 ? placeholder : ""}
         onKeyDown={handleKeyDown}

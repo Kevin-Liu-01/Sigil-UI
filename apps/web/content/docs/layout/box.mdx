@@ -1,13 +1,7 @@
 ---
 title: Box
-description: "A Box component from the Sigil design system."
+description: "Apply token-based spacing and surfaces to a layout container."
 ---
-
-## Import
-
-```tsx
-import { Box } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -19,10 +13,20 @@ import { Box } from "@sigil-ui/components";
   </Box>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Box } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Box>Box content</Box>
+<Box bg="surface" radius="md" p="var(--s-grid-cell)" borderColor="border">
+    <div className="font-[family-name:var(--s-font-mono)] text-sm text-[var(--s-text)]">
+      Token-backed container
+    </div>
+  </Box>
 ```
 
 `Box` is a low-level escape hatch for semantic HTML and token-backed surfaces.
@@ -46,12 +50,12 @@ Use `Box` when you need an element polymorphic container (`as="aside"`,
 | `borderColor` | `string` | — | Token name like `border` or full CSS value |
 | `radius` | `string` | — | Radius key like `md`, or full CSS value |
 | `shadow` | `string` | — | Shadow key like `sm`, or full CSS value |
-| `p` | `number | string` | — | — |
-| `px` | `number | string` | — | — |
-| `py` | `number | string` | — | — |
-| `m` | `number | string` | — | — |
-| `mx` | `number | string` | — | — |
-| `my` | `number | string` | — | — |
+| `p` | `number \| string` | — | — |
+| `px` | `number \| string` | — | — |
+| `py` | `number \| string` | — | — |
+| `m` | `number \| string` | — | — |
+| `mx` | `number \| string` | — | — |
+| `my` | `number \| string` | — | — |
 
 ## Token integration
 

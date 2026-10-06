@@ -1,7 +1,17 @@
 ---
 title: DiagramCalloutLine
-description: "A DiagramCalloutLine component from the Sigil design system."
+description: "Connect an annotation to a specific point in a diagram."
 ---
+
+## Preview
+
+<ComponentPreview label="Annotated connector">
+  <svg viewBox="0 0 520 150" className="h-auto w-full" role="img" aria-label="Callout line connecting a token node to its annotation">
+    <rect x="36" y="45" width="150" height="60" rx="6" fill="var(--s-surface)" stroke="var(--s-border)" />
+    <text x="111" y="80" textAnchor="middle" fill="var(--s-text)" fontFamily="var(--s-font-mono)" fontSize="13">TOKEN NODE</text>
+    <DiagramCalloutLine path="M186 75 H330 L370 44" label="COMPILED VALUE" labelX={378} labelY={47} dotX={186} dotY={75} active />
+  </svg>
+</ComponentPreview>
 
 ## Import
 
@@ -12,20 +22,24 @@ import { DiagramCalloutLine } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<DiagramCalloutLine>...</DiagramCalloutLine>
+<svg viewBox="0 0 520 150" className="h-auto w-full" role="img" aria-label="Callout line connecting a token node to its annotation">
+    <rect x="36" y="45" width="150" height="60" rx="6" fill="var(--s-surface)" stroke="var(--s-border)" />
+    <text x="111" y="80" textAnchor="middle" fill="var(--s-text)" fontFamily="var(--s-font-mono)" fontSize="13">TOKEN NODE</text>
+    <DiagramCalloutLine path="M186 75 H330 L370 44" label="COMPILED VALUE" labelX={378} labelY={47} dotX={186} dotY={75} active />
+  </svg>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `path` | `string` | — | — |
-| `label` | `string` | — | — |
-| `labelX` | `number` | — | — |
-| `labelY` | `number` | — | — |
-| `dotX` | `number` | — | — |
-| `dotY` | `number` | — | — |
-| `active` | `boolean` | — | — |
+| `path` (required) | `string` | — | Path configuration. |
+| `label` | `string` | — | Readable label for the component. |
+| `labelX` | `number` | — | Label X configuration. |
+| `labelY` | `number` | — | Label Y configuration. |
+| `dotX` | `number` | — | Dot X configuration. |
+| `dotY` | `number` | — | Dot Y configuration. |
+| `active` | `boolean` | — | Active configuration. |
 
 ## Token integration
 

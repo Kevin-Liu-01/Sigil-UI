@@ -27,7 +27,7 @@ export const MatrixDiagram = forwardRef<HTMLDivElement, MatrixDiagramProps>(
       <div
         ref={ref}
         data-slot="matrix-diagram"
-        className={cn("inline-flex gap-2", className)}
+        className={cn("max-w-full overflow-x-auto inline-flex gap-2", className)}
         {...rest}
       >
         {yAxisLabel && (

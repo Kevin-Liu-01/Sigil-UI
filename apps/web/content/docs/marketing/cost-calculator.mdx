@@ -1,7 +1,19 @@
 ---
 title: CostCalculator
-description: "A CostCalculator component from the Sigil design system."
+description: "Estimate costs from adjustable usage inputs."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <CostCalculator
+    sliders={[
+      { label: "Active users", value: 1500, unit: "users", min: 0, max: 10000, step: 100 },
+      { label: "API calls",    value: 250000, unit: "/mo", min: 0, max: 1000000, step: 10000 },
+    ]}
+    estimate={{ brandName: "Sigil", brandCost: 175, competitorName: "Other", competitorCost: 420, savingsNote: "Includes 90% utilization." }}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,16 +24,22 @@ import { CostCalculator } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<CostCalculator>...</CostCalculator>
+<CostCalculator
+    sliders={[
+      { label: "Active users", value: 1500, unit: "users", min: 0, max: 10000, step: 100 },
+      { label: "API calls",    value: 250000, unit: "/mo", min: 0, max: 1000000, step: 10000 },
+    ]}
+    estimate={{ brandName: "Sigil", brandCost: 175, competitorName: "Other", competitorCost: 420, savingsNote: "Includes 90% utilization." }}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `sliders` | `CostSlider[]` | — | — |
-| `estimate` | `CostEstimate` | — | — |
-| `sliderRenderer` | `(slider: CostSlider) => ReactNode` | — | — |
+| `sliders` (required) | `CostSlider[]` | — | Sliders configuration. |
+| `estimate` (required) | `CostEstimate` | — | Estimate configuration. |
+| `sliderRenderer` | `(slider: CostSlider) => ReactNode` | — | Slider Renderer configuration. |
 
 ## Token integration
 

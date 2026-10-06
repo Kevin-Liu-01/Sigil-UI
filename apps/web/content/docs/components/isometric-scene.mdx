@@ -3,24 +3,22 @@ title: IsometricScene
 description: Container with an isometric grid background for composing 3D primitives.
 ---
 
+## Preview
+
+<ComponentPreview>
+  <IsometricScene width="100%" height={260} showGrid><IsometricPrism width={120} height={80} depth={60} /></IsometricScene>
+</ComponentPreview>
+
 ## Import
 
 ```tsx
 import { IsometricScene } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <IsometricScene size={220} />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<IsometricScene>
-  <IsometricPrism />
-</IsometricScene>
+<IsometricScene width="100%" height={260} showGrid><IsometricPrism width={120} height={80} depth={60} /></IsometricScene>
 ```
 
 ## Without grid

@@ -1,13 +1,7 @@
 ---
 title: CodeTabs
-description: "A CodeTabs component from the Sigil design system."
+description: "Switch between related code examples in a tabbed panel."
 ---
-
-## Import
-
-```tsx
-import { CodeTabs, CodePreview, CopyButton, TokenPreview, ThemeSwatch, ThemeSwitcher, PromptInput, ChatMessage, ChatThread, MessageComposer, ActivityTimeline, AuditLog, Changelog, VersionBadge, KeyboardKey } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -21,10 +15,22 @@ import { CodeTabs, CodePreview, CopyButton, TokenPreview, ThemeSwatch, ThemeSwit
   />
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { CodeTabs, CodePreview, CopyButton, TokenPreview, ThemeSwatch, ThemeSwitcher, PromptInput, ChatMessage, ChatThread, MessageComposer, ActivityTimeline, AuditLog, Changelog, VersionBadge, KeyboardKey } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<CodeTabs>...</CodeTabs>
+<CodeTabs
+    tabs={[
+      { value: "npm",  label: "npm",  language: "bash", code: "npm install @sigil-ui/components" },
+      { value: "pnpm", label: "pnpm", language: "bash", code: "pnpm add @sigil-ui/components" },
+      { value: "yarn", label: "yarn", language: "bash", code: "yarn add @sigil-ui/components" },
+    ]}
+  />
 ```
 
 ## Sub-components
@@ -50,8 +56,8 @@ This component includes the following parts:
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `tabs` | `CodeTab[]` | — | — |
-| `defaultValue` | `string` | — | — |
+| `tabs` (required) | `CodeTab[]` | — | Tabs configuration. |
+| `defaultValue` | `string` | — | Initial value when the component manages its own state. |
 
 ## Token integration
 

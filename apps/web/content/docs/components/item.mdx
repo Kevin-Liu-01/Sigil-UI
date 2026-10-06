@@ -1,13 +1,7 @@
 ---
 title: Item
-description: "A Item component from the Sigil design system."
+description: "Arrange an item's label, description, and supporting content."
 ---
-
-## Import
-
-```tsx
-import { Item, ItemGroup } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -19,10 +13,20 @@ import { Item, ItemGroup } from "@sigil-ui/components";
   </ItemGroup>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Item, ItemGroup } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Item>...</Item>
+<ItemGroup className="w-full max-w-md">
+    <Item title="Apollo" description="Active project, 3 contributors" />
+    <Item title="Vega" description="Draft, 1 contributor" />
+    <Item title="Cassia" description="Active, 5 contributors" />
+  </ItemGroup>
 ```
 
 ## Sub-components
@@ -39,7 +43,7 @@ This component includes the following parts:
 | `title` | `ReactNode` | — | — |
 | `description` | `ReactNode` | — | — |
 | `action` | `ReactNode` | — | — |
-| `orientation` | `"horizontal" | "vertical"` | `horizontal` | Orientation of media relative to content. |
+| `orientation` | `"horizontal" \| "vertical"` | `horizontal` | Orientation of media relative to content. |
 
 ## Token integration
 

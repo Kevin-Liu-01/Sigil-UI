@@ -1,7 +1,13 @@
 ---
 title: HeroSection
-description: "A HeroSection component from the Sigil design system."
+description: "Compose a complete introductory section with visual content."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <HeroSection title="Build faster" description="A token-driven design system for modern React apps." />
+</ComponentPreview>
 
 ## Import
 
@@ -12,20 +18,20 @@ import { HeroSection } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<HeroSection>...</HeroSection>
+<HeroSection title="Build faster" description="A token-driven design system for modern React apps." />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `badge` | `ReactNode` | — | — |
-| `title` | `ReactNode` | — | — |
-| `description` | `ReactNode` | — | — |
-| `actions` | `HeroAction[]` | — | — |
-| `installCommand` | `string` | — | — |
-| `media` | `ReactNode` | — | — |
-| `align` | `"left" | "center"` | — | — |
+| `badge` | `ReactNode` | — | Badge configuration. |
+| `title` (required) | `ReactNode` | — | Heading displayed in the component. |
+| `description` | `ReactNode` | — | Supporting text below the heading. |
+| `actions` | `HeroAction[]` | — | Actions configuration. |
+| `installCommand` | `string` | — | Install Command configuration. |
+| `media` | `ReactNode` | — | Media configuration. |
+| `align` | `"left" \| "center"` | — | Align configuration. |
 
 ## Token integration
 

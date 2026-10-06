@@ -357,14 +357,18 @@ export const CarouselDots = forwardRef<HTMLDivElement, CarouselDotsProps>(
               onClick={() => scrollTo(index)}
               data-active={active || undefined}
               className={cn(
-                "h-1.5 rounded-[var(--s-radius-full,9999px)]",
-                "transition-[width,background-color,opacity] duration-[var(--s-duration-fast,150ms)]",
+                "group inline-flex size-[var(--s-control-hit-area,2.75rem)] items-center justify-center rounded-[var(--s-radius-full,9999px)]",
                 "focus-visible:outline-none focus-visible:ring-[length:var(--s-focus-ring-width)] focus-visible:ring-[var(--s-focus-ring-color)]",
-                active
-                  ? "w-6 bg-[var(--s-primary)]"
-                  : "w-1.5 bg-[var(--s-border)] hover:bg-[var(--s-text-muted)]",
               )}
-            />
+            >
+              <span
+                aria-hidden
+                className={cn(
+                  "h-1.5 rounded-[var(--s-radius-full,9999px)] transition-[width,background-color,opacity] duration-[var(--s-duration-fast,150ms)]",
+                  active ? "w-6 bg-[var(--s-primary)]" : "w-1.5 bg-[var(--s-border)] group-hover:bg-[var(--s-text-muted)]",
+                )}
+              />
+            </button>
           );
         })}
       </div>

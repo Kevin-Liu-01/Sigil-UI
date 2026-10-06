@@ -1,173 +1,124 @@
 ---
 title: Installation
-description: Add Sigil UI to a new or existing project in under two minutes.
+description: Create a new Sigil app or add the token system to an existing React project.
 ---
 
-## Packages
+## New project
 
-| Package | npm |
-|---|---|
-| [`@sigil-ui/tokens`](https://www.npmjs.com/package/@sigil-ui/tokens) | Tokens, CSS variables, Tailwind v4 |
-| [`@sigil-ui/components`](https://www.npmjs.com/package/@sigil-ui/components) | 350+ styled React components |
-| [`@sigil-ui/presets`](https://www.npmjs.com/package/@sigil-ui/presets) | 44 curated preset bundles |
-| [`@sigil-ui/primitives`](https://www.npmjs.com/package/@sigil-ui/primitives) | Headless behavior primitives |
-| [`@sigil-ui/cli`](https://www.npmjs.com/package/@sigil-ui/cli) | CLI tools |
-| [`create-sigil-app`](https://www.npmjs.com/package/create-sigil-app) | Project scaffolder |
-
-## Requirements
-
-- React 18+ or 19
-- Tailwind CSS v4
-- Node.js 18+
-
-## Package manager
+Create a Next.js app with tokens, components, and agent instructions already connected:
 
 ```bash
-# pnpm (recommended)
-pnpm add @sigil-ui/tokens @sigil-ui/components
-
-# npm
-npm install @sigil-ui/tokens @sigil-ui/components
-
-# yarn
-yarn add @sigil-ui/tokens @sigil-ui/components
-
-# bun
-bun add @sigil-ui/tokens @sigil-ui/components
+npx create-sigil-app@latest my-sigil-app
+cd my-sigil-app
+npm run dev
 ```
 
-## Scaffold with the CLI
+Use the package manager selected during setup. The scaffold uses Next.js 16, which requires Node.js 20.9 or later.
 
-The fastest way to start is the `init` command. It creates a token file, wires up CSS imports, and optionally applies a preset.
+## Existing project
+
+From your React project directory, run:
 
 ```bash
-npx @sigil-ui/cli init
+npx @sigil-ui/cli@latest init
 ```
 
-Options:
+Choose a preset and follow the installation prompts. To set up an existing app with dependency installation and CSS injection explicitly enabled:
 
 ```bash
-# Start with a preset
-npx @sigil-ui/cli init --preset sigil
-npx @sigil-ui/cli init --preset anvil
-
-# Specify output directory
-cd apps/web
-npx @sigil-ui/cli init
+npx @sigil-ui/cli@latest init --preset sigil --install --inject-css
+npx @sigil-ui/cli@latest doctor
 ```
+
+Keep your existing package manager and framework. Sigil components support React 18 and 19 and use Tailwind CSS v4 for their utility styles.
 
 ## Manual setup
 
-### 1. Import token CSS
+### 1. Install the packages
 
-Add the Sigil token stylesheet to your root layout or entry point. This injects all `--s-*` CSS custom properties.
-
-```tsx title="app/layout.tsx"
-import "@sigil-ui/tokens/css";
+```bash
+npm install @sigil-ui/components @sigil-ui/tokens
 ```
 
-Or if you are using Tailwind v4, import the Tailwind-compatible layer instead:
+Use `pnpm add`, `yarn add`, or `bun add` if that is your project's package manager. Set up [Tailwind CSS v4 for your framework](https://tailwindcss.com/docs/installation/framework-guides) before continuing.
+
+### 2. Import tokens and register component styles
+
+For a stylesheet at `app/globals.css`:
 
 ```css title="app/globals.css"
 @import "tailwindcss";
+@import "@sigil-ui/tokens/css";
 @import "@sigil-ui/tokens/tailwind";
+@source "../node_modules/@sigil-ui/components/src";
 ```
 
-### 2. Use components
+**All four lines matter.** The CSS import supplies the token values. The Tailwind import maps them to theme utilities. The `@source` directive makes Tailwind generate the library's component classes; `node_modules` is excluded from automatic scanning.
 
-Every component reads from the CSS variables injected by the token stylesheet. No additional configuration needed.
+Source paths are relative to the stylesheet. If yours is `src/app/globals.css`, use `../../node_modules/@sigil-ui/components/src`. See [Tailwind's source detection guide](https://tailwindcss.com/docs/detecting-classes-in-source-files).
+
+### 3. Load your global stylesheet
+
+In Next.js, import it from the root layout:
+
+```tsx title="app/layout.tsx"
+import "./globals.css";
+import type { ReactNode } from "react";
+
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return <html lang="en"><body>{children}</body></html>;
+}
+```
+
+For Vite, import the stylesheet in `src/main.tsx`. For other frameworks, import it from the root entry point.
+
+### 4. Render a component
 
 ```tsx title="app/page.tsx"
-import { Button } from "@sigil-ui/components";
-import { Stack } from "@sigil-ui/components";
+import { Button, Stack } from "@sigil-ui/components";
 
 export default function Page() {
   return (
-    <Stack gap={16} align="center">
-      <h1>Welcome</h1>
-      <Button variant="primary">Continue</Button>
-      <Button variant="ghost">Skip</Button>
+    <Stack gap="var(--s-space-16)" align="start">
+      <h1>Your first Sigil page</h1>
+      <Button>Continue</Button>
+      <Button variant="outline">Save for later</Button>
     </Stack>
   );
 }
 ```
 
-### 3. Customize tokens (optional)
+Interactive event handlers such as `onClick` belong in a client component when using Next.js App Router.
 
-Override any token by redefining CSS variables. You can do this in a global stylesheet or scoped to a container.
+## Choose a source of truth
 
-```css title="app/globals.css"
+For the CLI preset workflow, import the generated token stylesheet at the path in `sigil.config.ts`. Avoid importing the default package token stylesheet after it, which would override your chosen preset.
+
+For an editable markdown spec, follow the [DESIGN.md guide](/docs/design-md). Generate the file, compile it, and import its output. Recompile after editing token tables.
+
+For small overrides, redefine tokens after the imported styles:
+
+```css
 :root {
-  --s-primary: oklch(0.55 0.20 145);
-  --s-card-radius: 16px;
+  --s-radius-button: 12px;
+  --s-radius-card: 16px;
 }
 ```
 
-Or switch to a full preset with the CLI:
+## Verify the setup
 
 ```bash
-npx @sigil-ui/cli preset anvil
-npx @sigil-ui/cli doctor
+npx @sigil-ui/cli@latest doctor
 ```
 
-## Framework guides
+- **Unstyled components:** check the Tailwind `@source` path and restart the development server.
+- **Missing colors or spacing:** confirm your global stylesheet imports token CSS.
+- **Preset changes have no effect:** import the generated CSS referenced by `tokensPath` in `sigil.config.ts`, and remove competing token imports.
+- **Fonts look different:** load the font families named in your preset, or override its typography tokens with fonts available in your app.
 
-### Next.js (App Router)
+## Next steps
 
-```tsx title="app/layout.tsx"
-import "@sigil-ui/tokens/css";
-import type { ReactNode } from "react";
-
-export default function RootLayout({ children }: { children: ReactNode }) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
-}
-```
-
-### Vite + React
-
-```tsx title="src/main.tsx"
-import "@sigil-ui/tokens/css";
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import App from "./App";
-
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-);
-```
-
-### Remix
-
-```tsx title="app/root.tsx"
-import "@sigil-ui/tokens/css";
-import { Links, Meta, Outlet, Scripts } from "@remix-run/react";
-
-export default function App() {
-  return (
-    <html lang="en">
-      <head>
-        <Meta />
-        <Links />
-      </head>
-      <body>
-        <Outlet />
-        <Scripts />
-      </body>
-    </html>
-  );
-}
-```
-
-## TypeScript
-
-All components ship with full TypeScript definitions. The token types are exported from `@sigil-ui/tokens`:
-
-```ts
-import type { SigilTokens, SigilPreset } from "@sigil-ui/tokens";
-```
+- [Find a component](/docs#component-catalog-title)
+- [Edit your design in markdown](/docs/design-md)
+- [Browse presets](/docs/presets)
+- [Read the CLI reference](/docs/cli)

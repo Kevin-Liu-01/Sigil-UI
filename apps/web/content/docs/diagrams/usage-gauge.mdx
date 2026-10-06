@@ -1,7 +1,17 @@
 ---
 title: UsageGauge
-description: "A UsageGauge component from the Sigil design system."
+description: "Show current usage relative to a limit."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <div className="flex w-full flex-wrap items-center justify-center gap-[var(--s-space-24)]">
+    <UsageGauge value={42} max={100} label="Storage" />
+    <UsageGauge value={78} max={100} label="CPU" />
+    <UsageGauge value={95} max={100} label="Memory" />
+  </div>
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +22,11 @@ import { UsageGauge } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<UsageGauge>...</UsageGauge>
+<div className="flex w-full flex-wrap items-center justify-center gap-[var(--s-space-24)]">
+    <UsageGauge value={42} max={100} label="Storage" />
+    <UsageGauge value={78} max={100} label="CPU" />
+    <UsageGauge value={95} max={100} label="Memory" />
+  </div>
 ```
 
 ## Props

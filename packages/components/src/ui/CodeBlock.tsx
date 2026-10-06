@@ -1,7 +1,8 @@
 "use client";
 
-import { forwardRef, useCallback, useState, type HTMLAttributes } from "react";
+import { forwardRef, type HTMLAttributes } from "react";
 import { cn } from "../utils";
+import { useCopyToClipboard } from "../use-copy-to-clipboard";
 
 export interface CodeBlockProps extends HTMLAttributes<HTMLDivElement> {
   /** Code content. */
@@ -19,16 +20,10 @@ export const CodeBlock = forwardRef<HTMLDivElement, CodeBlockProps>(function Cod
   { code, language, showLineNumbers = true, fileName, className, ...rest },
   ref,
 ) {
-  const [copied, setCopied] = useState(false);
   const safeCode = code ?? "";
   const lines = safeCode.split("\n");
 
-  const handleCopy = useCallback(() => {
-    navigator.clipboard.writeText(safeCode).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
-  }, [safeCode]);
+  const { copy: handleCopy, copied, error } = useCopyToClipboard(safeCode);
 
   return (
     <div
@@ -50,9 +45,10 @@ export const CodeBlock = forwardRef<HTMLDivElement, CodeBlockProps>(function Cod
           type="button"
           onClick={handleCopy}
           className="text-xs text-[var(--s-text-muted)] hover:text-[var(--s-text)] transition-colors duration-[var(--s-duration-fast,150ms)] px-2 py-1 rounded-[var(--s-radius-sm,4px)]"
-          aria-label="Copy code"
+          aria-label={error ? "Copy failed. Retry copying code" : copied ? "Code copied" : "Copy code"}
+          aria-live="polite"
         >
-          {copied ? "Copied!" : "Copy"}
+          {error ? "Copy failed — retry" : copied ? "Copied" : "Copy"}
         </button>
       </div>
       <div className="p-4 overflow-x-auto">

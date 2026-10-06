@@ -1,7 +1,13 @@
 ---
 title: Dock
-description: Dock is a token-driven Sigil component in the layout, navigation, and content group.
+description: "Group frequently used actions in a compact dock."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <Dock className="static translate-x-0" aria-label="Quick actions"><Button variant="ghost">Search</Button><Button variant="ghost">Settings</Button></Dock>
+</ComponentPreview>
 
 ## Import
 
@@ -9,16 +15,10 @@ description: Dock is a token-driven Sigil component in the layout, navigation, a
 import { Dock } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <Dock><Button size="icon" variant="ghost">A</Button><Button size="icon" variant="ghost">B</Button></Dock>
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<Dock><Button size="icon" variant="ghost">A</Button><Button size="icon" variant="ghost">B</Button></Dock>
+<Dock className="static translate-x-0" aria-label="Quick actions"><Button variant="ghost">Search</Button><Button variant="ghost">Settings</Button></Dock>
 ```
 
 ## CLI

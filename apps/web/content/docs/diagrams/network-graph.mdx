@@ -1,7 +1,26 @@
 ---
 title: NetworkGraph
-description: "A NetworkGraph component from the Sigil design system."
+description: "Visualize a network of nodes and connections."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <NetworkGraph
+    nodes={[
+      { id: "a", label: "Node A", x: 100, y: 100, size: 10 },
+      { id: "b", label: "Node B", x: 300, y: 80 },
+      { id: "c", label: "Node C", x: 200, y: 250, size: 8 },
+      { id: "d", label: "Node D", x: 400, y: 200 },
+    ]}
+    edges={[
+      { source: "a", target: "b", weight: 2 },
+      { source: "a", target: "c" },
+      { source: "b", target: "d", weight: 3 },
+      { source: "c", target: "d" },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,17 +31,30 @@ import { NetworkGraph } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<NetworkGraph>...</NetworkGraph>
+<NetworkGraph
+    nodes={[
+      { id: "a", label: "Node A", x: 100, y: 100, size: 10 },
+      { id: "b", label: "Node B", x: 300, y: 80 },
+      { id: "c", label: "Node C", x: 200, y: 250, size: 8 },
+      { id: "d", label: "Node D", x: 400, y: 200 },
+    ]}
+    edges={[
+      { source: "a", target: "b", weight: 2 },
+      { source: "a", target: "c" },
+      { source: "b", target: "d", weight: 3 },
+      { source: "c", target: "d" },
+    ]}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `nodes` | `NetworkNode[]` | — | — |
-| `edges` | `NetworkEdge[]` | — | — |
-| `width` | `number` | — | — |
-| `height` | `number` | — | — |
+| `nodes` (required) | `NetworkNode[]` | — | Nodes configuration. |
+| `edges` (required) | `NetworkEdge[]` | — | Edges configuration. |
+| `width` | `number` | — | Width of the rendered content. |
+| `height` | `number` | — | Height of the rendered content. |
 
 ## Token integration
 

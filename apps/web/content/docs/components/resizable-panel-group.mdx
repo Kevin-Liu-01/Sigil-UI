@@ -1,26 +1,24 @@
 ---
 title: ResizablePanelGroup
-description: "A ResizablePanelGroup component from the Sigil design system."
+description: "Arrange panels with draggable resize handles."
 ---
-
-## Import
-
-```tsx
-import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@sigil-ui/components";
-```
 
 ## Preview
 
 <ComponentPreview vertical>
-  <ResizablePanelGroup>
-    ResizablePanelGroup content
-  </ResizablePanelGroup>
+  <ResizablePanelGroup orientation="horizontal" className="min-h-[calc(var(--s-grid-cell)*5)] w-full border border-[var(--s-border)]"><ResizablePanel><Center className="h-full">Editor</Center></ResizablePanel><ResizableHandle withHandle /><ResizablePanel><Center className="h-full">Preview</Center></ResizablePanel></ResizablePanelGroup>
 </ComponentPreview>
+
+## Import
+
+```tsx
+import { ResizablePanelGroup, ResizablePanel, Center, ResizableHandle } from "@sigil-ui/components";
+```
 
 ## Usage
 
 ```tsx
-<ResizablePanelGroup>...</ResizablePanelGroup>
+<ResizablePanelGroup orientation="horizontal" className="min-h-[calc(var(--s-grid-cell)*5)] w-full border border-[var(--s-border)]"><ResizablePanel><Center className="h-full">Editor</Center></ResizablePanel><ResizableHandle withHandle /><ResizablePanel><Center className="h-full">Preview</Center></ResizablePanel></ResizablePanelGroup>
 ```
 
 ## Sub-components
@@ -34,7 +32,8 @@ This component includes the following parts:
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `withHandle` | `boolean` | — | — |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | Direction of the panel layout. |
+| `children` | `ReactNode` | — | Panels separated by resize handles. |
 
 ## Token integration
 

@@ -1,7 +1,13 @@
 ---
 title: FAQSection
-description: "A FAQSection component from the Sigil design system."
+description: "Answer common questions in expandable sections."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <FAQSection items={[{ question: "What is Sigil?", answer: "A token-driven design system." }, { question: "How many presets?", answer: "44 curated presets." }]} />
+</ComponentPreview>
 
 ## Import
 
@@ -12,18 +18,18 @@ import { FAQSection } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<FAQSection>...</FAQSection>
+<FAQSection items={[{ question: "What is Sigil?", answer: "A token-driven design system." }, { question: "How many presets?", answer: "44 curated presets." }]} />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `label` | `string` | — | — |
-| `title` | `string` | — | — |
-| `description` | `string` | — | — |
-| `items` | `FAQItem[]` | — | — |
-| `columns` | `1 | 2` | — | — |
+| `label` | `string` | — | Readable label for the component. |
+| `title` | `string` | — | Heading displayed in the component. |
+| `description` | `string` | — | Supporting text below the heading. |
+| `items` (required) | `FAQItem[]` | — | Items to display, in their display order. |
+| `columns` | `1 \| 2` | — | Columns configuration. |
 
 ## Token integration
 

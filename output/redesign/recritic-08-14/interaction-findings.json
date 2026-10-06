@@ -1,0 +1,415 @@
+[
+  {
+    "slug": "chrome-selection-museum",
+    "before": "SPECIMEN 01\n\nBrass",
+    "after": "SPECIMEN 02\n\nAlloy",
+    "errs": []
+  },
+  {
+    "slug": "reticle-machine-room",
+    "before": "RETICLE TARGET\nLOCKED\nSIGNAL 11\n\nnavigation.height\n\nSTATUS\nInherited\nCONSUMERS\nSystem-wide",
+    "after": "RETICLE TARGET\nLOCKED\nSIGNAL 01\n\ncolors.primary\n\nSTATUS\nInherited\nCONSUMERS\nSystem-wide",
+    "errs": []
+  },
+  {
+    "slug": "blueprint-becomes-product",
+    "before": {
+      "text": "COMPONENT / 014\nSCHEMA\nS\nProduction surface\n\nThe exact same geometry receives color, radius, shadow, content, and behavior.\n\nTOKENS\n519\nCOMPONENTS\n350+\nSTATUS\nBOUND\nLIVE MONITORING\nPRIMARY ACTION\nINSPECT",
+      "transform": "none",
+      "bg": "rgba(0, 0, 0, 0)",
+      "radius": "0px",
+      "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+    },
+    "product": {
+      "text": "COMPONENT / 014\nLIVE\nS\nProduction surface\n\nThe exact same geometry receives color, radius, shadow, content, and behavior.\n\nTOKENS\n519\nCOMPONENTS\n350+\nSTATUS\nVALID\nLIVE MONITORING\nDEPLOY COMPONENT\nINSPECT",
+      "transform": "none",
+      "bg": "oklch(0.1933 0.0367 264.141)",
+      "radius": "10px",
+      "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(2, 6, 23, 0.08) 0px 1px 2px 0px"
+    },
+    "deployed": "COMPONENT / 014\nDEPLOYED\nS\nProduction surface\n\nThe exact same geometry receives color, radius, shadow, content, and behavior.\n\nTOKENS\n519\nCOMPONENTS\n350+\nSTATUS\nVALID\nLIVE MONITORING\nROLLBACK\nINSPECT",
+    "errs": []
+  },
+  {
+    "slug": "constraint-compiler",
+    "before": "CONSTRAINT-COMPILER\nREADY\n001\nread\nDESIGN.md\n002\nparse\n33 token categories\n003\nvalidate\n519 required fields\n004\nemit\nCSS + Tailwind + W3C JSON\n005\nbind\n350+ React components\n\nAwaiting compile command.",
+    "after": "CONSTRAINT-COMPILER\nPASS\n001\nread\nDESIGN.md\n002\nparse\n33 token categories\n003\nvalidate\n519 required fields\n004\nemit\nCSS + Tailwind + W3C JSON\n005\nbind\n350+ React components\n\nBuild complete. Zero component overrides.",
+    "errs": []
+  },
+  {
+    "slug": "preset-runway",
+    "states": [
+      {
+        "name": "Onyx",
+        "text": "CUT 01 / LAYERED SCENE\nDARK\nLAYER 01 / HERO\nNight, held in depth.\n\nLarge cinematic field. One controlled reading path.\n\nShowing Onyx: Cinematic / monolithic",
+        "htmlLength": 1804
+      },
+      {
+        "name": "Etch",
+        "text": "CUT 02 / HAIRLINE COLUMN\nEDITORIAL\nEDITORIAL PROOF\nVOL. 46\nHAIRLINE COLUMN / EDITION 02\nA system that reads like a printed argument.\n\nTypography establishes the hierarchy before any surface treatment appears. Hairlines, folios, and measured",
+        "htmlLength": 1871
+      },
+      {
+        "name": "Kova",
+        "text": "CUT 03 / LOCKED RAILS\nSTRUCTURAL\nRAIL A\nLOCKED\nOPTICAL CENTER\nEvery edge resolves.\nCOLOR\nTYPE\nSPACE\nMOTION\n\nShowing Kova: Optical / engineered",
+        "htmlLength": 2340
+      },
+      {
+        "name": "Alloy",
+        "text": "CUT 04 / PRODUCTION FRAME\nINDUSTRIAL\nPRODUCTION FRAME\n\n519\n\nASSEMBLY VERIFIED\nBuilt for the line.\nINPUT\nCOMPILE\nSHIP\n\nShowing Alloy: Machined / dense",
+        "htmlLength": 2619
+      }
+    ],
+    "errs": []
+  },
+  {
+    "slug": "carbon-and-bone",
+    "before": [
+      {
+        "text": "CARBON / READABLE SOURCE\nThe softest surface can hold the hardest rules.\n\nDESIGN",
+        "bg": "oklch(0.2225 0.0041 84.5879)",
+        "color": "oklch(0.9228 0.0075 80.7204)"
+      },
+      {
+        "text": "BONE / ENFORCED OUTPUT\n519 / 519\n01\ncolors.primary → every accent\n02\nradius.card",
+        "bg": "oklch(0.9228 0.0075 80.7204)",
+        "color": "oklch(0.2225 0.0041 84.5879)"
+      }
+    ],
+    "after": [
+      {
+        "text": "BONE / READABLE SOURCE\nThe softest surface can hold the hardest rules.\n\nDESIGN.m",
+        "bg": "oklch(0.9228 0.0075 80.7204)",
+        "color": "oklch(0.2225 0.0041 84.5879)"
+      },
+      {
+        "text": "CARBON / ENFORCED OUTPUT\n519 / 519\n01\ncolors.primary → every accent\n02\nradius.ca",
+        "bg": "oklch(0.2225 0.0041 84.5879)",
+        "color": "oklch(0.9228 0.0075 80.7204)"
+      }
+    ],
+    "errs": []
+  },
+  {
+    "slug": "brushed-steel-manual",
+    "before": "FIGURE 01.A\nSOURCE\nINPUT\n\nDESIGN.md\n\nOUTPUT\n\nAuthor DESIGN.md\n\nA readable specification defines all 519 fields across 33 categories.",
+    "compile": "FIGURE 02.A\nCOMPILE\nINPUT\n\nValidated tokens\n\nOUTPUT\n\nGenerate outputs\n\nCompile the same source into CSS custom properties, Tailwind v4, and W3C JSON.",
+    "verify": "FIGURE 04.A\nVERIFY\nINPUT\n\nValidated tokens\n\nOUTPUT\n\nRun the doctor\n\nValidate configuration, tokens, dependencies, imports, and preset integrity before shipping.",
+    "errs": []
+  },
+  {
+    "slug": "chrome-selection-museum",
+    "mobileControls": {
+      "total": 16,
+      "undersized": [
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "Open Next.js Dev Tools",
+          "w": 32,
+          "h": 32,
+          "disabled": false
+        }
+      ]
+    },
+    "errs": []
+  },
+  {
+    "slug": "reticle-machine-room",
+    "mobileControls": {
+      "total": 27,
+      "undersized": [
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "Open Next.js Dev Tools",
+          "w": 32,
+          "h": 32,
+          "disabled": false
+        }
+      ]
+    },
+    "errs": []
+  },
+  {
+    "slug": "blueprint-becomes-product",
+    "mobileControls": {
+      "total": 12,
+      "undersized": [
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "Open Next.js Dev Tools",
+          "w": 32,
+          "h": 32,
+          "disabled": false
+        }
+      ]
+    },
+    "errs": []
+  },
+  {
+    "slug": "constraint-compiler",
+    "mobileControls": {
+      "total": 9,
+      "undersized": [
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "Open Next.js Dev Tools",
+          "w": 32,
+          "h": 32,
+          "disabled": false
+        }
+      ]
+    },
+    "errs": []
+  },
+  {
+    "slug": "preset-runway",
+    "mobileControls": {
+      "total": 12,
+      "undersized": [
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "Open Next.js Dev Tools",
+          "w": 32,
+          "h": 32,
+          "disabled": false
+        }
+      ]
+    },
+    "errs": []
+  },
+  {
+    "slug": "carbon-and-bone",
+    "mobileControls": {
+      "total": 9,
+      "undersized": [
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "Open Next.js Dev Tools",
+          "w": 32,
+          "h": 32,
+          "disabled": false
+        }
+      ]
+    },
+    "errs": []
+  },
+  {
+    "slug": "brushed-steel-manual",
+    "mobileControls": {
+      "total": 12,
+      "undersized": [
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "",
+          "w": 25,
+          "h": 21,
+          "disabled": false
+        },
+        {
+          "name": "Open Next.js Dev Tools",
+          "w": 32,
+          "h": 32,
+          "disabled": false
+        }
+      ]
+    },
+    "errs": []
+  }
+]

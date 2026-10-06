@@ -1,7 +1,28 @@
 ---
 title: MatrixDiagram
-description: "A MatrixDiagram component from the Sigil design system."
+description: "Compare relationships across a two-dimensional matrix."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <MatrixDiagram
+    xAxisLabel="Effort"
+    yAxisLabel="Impact"
+    xLabels={["Low Effort", "High Effort"]}
+    yLabels={["High Impact", "Low Impact"]}
+    cells={[
+      [
+        { id: "quick", label: "Quick Wins", description: "Do first" },
+        { id: "major", label: "Major Projects", description: "Plan carefully" },
+      ],
+      [
+        { id: "fill", label: "Fill-ins", description: "Do if time" },
+        { id: "avoid", label: "Thankless Tasks", description: "Avoid" },
+      ],
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,18 +33,33 @@ import { MatrixDiagram } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<MatrixDiagram>...</MatrixDiagram>
+<MatrixDiagram
+    xAxisLabel="Effort"
+    yAxisLabel="Impact"
+    xLabels={["Low Effort", "High Effort"]}
+    yLabels={["High Impact", "Low Impact"]}
+    cells={[
+      [
+        { id: "quick", label: "Quick Wins", description: "Do first" },
+        { id: "major", label: "Major Projects", description: "Plan carefully" },
+      ],
+      [
+        { id: "fill", label: "Fill-ins", description: "Do if time" },
+        { id: "avoid", label: "Thankless Tasks", description: "Avoid" },
+      ],
+    ]}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `cells` | `MatrixCell[][]` | — | — |
-| `xLabels` | `string[]` | — | — |
-| `yLabels` | `string[]` | — | — |
-| `xAxisLabel` | `string` | — | — |
-| `yAxisLabel` | `string` | — | — |
+| `cells` (required) | `MatrixCell[][]` | — | Cells configuration. |
+| `xLabels` | `string[]` | — | X Labels configuration. |
+| `yLabels` | `string[]` | — | Y Labels configuration. |
+| `xAxisLabel` | `string` | — | X Axis Label configuration. |
+| `yAxisLabel` | `string` | — | Y Axis Label configuration. |
 
 ## Token integration
 

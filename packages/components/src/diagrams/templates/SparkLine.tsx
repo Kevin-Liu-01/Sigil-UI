@@ -41,7 +41,7 @@ export const SparkLine = forwardRef<SVGSVGElement, SparkLineProps>(
         width={w}
         height={h}
         viewBox={`0 0 ${w} ${h}`}
-        className={cn("shrink-0", className)}
+        className={cn("max-w-full h-auto", className)}
         {...props}
       >
         {filled && (

@@ -1,7 +1,18 @@
 ---
 title: PreviewCard
-description: "A PreviewCard component from the Sigil design system."
+description: "Reveal a link's context on hover or keyboard focus."
 ---
+
+## Preview
+
+<ComponentPreview>
+<PreviewCard>
+  <PreviewCardTrigger href="/docs/installation">Preview the installation guide</PreviewCardTrigger>
+  <PreviewCardContent>
+    <p className="text-sm">Card preview content.</p>
+  </PreviewCardContent>
+</PreviewCard>
+</ComponentPreview>
 
 ## Import
 
@@ -9,41 +20,42 @@ description: "A PreviewCard component from the Sigil design system."
 import { PreviewCard, PreviewCardTrigger, PreviewCardContent } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <PreviewCard>
-  <PreviewCardTrigger asChild><Button variant="link">Preview</Button></PreviewCardTrigger>
-  <PreviewCardContent>
-    <p className="text-sm">Card preview content.</p>
-  </PreviewCardContent>
-</PreviewCard>
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<PreviewCard>...</PreviewCard>
+<PreviewCard>
+  <PreviewCardTrigger href="/docs/installation">Installation guide</PreviewCardTrigger>
+  <PreviewCardContent
+    title="Set up Sigil"
+    description="Install the library, load a preset, and compose your first page."
+    side="bottom"
+  />
+</PreviewCard>
 ```
 
-## Sub-components
+Use `PreviewCardTrigger` for the link and put the preview's title, description, and optional image on `PreviewCardContent`. The root coordinates open state and positioning.
 
-This component includes the following parts:
+## Props
 
-- `<PreviewCardTrigger>`
-- `<PreviewCardContent>`
+### PreviewCard
 
-## Token integration
+| Prop | Type | Description |
+|---|---|---|
+| `open` | `boolean` | Controlled visibility. |
+| `defaultOpen` | `boolean` | Initial visibility in uncontrolled mode. |
+| `onOpenChange` | `(open: boolean) => void` | Called when visibility changes. |
 
-| CSS Variable | Purpose |
-|---|---|
-| `--s-border` | Border |
-| `--s-duration-fast` | Duration fast |
-| `--s-primary` | Primary |
-| `--s-card-radius` | Card radius |
-| `--s-border-style` | Border style |
-| `--s-surface` | Surface |
-| `--s-shadow-md` | Shadow md |
-| `--s-surface-elevated` | Surface elevated |
-| `--s-text` | Text |
-| `--s-text-muted` | Text muted |
+### PreviewCardContent
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | `string` | — | Preview heading. |
+| `description` | `string` | — | Supporting description. |
+| `image` | `string` | — | Optional image URL. |
+| `side` | `"top" \| "bottom" \| "left" \| "right"` | `"bottom"` | Preferred side of the trigger. |
+| `sideOffset` | `number` | `8` | Distance from the trigger. |
+| `children` | `ReactNode` | — | Additional preview content. |
+
+## Accessibility
+
+The trigger remains a normal link. The preview provides supplementary context, so the link text must explain the destination without requiring a hover.

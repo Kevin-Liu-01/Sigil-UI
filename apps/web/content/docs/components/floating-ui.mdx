@@ -3,34 +3,22 @@ title: FloatingUI
 description: Stacked floating layer composition with configurable offset and shadow depth.
 ---
 
+## Preview
+
+<ComponentPreview>
+  <FloatingUI layers={[<div key="content" className="p-6 bg-[var(--s-surface)]">Content layer</div>, <div key="controls" className="p-6 bg-[var(--s-surface-raised)]">Controls layer</div>]} />
+</ComponentPreview>
+
 ## Import
 
 ```tsx
 import { FloatingUI } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <FloatingUI
-    layers={[
-      <div key="a" className="px-4 py-3 text-sm text-[var(--s-text)]">Layer 1 — base panel</div>,
-      <div key="b" className="px-4 py-3 text-sm text-[var(--s-text)]">Layer 2 — overlay</div>,
-      <div key="c" className="px-4 py-3 text-sm text-[var(--s-text)]">Layer 3 — toolbar</div>,
-    ]}
-  />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<FloatingUI
-  layers={[
-    <div className="p-4">Layer 1</div>,
-    <div className="p-4">Layer 2</div>,
-    <div className="p-4">Layer 3</div>,
-  ]}
-/>
+<FloatingUI layers={[<div key="content" className="p-6 bg-[var(--s-surface)]">Content layer</div>, <div key="controls" className="p-6 bg-[var(--s-surface-raised)]">Controls layer</div>]} />
 ```
 
 ## Custom offset

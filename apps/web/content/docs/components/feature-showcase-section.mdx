@@ -3,46 +3,22 @@ title: FeatureShowcaseSection
 description: Alternating rows of text and media for deep-dive feature explanations.
 ---
 
+## Preview
+
+<ComponentPreview vertical>
+  <FeatureShowcaseSection title="A system that stays consistent" rows={[{ title: "Shared tokens", description: "Change a token to update every component that uses it.", media: <CommitGrid weeks={12} responsive data={Array.from({ length: 84 }, (_, i) => ({ date: new Date(Date.UTC(2026, 0, i + 1)).toISOString().slice(0, 10), count: (i * 7) % 13 }))} /> }, { title: "Clear data", description: "Use the same palette across charts and interface controls.", media: <SparkLine data={[4, 7, 5, 10, 9, 14]} /> }]} />
+</ComponentPreview>
+
 ## Import
 
 ```tsx
 import { FeatureShowcaseSection } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview vertical>
-  <FeatureShowcaseSection
-    label="Highlights"
-    title="What ships out of the box"
-    rows={[
-      { eyebrow: "Tokens", title: "519 design tokens", description: "Every color, font, and radius." },
-      { eyebrow: "Components", title: "350+ React components", description: "All read from var(--s-*)." },
-    ]}
-  />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<FeatureShowcaseSection
-  label="Platform"
-  title="Built for scale"
-  rows={[
-    {
-      label: "Tokens",
-      title: "519 configurable fields",
-      description: "Every visual property flows from a central spec.",
-      media: <img src="/tokens.png" alt="Tokens" />,
-      actions: [{ label: "Learn more", href: "/docs/tokens" }],
-    },
-    {
-      title: "46 presets",
-      description: "Switch your entire visual identity in one command.",
-      media: <img src="/presets.png" alt="Presets" />,
-    },
-  ]}
-/>
+<FeatureShowcaseSection title="A system that stays consistent" rows={[{ title: "Shared tokens", description: "Change a token to update every component that uses it.", media: <CommitGrid weeks={12} responsive data={Array.from({ length: 84 }, (_, i) => ({ date: new Date(Date.UTC(2026, 0, i + 1)).toISOString().slice(0, 10), count: (i * 7) % 13 }))} /> }, { title: "Clear data", description: "Use the same palette across charts and interface controls.", media: <SparkLine data={[4, 7, 5, 10, 9, 14]} /> }]} />
 ```
 
 Odd-numbered rows automatically swap text and media sides.

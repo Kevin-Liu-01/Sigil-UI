@@ -1,7 +1,19 @@
 ---
 title: SigilNavbar
-description: "A SigilNavbar component from the Sigil design system."
+description: "Align navigation to Sigil's structural page rails."
 ---
+
+## Preview
+
+<ComponentPreview label="Inline navigation">
+  <SigilNavbar variant="inline" fixed={false} className="w-full">
+    <a href="/" className="font-semibold text-[var(--s-text)] no-underline">Sigil UI</a>
+    <div className="ml-auto flex items-center gap-[var(--s-space-4)]">
+      <a href="/docs" className="text-sm text-[var(--s-text-muted)] no-underline">Docs</a>
+      <a href="/docs" className="text-sm text-[var(--s-text-muted)] no-underline">Components</a>
+    </div>
+  </SigilNavbar>
+</ComponentPreview>
 
 ## Import
 
@@ -12,14 +24,20 @@ import { SigilNavbar } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<SigilNavbar>...</SigilNavbar>
+<SigilNavbar variant="inline" fixed={false} className="w-full">
+    <a href="/" className="font-semibold text-[var(--s-text)] no-underline">Sigil UI</a>
+    <div className="ml-auto flex items-center gap-[var(--s-space-4)]">
+      <a href="/docs" className="text-sm text-[var(--s-text-muted)] no-underline">Docs</a>
+      <a href="/docs" className="text-sm text-[var(--s-text-muted)] no-underline">Components</a>
+    </div>
+  </SigilNavbar>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `variant` | `"full" | "inline"` | `full` | "full" — renders its own 5-column grid so the nav content aligns with the SigilPageGrid content column, with structural gutter borders flanking the nav. "inline" — a plain `<nav>` with a bottom border, suitable for nesting inside a SigilPageGrid content column. / |
+| `variant` | `"full" \| "inline"` | `full` | "full" — renders its own 5-column grid so the nav content aligns with the SigilPageGrid content column, with structural gutter borders flanking the nav. "inline" — a plain `<nav>` with a bottom border, suitable for nesting inside a SigilPageGrid content column. / |
 | `contentMax` | `number` | — | — |
 | `railGap` | `number` | — | — |
 | `gridCell` | `number` | — | — |

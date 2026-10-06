@@ -3,6 +3,20 @@ title: ArchitectureDiagram
 description: "Isometric architecture diagram combining exploded-view layering with cross-hatching for infrastructure layers."
 ---
 
+## Preview
+
+<ComponentPreview label="Layered infrastructure">
+  <ArchitectureDiagram
+    title="Production architecture"
+    gap="var(--s-space-3)"
+    layers={[
+      { label: "Interface", children: <span className="text-sm text-[var(--s-text)]">React application</span> },
+      { label: "Services", children: <span className="text-sm text-[var(--s-text)]">API + workers</span> },
+      { label: "Data", children: <span className="text-sm text-[var(--s-text)]">Postgres + cache</span>, hatched: true },
+    ]}
+  />
+</ComponentPreview>
+
 ## Import
 
 ```tsx
@@ -12,7 +26,15 @@ import { ArchitectureDiagram } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<ArchitectureDiagram>...</ArchitectureDiagram>
+<ArchitectureDiagram
+    title="Production architecture"
+    gap="var(--s-space-3)"
+    layers={[
+      { label: "Interface", children: <span className="text-sm text-[var(--s-text)]">React application</span> },
+      { label: "Services", children: <span className="text-sm text-[var(--s-text)]">API + workers</span> },
+      { label: "Data", children: <span className="text-sm text-[var(--s-text)]">Postgres + cache</span>, hatched: true },
+    ]}
+  />
 ```
 
 ## Props

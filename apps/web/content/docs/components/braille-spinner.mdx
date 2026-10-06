@@ -1,13 +1,7 @@
 ---
 title: BrailleSpinner
-description: "A BrailleSpinner component from the Sigil design system."
+description: "Indicate ongoing work with an animated text-based spinner."
 ---
-
-## Import
-
-```tsx
-import { BrailleSpinner } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -22,10 +16,23 @@ import { BrailleSpinner } from "@sigil-ui/components";
   </div>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { BrailleSpinner } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<BrailleSpinner>BrailleSpinner content</BrailleSpinner>
+<div className="flex items-center gap-6">
+    <BrailleSpinner name="orbit" />
+    <BrailleSpinner name="scan" />
+    <BrailleSpinner name="breathe" />
+    <BrailleSpinner name="cascade" />
+    <BrailleSpinner name="helix" />
+    <BrailleSpinner name="sparkle" />
+  </div>
 ```
 
 ## Props

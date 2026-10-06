@@ -3,22 +3,22 @@ title: Aside
 description: Sidebar panel with configurable width, optional sticky positioning, and border control.
 ---
 
+## Preview
+
+<ComponentPreview>
+  <Aside sticky={false}>This is supplementary content placed alongside the main text.</Aside>
+</ComponentPreview>
+
 ## Import
 
 ```tsx
 import { Aside } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <Aside>This is supplementary content placed alongside the main text.</Aside>
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<Aside>
+<Aside sticky={false}>
   <nav>Sidebar navigation</nav>
 </Aside>
 ```

@@ -22,7 +22,7 @@ import {
   type SigilPreset,
 } from "@sigil-ui/tokens";
 import { presetCatalog } from "@sigil-ui/presets";
-import { ArrowLeft, Check, Copy, Download } from "lucide-react";
+import { ArrowLeft, Check, Copy, Download } from "@/components/icons";
 import { LandingFooter } from "@/components/landing/footer";
 import { LandingNavbar } from "@/components/landing/navbar";
 import { SigilFrame } from "@/components/landing/sigil-frame";

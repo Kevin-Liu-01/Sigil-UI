@@ -94,6 +94,36 @@ function checkTokensFile(cwd: string): DiagnosticResult {
     };
   }
 
+  const importedPreset = content.match(
+    /@sigil-ui\/presets\/([a-z0-9-]+)/i,
+  )?.[1];
+  if (importedPreset && importedPreset !== config.preset) {
+    return {
+      label: "Tokens",
+      status: "fail",
+      message: `Token file imports preset=${importedPreset}, but config selects preset=${config.preset}`,
+    };
+  }
+
+  if (/:\s*(?:undefined|NaN|\[object Object\])\s*(?:!important)?\s*;/i.test(content)) {
+    return {
+      label: "Tokens",
+      status: "fail",
+      message: "Token file contains a malformed compiled value",
+    };
+  }
+
+  const withoutComments = content.replace(/\/\*[\s\S]*?\*\//g, "");
+  const openBraces = (withoutComments.match(/\{/g) ?? []).length;
+  const closeBraces = (withoutComments.match(/\}/g) ?? []).length;
+  if (openBraces !== closeBraces) {
+    return {
+      label: "Tokens",
+      status: "fail",
+      message: "Token file has unbalanced CSS blocks",
+    };
+  }
+
   return { label: "Tokens", status: "pass", message: config.tokensPath };
 }
 
@@ -229,7 +259,27 @@ async function checkPreset(cwd: string): Promise<DiagnosticResult> {
   const builtins = PRESET_NAMES;
 
   if (builtins.includes(config.preset as (typeof builtins)[number])) {
-    return { label: "Preset", status: "pass", message: `Built-in preset: ${config.preset}` };
+    try {
+      const [{ presets }, { compileToCss }] = await Promise.all([
+        import("@sigil-ui/presets"),
+        import("@sigil-ui/tokens"),
+      ]);
+      const loader = presets[config.preset as keyof typeof presets];
+      if (!loader) throw new Error("preset loader is missing");
+      const preset = await loader();
+      compileToCss(preset.tokens, { validation: "strict" });
+      return {
+        label: "Preset",
+        status: "pass",
+        message: `Built-in preset validated: ${config.preset}`,
+      };
+    } catch (error) {
+      return {
+        label: "Preset",
+        status: "fail",
+        message: `Preset ${config.preset} failed validation: ${error instanceof Error ? error.message : "unknown error"}`,
+      };
+    }
   }
 
   const customPath = path.join(cwd, `sigil.preset.${config.preset}.ts`);

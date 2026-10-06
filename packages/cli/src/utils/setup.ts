@@ -110,7 +110,7 @@ export async function writeSigilSetup(options: SigilSetupOptions): Promise<Sigil
       const fileName = `${comp}.tsx`;
       const destPath = path.join(componentsDir, fileName);
       if (!fs.existsSync(destPath)) {
-        fs.writeFileSync(destPath, generateComponentStub(comp), "utf-8");
+        fs.writeFileSync(destPath, generateComponentEntry(comp), "utf-8");
       }
     }
     console.log(`  ${symbols.success} Added ${starterComponents.length} starter component(s)`);
@@ -219,13 +219,17 @@ export function injectTokenImport(
   const globalCssFullPath = path.join(cwd, detection.globalCssPath);
   if (!fs.existsSync(globalCssFullPath)) return null;
 
-  const globalCss = fs.readFileSync(globalCssFullPath, "utf-8");
-  if (globalCss.includes("sigil.tokens.css") || globalCss.includes("@sigil-ui/tokens")) {
-    return detection.globalCssPath;
-  }
-
+  let globalCss = fs.readFileSync(globalCssFullPath, "utf-8");
   const importPath = relativeCssImport(detection.globalCssPath, tokensPath);
-  fs.writeFileSync(globalCssFullPath, `@import "${importPath}";\n${globalCss}`, "utf-8");
+  if (!globalCss.includes("sigil.tokens.css") && !globalCss.includes("@sigil-ui/tokens") && !globalCss.includes(importPath)) {
+    globalCss = `@import "${importPath}";\n${globalCss}`;
+  }
+  // Package sources are ignored by Tailwind's automatic detection.
+  if (detection.hasTailwind && !/@source\s+["'][^"']*@sigil-ui\/components/.test(globalCss)) {
+    const sourcePath = relativeCssImport(detection.globalCssPath, "node_modules/@sigil-ui/components/src");
+    globalCss += `\n@source "${sourcePath}";\n`;
+  }
+  fs.writeFileSync(globalCssFullPath, globalCss, "utf-8");
   return detection.globalCssPath;
 }
 
@@ -277,32 +281,16 @@ function printDryRun(
   console.log();
 }
 
-function generateComponentStub(name: string): string {
-  const pascalName = name
-    .split("-")
-    .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
-    .join("");
-
-  return `import { forwardRef, type ComponentPropsWithoutRef } from "react";
-import { clsx } from "clsx";
-
-type ${pascalName}Props = ComponentPropsWithoutRef<"div">;
-
-export const ${pascalName} = forwardRef<HTMLDivElement, ${pascalName}Props>(
-  ({ className, children, ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        className={clsx("sigil-${name}", className)}
-        {...props}
-      >
-        {children}
-      </div>
-    );
-  },
-);
-
-${pascalName}.displayName = "${pascalName}";
-`;
+function generateComponentEntry(name: string): string {
+  // Initialization runs before dependency installation. Re-export the real
+  // package component; `sigil add` can copy its source once installed.
+  const exports: Record<string, string[]> = {
+    button: ["Button"], card: ["Card", "CardHeader", "CardTitle", "CardDescription", "CardContent", "CardFooter"],
+    input: ["Input"], badge: ["Badge"], dialog: ["Dialog", "DialogTrigger", "DialogContent", "DialogTitle", "DialogDescription"],
+    dropdown: ["DropdownMenu", "DropdownMenuTrigger", "DropdownMenuContent", "DropdownMenuItem"],
+    tabs: ["Tabs", "TabsList", "TabsTrigger", "TabsContent"], tooltip: ["Tooltip", "TooltipTrigger", "TooltipContent", "TooltipProvider"],
+  };
+  const names = exports[name];
+  if (!names) throw new Error(`Unknown starter component: ${name}`);
+  return `"use client";\n\nexport { ${names.join(", ")} } from "@sigil-ui/components";\n`;
 }
-

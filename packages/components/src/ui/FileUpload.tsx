@@ -24,16 +24,30 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(function F
 ) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [selection, setSelection] = useState<File[]>([]);
+  const [error, setError] = useState("");
 
   const handleFiles = useCallback(
     (files: FileList | null) => {
-      if (!files) return;
-      let arr = Array.from(files);
-      if (maxSize) arr = arr.filter((f) => f.size <= maxSize);
+      if (!files || disabled) return;
+      const allowed = accept?.split(",").map((type) => type.trim().toLowerCase()).filter(Boolean) ?? [];
+      const rejected: string[] = [];
+      let arr = Array.from(files).filter((file) => {
+        const validType = !allowed.length || allowed.some((type) =>
+          type.startsWith(".") ? file.name.toLowerCase().endsWith(type)
+            : type.endsWith("/*") ? file.type.toLowerCase().startsWith(type.slice(0, -1))
+              : file.type.toLowerCase() === type);
+        if (!validType || (maxSize !== undefined && file.size > maxSize)) {
+          rejected.push(`${file.name}: ${validType ? "file is too large" : "file type is not accepted"}`);
+          return false;
+        }
+        return true;
+      });
+      setError(rejected.join(". "));
       if (!multiple) arr = arr.slice(0, 1);
-      onChange?.(arr);
+      if (arr.length) { setSelection(arr); onChange?.(arr); }
     },
-    [maxSize, multiple, onChange],
+    [accept, disabled, maxSize, multiple, onChange],
   );
 
   const handleDrag = useCallback((e: DragEvent) => {
@@ -44,8 +58,8 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(function F
   const handleDragIn = useCallback((e: DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsDragging(true);
-  }, []);
+    if (!disabled) setIsDragging(true);
+  }, [disabled]);
 
   const handleDragOut = useCallback((e: DragEvent) => {
     e.preventDefault();
@@ -72,13 +86,23 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(function F
       onDragLeave={handleDragOut}
       onDragOver={handleDrag}
       onDrop={handleDrop}
-      onClick={() => !disabled && inputRef.current?.click()}
+      onClick={(event) => { if (!disabled && event.target !== inputRef.current) inputRef.current?.click(); }}
+      onKeyDown={(event) => {
+        if (!disabled && (event.key === "Enter" || event.key === " ")) {
+          event.preventDefault();
+          inputRef.current?.click();
+        }
+      }}
+      role="button"
+      tabIndex={disabled ? -1 : 0}
+      aria-label="Choose files"
+      aria-disabled={disabled || undefined}
       className={cn(
         "flex flex-col items-center justify-center gap-2 p-8",
         "rounded-[var(--s-radius-md,8px)]",
         "border-2 border-dashed border-[color:var(--s-border)]",
         "bg-[var(--s-background)]",
-        "cursor-pointer transition-all duration-[var(--s-duration-fast,150ms)]",
+        "cursor-pointer transition-[color,background-color,border-color] duration-[var(--s-duration-fast,150ms)]",
         "hover:border-[color:var(--s-primary)] hover:bg-[var(--s-surface)]",
         isDragging && "border-[color:var(--s-primary)] bg-[var(--s-surface)]",
         disabled && "opacity-50 cursor-not-allowed pointer-events-none",
@@ -92,7 +116,9 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(function F
         accept={accept}
         multiple={multiple}
         disabled={disabled}
-        onChange={(e) => handleFiles(e.target.files)}
+        tabIndex={-1}
+        aria-label="Choose files"
+        onChange={(e) => { handleFiles(e.target.files); e.target.value = ""; }}
         className="sr-only"
       />
       {children ?? (
@@ -117,6 +143,8 @@ export const FileUpload = forwardRef<HTMLDivElement, FileUploadProps>(function F
           </p>
         </>
       )}
+      {selection.length > 0 && <p role="status" className="text-[length:var(--s-size-sm)] text-[var(--s-text)]">Selected: {selection.map((file) => file.name).join(", ")}</p>}
+      {error && <p role="alert" className="text-[length:var(--s-size-sm)] text-[var(--s-error)]">{error}</p>}
     </div>
   );
 });

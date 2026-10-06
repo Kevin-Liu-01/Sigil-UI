@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
+import { forwardRef, type HTMLAttributes, type ReactNode, type CSSProperties } from "react";
 import { cn } from "../utils";
 
 /* -------------------------------------------------------------------------- */
@@ -22,15 +22,6 @@ export interface BentoGridProps extends HTMLAttributes<HTMLDivElement> {
   gap?: string | number;
   children?: ReactNode;
 }
-
-const colClasses: Record<number, string> = {
-  1: "grid-cols-1",
-  2: "grid-cols-1 sm:grid-cols-2",
-  3: "grid-cols-1 sm:grid-cols-2 md:grid-cols-3",
-  4: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
-  5: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5",
-  6: "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6",
-};
 
 /**
  * Token-driven bento grid with per-cell borders and hover states.
@@ -54,8 +45,11 @@ export const BentoGrid = forwardRef<HTMLDivElement, BentoGridProps>(
     },
     ref,
   ) {
-    const maxCol =
-      columns.xl ?? columns.lg ?? columns.md ?? columns.sm ?? columns.base ?? 3;
+    const baseColumns = columns.base ?? 1;
+    const smColumns = columns.sm ?? baseColumns;
+    const mdColumns = columns.md ?? smColumns;
+    const lgColumns = columns.lg ?? mdColumns;
+    const xlColumns = columns.xl ?? lgColumns;
     const resolvedGap =
       typeof gap === "number"
         ? `${gap}px`
@@ -67,14 +61,19 @@ export const BentoGrid = forwardRef<HTMLDivElement, BentoGridProps>(
         data-slot="bento-grid"
         className={cn(
           "sigil-bento-grid grid",
-          colClasses[maxCol] ?? `grid-cols-1 sm:grid-cols-2 lg:grid-cols-${maxCol}`,
+          "grid-cols-[repeat(var(--s-bento-columns-base),minmax(0,1fr))] sm:grid-cols-[repeat(var(--s-bento-columns-sm),minmax(0,1fr))] md:grid-cols-[repeat(var(--s-bento-columns-md),minmax(0,1fr))] lg:grid-cols-[repeat(var(--s-bento-columns-lg),minmax(0,1fr))] xl:grid-cols-[repeat(var(--s-bento-columns-xl),minmax(0,1fr))]",
           dotGrid && "s-dot-grid",
           className,
         )}
         style={{
+          "--s-bento-columns-base": baseColumns,
+          "--s-bento-columns-sm": smColumns,
+          "--s-bento-columns-md": mdColumns,
+          "--s-bento-columns-lg": lgColumns,
+          "--s-bento-columns-xl": xlColumns,
           gap: resolvedGap,
           ...style,
-        }}
+        } as CSSProperties}
         {...rest}
       >
         {children}

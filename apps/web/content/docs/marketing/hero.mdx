@@ -1,7 +1,13 @@
 ---
 title: Hero
-description: "A Hero component from the Sigil design system."
+description: "Introduce a page with a headline, description, and actions."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <Hero title="Build with shared design tokens" description="Choose a preset and compose your interface." actions={[{ label: "Get started", href: "/docs/installation" }]} />
+</ComponentPreview>
 
 ## Import
 
@@ -9,18 +15,10 @@ description: "A Hero component from the Sigil design system."
 import { Hero } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview vertical>
-  <Hero>
-    Hero content
-  </Hero>
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<Hero>Hero content</Hero>
+<Hero title="Build with shared design tokens" description="Choose a preset and compose your interface." actions={[{ label: "Get started", href: "/docs/installation" }]} />
 ```
 
 ## Props

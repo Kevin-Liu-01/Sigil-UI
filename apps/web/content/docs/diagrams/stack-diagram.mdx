@@ -1,7 +1,13 @@
 ---
 title: StackDiagram
-description: "A StackDiagram component from the Sigil design system."
+description: "Illustrate the layers of a system."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <StackDiagram title="Application layers" layers={[{ label: "Interface", children: "Pages and reusable components" }, { label: "Services", children: "Business logic and workflows", accent: true }, { label: "Storage", children: "Persistent application data", hatched: true }]} />
+</ComponentPreview>
 
 ## Import
 
@@ -12,18 +18,18 @@ import { StackDiagram } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<StackDiagram>...</StackDiagram>
+<StackDiagram title="Application layers" layers={[{ label: "Interface", children: "Pages and reusable components" }, { label: "Services", children: "Business logic and workflows", accent: true }, { label: "Storage", children: "Persistent application data", hatched: true }]} />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `layers` | `StackLayer[]` | — | — |
-| `title` | `string` | — | — |
-| `gap` | `string` | — | — |
-| `tilt` | `boolean` | — | — |
-| `interactive` | `boolean` | — | — |
+| `layers` (required) | `StackLayer[]` | — | Layers configuration. |
+| `title` | `string` | — | Heading displayed in the component. |
+| `gap` | `string` | — | Gap configuration. |
+| `tilt` | `boolean` | — | Tilt configuration. |
+| `interactive` | `boolean` | — | Interactive configuration. |
 
 ## Token integration
 

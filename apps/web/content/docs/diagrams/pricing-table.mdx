@@ -1,7 +1,25 @@
 ---
 title: PricingTable
-description: "A PricingTable component from the Sigil design system."
+description: "Compare plan prices and included features."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <PricingTable
+    columns={[
+      { name: "Free", price: "$0" },
+      { name: "Pro", price: "$19", period: "mo", highlighted: true, badge: "Popular" },
+      { name: "Enterprise", price: "Custom", period: "mo" },
+    ]}
+    features={[
+      { name: "Users", values: { Free: "1", Pro: "10", Enterprise: "Unlimited" } },
+      { name: "Storage", values: { Free: "1 GB", Pro: "100 GB", Enterprise: "Unlimited" } },
+      { name: "API Access", values: { Free: false, Pro: true, Enterprise: true } },
+      { name: "SSO", values: { Free: false, Pro: false, Enterprise: true } },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +30,19 @@ import { PricingTable } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<PricingTable>...</PricingTable>
+<PricingTable
+    columns={[
+      { name: "Free", price: "$0" },
+      { name: "Pro", price: "$19", period: "mo", highlighted: true, badge: "Popular" },
+      { name: "Enterprise", price: "Custom", period: "mo" },
+    ]}
+    features={[
+      { name: "Users", values: { Free: "1", Pro: "10", Enterprise: "Unlimited" } },
+      { name: "Storage", values: { Free: "1 GB", Pro: "100 GB", Enterprise: "Unlimited" } },
+      { name: "API Access", values: { Free: false, Pro: true, Enterprise: true } },
+      { name: "SSO", values: { Free: false, Pro: false, Enterprise: true } },
+    ]}
+  />
 ```
 
 ## Props

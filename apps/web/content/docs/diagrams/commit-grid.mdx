@@ -1,7 +1,32 @@
 ---
 title: CommitGrid
-description: "A CommitGrid component from the Sigil design system."
+description: "Show daily activity as a calendar heatmap."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <div className="w-full max-w-xl">
+  <CommitGrid
+    responsive
+    weeks={12}
+    data={[
+      { date: "2026-02-01", count: 3 }, { date: "2026-02-03", count: 5 },
+      { date: "2026-02-05", count: 7 }, { date: "2026-02-09", count: 8 },
+      { date: "2026-02-13", count: 2 }, { date: "2026-02-17", count: 4 },
+      { date: "2026-02-21", count: 6 }, { date: "2026-02-25", count: 1 },
+      { date: "2026-03-01", count: 8 }, { date: "2026-03-05", count: 5 },
+      { date: "2026-03-09", count: 3 }, { date: "2026-03-13", count: 7 },
+      { date: "2026-03-17", count: 2 }, { date: "2026-03-21", count: 6 },
+      { date: "2026-03-25", count: 4 }, { date: "2026-03-29", count: 8 },
+      { date: "2026-04-02", count: 1 }, { date: "2026-04-06", count: 5 },
+      { date: "2026-04-10", count: 7 }, { date: "2026-04-14", count: 3 },
+      { date: "2026-04-18", count: 6 }, { date: "2026-04-22", count: 4 },
+      { date: "2026-04-24", count: 5 },
+    ]}
+  />
+  </div>
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +37,14 @@ import { CommitGrid } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<CommitGrid>...</CommitGrid>
+<CommitGrid
+  data={[
+    { date: "2026-04-23", count: 4 },
+    { date: "2026-04-24", count: 8 },
+  ]}
+  weeks={12}
+  responsive
+/>
 ```
 
 ## Props
@@ -23,6 +55,7 @@ import { CommitGrid } from "@sigil-ui/components";
 | `weeks` | `number` | `52` | Number of weeks to show. |
 | `endDate` | `string` | — | Last date to render, formatted as YYYY-MM-DD. Defaults to the latest date in data. |
 | `cellSize` | `number` | `12` | Size of each cell in px. |
+| `responsive` | `boolean` | `false` | Fill the available width with equal square cells. Overrides `cellSize`. |
 | `gap` | `number` | `2` | Gap between cells in px. |
 | `color` | `string` | `var(--s-success)` | Color for filled cells. |
 | `showDayLabels` | `boolean` | `true` | Day labels on left side. |

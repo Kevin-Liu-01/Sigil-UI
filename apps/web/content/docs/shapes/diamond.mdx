@@ -1,7 +1,13 @@
 ---
 title: Diamond
-description: "A Diamond component from the Sigil design system."
+description: "Render a diamond shape using the active design tokens."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <Diamond size="xl" />
+</ComponentPreview>
 
 ## Import
 
@@ -9,23 +15,17 @@ description: "A Diamond component from the Sigil design system."
 import { Diamond } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <Diamond size={48} />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<Diamond>Diamond content</Diamond>
+<Diamond size="xl" />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `size` | `"sm" | "md" | "lg" | "xl"` | `md` | Diamond size. |
+| `size` | `"sm" \| "md" \| "lg" \| "xl"` | `md` | Diamond size. |
 
 ## Token integration
 

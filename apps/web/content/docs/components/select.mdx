@@ -1,13 +1,7 @@
 ---
 title: Select
-description: "A Select component from the Sigil design system."
+description: "Choose an option from an accessible popover list."
 ---
-
-## Import
-
-```tsx
-import { Select, SelectGroup, SelectValue, SelectTrigger, SelectContent, SelectItem, SelectLabel, SelectSeparator } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -23,10 +17,24 @@ import { Select, SelectGroup, SelectValue, SelectTrigger, SelectContent, SelectI
   </Select>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Select, SelectGroup, SelectValue, SelectTrigger, SelectContent, SelectItem, SelectLabel, SelectSeparator } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Select>...</Select>
+<Select>
+    <SelectTrigger className="w-48">
+      <SelectValue placeholder="Choose option" />
+    </SelectTrigger>
+    <SelectContent>
+      <SelectItem value="a">Option A</SelectItem>
+      <SelectItem value="b">Option B</SelectItem>
+    </SelectContent>
+  </Select>
 ```
 
 ## Sub-components

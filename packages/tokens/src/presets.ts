@@ -1,6 +1,7 @@
 import type { PresetMetadata, SigilPreset, SigilTokens } from "./types";
 import { defaultTokens } from "./tokens";
 import { deepMerge, type DeepPartial } from "./compile/merge";
+import { SigilTokenValidationError, resolveSigilPreset } from "./validation";
 
 /**
  * The default Sigil preset — precision-instrument aesthetic with
@@ -25,7 +26,9 @@ export function createPreset(
   tokens: SigilTokens,
   metadata: PresetMetadata = { description: "" },
 ): SigilPreset {
-  return { name, tokens, metadata };
+  const resolution = resolveSigilPreset({ name, tokens, metadata }, name);
+  if (!resolution.valid) throw new SigilTokenValidationError(resolution.issues);
+  return resolution.preset;
 }
 
 /**
@@ -38,7 +41,7 @@ export function mergePresets(
   name?: string,
   metadata?: PresetMetadata,
 ): SigilPreset {
-  return {
+  const candidate = {
     name: name ?? base.name,
     tokens: deepMerge(
       base.tokens as unknown as Record<string, unknown>,
@@ -46,4 +49,7 @@ export function mergePresets(
     ) as unknown as SigilTokens,
     metadata: { ...base.metadata, ...metadata },
   };
+  const resolution = resolveSigilPreset(candidate, candidate.name);
+  if (!resolution.valid) throw new SigilTokenValidationError(resolution.issues);
+  return resolution.preset;
 }

@@ -1,18 +1,12 @@
 ---
 title: Sidebar
-description: "A Sidebar component from the Sigil design system."
+description: "Organize application navigation in an expandable side panel."
 ---
-
-## Import
-
-```tsx
-import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupLabel, SidebarItem } from "@sigil-ui/components";
-```
 
 ## Preview
 
 <ComponentPreview>
-  <Sidebar className="w-64 border border-[var(--s-border)]">
+  <Sidebar className="relative h-[calc(var(--s-grid-cell)*6)] border border-[var(--s-border)]">
   <SidebarHeader>Navigation</SidebarHeader>
   <SidebarContent>
     <SidebarGroup>
@@ -24,10 +18,25 @@ import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarGroup, Si
 </Sidebar>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupLabel, SidebarItem } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Sidebar>...</Sidebar>
+<Sidebar className="relative h-[calc(var(--s-grid-cell)*6)] border border-[var(--s-border)]">
+  <SidebarHeader>Navigation</SidebarHeader>
+  <SidebarContent>
+    <SidebarGroup>
+      <SidebarGroupLabel>Menu</SidebarGroupLabel>
+      <SidebarItem>Dashboard</SidebarItem>
+      <SidebarItem>Settings</SidebarItem>
+    </SidebarGroup>
+  </SidebarContent>
+</Sidebar>
 ```
 
 ## Sub-components

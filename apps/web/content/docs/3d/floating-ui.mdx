@@ -1,7 +1,13 @@
 ---
 title: FloatingUI
-description: "A FloatingUI component from the Sigil design system."
+description: "Arrange interface panels in a layered visual composition."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <FloatingUI layers={[<div key="content" className="p-6 bg-[var(--s-surface)]">Content layer</div>, <div key="controls" className="p-6 bg-[var(--s-surface-raised)]">Controls layer</div>]} />
+</ComponentPreview>
 
 ## Import
 
@@ -9,16 +15,10 @@ description: "A FloatingUI component from the Sigil design system."
 import { FloatingUI } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <FloatingUI />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<FloatingUI>...</FloatingUI>
+<FloatingUI layers={[<div key="content" className="p-6 bg-[var(--s-surface)]">Content layer</div>, <div key="controls" className="p-6 bg-[var(--s-surface-raised)]">Controls layer</div>]} />
 ```
 
 ## Props
@@ -27,7 +27,7 @@ import { FloatingUI } from "@sigil-ui/components";
 |---|---|---|---|
 | `layers` | `ReactNode[]` | — | Array of React elements to stack as floating layers. |
 | `offset` | `number` | `20` | Pixel offset between each layer. |
-| `shadowDepth` | `"sm" | "md" | "lg"` | `md` | Shadow depth applied to each layer. |
+| `shadowDepth` | `"sm" \| "md" \| "lg"` | `md` | Shadow depth applied to each layer. |
 
 ## Token integration
 

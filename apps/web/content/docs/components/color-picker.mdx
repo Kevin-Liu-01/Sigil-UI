@@ -1,13 +1,7 @@
 ---
 title: ColorPicker
-description: "A ColorPicker component from the Sigil design system."
+description: "Choose a color with a visual picker and editable value."
 ---
-
-## Import
-
-```tsx
-import { ColorPicker } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -15,21 +9,27 @@ import { ColorPicker } from "@sigil-ui/components";
   <ColorPicker defaultValue="oklch(0.62 0.20 264)" />
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { ColorPicker } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<ColorPicker>ColorPicker content</ColorPicker>
+<ColorPicker defaultValue="oklch(0.62 0.20 264)" />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `value` | `string` | — | — |
-| `defaultValue` | `string` | — | — |
-| `onChange` | `(color: string) => void` | — | — |
-| `swatches` | `string[]` | — | — |
-| `disabled` | `boolean` | — | — |
+| `value` | `string` | — | The current controlled value. |
+| `defaultValue` | `string` | — | Initial value when the component manages its own state. |
+| `onChange` | `(color: string) => void` | — | Called when the value changes. |
+| `swatches` | `string[]` | — | Swatches configuration. |
+| `disabled` | `boolean` | — | Prevents user interaction when enabled. |
 
 ## Token integration
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
+import { forwardRef, useState, type HTMLAttributes, type ReactNode } from "react";
 import { cn } from "../utils";
 
 export interface CostSlider {
@@ -29,6 +29,7 @@ export interface CostCalculatorProps extends HTMLAttributes<HTMLDivElement> {
 
 export const CostCalculator = forwardRef<HTMLDivElement, CostCalculatorProps>(
   function CostCalculator({ sliders, estimate, sliderRenderer, className, ...rest }, ref) {
+    const [localValues, setLocalValues] = useState<Record<string, number>>({});
     const safeSliders = sliders ?? [];
     const safeEstimate: CostEstimate = estimate ?? { brandName: "Plan", brandCost: 0 };
     const savings = safeEstimate.competitorCost
@@ -61,30 +62,37 @@ export const CostCalculator = forwardRef<HTMLDivElement, CostCalculatorProps>(
               Configure
             </legend>
             <div className="flex flex-col gap-4">
-              {safeSliders.map((s) => (
+              {safeSliders.map((s) => {
+                const value = localValues[s.label] ?? s.value;
+                return (
                 sliderRenderer ? sliderRenderer(s) : (
                   <div key={s.label} className="flex items-center gap-3">
                     <span className="text-[13px] font-[family:var(--s-font-mono)] w-24 shrink-0" style={{ color: "var(--s-text-secondary)" }}>
                       {s.label}
                     </span>
                     <input
+                      aria-label={s.label}
                       type="range"
                       min={s.min ?? 0}
                       max={s.max ?? 100}
                       step={s.step ?? 1}
-                      value={s.value}
-                      onChange={(e) => s.onChange?.(Number(e.target.value))}
-                      className="flex-1 h-1.5 accent-[var(--s-primary)] cursor-pointer"
+                      value={value}
+                      onChange={(e) => {
+                        const next = Number(e.target.value);
+                        if (!s.onChange) setLocalValues((current) => ({ ...current, [s.label]: next }));
+                        s.onChange?.(next);
+                      }}
+                      className="h-[var(--s-control-hit-area,2.75rem)] flex-1 cursor-pointer accent-[var(--s-primary)]"
                     />
                     <span
                       className="text-[13px] font-[family:var(--s-font-mono)] w-20 text-right font-semibold tabular-nums"
                       style={{ color: "var(--s-text)" }}
                     >
-                      {s.value} {s.unit}
+                      {value} {s.unit}
                     </span>
                   </div>
-                )
-              ))}
+                ));
+              })}
             </div>
           </fieldset>
         </div>

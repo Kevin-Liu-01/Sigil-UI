@@ -218,7 +218,6 @@ export default function WalkthroughPage() {
       <SigilSection borderTop space="hero" className="relative overflow-hidden">
         <TextureBg opacity={0.3} />
         <div className="relative z-[1]">
-        <MonoLabel variant="accent" className="block mb-4">/ Walkthrough</MonoLabel>
 
         <h1 className="font-[family-name:var(--s-font-display)] font-bold text-[clamp(32px,5vw,56px)] leading-[1.08] tracking-[-0.03em] text-[var(--s-text)] mb-4 max-w-3xl">
           From Zero to Production in 7 Steps.

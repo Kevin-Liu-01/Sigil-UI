@@ -1,7 +1,18 @@
 ---
 title: FrostedPanel
-description: "A FrostedPanel component from the Sigil design system."
+description: "Place content on a translucent, blurred surface."
 ---
+
+## Preview
+
+<ComponentPreview label="Frosted surface">
+  <div className="relative w-full overflow-hidden border border-[var(--s-border)] bg-[var(--s-primary-muted)] p-[var(--s-space-8)]">
+    <FrostedPanel edge="left" className="p-[var(--s-space-6)]">
+      <p className="font-medium text-[var(--s-text)]">Context panel</p>
+      <p className="mt-2 text-sm text-[var(--s-text-muted)]">The backdrop remains visible while content stays readable.</p>
+    </FrostedPanel>
+  </div>
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +23,12 @@ import { FrostedPanel } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<FrostedPanel>...</FrostedPanel>
+<div className="relative w-full overflow-hidden border border-[var(--s-border)] bg-[var(--s-primary-muted)] p-[var(--s-space-8)]">
+    <FrostedPanel edge="left" className="p-[var(--s-space-6)]">
+      <p className="font-medium text-[var(--s-text)]">Context panel</p>
+      <p className="mt-2 text-sm text-[var(--s-text-muted)]">The backdrop remains visible while content stays readable.</p>
+    </FrostedPanel>
+  </div>
 ```
 
 ## Props
@@ -20,8 +36,8 @@ import { FrostedPanel } from "@sigil-ui/components";
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `edge` | `FrostedPanelEdge` | `left` | Which edge gets a border. |
-| `variant` | `"frosted" | "solid"` | `frosted` | Use frosted glass (blur) or solid bg. |
-| `as` | `"div" | "aside" | "nav" | "header"` | `div` | Element type. |
+| `variant` | `"frosted" \| "solid"` | `frosted` | Use frosted glass (blur) or solid bg. |
+| `as` | `"div" \| "aside" \| "nav" \| "header"` | `div` | Element type. |
 
 ## Token integration
 

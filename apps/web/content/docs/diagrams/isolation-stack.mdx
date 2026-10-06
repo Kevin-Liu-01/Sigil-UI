@@ -1,7 +1,24 @@
 ---
 title: IsolationStack
-description: "A IsolationStack component from the Sigil design system."
+description: "Illustrate boundaries between stacked system layers."
 ---
+
+## Preview
+
+<ComponentPreview label="Isolation model">
+  <IsolationStack
+    layers={[
+      { label: "Hardware", width: "100%" },
+      { label: "Kernel", width: "78%" },
+      { label: "Workload", width: "56%", accent: true },
+    ]}
+    columns={[{ key: "sigil", label: "Sigil", accent: true }, { key: "other", label: "Other" }]}
+    rows={[
+      { label: "Tokens", values: { sigil: "full", other: "partial" } },
+      { label: "Presets", values: { sigil: "full", other: "none" } },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +29,18 @@ import { IsolationStack } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<IsolationStack>...</IsolationStack>
+<IsolationStack
+    layers={[
+      { label: "Hardware", width: "100%" },
+      { label: "Kernel", width: "78%" },
+      { label: "Workload", width: "56%", accent: true },
+    ]}
+    columns={[{ key: "sigil", label: "Sigil", accent: true }, { key: "other", label: "Other" }]}
+    rows={[
+      { label: "Tokens", values: { sigil: "full", other: "partial" } },
+      { label: "Presets", values: { sigil: "full", other: "none" } },
+    ]}
+  />
 ```
 
 ## Props

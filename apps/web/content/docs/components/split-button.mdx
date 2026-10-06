@@ -1,7 +1,13 @@
 ---
 title: SplitButton
-description: "A SplitButton component from the Sigil design system."
+description: "Pair a primary action with a menu of related actions."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <SplitButtonPreview />
+</ComponentPreview>
 
 ## Import
 
@@ -9,33 +15,31 @@ description: "A SplitButton component from the Sigil design system."
 import { SplitButton } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <SplitButton
-    items={[
-      { label: "Save and continue" },
-      { label: "Save as draft" },
-      { label: "Discard changes" },
-    ]}
-  >
-    Save
-  </SplitButton>
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<SplitButton>SplitButton content</SplitButton>
+"use client";
+
+import { useState } from "react";
+import { SplitButton } from "@sigil-ui/components";
+
+function SplitButtonPreview() {
+  const [message, setMessage] = useState("Choose an action.");
+  return <div className="grid gap-[var(--s-space-16)] w-full">
+    <div><SplitButton onClick={() => setMessage("Project saved.")} onDropdownClick={() => setMessage("Save a copy selected.")} dropdownLabel="Save a copy">Save project</SplitButton></div>
+    <p role="status" className="text-[var(--s-text-muted)] text-[length:var(--s-size-sm)]">{message}</p>
+  </div>;
+}
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `icon` | `ReactNode` | — | — |
-| `onDropdownClick` | `() => void` | — | — |
-| `dropdownLabel` | `string` | — | — |
+| `children` (required) | `ReactNode` | — | Content rendered inside the component. |
+| `icon` | `ReactNode` | — | Icon configuration. |
+| `onDropdownClick` | `() => void` | — | On Dropdown Click configuration. |
+| `dropdownLabel` | `string` | — | Dropdown Label configuration. |
 
 ## Token integration
 

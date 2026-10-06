@@ -1,13 +1,7 @@
 ---
 title: NumberField
-description: "A NumberField component from the Sigil design system."
+description: "Edit a numeric value with increment and decrement controls."
 ---
-
-## Import
-
-```tsx
-import { NumberField } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -15,22 +9,29 @@ import { NumberField } from "@sigil-ui/components";
   <NumberField defaultValue={42} />
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { NumberField } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<NumberField>NumberField content</NumberField>
+<NumberField defaultValue={42} />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `value` | `number` | — | — |
-| `onValueChange` | `(value: number) => void` | — | — |
-| `min` | `number` | — | — |
-| `max` | `number` | — | — |
-| `step` | `number` | — | — |
-| `disabled` | `boolean` | — | — |
+| `value` | `number` | — | The current controlled value. |
+| `defaultValue` | `number` | — | Initial value when the component manages its own state. |
+| `onValueChange` | `(value: number) => void` | — | Called when the user changes the value. |
+| `min` | `number` | — | Smallest allowed value. |
+| `max` | `number` | — | Largest allowed value. |
+| `step` | `number` | — | Amount added or removed by each adjustment. |
+| `disabled` | `boolean` | — | Prevents user interaction when enabled. |
 
 ## Token integration
 

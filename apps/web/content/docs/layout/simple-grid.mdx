@@ -1,13 +1,7 @@
 ---
 title: SimpleGrid
-description: "A SimpleGrid component from the Sigil design system."
+description: "Arrange equal-width items in a responsive grid."
 ---
-
-## Import
-
-```tsx
-import { SimpleGrid } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -19,10 +13,20 @@ import { SimpleGrid } from "@sigil-ui/components";
 </SimpleGrid>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { SimpleGrid } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<SimpleGrid>...</SimpleGrid>
+<SimpleGrid columns={3} gap={16}>
+  <div className="p-4 border border-[var(--s-border)]">1</div>
+  <div className="p-4 border border-[var(--s-border)]">2</div>
+  <div className="p-4 border border-[var(--s-border)]">3</div>
+</SimpleGrid>
 ```
 
 ## Props
@@ -30,5 +34,5 @@ import { SimpleGrid } from "@sigil-ui/components";
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `columns` | `number` | — | Fixed number of columns. |
-| `minChildWidth` | `number | string` | — | Minimum child width for auto-fill responsive grid. Overrides `columns`. |
-| `gap` | `number | string` | — | Gap between items. |
+| `minChildWidth` | `number \| string` | — | Minimum child width for auto-fill responsive grid. Overrides `columns`. |
+| `gap` | `number \| string` | — | Gap between items. |

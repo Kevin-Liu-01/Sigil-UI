@@ -1,13 +1,7 @@
 ---
 title: BlurFade
-description: "A BlurFade component from the Sigil design system."
+description: "Reveal content with a short blur and fade transition."
 ---
-
-## Import
-
-```tsx
-import { BlurFade } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -17,10 +11,18 @@ import { BlurFade } from "@sigil-ui/components";
 </BlurFade>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { BlurFade } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<BlurFade>...</BlurFade>
+<BlurFade>
+  <p className="text-lg font-medium">Blur fade animation</p>
+</BlurFade>
 ```
 
 ## Props
@@ -30,7 +32,7 @@ import { BlurFade } from "@sigil-ui/components";
 | `blur` | `number` | `10` | Initial blur radius in pixels. |
 | `yOffset` | `number` | `16` | Vertical offset in pixels. |
 | `delay` | `number` | `0` | Delay before animation in ms. |
-| `trigger` | `"scroll" | "mount"` | — | — |
+| `trigger` | `"scroll" \| "mount"` | — | — |
 | `viewOptions` | `UseInViewOptions` | — | — |
 
 ## Token integration

@@ -8,6 +8,7 @@ import { CodeBlock } from "./CodeBlock";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./Tabs";
 import { Textarea } from "./Textarea";
 import { cn } from "../utils";
+import { useCopyToClipboard } from "../use-copy-to-clipboard";
 
 export interface CodeTab {
   value: string;
@@ -72,21 +73,19 @@ export const CopyButton = forwardRef<HTMLButtonElement, CopyButtonProps>(functio
   { value, children = "Copy", copiedLabel = "Copied", onClick, ...props },
   ref,
 ) {
-  const [copied, setCopied] = useState(false);
+  const { copy, copied, error } = useCopyToClipboard(value, 1200);
   return (
     <Button
       ref={ref}
       variant="outline"
+      aria-live="polite"
       onClick={(event) => {
-        void navigator.clipboard?.writeText(value).then(() => {
-          setCopied(true);
-          window.setTimeout(() => setCopied(false), 1200);
-        });
         onClick?.(event);
+        if (!event.defaultPrevented) void copy();
       }}
       {...props}
     >
-      {copied ? copiedLabel : children}
+      {error ? "Copy failed — retry" : copied ? copiedLabel : children}
     </Button>
   );
 });

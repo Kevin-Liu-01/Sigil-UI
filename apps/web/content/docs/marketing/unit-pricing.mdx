@@ -1,7 +1,20 @@
 ---
 title: UnitPricing
-description: "A UnitPricing component from the Sigil design system."
+description: "Explain a price that scales with measured usage."
 ---
+
+## Preview
+
+<ComponentPreview label="Usage pricing">
+  <UnitPricing
+    toggle={<div className="flex border border-[var(--s-border)]"><button type="button" className="bg-[var(--s-primary)] px-4 py-2 text-sm text-[var(--s-primary-contrast)]">Monthly</button><button type="button" className="bg-[var(--s-surface)] px-4 py-2 text-sm text-[var(--s-text)]">Annual</button></div>}
+    units={[
+      { category: "Build minutes", price: "$0.008", unit: "per minute", footnote: "First 1,000 included" },
+      { category: "Storage", price: "$0.12", unit: "per GB / month" },
+      { category: "Bandwidth", price: "$0.06", unit: "per GB", badge: "Global" },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,15 +25,22 @@ import { UnitPricing } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<UnitPricing>...</UnitPricing>
+<UnitPricing
+    toggle={<div className="flex border border-[var(--s-border)]"><button type="button" className="bg-[var(--s-primary)] px-4 py-2 text-sm text-[var(--s-primary-contrast)]">Monthly</button><button type="button" className="bg-[var(--s-surface)] px-4 py-2 text-sm text-[var(--s-text)]">Annual</button></div>}
+    units={[
+      { category: "Build minutes", price: "$0.008", unit: "per minute", footnote: "First 1,000 included" },
+      { category: "Storage", price: "$0.12", unit: "per GB / month" },
+      { category: "Bandwidth", price: "$0.06", unit: "per GB", badge: "Global" },
+    ]}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `units` | `PricingUnit[]` | — | — |
-| `toggle` | `ReactNode` | — | — |
+| `units` (required) | `PricingUnit[]` | — | Units configuration. |
+| `toggle` | `ReactNode` | — | Toggle configuration. |
 
 ## Token integration
 

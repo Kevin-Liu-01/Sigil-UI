@@ -3,17 +3,17 @@ title: Calendar
 description: "A token-driven calendar built on react-day-picker with single, range, and dropdown navigation modes."
 ---
 
+## Preview
+
+<ComponentPreview vertical>
+  <CalendarPreview />
+</ComponentPreview>
+
 ## Import
 
 ```tsx
 import { Calendar } from "@sigil-ui/components";
 ```
-
-## Preview
-
-<ComponentPreview vertical>
-  <Calendar mode="single" defaultMonth={new Date(2026, 4, 1)} selected={new Date(2026, 4, 12)} />
-</ComponentPreview>
 
 ## Variants
 
@@ -37,9 +37,18 @@ import { Calendar } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-const [date, setDate] = React.useState<Date>();
+"use client";
 
-<Calendar mode="single" selected={date} onSelect={setDate} />
+import { useState } from "react";
+import { Calendar } from "@sigil-ui/components";
+
+function CalendarPreview() {
+  const [date, setDate] = useState<Date | undefined>(new Date(2026, 4, 12));
+  return <div className="grid gap-[var(--s-space-16)] w-full">
+    <Calendar mode="single" defaultMonth={new Date(2026, 4, 1)} selected={date} onSelect={setDate} />
+    <p role="status" className="text-[var(--s-text-muted)] text-[length:var(--s-size-sm)]">{date ? `Selected: ${date.toLocaleDateString("en-US", { dateStyle: "long" })}` : "Choose a date."}</p>
+  </div>;
+}
 ```
 
 For ranges:

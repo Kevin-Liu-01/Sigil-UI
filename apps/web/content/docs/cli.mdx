@@ -93,6 +93,8 @@ npx @sigil-ui/cli add --all
 | `-o, --overwrite` | Replace existing files | `false` |
 | `-d, --dir <dir>` | Override components directory | from `sigil.config.ts` |
 
+Copied entries re-export local source from an adjacent `_sigil/` directory, including required hooks and utilities. Keep that directory with the entry. Install the external dependencies reported by the CLI. Existing source is preserved unless you pass `--overwrite`; unknown names or missing source return a nonzero exit status.
+
 ### `preset`
 
 Browse, switch, or create presets.

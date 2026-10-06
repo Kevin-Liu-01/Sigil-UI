@@ -1,7 +1,13 @@
 ---
 title: Box3D
-description: "A Box3D component from the Sigil design system."
+description: "Render a dimensional box with individually styled faces."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <Box3D className="w-full max-w-sm p-8" hoverLift><strong>Token-driven surfaces</strong><p>Move over the panel to explore its depth.</p></Box3D>
+</ComponentPreview>
 
 ## Import
 
@@ -9,16 +15,10 @@ description: "A Box3D component from the Sigil design system."
 import { Box3D } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <Box3D size={80} />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<Box3D>...</Box3D>
+<Box3D className="w-full max-w-sm p-8" hoverLift><strong>Token-driven surfaces</strong><p>Move over the panel to explore its depth.</p></Box3D>
 ```
 
 ## Props
@@ -29,7 +29,7 @@ import { Box3D } from "@sigil-ui/components";
 | `tiltX` | `number` | `-10` | X-axis tilt in degrees. |
 | `tiltY` | `number` | `20` | Y-axis tilt in degrees. |
 | `perspective` | `number` | `800` | Perspective distance in px. |
-| `variant` | `"container" | "card" | "panel"` | `container` | Preset variant. |
+| `variant` | `"container" \| "card" \| "panel"` | `container` | Preset variant. |
 | `hoverLift` | `boolean` | `false` | Lift on hover. |
 
 ## Token integration

@@ -1,13 +1,7 @@
 ---
 title: Editable
-description: "A Editable component from the Sigil design system."
+description: "Switch a displayed value into an inline editor."
 ---
-
-## Import
-
-```tsx
-import { Editable } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -15,21 +9,27 @@ import { Editable } from "@sigil-ui/components";
   <Editable defaultValue="Click to edit" />
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Editable } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Editable>Editable content</Editable>
+<Editable defaultValue="Click to edit" />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `value` | `string` | — | — |
-| `defaultValue` | `string` | — | — |
-| `onChange` | `(value: string) => void` | — | — |
-| `placeholder` | `string` | — | — |
-| `disabled` | `boolean` | — | — |
+| `value` | `string` | — | The current controlled value. |
+| `defaultValue` | `string` | — | Initial value when the component manages its own state. |
+| `onChange` | `(value: string) => void` | — | Called when the value changes. |
+| `placeholder` | `string` | — | Hint shown before a value is entered. |
+| `disabled` | `boolean` | — | Prevents user interaction when enabled. |
 
 ## Token integration
 

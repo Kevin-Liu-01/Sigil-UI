@@ -13,7 +13,7 @@ export interface Box3DGridItem extends Omit<Box3DProps, "children"> {
 
 export interface Box3DGridProps extends HTMLAttributes<HTMLDivElement> {
   /** Items to display in the grid. */
-  items: Box3DGridItem[];
+  items?: Box3DGridItem[];
   /** Number of columns. @default 3 */
   columns?: number;
   /** Gap between boxes. @default "1.5rem" */
@@ -22,10 +22,11 @@ export interface Box3DGridProps extends HTMLAttributes<HTMLDivElement> {
 
 /** Grid layout of 3D boxes. */
 export const Box3DGrid = forwardRef<HTMLDivElement, Box3DGridProps>(function Box3DGrid(
-  { items, columns = 3, gap = "1.5rem", className, style, ...rest },
+  { items = [], columns = 3, gap = "var(--s-grid-gap, 1.5rem)", className, style, ...rest },
   ref,
 ) {
   const resolvedGap = typeof gap === "number" ? `${gap}px` : gap;
+  const resolvedColumns = Number.isFinite(columns) ? Math.max(1, Math.floor(columns)) : 3;
 
   return (
     <div
@@ -33,14 +34,18 @@ export const Box3DGrid = forwardRef<HTMLDivElement, Box3DGridProps>(function Box
       data-slot="box-3d-grid"
       className={cn("grid", className)}
       style={{
-        gridTemplateColumns: `repeat(${columns}, 1fr)`,
+        gridTemplateColumns: `repeat(${resolvedColumns}, minmax(0, 1fr))`,
         gap: resolvedGap,
         ...style,
       }}
       {...rest}
     >
-      {items.map(({ key, children, ...boxProps }) => (
-        <Box3D key={key} {...boxProps}>
+      {items.map(({ key, children, className: boxClassName, ...boxProps }) => (
+        <Box3D
+          key={key}
+          className={cn("w-full [&>div]:block [&>div>div:last-child]:w-full", boxClassName)}
+          {...boxProps}
+        >
           {children}
         </Box3D>
       ))}

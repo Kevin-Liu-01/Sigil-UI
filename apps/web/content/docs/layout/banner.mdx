@@ -1,13 +1,7 @@
 ---
 title: Banner
-description: "A Banner component from the Sigil design system."
+description: "Display a full-width message within the page layout."
 ---
-
-## Import
-
-```tsx
-import { Banner } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -17,20 +11,28 @@ import { Banner } from "@sigil-ui/components";
   </Banner>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Banner } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Banner>Banner content</Banner>
+<Banner>
+    Banner content
+  </Banner>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `variant` | `BannerVariant` | — | — |
-| `icon` | `ReactNode` | — | — |
-| `dismissible` | `boolean` | — | — |
-| `onDismiss` | `() => void` | — | — |
+| `variant` | `BannerVariant` | — | Selects a supported visual treatment. |
+| `icon` | `ReactNode` | — | Icon configuration. |
+| `dismissible` | `boolean` | — | Dismissible configuration. |
+| `onDismiss` | `() => void` | — | On Dismiss configuration. |
 
 ## Token integration
 

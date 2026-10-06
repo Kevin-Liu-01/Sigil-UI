@@ -61,7 +61,7 @@ export const BarChart = forwardRef<HTMLDivElement, BarChartProps>(
                   ))}
                 </div>
               )}
-              <div className="flex-1 relative flex items-end gap-6">
+              <div className="min-w-0 flex-1 relative flex items-end gap-[var(--s-space-12)]">
                 {showGrid && (
                   <div className="absolute inset-0 flex flex-col justify-between pointer-events-none">
                     {[0, 1, 2, 3, 4].map((i) => (
@@ -70,19 +70,19 @@ export const BarChart = forwardRef<HTMLDivElement, BarChartProps>(
                   </div>
                 )}
                 {groups.map((group) => (
-                  <div key={group.label} className="flex flex-col items-center gap-2 relative z-[1]">
-                    <div className="flex items-end gap-1">
+                  <div key={group.label} className="min-w-0 flex-1 flex flex-col items-center gap-2 relative z-[1]">
+                    <div className="w-full min-w-0 flex items-end gap-1">
                       {group.bars.map((bar, bi) => {
                         const h = (bar.value / maxVal) * maxBarSize;
                         return (
-                          <div key={bar.label} className="flex flex-col items-center gap-1">
+                          <div key={bar.label} className="min-w-0 flex-1 flex flex-col items-center gap-1">
                             {showValues && (
                               <span className="text-[10px] font-[family-name:var(--s-font-mono)] text-[var(--s-text-muted)] tabular-nums">
                                 {bar.value}
                               </span>
                             )}
                             <div
-                              className="w-8 rounded-t-[var(--s-radius-sm,2px)] transition-all duration-[var(--s-duration-normal,250ms)]"
+                              className="w-full max-w-[var(--s-space-32)] rounded-t-[var(--s-radius-sm,2px)] transition-all duration-[var(--s-duration-normal,250ms)]"
                               style={{
                                 height: Math.max(h, 2),
                                 backgroundColor: bar.color ?? defaultColors[bi % defaultColors.length],

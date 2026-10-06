@@ -1,5 +1,4 @@
 import "./global.css";
-import { Roboto_Mono } from "next/font/google";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { SigilShell } from "@/components/sigil-shell";
@@ -10,12 +9,6 @@ import {
   SIGIL_ONE_LINER,
   SIGIL_PRODUCT_STATS,
 } from "@/lib/product-stats";
-
-const robotoMono = Roboto_Mono({
-  subsets: ["latin"],
-  variable: "--font-roboto-mono",
-  display: "swap",
-});
 
 const siteDescription = `${SIGIL_ONE_LINER} ${SIGIL_PRODUCT_SUMMARY} — all styled through CSS custom properties. Switch presets and every component updates instantly.`;
 const ogDescription = `One token file. ${SIGIL_PRODUCT_SUMMARY}. Switch presets and your entire UI updates — colors, fonts, spacing, radius, motion, everything.`;
@@ -97,7 +90,7 @@ const jsonLd = {
       logo: "https://sigil-ui.com/logo.svg",
       description: `Open-source React component library with ${SIGIL_PRODUCT_SUMMARY}. One token file controls every color, font, radius, and animation.`,
       sameAs: [
-        "https://github.com/keiranlovett/reticle-ui",
+        "https://github.com/Kevin-Liu-01/sigil-ui",
         "https://www.npmjs.com/org/sigil-ui",
         "https://x.com/kevinliu",
       ],
@@ -139,20 +132,25 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
-      className={robotoMono.variable}
       suppressHydrationWarning
     >
       <head>
+        <link rel="preload" href="/fonts/inter/InterVariable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         {/*
-          Demo fonts referenced by the hero diagram's typography demo.
-          Registered under their canonical Google Font names so the demo's
-          literal `font-family: "Space Grotesk"` / `"DM Sans"` swaps land.
+          Web families used by presets, the hero diagram, and the dock font lab.
+          Licensed local-only families are declared separately in global.css.
         */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="preconnect" href="https://api.fontshare.com" />
+        <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap"
+          href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700,800&amp;display=swap"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;family=Outfit:wght@300..800&amp;family=Schibsted+Grotesk:ital,wght@0,400..900;1,400..900&amp;family=Sora:wght@300..800&amp;family=Space+Grotesk:wght@500;700&amp;display=swap"
         />
       </head>
       <body suppressHydrationWarning>

@@ -1,7 +1,13 @@
 ---
 title: LayoutControls
-description: "A LayoutControls component from the Sigil design system."
+description: "Expose controls for adjusting a layout demonstration."
 ---
+
+## Preview
+
+<ComponentPreview label="Live layout controls" vertical>
+  <LayoutControls className="!grid-cols-1" />
+</ComponentPreview>
 
 ## Import
 
@@ -12,23 +18,16 @@ import { LayoutControls } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<LayoutControls>...</LayoutControls>
+<LayoutControls className="!grid-cols-1" />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `onPatch` | `(category: string, key: string, value: string) => void` | — | — |
-| `values` | `{` | — | — |
-| `navbarHeight` | `string` | — | — |
-| `pageMargin` | `string` | — | — |
-| `gutter` | `string` | — | — |
-| `sectionGap` | `string` | — | — |
-| `bentoGap` | `string` | — | — |
-| `bentoRadius` | `string` | — | — |
-| `contentMax` | `string` | — | — |
-| `gridColumns` | `string` | — | — |
+| `onPatch` | `(category: string, key: string, value: string) => void` | — | On Patch configuration. |
+| `values` | `{ navbarHeight?: string; pageMargin?: string; gutter?: string; sectionGap?: string; bentoGap?: string; bentoRadius?: string; contentMax?: string; gridColumns?: string; }` | — | Values configuration. |
+| `className` | `string` | — | Additional classes merged with the component styles. |
 
 ## Token integration
 

@@ -1,13 +1,7 @@
 ---
 title: Frame
-description: "A Frame component from the Sigil design system."
+description: "Enclose content within a structural page frame."
 ---
-
-## Import
-
-```tsx
-import { Frame } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -15,17 +9,23 @@ import { Frame } from "@sigil-ui/components";
   <Frame className="p-6">Framed content</Frame>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Frame } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Frame>...</Frame>
+<Frame className="p-6">Framed content</Frame>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `variant` | `"default" | "accent" | "dashed"` | `default` | Border style variant. |
+| `variant` | `"default" \| "accent" \| "dashed"` | `default` | Border style variant. |
 
 ## Token integration
 

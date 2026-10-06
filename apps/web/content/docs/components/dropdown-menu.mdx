@@ -13,6 +13,22 @@ description: Trigger-activated dropdown with items, submenus, checkboxes, and ra
 npx @sigil-ui/cli add dropdown-menu
 ```
 
+## Preview
+
+<ComponentPreview>
+  <DropdownMenu>
+  <DropdownMenuTrigger asChild><Button variant="outline">Options</Button></DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuLabel>Actions</DropdownMenuLabel>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>Edit</DropdownMenuItem>
+    <DropdownMenuItem>Duplicate</DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>Delete</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+</ComponentPreview>
+
 ## Import
 
 ```tsx
@@ -32,22 +48,6 @@ import {
   DropdownMenuRadioItem,
 } from "@sigil-ui/components";
 ```
-
-## Preview
-
-<ComponentPreview>
-  <DropdownMenu>
-  <DropdownMenuTrigger asChild><Button variant="outline">Options</Button></DropdownMenuTrigger>
-  <DropdownMenuContent>
-    <DropdownMenuLabel>Actions</DropdownMenuLabel>
-    <DropdownMenuSeparator />
-    <DropdownMenuItem>Edit</DropdownMenuItem>
-    <DropdownMenuItem>Duplicate</DropdownMenuItem>
-    <DropdownMenuSeparator />
-    <DropdownMenuItem>Delete</DropdownMenuItem>
-  </DropdownMenuContent>
-</DropdownMenu>
-</ComponentPreview>
 
 ## Usage
 

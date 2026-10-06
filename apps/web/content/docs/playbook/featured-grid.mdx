@@ -1,7 +1,19 @@
 ---
 title: FeaturedGrid
-description: "A FeaturedGrid component from the Sigil design system."
+description: "Give featured content extra emphasis within a grid."
 ---
+
+## Preview
+
+<ComponentPreview label="Featured grid">
+  <FeaturedGrid columns={3} className="w-full">
+    <div className="min-h-40 bg-[var(--s-surface)] p-[var(--s-space-6)] text-[var(--s-text)]"><strong>Featured system</strong><p className="mt-2 text-sm text-[var(--s-text-muted)]">A larger lead story anchors the composition.</p></div>
+    <div className="min-h-40 bg-[var(--s-background)] p-[var(--s-space-6)] text-sm text-[var(--s-text)]">Companion</div>
+    <div className="bg-[var(--s-surface)] p-[var(--s-space-4)] text-sm text-[var(--s-text)]">Tokens</div>
+    <div className="bg-[var(--s-surface)] p-[var(--s-space-4)] text-sm text-[var(--s-text)]">Presets</div>
+    <div className="bg-[var(--s-surface)] p-[var(--s-space-4)] text-sm text-[var(--s-text)]">Components</div>
+  </FeaturedGrid>
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +24,13 @@ import { FeaturedGrid } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<FeaturedGrid>...</FeaturedGrid>
+<FeaturedGrid columns={3} className="w-full">
+    <div className="min-h-40 bg-[var(--s-surface)] p-[var(--s-space-6)] text-[var(--s-text)]"><strong>Featured system</strong><p className="mt-2 text-sm text-[var(--s-text-muted)]">A larger lead story anchors the composition.</p></div>
+    <div className="min-h-40 bg-[var(--s-background)] p-[var(--s-space-6)] text-sm text-[var(--s-text)]">Companion</div>
+    <div className="bg-[var(--s-surface)] p-[var(--s-space-4)] text-sm text-[var(--s-text)]">Tokens</div>
+    <div className="bg-[var(--s-surface)] p-[var(--s-space-4)] text-sm text-[var(--s-text)]">Presets</div>
+    <div className="bg-[var(--s-surface)] p-[var(--s-space-4)] text-sm text-[var(--s-text)]">Components</div>
+  </FeaturedGrid>
 ```
 
 ## Props

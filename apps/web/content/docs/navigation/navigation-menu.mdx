@@ -1,13 +1,7 @@
 ---
 title: NavigationMenu
-description: "A NavigationMenu component from the Sigil design system."
+description: "Build a site menu with expandable content panels."
 ---
-
-## Import
-
-```tsx
-import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -21,16 +15,34 @@ import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuT
       </NavigationMenuContent>
     </NavigationMenuItem>
     <NavigationMenuItem>
-      <NavigationMenuLink href="/docs/components">Components</NavigationMenuLink>
+      <NavigationMenuLink href="/docs">Components</NavigationMenuLink>
     </NavigationMenuItem>
   </NavigationMenuList>
 </NavigationMenu>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<NavigationMenu>...</NavigationMenu>
+<NavigationMenu>
+  <NavigationMenuList>
+    <NavigationMenuItem>
+      <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+      <NavigationMenuContent>
+        <NavigationMenuLink href="/docs">Documentation</NavigationMenuLink>
+      </NavigationMenuContent>
+    </NavigationMenuItem>
+    <NavigationMenuItem>
+      <NavigationMenuLink href="/docs">Components</NavigationMenuLink>
+    </NavigationMenuItem>
+  </NavigationMenuList>
+</NavigationMenu>
 ```
 
 ## Sub-components

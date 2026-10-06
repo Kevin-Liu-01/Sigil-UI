@@ -1,13 +1,7 @@
 ---
 title: CodeBlock
-description: "A CodeBlock component from the Sigil design system."
+description: "Display formatted source code with syntax highlighting."
 ---
-
-## Import
-
-```tsx
-import { CodeBlock } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -19,10 +13,20 @@ export function CTA() {
 }`} />
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { CodeBlock } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<CodeBlock>...</CodeBlock>
+<CodeBlock language="tsx" code={`import { Button } from "@sigil-ui/components";
+
+export function CTA() {
+  return <Button>Ship it</Button>;
+}`} />
 ```
 
 ## Props

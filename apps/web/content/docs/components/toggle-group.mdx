@@ -1,13 +1,7 @@
 ---
 title: ToggleGroup
-description: "A ToggleGroup component from the Sigil design system."
+description: "Group related toggle buttons with shared selection behavior."
 ---
-
-## Import
-
-```tsx
-import { ToggleGroup, ToggleGroupItem } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -19,10 +13,20 @@ import { ToggleGroup, ToggleGroupItem } from "@sigil-ui/components";
   </ToggleGroup>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { ToggleGroup, ToggleGroupItem } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<ToggleGroup>...</ToggleGroup>
+<ToggleGroup type="single">
+    <ToggleGroupItem value="a">A</ToggleGroupItem>
+    <ToggleGroupItem value="b">B</ToggleGroupItem>
+    <ToggleGroupItem value="c">C</ToggleGroupItem>
+  </ToggleGroup>
 ```
 
 ## Sub-components
@@ -35,11 +39,11 @@ This component includes the following parts:
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `type` | `"single" | "multiple"` | — | Selection mode. |
-| `size` | `"sm" | "md" | "lg"` | `md` | Toggle size applied to all items. |
-| `value` | `string | string[]` | — | — |
-| `defaultValue` | `string | string[]` | — | — |
-| `onValueChange` | `(value: string | string[]) => void` | — | — |
+| `type` | `"single" \| "multiple"` | — | Selection mode. |
+| `size` | `"sm" \| "md" \| "lg"` | `md` | Toggle size applied to all items. |
+| `value` | `string \| string[]` | — | — |
+| `defaultValue` | `string \| string[]` | — | — |
+| `onValueChange` | `(value: string \| string[]) => void` | — | — |
 | `disabled` | `boolean` | — | — |
 
 ## Token integration

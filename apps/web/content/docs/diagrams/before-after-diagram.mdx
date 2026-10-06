@@ -1,7 +1,16 @@
 ---
 title: BeforeAfterDiagram
-description: "A BeforeAfterDiagram component from the Sigil design system."
+description: "Show the difference between two versions side by side."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <BeforeAfterDiagram
+    before={<p className="text-sm">Manual deploys, 2-hour rollbacks</p>}
+    after={<p className="text-sm">CI/CD pipeline, 30-second rollbacks</p>}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,17 +21,20 @@ import { BeforeAfterDiagram } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<BeforeAfterDiagram>...</BeforeAfterDiagram>
+<BeforeAfterDiagram
+    before={<p className="text-sm">Manual deploys, 2-hour rollbacks</p>}
+    after={<p className="text-sm">CI/CD pipeline, 30-second rollbacks</p>}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `beforeTitle` | `string` | — | — |
-| `afterTitle` | `string` | — | — |
-| `before` | `ReactNode` | — | — |
-| `after` | `ReactNode` | — | — |
+| `beforeTitle` | `string` | — | Before Title configuration. |
+| `afterTitle` | `string` | — | After Title configuration. |
+| `before` (required) | `ReactNode` | — | Before configuration. |
+| `after` (required) | `ReactNode` | — | After configuration. |
 
 ## Token integration
 

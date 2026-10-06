@@ -1,0 +1,9 @@
+{
+  "createdAt": "2026-07-28T17:34:57.122Z",
+  "base": "http://localhost:4010",
+  "concepts": 20,
+  "captures": 20,
+  "errors": 0,
+  "warnings": 0,
+  "findings": []
+}

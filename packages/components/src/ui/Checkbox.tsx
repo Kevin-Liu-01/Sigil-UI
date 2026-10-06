@@ -2,7 +2,8 @@
 
 import { forwardRef, useId, type ComponentPropsWithoutRef } from "react";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
-import { Check, Minus } from "lucide-react";
+import { CheckIcon as Check } from "@phosphor-icons/react/dist/ssr/Check";
+import { MinusIcon as Minus } from "@phosphor-icons/react/dist/ssr/Minus";
 import { cn } from "../utils";
 import { useSigilSound } from "../sound-context";
 
@@ -41,9 +42,9 @@ export const Checkbox = forwardRef<
     >
       <CheckboxPrimitive.Indicator className="flex items-center justify-center text-current">
         {checked === "indeterminate" ? (
-          <Minus className="size-3" />
+          <Minus weight="fill" className="size-3" />
         ) : (
-          <Check className="size-3" />
+          <Check weight="fill" className="size-3" />
         )}
       </CheckboxPrimitive.Indicator>
     </CheckboxPrimitive.Root>
@@ -52,7 +53,7 @@ export const Checkbox = forwardRef<
   if (!label) return box;
 
   return (
-    <div className={cn("flex items-center gap-2", className)}>
+    <div className={cn("flex min-h-[var(--s-control-hit-area,2.75rem)] items-center gap-2", className)}>
       {box}
       <label
         htmlFor={id}

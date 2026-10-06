@@ -3,26 +3,22 @@ title: DiagramConnector
 description: An SVG arrow connector with solid, dashed, or animated variants for linking diagram nodes.
 ---
 
+## Preview
+
+<ComponentPreview>
+  <div className="flex flex-wrap items-center justify-center gap-4"><DiagramNode label="Client" /><DiagramConnector direction="horizontal" label="HTTPS" length={100} /><DiagramNode label="API" /></div>
+</ComponentPreview>
+
 ## Import
 
 ```tsx
 import { DiagramConnector } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <Diagram>
-  <DiagramNode id="a" x={20} y={50} label="A" />
-  <DiagramNode id="b" x={180} y={50} label="B" />
-  <DiagramConnector from="a" to="b" />
-</Diagram>
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<DiagramConnector />
+<div className="flex flex-wrap items-center justify-center gap-4"><DiagramNode label="Client" /><DiagramConnector direction="horizontal" label="HTTPS" length={100} /><DiagramNode label="API" /></div>
 ```
 
 ## Variants

@@ -1,13 +1,7 @@
 ---
 title: Combobox
-description: "A Combobox component from the Sigil design system."
+description: "Search a list of options and select a value."
 ---
-
-## Import
-
-```tsx
-import { Combobox } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -15,22 +9,30 @@ import { Combobox } from "@sigil-ui/components";
   <Combobox placeholder="Select framework..." options={[{ value: "next", label: "Next.js" }, { value: "remix", label: "Remix" }, { value: "astro", label: "Astro" }]} />
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Combobox } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Combobox>...</Combobox>
+<Combobox placeholder="Select framework..." options={[{ value: "next", label: "Next.js" }, { value: "remix", label: "Remix" }, { value: "astro", label: "Astro" }]} />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `options` | `ComboboxOption[]` | — | — |
-| `value` | `string` | — | — |
-| `onValueChange` | `(value: string) => void` | — | — |
-| `placeholder` | `string` | — | — |
-| `searchPlaceholder` | `string` | — | — |
-| `emptyText` | `string` | — | — |
+| `options` (required) | `ComboboxOption[]` | — | Options configuration. |
+| `value` | `string` | — | The current controlled value. |
+| `defaultValue` | `string` | — | Initial value when the component manages its own state. |
+| `onValueChange` | `(value: string) => void` | — | Called when the user changes the value. |
+| `placeholder` | `string` | — | Hint shown before a value is entered. |
+| `searchPlaceholder` | `string` | — | Search Placeholder configuration. |
+| `emptyText` | `string` | — | Empty Text configuration. |
+| `className` | `string` | — | Additional classes merged with the component styles. |
 
 ## Token integration
 

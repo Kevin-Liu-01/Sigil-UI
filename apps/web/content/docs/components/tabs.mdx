@@ -1,13 +1,7 @@
 ---
 title: Tabs
-description: "A Tabs component from the Sigil design system."
+description: "Switch between related panels with keyboard-accessible tabs."
 ---
-
-## Import
-
-```tsx
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -22,10 +16,23 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@sigil-ui/components";
   </Tabs>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Tabs>...</Tabs>
+<Tabs defaultValue="tab1">
+    <TabsList>
+      <TabsTrigger value="tab1">Overview</TabsTrigger>
+      <TabsTrigger value="tab2">Usage</TabsTrigger>
+    </TabsList>
+    <TabsContent value="tab1">Overview content</TabsContent>
+    <TabsContent value="tab2">Usage content</TabsContent>
+  </Tabs>
 ```
 
 ## Sub-components

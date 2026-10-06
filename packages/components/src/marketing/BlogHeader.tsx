@@ -1,6 +1,6 @@
 "use client";
 
-import { forwardRef, type HTMLAttributes, type ReactNode } from "react";
+import { forwardRef, useState, type HTMLAttributes, type ReactNode } from "react";
 import { cn } from "../utils";
 
 export interface BlogHeaderProps extends HTMLAttributes<HTMLDivElement> {
@@ -15,6 +15,8 @@ export interface BlogHeaderProps extends HTMLAttributes<HTMLDivElement> {
 
 export const BlogHeader = forwardRef<HTMLDivElement, BlogHeaderProps>(
   function BlogHeader({ title, accent, subtitle, categories, activeCategory, onCategoryChange, icon, className, ...rest }, ref) {
+    const [localCategory, setLocalCategory] = useState(categories?.[0]);
+    const selectedCategory = activeCategory ?? localCategory;
     return (
       <div ref={ref} className={cn("flex flex-col items-center text-center", className)} {...rest}>
         <h2
@@ -53,11 +55,14 @@ export const BlogHeader = forwardRef<HTMLDivElement, BlogHeaderProps>(
               <button
                 key={cat}
                 type="button"
-                onClick={() => onCategoryChange?.(cat)}
+                onClick={() => {
+                  if (activeCategory === undefined) setLocalCategory(cat);
+                  onCategoryChange?.(cat);
+                }}
                 className="text-[11px] font-semibold uppercase tracking-wider font-[family:var(--s-font-mono)] px-4 py-2 cursor-pointer"
                 style={{
-                  color: activeCategory === cat ? "var(--s-text)" : "var(--s-text-muted)",
-                  background: activeCategory === cat ? "var(--s-surface-elevated)" : "transparent",
+                  color: selectedCategory === cat ? "var(--s-text)" : "var(--s-text-muted)",
+                  background: selectedCategory === cat ? "var(--s-surface-elevated)" : "transparent",
                   border: "none",
                   borderRight: catIdx < categories!.length - 1 ? "1px solid var(--s-border)" : "none",
                   transition: `all var(--s-duration-fast, 150ms)`,

@@ -1,6 +1,5 @@
 import type { SigilTokens } from "../types";
-import { defaultTokens } from "../tokens";
-import { deepMerge } from "./merge";
+import { resolveSigilTokens } from "../validation";
 import { indent } from "./emit";
 
 /**
@@ -10,10 +9,7 @@ import { indent } from "./emit";
 export function compileToTailwind(
   tokens: SigilTokens | Partial<SigilTokens>,
 ): string {
-  const resolvedTokens = deepMerge(
-    defaultTokens,
-    tokens as Record<string, unknown>,
-  ) as SigilTokens;
+  const resolvedTokens = resolveSigilTokens(tokens, { partial: true }).tokens;
   const lines: string[] = ["@theme {"];
   const p = "s";
 

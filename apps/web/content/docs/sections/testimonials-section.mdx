@@ -1,7 +1,20 @@
 ---
 title: TestimonialsSection
-description: "A TestimonialsSection component from the Sigil design system."
+description: "Group customer quotations in a page section."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <TestimonialsSection
+    title="What teams are saying"
+    columns={2}
+    testimonials={[
+      { quote: "Sigil paid for itself in the first preset switch.", author: "Riley Chen", role: "Design Lead" },
+      { quote: "Editing tokens replaced our 200-line theme file.",  author: "Jordan Kim", role: "Frontend Eng" },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,18 +25,25 @@ import { TestimonialsSection } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<TestimonialsSection>...</TestimonialsSection>
+<TestimonialsSection
+    title="What teams are saying"
+    columns={2}
+    testimonials={[
+      { quote: "Sigil paid for itself in the first preset switch.", author: "Riley Chen", role: "Design Lead" },
+      { quote: "Editing tokens replaced our 200-line theme file.",  author: "Jordan Kim", role: "Frontend Eng" },
+    ]}
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `label` | `string` | — | — |
-| `title` | `string` | — | — |
-| `description` | `string` | — | — |
-| `testimonials` | `TestimonialItem[]` | — | — |
-| `columns` | `2 | 3` | — | — |
+| `label` | `string` | — | Readable label for the component. |
+| `title` | `string` | — | Heading displayed in the component. |
+| `description` | `string` | — | Supporting text below the heading. |
+| `testimonials` (required) | `TestimonialItem[]` | — | Testimonials configuration. |
+| `columns` | `2 \| 3` | — | Columns configuration. |
 
 ## Token integration
 

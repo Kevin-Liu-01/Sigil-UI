@@ -93,7 +93,6 @@ export default function BlogPage() {
         <SigilSection borderTop className="relative overflow-hidden">
           <TextureBg opacity={0.3} />
           <div className="relative z-[1] flex flex-col gap-4 max-w-[640px]">
-            <MonoLabel variant="accent">/ Blog</MonoLabel>
             <h1
               className={cn(
                 "font-[family-name:var(--s-font-display)]",

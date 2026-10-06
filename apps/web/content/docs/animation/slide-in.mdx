@@ -1,13 +1,7 @@
 ---
 title: SlideIn
-description: "A SlideIn component from the Sigil design system."
+description: "Reveal content from a selected direction."
 ---
-
-## Import
-
-```tsx
-import { SlideIn } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -17,10 +11,18 @@ import { SlideIn } from "@sigil-ui/components";
 </SlideIn>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { SlideIn } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<SlideIn>...</SlideIn>
+<SlideIn direction="left">
+  <Badge>Slide in from left</Badge>
+</SlideIn>
 ```
 
 ## Props
@@ -30,7 +32,7 @@ import { SlideIn } from "@sigil-ui/components";
 | `direction` | `SlideDirection` | `left` | Edge to slide from. |
 | `offset` | `number` | `60` | Slide distance in pixels. |
 | `delay` | `number` | `0` | Delay before animation in ms. |
-| `trigger` | `"scroll" | "mount"` | — | — |
+| `trigger` | `"scroll" \| "mount"` | — | — |
 | `viewOptions` | `UseInViewOptions` | — | — |
 
 ## Token integration

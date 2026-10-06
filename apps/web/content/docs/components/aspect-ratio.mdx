@@ -1,13 +1,7 @@
 ---
 title: AspectRatio
-description: "A AspectRatio component from the Sigil design system."
+description: "Keep media at a consistent width-to-height ratio."
 ---
-
-## Import
-
-```tsx
-import { AspectRatio } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -17,8 +11,16 @@ import { AspectRatio } from "@sigil-ui/components";
   </AspectRatio>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { AspectRatio } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<AspectRatio>AspectRatio content</AspectRatio>
+<AspectRatio ratio={16/9} className="bg-[var(--s-surface)] rounded">
+    <div className="flex items-center justify-center h-full text-[var(--s-text-muted)]">16:9</div>
+  </AspectRatio>
 ```

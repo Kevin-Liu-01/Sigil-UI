@@ -1,13 +1,7 @@
 ---
 title: Dialog
-description: "A Dialog component from the Sigil design system."
+description: "Present focused content in an accessible modal dialog."
 ---
-
-## Import
-
-```tsx
-import { Dialog, DialogTrigger, DialogClose, DialogPortal, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -21,16 +15,34 @@ import { Dialog, DialogTrigger, DialogClose, DialogPortal, DialogContent, Dialog
     </DialogHeader>
     <DialogFooter>
       <DialogClose asChild><Button variant="ghost">Cancel</Button></DialogClose>
-      <Button variant="primary">Save</Button>
+      <DialogClose asChild><Button variant="primary">Save</Button></DialogClose>
     </DialogFooter>
   </DialogContent>
 </Dialog>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Dialog, DialogTrigger, DialogClose, DialogPortal, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Dialog>...</Dialog>
+<Dialog>
+  <DialogTrigger asChild><Button>Open dialog</Button></DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Edit profile</DialogTitle>
+      <DialogDescription>Update your settings below.</DialogDescription>
+    </DialogHeader>
+    <DialogFooter>
+      <DialogClose asChild><Button variant="ghost">Cancel</Button></DialogClose>
+      <DialogClose asChild><Button variant="primary">Save</Button></DialogClose>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
 ```
 
 ## Sub-components

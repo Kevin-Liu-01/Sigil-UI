@@ -1,7 +1,17 @@
 ---
 title: StatePersistence
-description: "A StatePersistence component from the Sigil design system."
+description: "Preserve a value across reloads using browser storage."
 ---
+
+## Preview
+
+<ComponentPreview label="Persisted state">
+  <StatePersistence
+    activeItem={{ label: "Active workspace", sublabel: "restored", value: "Free", valueLabel: "while idle", variant: "success" }}
+    competitors={[{ label: "Ephemeral runner", value: "$0.09/hr", variant: "danger" }]}
+    persistedState={[{ label: "Installed packages", status: "Ready" }, { label: "Working tree", status: "Saved" }]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +22,11 @@ import { StatePersistence } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<StatePersistence>...</StatePersistence>
+<StatePersistence
+    activeItem={{ label: "Active workspace", sublabel: "restored", value: "Free", valueLabel: "while idle", variant: "success" }}
+    competitors={[{ label: "Ephemeral runner", value: "$0.09/hr", variant: "danger" }]}
+    persistedState={[{ label: "Installed packages", status: "Ready" }, { label: "Working tree", status: "Saved" }]}
+  />
 ```
 
 ## Props

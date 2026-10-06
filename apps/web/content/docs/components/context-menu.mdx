@@ -13,6 +13,19 @@ description: Right-click menu with nested submenus, checkboxes, and radio items.
 npx @sigil-ui/cli add context-menu
 ```
 
+## Preview
+
+<ComponentPreview>
+  <ContextMenu>
+  <ContextMenuTrigger className="flex h-24 w-full items-center justify-center border border-dashed border-[var(--s-border)] text-[var(--s-text-muted)]">Right-click here</ContextMenuTrigger>
+  <ContextMenuContent>
+    <ContextMenuItem>Cut</ContextMenuItem>
+    <ContextMenuItem>Copy</ContextMenuItem>
+    <ContextMenuItem>Paste</ContextMenuItem>
+  </ContextMenuContent>
+</ContextMenu>
+</ComponentPreview>
+
 ## Import
 
 ```tsx
@@ -31,19 +44,6 @@ import {
   ContextMenuLabel,
 } from "@sigil-ui/components";
 ```
-
-## Preview
-
-<ComponentPreview>
-  <ContextMenu>
-  <ContextMenuTrigger className="flex h-24 w-full items-center justify-center border border-dashed border-[var(--s-border)] text-[var(--s-text-muted)]">Right-click here</ContextMenuTrigger>
-  <ContextMenuContent>
-    <ContextMenuItem>Cut</ContextMenuItem>
-    <ContextMenuItem>Copy</ContextMenuItem>
-    <ContextMenuItem>Paste</ContextMenuItem>
-  </ContextMenuContent>
-</ContextMenu>
-</ComponentPreview>
 
 ## Usage
 

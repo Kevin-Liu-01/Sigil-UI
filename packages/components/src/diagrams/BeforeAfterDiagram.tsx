@@ -25,7 +25,7 @@ export const BeforeAfterDiagram = forwardRef<HTMLDivElement, BeforeAfterDiagramP
               <circle cx="7" cy="7" r="6" stroke="currentColor" strokeWidth="1.5" />
               <path d="M5 5l4 4M9 5l-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
-            <span className="text-xs font-semibold text-[var(--s-error)]">{beforeTitle}</span>
+            <span className="text-xs font-semibold text-[var(--s-text)]">{beforeTitle}</span>
           </div>
           <div className="p-4 bg-[var(--s-surface)] flex-1">
             {before}
@@ -38,7 +38,7 @@ export const BeforeAfterDiagram = forwardRef<HTMLDivElement, BeforeAfterDiagramP
               <circle cx="7" cy="7" r="6" stroke="currentColor" strokeWidth="1.5" />
               <path d="M4.5 7l2 2 3.5-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <span className="text-xs font-semibold text-[var(--s-success)]">{afterTitle}</span>
+            <span className="text-xs font-semibold text-[var(--s-text)]">{afterTitle}</span>
           </div>
           <div className="p-4 bg-[var(--s-surface)] flex-1">
             {after}

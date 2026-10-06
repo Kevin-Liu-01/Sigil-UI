@@ -1,7 +1,13 @@
 ---
 title: SectionHeading
-description: "A SectionHeading component from the Sigil design system."
+description: "Pair a section title with supporting text."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <SectionHeading title="Features" description="Everything you need to build modern interfaces." />
+</ComponentPreview>
 
 ## Import
 
@@ -12,17 +18,17 @@ import { SectionHeading } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<SectionHeading>...</SectionHeading>
+<SectionHeading title="Features" description="Everything you need to build modern interfaces." />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `label` | `string` | — | — |
-| `title` | `ReactNode` | — | — |
-| `description` | `ReactNode` | — | — |
-| `align` | `"left" | "center"` | — | — |
+| `label` | `string` | — | Readable label for the component. |
+| `title` (required) | `ReactNode` | — | Heading displayed in the component. |
+| `description` | `ReactNode` | — | Supporting text below the heading. |
+| `align` | `"left" \| "center"` | — | Align configuration. |
 
 ## Token integration
 

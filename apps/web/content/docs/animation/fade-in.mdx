@@ -1,13 +1,7 @@
 ---
 title: FadeIn
-description: "A FadeIn component from the Sigil design system."
+description: "Reveal content with an opacity transition."
 ---
-
-## Import
-
-```tsx
-import { FadeIn } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -17,10 +11,18 @@ import { FadeIn } from "@sigil-ui/components";
 </FadeIn>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { FadeIn } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<FadeIn>...</FadeIn>
+<FadeIn>
+  <Badge>Fade in</Badge>
+</FadeIn>
 ```
 
 ## Props
@@ -30,7 +32,7 @@ import { FadeIn } from "@sigil-ui/components";
 | `direction` | `FadeDirection` | `up` | Direction to fade from. |
 | `offset` | `number` | `24` | Offset in pixels for the translate. |
 | `delay` | `number` | `0` | Delay before animation in ms. |
-| `trigger` | `"scroll" | "mount"` | `scroll` | Whether animation triggers on scroll (IntersectionObserver) or immediately on mount. |
+| `trigger` | `"scroll" \| "mount"` | `scroll` | Whether animation triggers on scroll (IntersectionObserver) or immediately on mount. |
 | `viewOptions` | `UseInViewOptions` | — | IntersectionObserver options when trigger is "scroll". |
 
 ## Token integration

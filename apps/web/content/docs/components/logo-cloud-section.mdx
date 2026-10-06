@@ -3,38 +3,22 @@ title: LogoCloudSection
 description: Horizontal logo strip with grayscale-to-color hover effect.
 ---
 
+## Preview
+
+<ComponentPreview vertical>
+  <LogoCloudSection heading="Works with your stack" logos={[{ name: "React", logo: <BrandLogo name="react" className="size-8" /> }, { name: "Next.js", logo: <BrandLogo name="nextdotjs" className="size-8" /> }, { name: "TypeScript", logo: <BrandLogo name="typescript" className="size-8" /> }, { name: "Tailwind CSS", logo: <BrandLogo name="tailwindcss" className="size-8" /> }]} />
+</ComponentPreview>
+
 ## Import
 
 ```tsx
 import { LogoCloudSection } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview vertical>
-  <LogoCloudSection
-    heading="Trusted by teams at"
-    logos={[
-      { name: "Vercel" },
-      { name: "Linear" },
-      { name: "Stripe" },
-      { name: "Figma" },
-      { name: "Notion" },
-    ]}
-  />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<LogoCloudSection
-  heading="Trusted by teams at"
-  logos={[
-    { name: "Vercel", logo: <VercelLogo /> },
-    { name: "Stripe", logo: <StripeLogo /> },
-    { name: "GitHub", logo: <GitHubLogo /> },
-  ]}
-/>
+<LogoCloudSection heading="Works with your stack" logos={[{ name: "React", logo: <BrandLogo name="react" className="size-8" /> }, { name: "Next.js", logo: <BrandLogo name="nextdotjs" className="size-8" /> }, { name: "TypeScript", logo: <BrandLogo name="typescript" className="size-8" /> }, { name: "Tailwind CSS", logo: <BrandLogo name="tailwindcss" className="size-8" /> }]} />
 ```
 
 ## Without heading

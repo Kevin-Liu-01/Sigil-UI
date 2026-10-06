@@ -1,13 +1,7 @@
 ---
 title: Checkbox
-description: "A Checkbox component from the Sigil design system."
+description: "Toggle an independent option, with support for mixed and disabled states."
 ---
-
-## Import
-
-```tsx
-import { Checkbox } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -19,17 +13,27 @@ import { Checkbox } from "@sigil-ui/components";
   </div>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Checkbox } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Checkbox>Checkbox content</Checkbox>
+<div className="flex flex-col gap-3">
+    <Checkbox label="Subscribe to product updates" defaultChecked />
+    <Checkbox label="Send weekly digest" />
+    <Checkbox label="Beta features" disabled />
+  </div>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `label` | `string` | — | — |
+| `label` | `string` | — | Readable label for the component. |
 
 ## Token integration
 

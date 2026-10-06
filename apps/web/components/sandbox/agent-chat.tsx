@@ -11,6 +11,7 @@ import {
 import { useSigilTokens } from "./token-provider";
 import { ModelSelector, type ModelId } from "./model-selector";
 import type { CanvasItemData } from "./canvas";
+import type { TokenPatch } from "@sigil-ui/tokens";
 
 type Message = {
   id: string;
@@ -156,7 +157,7 @@ export function AgentChat({
   canvasItems,
   className,
 }: AgentChatProps) {
-  const { tokens, patchTokens, setPreset, activePreset } = useSigilTokens();
+  const { tokens, patchTokenBatch, setPreset, activePreset } = useSigilTokens();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isStreaming, setIsStreaming] = useState(false);
@@ -196,6 +197,7 @@ export function AgentChat({
         if ("patch" in action && action.patch) {
           const entries = flattenPatch(action.patch);
           const diffs: TokenDiff[] = [];
+          const patches: TokenPatch[] = [];
           for (const { category, key, value } of entries) {
             const catObj = tokens[category as keyof typeof tokens] as Record<string, unknown> | undefined;
             const oldVal = catObj?.[key];
@@ -206,13 +208,20 @@ export function AgentChat({
               oldValue: oldStr,
               newValue: newStr,
             });
-            patchTokens(category as any, key, value);
+            patches.push({ category, key, value });
           }
-          changes.push({
-            type: "patch",
-            summary: `Applied ${entries.length} token change${entries.length !== 1 ? "s" : ""}`,
-            diffs,
-          });
+          const mutation = patchTokenBatch(patches);
+          changes.push(mutation.ok
+            ? {
+                type: "patch",
+                summary: `Applied ${entries.length} token change${entries.length !== 1 ? "s" : ""}`,
+                diffs,
+              }
+            : {
+                type: "patch",
+                summary: `Rejected invalid token patch: ${mutation.issues[0]?.message ?? "unknown error"}`,
+                diffs: [],
+              });
         }
 
         if ("addComponent" in action && action.addComponent) {
@@ -257,7 +266,7 @@ export function AgentChat({
         });
       }
     },
-    [patchTokens, setPreset, onAddComponent, onRemoveComponent, onClearCanvas],
+    [patchTokenBatch, setPreset, onAddComponent, onRemoveComponent, onClearCanvas],
   );
 
   const handleSubmit = useCallback(

@@ -96,7 +96,7 @@
   --s-gutter-pattern: horizontal-thin;
   --s-margin-pattern: horizontal;
   --s-gutter-border: 1px solid var(--s-border-muted);
-  --s-margin-border: none;
+  --s-margin-border: 1px solid var(--s-border-muted);
   --s-gutter-visible: 1;
   --s-band-height: 3.125rem;
   --s-divider-thickness-sm: calc(var(--s-grid-cell) / 2);
@@ -461,11 +461,11 @@
   --s-component-surface-active-bg: var(--s-surface-sunken);
   --s-component-surface-selected-bg: var(--s-primary-muted);
   --s-hero-min-height: auto;
-  --s-hero-padding-y: calc(2 * var(--s-grid-cell));
+  --s-hero-padding-y: calc(1 * var(--s-grid-cell));
   --s-hero-padding-y-sm: calc(1 * var(--s-grid-cell));
   --s-hero-padding-x: var(--s-page-margin, 1.75rem);
   --s-hero-content-max: 34rem;
-  --s-hero-content-basis: min(38%, var(--s-hero-content-max, 34rem));
+  --s-hero-content-basis: var(--s-hero-content-max, 34rem);
   --s-hero-content-align: center;
   --s-hero-layout: split;
   --s-hero-media-position: right;

@@ -1,7 +1,23 @@
 ---
 title: LeaderboardTable
-description: "A LeaderboardTable component from the Sigil design system."
+description: "Rank entries by a score or measured value."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <LeaderboardTable
+    title="Top Contributors"
+    valueLabel="Points"
+    rows={[
+      { label: "Alice", value: 2480, delta: "+120" },
+      { label: "Bob", value: 2310, delta: "+85" },
+      { label: "Carol", value: 2150, delta: "-30" },
+      { label: "Dave", value: 1980, delta: "+200", highlight: true },
+      { label: "Eve", value: 1870, delta: "+10" },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +28,17 @@ import { LeaderboardTable } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<LeaderboardTable>...</LeaderboardTable>
+<LeaderboardTable
+    title="Top Contributors"
+    valueLabel="Points"
+    rows={[
+      { label: "Alice", value: 2480, delta: "+120" },
+      { label: "Bob", value: 2310, delta: "+85" },
+      { label: "Carol", value: 2150, delta: "-30" },
+      { label: "Dave", value: 1980, delta: "+200", highlight: true },
+      { label: "Eve", value: 1870, delta: "+10" },
+    ]}
+  />
 ```
 
 ## Props

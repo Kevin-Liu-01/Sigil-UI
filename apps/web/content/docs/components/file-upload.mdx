@@ -1,13 +1,7 @@
 ---
 title: FileUpload
-description: "A FileUpload component from the Sigil design system."
+description: "Select files and show the current upload selection."
 ---
-
-## Import
-
-```tsx
-import { FileUpload } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -15,21 +9,27 @@ import { FileUpload } from "@sigil-ui/components";
   <FileUpload accept="image/*" maxSize={5_000_000} className="w-full max-w-md" />
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { FileUpload } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<FileUpload>...</FileUpload>
+<FileUpload accept="image/*" maxSize={5_000_000} className="w-full max-w-md" />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `accept` | `string` | — | — |
-| `multiple` | `boolean` | — | — |
-| `maxSize` | `number` | — | — |
-| `disabled` | `boolean` | — | — |
-| `onChange` | `(files: File[]) => void` | — | — |
+| `accept` | `string` | — | Accept configuration. |
+| `multiple` | `boolean` | — | Multiple configuration. |
+| `maxSize` | `number` | — | Max Size configuration. |
+| `disabled` | `boolean` | — | Prevents user interaction when enabled. |
+| `onChange` | `(files: File[]) => void` | — | Called when the value changes. |
 
 ## Token integration
 

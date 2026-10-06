@@ -1,7 +1,20 @@
 ---
 title: BarChart
-description: "A BarChart component from the Sigil design system."
+description: "Compare values across categories with labeled bars."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <BarChart
+    groups={[
+      { label: "Jan", bars: [{ label: "Revenue", value: 42 }, { label: "Cost", value: 28 }] },
+      { label: "Feb", bars: [{ label: "Revenue", value: 58 }, { label: "Cost", value: 31 }] },
+      { label: "Mar", bars: [{ label: "Revenue", value: 75 }, { label: "Cost", value: 35 }] },
+      { label: "Apr", bars: [{ label: "Revenue", value: 63 }, { label: "Cost", value: 29 }] },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +25,14 @@ import { BarChart } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<BarChart>...</BarChart>
+<BarChart
+    groups={[
+      { label: "Jan", bars: [{ label: "Revenue", value: 42 }, { label: "Cost", value: 28 }] },
+      { label: "Feb", bars: [{ label: "Revenue", value: 58 }, { label: "Cost", value: 31 }] },
+      { label: "Mar", bars: [{ label: "Revenue", value: 75 }, { label: "Cost", value: 35 }] },
+      { label: "Apr", bars: [{ label: "Revenue", value: 63 }, { label: "Cost", value: 29 }] },
+    ]}
+  />
 ```
 
 ## Props
@@ -20,7 +40,7 @@ import { BarChart } from "@sigil-ui/components";
 | Prop | Type | Default | Description |
 |---|---|---|---|
 | `groups` | `BarChartGroup[]` | — | — |
-| `direction` | `"vertical" | "horizontal"` | — | — |
+| `direction` | `"vertical" \| "horizontal"` | — | — |
 | `showValues` | `boolean` | `true` | Show value labels on bars. |
 | `showGrid` | `boolean` | `true` | Show gridlines. |
 | `maxBarSize` | `number` | `200` | Maximum bar height/width in px. |

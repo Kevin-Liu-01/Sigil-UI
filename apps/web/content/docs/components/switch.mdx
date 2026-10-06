@@ -1,13 +1,7 @@
 ---
 title: Switch
-description: "A Switch component from the Sigil design system."
+description: "Turn a setting on or off."
 ---
-
-## Import
-
-```tsx
-import { Switch } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -19,17 +13,27 @@ import { Switch } from "@sigil-ui/components";
   </div>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Switch } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Switch>Switch content</Switch>
+<div className="flex flex-col gap-3">
+    <Switch label="Email notifications" defaultChecked />
+    <Switch label="Push notifications" />
+    <Switch label="SMS alerts" disabled />
+  </div>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `size` | `"sm" | "md" | "lg"` | — | — |
+| `size` | `"sm" \| "md" \| "lg"` | — | — |
 | `label` | `string` | — | — |
 | `thumbIcon` | `ReactNode` | — | Content rendered inside the thumb (e.g. an icon). |
 | `thumbClassName` | `string` | — | Additional classes applied to the thumb element. |

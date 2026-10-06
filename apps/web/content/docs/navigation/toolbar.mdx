@@ -1,13 +1,7 @@
 ---
 title: Toolbar
-description: "A Toolbar component from the Sigil design system."
+description: "Arrange related controls in a keyboard-accessible toolbar."
 ---
-
-## Import
-
-```tsx
-import { Toolbar, ToolbarButton, ToolbarSeparator, ToolbarToggleGroup, ToolbarToggleItem, ToolbarLink } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -20,10 +14,21 @@ import { Toolbar, ToolbarButton, ToolbarSeparator, ToolbarToggleGroup, ToolbarTo
 </Toolbar>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Toolbar, ToolbarButton, ToolbarSeparator, ToolbarToggleGroup, ToolbarToggleItem, ToolbarLink } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Toolbar>...</Toolbar>
+<Toolbar>
+  <ToolbarButton>Bold</ToolbarButton>
+  <ToolbarButton>Italic</ToolbarButton>
+  <ToolbarSeparator />
+  <ToolbarButton>Link</ToolbarButton>
+</Toolbar>
 ```
 
 ## Sub-components

@@ -3,29 +3,22 @@ title: CTASection
 description: Call-to-action section with centered or split layout, headline, and action buttons.
 ---
 
+## Preview
+
+<ComponentPreview vertical>
+  <CTASection title="Build with a shared design system" description="Start with a preset, then make it your own." actions={[{ label: "Get started", href: "/docs/installation" }, { label: "Browse components", href: "/components", variant: "secondary" }]} />
+</ComponentPreview>
+
 ## Import
 
 ```tsx
 import { CTASection } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview vertical>
-  <CTASection title="Ready to build?" description="Get started with Sigil UI today." buttonText="Get Started" />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<CTASection
-  title="Ready to get started?"
-  description="Join thousands of teams shipping faster."
-  actions={[
-    { label: "Start free", href: "/signup" },
-    { label: "Talk to sales", href: "/contact", variant: "secondary" },
-  ]}
-/>
+<CTASection title="Build with a shared design system" description="Start with a preset, then make it your own." actions={[{ label: "Get started", href: "/docs/installation" }, { label: "Browse components", href: "/components", variant: "secondary" }]} />
 ```
 
 ## Split layout with media

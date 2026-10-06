@@ -1,7 +1,13 @@
 ---
 title: Container
-description: "A Container component from the Sigil design system."
+description: "Constrain content to a consistent, responsive reading width."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <Container><p>Content follows the preset’s maximum reading width.</p></Container>
+</ComponentPreview>
 
 ## Import
 
@@ -9,23 +15,17 @@ description: "A Container component from the Sigil design system."
 import { Container } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <Container />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<Container>Container content</Container>
+<Container><p>Content follows the preset’s maximum reading width.</p></Container>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `size` | `"narrow" | "default" | "wide"` | `default` | Width variant. |
+| `size` | `"narrow" \| "default" \| "wide"` | `default` | Width variant. |
 | `center` | `boolean` | `true` | Center the container. |
 
 ## Token integration

@@ -1,7 +1,32 @@
 ---
 title: GanttChart
-description: "A GanttChart component from the Sigil design system."
+description: "Plot tasks and their durations along a timeline."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <GanttChart
+    totalUnits={6}
+    unitName="Sprint"
+    groups={[
+      {
+        label: "Backend",
+        tasks: [
+          { id: "api", label: "API Design", start: 0, end: 2 },
+          { id: "db", label: "Database", start: 1, end: 4 },
+        ],
+      },
+      {
+        label: "Frontend",
+        tasks: [
+          { id: "ui", label: "Components", start: 2, end: 5 },
+          { id: "launch", label: "Launch", start: 5, end: 6, milestone: true },
+        ],
+      },
+    ]}
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,7 +37,26 @@ import { GanttChart } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<GanttChart>...</GanttChart>
+<GanttChart
+    totalUnits={6}
+    unitName="Sprint"
+    groups={[
+      {
+        label: "Backend",
+        tasks: [
+          { id: "api", label: "API Design", start: 0, end: 2 },
+          { id: "db", label: "Database", start: 1, end: 4 },
+        ],
+      },
+      {
+        label: "Frontend",
+        tasks: [
+          { id: "ui", label: "Components", start: 2, end: 5 },
+          { id: "launch", label: "Launch", start: 5, end: 6, milestone: true },
+        ],
+      },
+    ]}
+  />
 ```
 
 ## Props

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   CommandDialog,
@@ -19,6 +19,7 @@ interface PaletteItem {
 
 const DOC_ITEMS: PaletteItem[] = [
   // Guides
+  { label: "DESIGN.md", href: "/docs/design-md", section: "Guides" },
   { label: "Installation", href: "/docs/installation", section: "Guides" },
   { label: "Theming", href: "/docs/theming", section: "Guides" },
   { label: "Presets", href: "/docs/presets", section: "Guides" },
@@ -204,10 +205,13 @@ const DOC_ITEMS: PaletteItem[] = [
 
 export function DocSearchPalette() {
   const router = useRouter();
+  const pathname = usePathname();
+  const isDocs = pathname === "/docs" || pathname.startsWith("/docs/");
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
 
   useEffect(() => {
+    if (isDocs) return;
     function onKeyDown(event: KeyboardEvent) {
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
         event.preventDefault();
@@ -216,7 +220,7 @@ export function DocSearchPalette() {
     }
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
+  }, [isDocs]);
 
   useEffect(() => {
     function onOpenRequest() {
@@ -254,12 +258,7 @@ export function DocSearchPalette() {
     [router],
   );
 
-  useEffect(() => {
-    if (!isOpen) return;
-    for (const item of DOC_ITEMS) {
-      router.prefetch(item.href);
-    }
-  }, [isOpen, router]);
+
 
   return (
     <CommandDialog open={isOpen} onOpenChange={setIsOpen}>

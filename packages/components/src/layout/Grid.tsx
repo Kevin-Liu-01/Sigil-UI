@@ -36,7 +36,9 @@ export const SigilGrid = forwardRef<HTMLDivElement, SigilGridProps>(function Sig
       style={{
         gap: resolvedGap,
         backgroundImage: `
-          radial-gradient(circle, var(--s-border) 1px, transparent 1px)
+          linear-gradient(color-mix(in oklab, var(--s-grid-line-color, var(--s-border)) calc(var(--s-grid-show-lines, 0) * 100%), transparent) var(--s-grid-line-width, 1px), transparent var(--s-grid-line-width, 1px)),
+          linear-gradient(90deg, color-mix(in oklab, var(--s-grid-line-color, var(--s-border)) calc(var(--s-grid-show-lines, 0) * 100%), transparent) var(--s-grid-line-width, 1px), transparent var(--s-grid-line-width, 1px)),
+          radial-gradient(circle, color-mix(in oklab, var(--s-border) calc(var(--s-grid-show-dots, 0) * 100%), transparent) var(--s-grid-dot-size, 1px), transparent var(--s-grid-dot-size, 1px))
         `,
         backgroundSize: `${resolvedGap} ${resolvedGap}`,
         backgroundPosition: `calc(${resolvedGap} / 2) calc(${resolvedGap} / 2)`,
@@ -55,7 +57,7 @@ export interface SigilGridCellProps extends HTMLAttributes<HTMLDivElement> {
 
 /** Individual grid cell with hover highlight. */
 export const SigilGridCell = forwardRef<HTMLDivElement, SigilGridCellProps>(
-  function SigilGridCell({ className, children, ...rest }, ref) {
+  function SigilGridCell({ className, children, style, ...rest }, ref) {
     return (
       <div
         ref={ref}
@@ -64,6 +66,11 @@ export const SigilGridCell = forwardRef<HTMLDivElement, SigilGridCellProps>(
           "hover:bg-[var(--s-surface-elevated)]",
           className,
         )}
+        style={{
+          background: "var(--s-grid-cell-background-color, transparent)",
+          border: "calc(var(--s-grid-cell-border, 0) * 1px) solid var(--s-grid-line-color, var(--s-border))",
+          ...style,
+        }}
         {...rest}
       >
         {children}

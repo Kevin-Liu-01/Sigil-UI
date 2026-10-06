@@ -60,14 +60,14 @@ function EvilBrush({
       if (!containerRef.current) return 0;
       const rect = containerRef.current.getBoundingClientRect();
       const percent = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-      return Math.round(percent * (totalPoints - 1));
+      return Math.round(percent * Math.max(totalPoints - 1, 0));
     },
     [totalPoints],
   );
 
   React.useEffect(() => {
-    const handleMove = (e: MouseEvent) => {
-      if (!isDragging.current) return;
+    const handleMove = (e: PointerEvent) => {
+      if (!isDragging.current || totalPoints < 2) return;
       const currentIndex = getIndexFromX(e.clientX);
 
       if (isDragging.current === "start") {
@@ -89,19 +89,21 @@ function EvilBrush({
       isDragging.current = null;
     };
 
-    window.addEventListener("mousemove", handleMove);
-    window.addEventListener("mouseup", handleUp);
+    window.addEventListener("pointermove", handleMove);
+    window.addEventListener("pointerup", handleUp);
+    window.addEventListener("pointercancel", handleUp);
     return () => {
-      window.removeEventListener("mousemove", handleMove);
-      window.removeEventListener("mouseup", handleUp);
+      window.removeEventListener("pointermove", handleMove);
+      window.removeEventListener("pointerup", handleUp);
+      window.removeEventListener("pointercancel", handleUp);
     };
   }, [getIndexFromX, onChange, startIndex, endIndex, totalPoints]);
 
   const dataKeys = Object.keys(chartConfig);
 
   return (
-    <div ref={containerRef} className={cn("relative w-full select-none", className)} style={{ height }}>
-      <ResponsiveContainer width="100%" height="100%">
+    <div ref={containerRef} className={cn("relative w-full select-none touch-none", className)} style={{ height }}>
+      <ResponsiveContainer width="100%" height="100%" initialDimension={{ width: 320, height }}>
         {variant === "area" ? (
           <AreaChart data={data}>
             {dataKeys.map((key) => (
@@ -131,22 +133,49 @@ function EvilBrush({
         <div className="bg-background/60 absolute inset-y-0 right-0" style={{ width: `${100 - endPercent}%` }} />
       </div>
       {/* Drag handles */}
-      <div
-        className="absolute inset-y-0 w-1.5 cursor-col-resize rounded-[var(--s-radius-sm)] bg-current opacity-40 hover:opacity-70"
-        style={{ left: `${startPercent}%`, transform: "translateX(-50%)" }}
-        onMouseDown={(e) => { isDragging.current = "start"; e.preventDefault(); }}
+      <button
+        type="button"
+        role="slider"
+        aria-label="Start of chart range"
+        aria-valuemin={0}
+        aria-valuemax={Math.max(0, endIndex - 1)}
+        aria-valuenow={startIndex}
+        disabled={totalPoints < 2}
+        onKeyDown={(event) => {
+          if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+          event.preventDefault();
+          const next = event.key === "Home" ? 0 : event.key === "End" ? endIndex - 1 : startIndex + (event.key === "ArrowRight" ? 1 : -1);
+          onChange({ startIndex: Math.max(0, Math.min(endIndex - 1, next)), endIndex });
+        }}
+        className="absolute z-[1] inset-y-0 w-[var(--s-space-24)] cursor-col-resize rounded-[var(--s-radius-sm)] border-x border-[var(--s-border)] bg-[var(--s-surface)]/60 focus-visible:outline-[var(--s-focus-ring-color)]"
+        style={{ left: `${startPercent}%`, transform: "translateX(0)" }}
+        onPointerDown={(e) => { isDragging.current = "start"; e.currentTarget.setPointerCapture(e.pointerId); e.preventDefault(); }}
       />
-      <div
-        className="absolute inset-y-0 w-1.5 cursor-col-resize rounded-[var(--s-radius-sm)] bg-current opacity-40 hover:opacity-70"
-        style={{ left: `${endPercent}%`, transform: "translateX(-50%)" }}
-        onMouseDown={(e) => { isDragging.current = "end"; e.preventDefault(); }}
+      <button
+        type="button"
+        role="slider"
+        aria-label="End of chart range"
+        aria-valuemin={Math.min(startIndex + 1, Math.max(totalPoints - 1, 0))}
+        aria-valuemax={Math.max(totalPoints - 1, 0)}
+        aria-valuenow={endIndex}
+        disabled={totalPoints < 2}
+        onKeyDown={(event) => {
+          if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+          event.preventDefault();
+          const next = event.key === "Home" ? startIndex + 1 : event.key === "End" ? totalPoints - 1 : endIndex + (event.key === "ArrowRight" ? 1 : -1);
+          onChange({ startIndex, endIndex: Math.min(totalPoints - 1, Math.max(startIndex + 1, next)) });
+        }}
+        className="absolute z-[1] inset-y-0 w-[var(--s-space-24)] cursor-col-resize rounded-[var(--s-radius-sm)] border-x border-[var(--s-border)] bg-[var(--s-surface)]/60 focus-visible:outline-[var(--s-focus-ring-color)]"
+        style={{ left: `${endPercent}%`, transform: "translateX(-100%)" }}
+        onPointerDown={(e) => { isDragging.current = "end"; e.currentTarget.setPointerCapture(e.pointerId); e.preventDefault(); }}
       />
       {/* Draggable range center */}
       <div
         className="absolute inset-y-0 cursor-grab active:cursor-grabbing"
         style={{ left: `${startPercent}%`, width: `${endPercent - startPercent}%` }}
-        onMouseDown={(e) => {
+        onPointerDown={(e) => {
           isDragging.current = "range";
+          e.currentTarget.setPointerCapture(e.pointerId);
           dragStartX.current = e.clientX;
           dragStartRange.current = { startIndex, endIndex };
           e.preventDefault();

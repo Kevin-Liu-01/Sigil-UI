@@ -1,13 +1,7 @@
 ---
 title: HoverCard
-description: "A HoverCard component from the Sigil design system."
+description: "Reveal supplementary content on hover or keyboard focus."
 ---
-
-## Import
-
-```tsx
-import { HoverCard, HoverCardTrigger, HoverCardContent } from "@sigil-ui/components";
-```
 
 ## Preview
 
@@ -20,10 +14,21 @@ import { HoverCard, HoverCardTrigger, HoverCardContent } from "@sigil-ui/compone
 </HoverCard>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { HoverCard, HoverCardTrigger, HoverCardContent } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<HoverCard>...</HoverCard>
+<HoverCard>
+  <HoverCardTrigger asChild><Button variant="link">@sigil</Button></HoverCardTrigger>
+  <HoverCardContent>
+    <p className="text-sm">Token-driven design system for React.</p>
+  </HoverCardContent>
+</HoverCard>
 ```
 
 ## Sub-components

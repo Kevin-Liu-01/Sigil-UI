@@ -1,10 +1,10 @@
 "use client";
 
-import { forwardRef, useCallback, type ChangeEvent } from "react";
+import { forwardRef, useCallback, useState, type ChangeEvent } from "react";
 import { cn } from "../utils";
 
 export interface LayoutControlsProps {
-  onPatch: (category: string, key: string, value: string) => void;
+  onPatch?: (category: string, key: string, value: string) => void;
   values?: {
     navbarHeight?: string;
     pageMargin?: string;
@@ -49,12 +49,18 @@ function parseNumeric(raw: string | undefined, fallback: number): number {
 
 export const LayoutControls = forwardRef<HTMLDivElement, LayoutControlsProps>(
   function LayoutControls({ onPatch, values, className }, ref) {
+    const [localValues, setLocalValues] = useState<NonNullable<LayoutControlsProps["values"]>>({});
+    const resolvedValues = values ?? localValues;
     const handleChange = useCallback(
       (def: SliderDef) => (e: ChangeEvent<HTMLInputElement>) => {
         const suffix = def.unit ? def.unit : "";
-        onPatch(def.category, def.tokenKey, `${e.target.value}${suffix}`);
+        const value = `${e.target.value}${suffix}`;
+        if (values === undefined) {
+          setLocalValues((current) => ({ ...current, [def.valueKey]: value }));
+        }
+        onPatch?.(def.category, def.tokenKey, value);
       },
-      [onPatch],
+      [onPatch, values],
     );
 
     return (
@@ -64,7 +70,7 @@ export const LayoutControls = forwardRef<HTMLDivElement, LayoutControlsProps>(
         className={cn("grid grid-cols-2 gap-x-16 gap-y-2", className)}
       >
         {SLIDERS.map((def) => {
-          const numeric = parseNumeric(values?.[def.valueKey], def.fallback);
+          const numeric = parseNumeric(resolvedValues[def.valueKey], def.fallback);
           return (
             <div
               key={def.tokenKey}
@@ -85,13 +91,19 @@ export const LayoutControls = forwardRef<HTMLDivElement, LayoutControlsProps>(
                 {def.label}
               </label>
               <input
+                aria-label={def.label}
                 type="range"
                 min={def.min}
                 max={def.max}
                 step={def.step}
                 value={numeric}
                 onChange={handleChange(def)}
-                style={{ flex: 1, accentColor: "var(--s-primary)", height: 4 }}
+                style={{
+                  flex: 1,
+                  accentColor: "var(--s-primary)",
+                  height: "var(--s-control-hit-area, 2.75rem)",
+                  cursor: "pointer",
+                }}
               />
               <span
                 style={{

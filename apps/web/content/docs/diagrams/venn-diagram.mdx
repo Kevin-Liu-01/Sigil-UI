@@ -1,7 +1,20 @@
 ---
 title: VennDiagram
-description: "A VennDiagram component from the Sigil design system."
+description: "Illustrate overlap between related sets."
 ---
+
+## Preview
+
+<ComponentPreview>
+  <VennDiagram
+    circles={[
+      { label: "Design" },
+      { label: "Engineering" },
+      { label: "Product" },
+    ]}
+    intersectionLabel="DX"
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,14 +25,21 @@ import { VennDiagram } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<VennDiagram>...</VennDiagram>
+<VennDiagram
+    circles={[
+      { label: "Design" },
+      { label: "Engineering" },
+      { label: "Product" },
+    ]}
+    intersectionLabel="DX"
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `circles` | `[VennCircle, VennCircle] | [VennCircle, VennCircle, VennC...` | — | — |
+| `circles` | `[VennCircle, VennCircle] \| [VennCircle, VennCircle, VennC...` | — | — |
 | `intersectionLabel` | `string` | — | Label for the intersection. |
 | `width` | `number` | — | — |
 | `height` | `number` | — | — |

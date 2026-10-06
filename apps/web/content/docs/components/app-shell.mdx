@@ -3,12 +3,6 @@ title: AppShell
 description: Full-page layout shell with header, sidebar, main content, and footer slots via CSS grid.
 ---
 
-## Import
-
-```tsx
-import { AppShell } from "@sigil-ui/components";
-```
-
 ## Preview
 
 <ComponentPreview vertical>
@@ -16,22 +10,29 @@ import { AppShell } from "@sigil-ui/components";
     header={<div className="px-4 py-2 text-sm font-medium border-b border-[color:var(--s-border)] bg-[var(--s-surface)]">Header</div>}
     sidebar={<div className="p-3 text-xs text-[var(--s-text-muted)]">Sidebar</div>}
     sidebarWidth={160}
-    className="h-48 w-full max-w-2xl border border-[color:var(--s-border)] bg-[var(--s-background)] overflow-hidden"
+    className="min-h-0 h-48 w-full max-w-2xl border border-[color:var(--s-border)] bg-[var(--s-background)] overflow-hidden"
   >
     <div className="p-4 text-sm text-[var(--s-text)]">Main content area</div>
   </AppShell>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { AppShell } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
 <AppShell
-  header={<header>App Header</header>}
-  sidebar={<nav>Sidebar</nav>}
-  footer={<footer>Footer</footer>}
->
-  <main>Main content</main>
-</AppShell>
+    header={<div className="px-4 py-2 text-sm font-medium border-b border-[color:var(--s-border)] bg-[var(--s-surface)]">Header</div>}
+    sidebar={<div className="p-3 text-xs text-[var(--s-text-muted)]">Sidebar</div>}
+    sidebarWidth={160}
+    className="min-h-0 h-48 w-full max-w-2xl border border-[color:var(--s-border)] bg-[var(--s-background)] overflow-hidden"
+  >
+    <div className="p-4 text-sm text-[var(--s-text)]">Main content area</div>
+  </AppShell>
 ```
 
 ## Right sidebar

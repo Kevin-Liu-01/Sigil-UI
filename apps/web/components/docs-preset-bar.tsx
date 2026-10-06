@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { Shuffle } from "lucide-react";
+import { Shuffle } from "@/components/icons";
 
 const TOOLBAR_H = 44;
 const EASE_SPRING = "cubic-bezier(0.32, 0.72, 0, 1)";

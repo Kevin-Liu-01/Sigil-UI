@@ -3,28 +3,22 @@ title: Diagram
 description: A token-driven container with optional grid backgrounds for composing diagram layouts.
 ---
 
+## Preview
+
+<ComponentPreview>
+  <Diagram><div className="flex flex-wrap items-center justify-center gap-4"><DiagramNode label="Client" /><DiagramConnector direction="horizontal" length={80} /><DiagramNode label="API" /></div></Diagram>
+</ComponentPreview>
+
 ## Import
 
 ```tsx
 import { Diagram } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview>
-  <Diagram>
-  <DiagramNode id="a" x={50} y={50} label="Start" />
-  <DiagramNode id="b" x={200} y={50} label="End" />
-  <DiagramConnector from="a" to="b" />
-</Diagram>
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<Diagram showGrid>
-  {/* compose DiagramNode, DiagramConnector, etc. inside */}
-</Diagram>
+<Diagram><div className="flex flex-wrap items-center justify-center gap-4"><DiagramNode label="Client" /><DiagramConnector direction="horizontal" length={80} /><DiagramNode label="API" /></div></Diagram>
 ```
 
 ## Grid variants

@@ -1,7 +1,13 @@
 ---
 title: Stepper
-description: "A Stepper component from the Sigil design system."
+description: "Show the current step in a multi-step process."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <Stepper currentStep={1} steps={[{ label: "Account", description: "Your details" }, { label: "Workspace", description: "Team settings" }, { label: "Review", description: "Confirm and finish" }]} />
+</ComponentPreview>
 
 ## Import
 
@@ -9,25 +15,19 @@ description: "A Stepper component from the Sigil design system."
 import { Stepper } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview vertical>
-  <Stepper steps={["Step 1", "Step 2", "Step 3"]} currentStep={1} />
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<Stepper>Stepper content</Stepper>
+<Stepper currentStep={1} steps={[{ label: "Account", description: "Your details" }, { label: "Workspace", description: "Team settings" }, { label: "Review", description: "Confirm and finish" }]} />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `steps` | `StepperStepConfig[]` | — | — |
-| `currentStep` | `number` | — | — |
-| `orientation` | `"horizontal" | "vertical"` | — | — |
+| `steps` (required) | `StepperStepConfig[]` | — | Steps configuration. |
+| `currentStep` (required) | `number` | — | Current Step configuration. |
+| `orientation` | `"horizontal" \| "vertical"` | — | Orientation configuration. |
 
 ## Token integration
 

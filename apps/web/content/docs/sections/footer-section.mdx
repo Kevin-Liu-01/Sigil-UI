@@ -1,7 +1,20 @@
 ---
 title: FooterSection
-description: "A FooterSection component from the Sigil design system."
+description: "Add a complete footer band to a composed page."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <FooterSection
+    tagline="Token-driven design system."
+    groups={[
+      { title: "Product", links: [{ label: "Docs", href: "#" }, { label: "Pricing", href: "#" }] },
+      { title: "Company", links: [{ label: "About", href: "#" }, { label: "Blog", href: "#" }] },
+    ]}
+    copyright="© 2026 Sigil"
+  />
+</ComponentPreview>
 
 ## Import
 
@@ -12,17 +25,26 @@ import { FooterSection } from "@sigil-ui/components";
 ## Usage
 
 ```tsx
-<FooterSection>...</FooterSection>
+<FooterSection
+    tagline="Token-driven design system."
+    groups={[
+      { title: "Product", links: [{ label: "Docs", href: "#" }, { label: "Pricing", href: "#" }] },
+      { title: "Company", links: [{ label: "About", href: "#" }, { label: "Blog", href: "#" }] },
+    ]}
+    copyright="© 2026 Sigil"
+  />
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `logo` | `ReactNode` | — | — |
-| `tagline` | `string` | — | — |
-| `groups` | `FooterLinkGroup[]` | — | — |
-| `socials` | `{ label: string; href: string; icon: ReactNode` | — | — |
+| `logo` | `ReactNode` | — | Logo configuration. |
+| `tagline` | `string` | — | Tagline configuration. |
+| `groups` (required) | `FooterLinkGroup[]` | — | Groups configuration. |
+| `socials` | `{ label: string; href: string; icon: ReactNode }[]` | — | Socials configuration. |
+| `copyright` | `string` | — | Copyright configuration. |
+| `legal` | `{ label: string; href: string }[]` | — | Legal configuration. |
 
 ## Token integration
 

@@ -1,18 +1,12 @@
 ---
 title: Accordion
-description: "A Accordion component from the Sigil design system."
+description: "Expand and collapse related sections with keyboard-accessible triggers."
 ---
-
-## Import
-
-```tsx
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@sigil-ui/components";
-```
 
 ## Preview
 
 <ComponentPreview vertical>
-  <Accordion>
+  <Accordion type="single" collapsible>
     <AccordionItem value="item-1">
       <AccordionTrigger>What is Sigil UI?</AccordionTrigger>
       <AccordionContent>A token-driven design system where one file updates everything.</AccordionContent>
@@ -20,10 +14,21 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@s
   </Accordion>
 </ComponentPreview>
 
+## Import
+
+```tsx
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@sigil-ui/components";
+```
+
 ## Usage
 
 ```tsx
-<Accordion>...</Accordion>
+<Accordion type="single" collapsible>
+    <AccordionItem value="item-1">
+      <AccordionTrigger>What is Sigil UI?</AccordionTrigger>
+      <AccordionContent>A token-driven design system where one file updates everything.</AccordionContent>
+    </AccordionItem>
+  </Accordion>
 ```
 
 ## Sub-components

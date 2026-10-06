@@ -1,7 +1,13 @@
 ---
 title: CTA
-description: "A CTA component from the Sigil design system."
+description: "Pair a focused message with a clear next action."
 ---
+
+## Preview
+
+<ComponentPreview vertical>
+  <CTA title="Start building with Sigil" description="Choose a preset and compose your first page." actions={[{ label: "Read the setup guide", href: "/docs/installation" }]} />
+</ComponentPreview>
 
 ## Import
 
@@ -9,18 +15,10 @@ description: "A CTA component from the Sigil design system."
 import { CTA } from "@sigil-ui/components";
 ```
 
-## Preview
-
-<ComponentPreview vertical>
-  <CTA>
-    CTA content
-  </CTA>
-</ComponentPreview>
-
 ## Usage
 
 ```tsx
-<CTA>CTA content</CTA>
+<CTA title="Start building with Sigil" description="Choose a preset and compose your first page." actions={[{ label: "Read the setup guide", href: "/docs/installation" }]} />
 ```
 
 ## Props
@@ -30,7 +28,7 @@ import { CTA } from "@sigil-ui/components";
 | `title` | `string` | — | CTA headline. |
 | `description` | `string` | — | CTA supporting text. |
 | `actions` | `CTAAction[]` | — | Action buttons. |
-| `variant` | `"centered" | "split"` | `centered` | Layout variant. |
+| `variant` | `"centered" \| "split"` | `centered` | Layout variant. |
 
 ## Token integration
 

@@ -105,14 +105,14 @@ import {
   PromptInput, ChatMessage, ChatThread, MessageComposer, ActivityTimeline, AuditLog,
   Changelog, VersionBadge, KeyboardKey,
 } from "@sigil-ui/components";
-import { TechFrame } from "./tech-frame";
+import { ComponentCatalog } from "./component-catalog";
 import { FooterLogo } from "./hero-logo-field";
 import {
   Search, Star, Heart, Bold, Italic, Underline,
   AlignLeft, AlignCenter, AlignRight,
   Layers, ArrowRight, Zap, Shield, Globe, Cpu, Code,
   Calendar as CalendarIcon, ChevronDown, Upload, Folder, File,
-} from "lucide-react";
+} from "@/components/icons";
 
 type ComponentCell = {
   name: string;
@@ -127,11 +127,6 @@ type ComponentCell = {
 function createDemoDate(): Date {
   return new Date(2026, 3, 24);
 }
-
-const CATEGORIES = [
-  "All", "UI", "Layout", "Navigation", "Overlays", "Data",
-  "Forms", "Feedback", "Developer", "Marketing", "Sections", "Shapes", "3D", "Diagrams", "Animation", "Pretext", "Patterns", "Playbook",
-] as const;
 
 const DOC_SECTION_BY_CATEGORY: Record<string, string> = {
   "3D": "components",
@@ -279,6 +274,29 @@ function getDocsHref(cell: ComponentCell) {
   if (cell.name in DOC_PATH_OVERRIDES) return DOC_PATH_OVERRIDES[cell.name];
   const section = DOC_SECTION_BY_CATEGORY[cell.category] ?? "components";
   return `/docs/${section}/${componentSlug(cell.name)}`;
+}
+
+function SidebarPreview() {
+  const [active, setActive] = useState("Overview");
+  return (
+    <div className="flex w-full justify-start">
+      <Sidebar className="sigil-catalog-sidebar-preview" aria-label="Example workspace navigation">
+        <SidebarHeader><Folder /><strong className="sigil-preview-sidebar-title">Fieldwork</strong></SidebarHeader>
+        <SidebarContent>
+          {[
+            { label: "Overview", icon: <Layers /> },
+            { label: "Projects", icon: <Folder /> },
+            { label: "Settings", icon: <Code /> },
+          ].map(item => <SidebarItem key={item.label} icon={item.icon} active={active === item.label} aria-label={item.label} onClick={() => setActive(item.label)}>{item.label}</SidebarItem>)}
+        </SidebarContent>
+      </Sidebar>
+    </div>
+  );
+}
+
+function PaginationPreview() {
+  const [page, setPage] = useState(3);
+  return <Pagination currentPage={page} totalPages={10} siblingCount={0} onPageChange={setPage} className="flex-wrap justify-center" />;
 }
 
 function ControlledCombobox() {
@@ -655,7 +673,7 @@ const CELLS: ComponentCell[] = [
         <Divider pattern="diagonal" size="xs" />
         <Divider pattern="vertical" size="xs" />
       </div>
-      <Divider orientation="vertical" pattern="diagonal" size="sm" />
+      <Divider orientation="vertical" pattern="diagonal" size="sm" className="h-auto self-stretch" />
     </div>
   )},
   { name: "HRule", category: "Layout", variants: 1, render: () => (
@@ -747,7 +765,7 @@ const CELLS: ComponentCell[] = [
     <Breadcrumb items={[{ label: "Home", href: "#" }, { label: "Components", href: "#" }, { label: "Button" }]} />
   )},
   { name: "Pagination", category: "Navigation", variants: 1, render: () => (
-    <Pagination currentPage={3} totalPages={10} />
+    <PaginationPreview />
   )},
   { name: "Toolbar", category: "Navigation", variants: 1, render: () => (
     <Toolbar>
@@ -775,16 +793,7 @@ const CELLS: ComponentCell[] = [
       </div>
     </div>
   )},
-  { name: "Sidebar", category: "Navigation", variants: 1, render: () => (
-    <div className="w-full border border-[var(--s-border-muted)] rounded-[var(--s-radius-sm,0px)] p-2">
-      <div className="text-[10px] font-semibold text-[var(--s-text)] mb-2">Docs</div>
-      <div className="flex flex-col gap-1">
-        <div className="text-[9px] px-2 py-0.5 rounded-[var(--s-radius-sm,0px)] bg-[var(--s-primary-muted)] text-[var(--s-primary)] font-medium">Getting Started</div>
-        <div className="text-[9px] px-2 py-0.5 text-[var(--s-text-muted)]">Components</div>
-        <div className="text-[9px] px-2 py-0.5 text-[var(--s-text-muted)]">Presets</div>
-      </div>
-    </div>
-  )},
+  { name: "Sidebar", category: "Navigation", variants: 1, render: () => <SidebarPreview /> },
   { name: "SocialIcons", category: "Navigation", variants: 1, render: () => (
     <div className="flex gap-3 items-center">
       <Globe size={14} className="text-[var(--s-text-muted)]" />
@@ -817,7 +826,7 @@ const CELLS: ComponentCell[] = [
   )},
 
   { name: "MagneticNav", category: "Navigation", variants: 1, span: 2, render: () => (
-    <MagneticNav>
+    <MagneticNav className="[&_ul]:flex-wrap">
       <MagneticNavItem><MagneticNavLink href="#" active>Home</MagneticNavLink></MagneticNavItem>
       <MagneticNavItem><MagneticNavLink href="#">Docs</MagneticNavLink></MagneticNavItem>
       <MagneticNavItem><MagneticNavLink href="#">Components</MagneticNavLink></MagneticNavItem>
@@ -1633,12 +1642,14 @@ const CELLS: ComponentCell[] = [
     />
   )},
   { name: "PlatformHubDiagram", category: "Diagrams", variants: 1, span: 2, render: () => (
-    <PlatformHubDiagram
-      left={[{ label: "Inputs", items: [{ label: "Tokens" }, { label: "Presets" }] }]}
-      center={{ label: "Platform", items: [{ label: "CLI" }] }}
-      right={[{ label: "Outputs", items: [{ label: "CSS" }, { label: "Components" }] }]}
-      className="w-full p-3 [&_*]:text-[9px]"
-    />
+    <ScrollArea orientation="horizontal" type="auto" className="w-full">
+      <PlatformHubDiagram
+        left={[{ label: "Inputs", items: [{ label: "Tokens" }, { label: "Presets" }] }]}
+        center={{ label: "Platform", items: [{ label: "CLI" }] }}
+        right={[{ label: "Outputs", items: [{ label: "CSS" }, { label: "Components" }] }]}
+        className="w-full min-w-[calc(8*var(--s-grid-cell))] p-3 [&_*]:text-[9px]"
+      />
+    </ScrollArea>
   )},
   { name: "IsometricStackDiagram", category: "Diagrams", variants: 1, render: () => (
     <IsometricStackDiagram layers={[{ label: "App" }, { label: "API", hatched: true }, { label: "Infra", color: "var(--s-primary)" }]} width={60} layerHeight={12} className="mx-auto" />
@@ -2312,151 +2323,12 @@ const CELLS: ComponentCell[] = [
 
 ];
 
-const CELL_STYLE: React.CSSProperties = {
-  minHeight: 168,
-  padding: "16px 16px 10px",
-  border: "1px solid var(--s-border-muted)",
-  borderRadius: "var(--s-radius-lg, 0px)",
-  background: "var(--s-background)",
-  transition: "border-color 200ms ease, background-color 200ms ease",
-};
-
-const SHOWCASE_AUDIT_CHECKLIST = CELLS.map((cell) => ({
-  name: cell.name,
-  category: cell.category,
-  hasDocs: Boolean(getDocsHref(cell)),
-  hasDemo: typeof cell.render === "function",
-}));
-
 export function ComponentShowcase() {
-  const [activeCategory, setActiveCategory] = useState<string>("All");
-  const [search, setSearch] = useState("");
-  const totalComponents = SHOWCASE_AUDIT_CHECKLIST.length;
-
-  const filtered = CELLS.filter((cell) => {
-    if (activeCategory !== "All" && cell.category !== activeCategory) return false;
-    if (search && !cell.name.toLowerCase().includes(search.toLowerCase())) return false;
-    return true;
-  });
-
-  const categories = activeCategory === "All"
-    ? [...new Set(filtered.map((c) => c.category))]
-    : [activeCategory];
-
   return (
     <TooltipProvider>
-    <Toaster position="bottom-right" />
-    <Sonner position="bottom-right" />
-    <div>
-      <div className="flex flex-col sm:flex-row gap-4 mb-8">
-        <Input
-          placeholder="Search components..."
-          className="h-9 text-xs flex-1 max-w-[320px]"
-          iconLeft={<Search size={14} style={{ color: "var(--s-text-muted)" }} />}
-          value={search}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
-        />
-        <div className="flex gap-0 border-b border-[var(--s-border)] overflow-x-auto">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat}
-              type="button"
-              onClick={() => setActiveCategory(cat)}
-              className={`bg-transparent border-0 px-3 py-1.5 text-[11px] font-[family-name:var(--s-font-mono)] tracking-[0.02em] cursor-pointer transition-colors shrink-0 ${
-                activeCategory === cat
-                  ? "text-[var(--s-text)] border-b-2 border-b-[var(--s-primary)]"
-                  : "text-[var(--s-text-muted)] border-b-2 border-b-transparent hover:text-[var(--s-text)]"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="font-[family-name:var(--s-font-mono)] text-[11px] text-[var(--s-text-muted)] mb-6">
-        {filtered.length} of {totalComponents} component{filtered.length !== 1 ? "s" : ""}
-        {search && <> matching &ldquo;{search}&rdquo;</>}
-      </div>
-
-      {categories.map((cat) => {
-        const catCells = filtered.filter((c) => c.category === cat);
-        if (catCells.length === 0) return null;
-        return (
-          <div key={cat} className="mb-12">
-            {activeCategory === "All" && (
-              <div className="flex items-baseline gap-3 mb-4">
-                <span className="font-[family-name:var(--s-font-mono)] text-[11px] font-semibold uppercase tracking-[0.06em] text-[var(--s-text-muted)]">
-                  {cat}
-                </span>
-                <span className="font-[family-name:var(--s-font-mono)] text-[10px] text-[var(--s-text-subtle)]">
-                  {catCells.length} components
-                </span>
-              </div>
-            )}
-            <TechFrame variant="brackets" extend={12} opacity={0.2} padding={4}>
-              <div className="grid gap-3" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gridAutoFlow: "dense" }}>
-                {catCells.map((cell) => {
-                  const docsHref = getDocsHref(cell);
-                  return (
-                    <div
-                      key={cell.name}
-                      className={`group flex min-w-0 flex-col overflow-visible ${
-                        cell.span && cell.span > 1 ? "md:col-span-2" : ""
-                      }`}
-                      style={CELL_STYLE}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.borderColor = "var(--s-border-strong)";
-                        e.currentTarget.style.background = "var(--s-surface)";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = "var(--s-border-muted)";
-                        e.currentTarget.style.background = "var(--s-background)";
-                      }}
-                    >
-                      <div
-                        className={`flex min-w-0 flex-1 justify-center w-full overflow-visible [&>*]:max-w-full ${
-                          cell.span && cell.span > 1
-                            ? "items-stretch [&>*]:w-full [&>*]:h-full"
-                            : "items-center"
-                        }`}
-                      >
-                        {cell.render()}
-                      </div>
-                      <div className="flex items-center gap-1.5 mt-2 pt-1.5" style={{ borderTop: "1px solid var(--s-border-muted)" }}>
-                        <span className="font-[family-name:var(--s-font-mono)] text-[10px] text-[var(--s-text-muted)] leading-none flex-1">{cell.name}</span>
-                        {cell.variants && (
-                          <span className="font-[family-name:var(--s-font-mono)] text-[9px] text-[var(--s-text-subtle)] leading-none">{cell.variants}v</span>
-                        )}
-                        {docsHref && (
-                          <a
-                            href={docsHref}
-                            onClick={(e) => e.stopPropagation()}
-                            className="opacity-0 group-hover:opacity-60 hover:!opacity-100 transition-opacity ml-1"
-                            aria-label={`${cell.name} docs`}
-                          >
-                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden>
-                              <path d="M4.5 2.5h5v5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                              <path d="M9.5 2.5L2.5 9.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </TechFrame>
-          </div>
-        );
-      })}
-
-      {filtered.length === 0 && (
-        <div className="flex items-center justify-center py-24">
-          <span className="font-[family-name:var(--s-font-mono)] text-sm text-[var(--s-text-muted)]">No components match your search.</span>
-        </div>
-      )}
-    </div>
+      <Toaster position="bottom-right" />
+      <Sonner position="bottom-right" />
+      <ComponentCatalog cells={CELLS} getDocsHref={getDocsHref} />
     </TooltipProvider>
   );
 }
