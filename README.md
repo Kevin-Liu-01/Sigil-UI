@@ -56,7 +56,7 @@ sigil design sync
 sigil design extract https://example.com
 ```
 
-Browse every preset's DESIGN.md at [sigil-ui.com/presets](https://sigil-ui.com/presets).
+Browse every preset's DESIGN.md at [sigil.kevinliu.studio/presets](https://sigil.kevinliu.studio/presets).
 
 ---
 
@@ -330,7 +330,7 @@ MIT
 <p align="center">
   <a href="MANIFESTO.md">Manifesto</a> ·
   <a href="DESIGN.md">DESIGN.md</a> ·
-  <a href="https://sigil-ui.com">Website</a> ·
-  <a href="https://sigil-ui.com/docs">Docs</a> ·
-  <a href="https://sigil-ui.com/presets">Presets</a>
+  <a href="https://sigil.kevinliu.studio">Website</a> ·
+  <a href="https://sigil.kevinliu.studio/docs">Docs</a> ·
+  <a href="https://sigil.kevinliu.studio/presets">Presets</a>
 </p>

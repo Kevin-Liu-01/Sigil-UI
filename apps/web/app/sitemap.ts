@@ -3,7 +3,7 @@ import { source } from "../lib/source";
 import { presetCatalog } from "@sigil-ui/presets";
 import { DEMOS } from "./demos/[slug]/demo-page-client";
 
-const BASE_URL = "https://sigil-ui.com";
+const BASE_URL = "https://sigil.kevinliu.studio";
 
 type ChangeFrequency = MetadataRoute.Sitemap[number]["changeFrequency"];
 

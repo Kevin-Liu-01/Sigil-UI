@@ -29,7 +29,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${title} Demo — Sigil UI`,
       description,
-      url: `https://sigil-ui.com/demos/${slug}`,
+      url: `https://sigil.kevinliu.studio/demos/${slug}`,
       images: [{ url: ogImageUrl, width: 1200, height: 630, alt: title }],
     },
     twitter: {
