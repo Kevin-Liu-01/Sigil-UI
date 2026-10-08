@@ -75,7 +75,7 @@ export async function generateMetadata(props: {
     openGraph: {
       title: `${page.data.title} — Sigil UI Docs`,
       description: page.data.description,
-      url: `https://sigil-ui.com/docs/${slug}`,
+      url: `https://sigil.kevinliu.studio/docs/${slug}`,
       images: [{ url: ogImageUrl, width: 1200, height: 630, alt: page.data.title }],
     },
     twitter: {

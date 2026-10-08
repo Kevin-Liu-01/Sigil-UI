@@ -76,7 +76,7 @@ Edit tokens, not components. One file at the top of the chain controls everythin
 
 ## Links
 
-Website: https://sigil-ui.com
-Docs: https://sigil-ui.com/docs
-Presets: https://sigil-ui.com/presets
+Website: https://sigil.kevinliu.studio
+Docs: https://sigil.kevinliu.studio/docs
+Presets: https://sigil.kevinliu.studio/presets
 GitHub: https://github.com/kevinliu/reticle-ui

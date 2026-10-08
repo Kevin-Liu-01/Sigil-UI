@@ -25,7 +25,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${entry.label} DESIGN.md — Sigil UI`,
       description,
-      url: `https://sigil-ui.com/presets/${name}/design`,
+      url: `https://sigil.kevinliu.studio/presets/${name}/design`,
     },
   };
 }

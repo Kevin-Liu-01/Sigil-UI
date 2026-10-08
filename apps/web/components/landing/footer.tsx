@@ -50,7 +50,7 @@ const FOOTER_COLS = [
       { label: "Manifesto", href: "/manifesto" },
       { label: "About", href: "/about" },
       { label: "Blog", href: "/blog" },
-      { label: "Contact", href: "mailto:hello@sigil-ui.dev" },
+      { label: "Contact", href: "mailto:k.bowen.liu@gmail.com" },
     ],
   },
 ];
