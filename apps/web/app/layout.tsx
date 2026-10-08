@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Kevin Liu", url: "https://kevinliu.me" }],
   creator: "Kevin Liu",
   category: "technology",
-  metadataBase: new URL("https://sigil-ui.com"),
+  metadataBase: new URL("https://sigil.kevinliu.studio"),
   alternates: { canonical: "/" },
   robots: {
     index: true,
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://sigil-ui.com",
+    url: "https://sigil.kevinliu.studio",
     siteName: "Sigil UI",
     title: "Sigil UI — One Token File Controls Everything",
     description: ogDescription,
@@ -76,18 +76,18 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://sigil-ui.com/#website",
+      "@id": "https://sigil.kevinliu.studio/#website",
       name: "Sigil UI",
-      url: "https://sigil-ui.com",
+      url: "https://sigil.kevinliu.studio",
       description: SIGIL_ONE_LINER,
-      publisher: { "@id": "https://sigil-ui.com/#organization" },
+      publisher: { "@id": "https://sigil.kevinliu.studio/#organization" },
     },
     {
       "@type": "Organization",
-      "@id": "https://sigil-ui.com/#organization",
+      "@id": "https://sigil.kevinliu.studio/#organization",
       name: "Sigil UI",
-      url: "https://sigil-ui.com",
-      logo: "https://sigil-ui.com/logo.svg",
+      url: "https://sigil.kevinliu.studio",
+      logo: "https://sigil.kevinliu.studio/logo.svg",
       description: `Open-source React component library with ${SIGIL_PRODUCT_SUMMARY}. One token file controls every color, font, radius, and animation.`,
       sameAs: [
         "https://github.com/Kevin-Liu-01/sigil-ui",
@@ -102,13 +102,13 @@ const jsonLd = {
     },
     {
       "@type": "SoftwareApplication",
-      "@id": "https://sigil-ui.com/#app",
+      "@id": "https://sigil.kevinliu.studio/#app",
       name: "Sigil UI",
       applicationCategory: "DeveloperApplication",
       operatingSystem: "Any",
       description: `${SIGIL_ONE_LINER} ${SIGIL_PRODUCT_SUMMARY}, all styled through CSS custom properties from a single token layer.`,
-      url: "https://sigil-ui.com",
-      author: { "@id": "https://sigil-ui.com/#organization" },
+      url: "https://sigil.kevinliu.studio",
+      author: { "@id": "https://sigil.kevinliu.studio/#organization" },
       license: "https://opensource.org/licenses/MIT",
       offers: {
         "@type": "Offer",

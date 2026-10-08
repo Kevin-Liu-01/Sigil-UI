@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const SITE_URL = "https://sigil-ui.com";
+const SITE_URL = "https://sigil.kevinliu.studio";
 const SITE_NAME = "Sigil UI";
 const TWITTER_HANDLE = "@kevinliu";
 
