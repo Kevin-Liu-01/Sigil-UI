@@ -86,8 +86,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # Braces make pnpm read the path as a directory selector and "..." add its workspace
+      # dependencies; without them pnpm builds the package alone, before the packages it imports.
       - name: Build target package
-        run: pnpm --filter ./${{ matrix.package }}... build
+        run: pnpm --filter "{./${{ matrix.package }}}..." build
 
       - name: Verify npm package contents
         working-directory: ${{ matrix.package }}
