@@ -34,11 +34,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # turbo.json allows 30 parallel tasks for local machines. On a 4-core GitHub runner that
+      # many Next.js and package builds at once exhaust memory and the runner is shut down
+      # mid-build ("The runner has received a shutdown signal"), so CI caps it.
       - name: Build packages and apps
-        run: pnpm build
+        run: pnpm exec turbo build --concurrency=2
 
       - name: Typecheck
-        run: pnpm typecheck
+        run: pnpm exec turbo typecheck --concurrency=2
 
       - name: Audit Sigil package surface
         run: pnpm audit:sigil
