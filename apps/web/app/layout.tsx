@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { SigilShell } from "@/components/sigil-shell";
 import { ThemeProvider } from "@/components/theme-provider";
 import { DocSearchPalette } from "@/components/doc-search-palette";
+import { GoogleAnalytics } from "@/components/google-analytics";
 import {
   SIGIL_PRODUCT_SUMMARY,
   SIGIL_ONE_LINER,
@@ -87,7 +88,7 @@ const jsonLd = {
       "@id": "https://sigil.kevinliu.studio/#organization",
       name: "Sigil UI",
       url: "https://sigil.kevinliu.studio",
-      logo: "https://sigil.kevinliu.studio/logo.svg",
+      logo: "https://sigil.kevinliu.studio/icon-512.png",
       description: `Open-source React component library with ${SIGIL_PRODUCT_SUMMARY}. One token file controls every color, font, radius, and animation.`,
       sameAs: [
         "https://github.com/Kevin-Liu-01/sigil-ui",
@@ -164,6 +165,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <DocSearchPalette />
           </SigilShell>
         </ThemeProvider>
+        <GoogleAnalytics />
       </body>
     </html>
   );
